@@ -59,7 +59,7 @@ class CategorieRepository extends ServiceEntityRepository
 
     public function findByCurrent()
     {
-        $current = "SELECT c.ordre, c.NomDeCategorie,p.id produit_id, CONCAT(c.ordre,'_', p.id ) ordreProd,c.valeurFaciale,c.ordre initiale,c.ordre entrer, c.ordre sortie, SUM(mvt.quantite) actuelle 
+        $current = "SELECT c.ordre,p.nomProduit produit, c.NomDeCategorie,p.id produit_id, CONCAT(c.ordre,'_', p.id ) ordreProd,c.valeurFaciale,c.ordre initiale,c.ordre entrer, c.ordre sortie, SUM(mvt.quantite) actuelle 
         FROM App\Entity\Categorie c INNER JOIN App\Entity\Mouvement mvt WITH c.id = mvt.Categorie INNER JOIN App\Entity\Produits p WITH p.id = c.produit
         GROUP BY mvt.Categorie";
         $stmt = $this->getEntityManager()->createQuery($current);

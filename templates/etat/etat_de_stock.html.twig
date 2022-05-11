@@ -109,7 +109,8 @@
                                             <thead>
                                                 <tr class="table-danger">
                                                     <th data-sortable="true" data-field="Ordre"> Ordre</th>
-                                                    <th data-field="Categorie"> Categorie </th>
+                                                    <th data-field="Categorie"> Produit </th>
+                                                    <th data-field="produit"> Categorie </th>
                                                     <th data-field="Valeur Faciales">Valeur Faciales</th>
                                                     <th data-field="Stock initial">Stock initial</th>
                                                     <th data-field="Entrée">Entrée</th>
@@ -118,12 +119,6 @@
                                                     
                                                 </tr>
                                             </thead>
-                                             <tfoot>
-                                                <tr>
-                                                    <td colspan="6">SUM</td>
-                                                    <td>118</td>
-                                                </tr>
-                                            </tfoot>
                                             <tbody>
                                                 
                                                 {% for key,value in courant %}
@@ -147,7 +142,9 @@
                                                                     <td> {{ out[key] }} </td>
                                                                 {% endif %} 
                                                             {% elseif key2 =='actuelle' %}
-                                                                <td> {{ value2 }} </td>                                                                                                                    
+                                                                <td> {{ value2 }} </td>  
+                                                            {% elseif key2 =='produit' %}
+                                                                <td> {{ value2 }} </td>                                                                                                                   
                                                             {% endif %}
                                                             
                                                         {% endfor %}
