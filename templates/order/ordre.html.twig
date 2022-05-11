@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ordre de Sortie | Paositra malagasy! {% endblock %}
+
+{% block body %}
+
+{% if app.user %} 
+<h3>Ordre  de sortie</h3>
+<h4 >Récapitulation N° </h4>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Categorie </th>
+                <th>Valeur Faciales </th>
+                <th>TP/PL </th>
+                <th>Nombre de planche </th>
+                <th>Nombre TP </th>
+                <th>Montant </th>
+                <th>Obervatiions </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pro in dispo %}
+                <tr>
+                    <td> {{ pro.categorie }}</td> 
+                    <td>{{ pro.1 }}</td>
+                    <td>{{ pro.vf }}</td>
+                </tr>
+            {% endfor %}
+        <tbody>
+    </table>
+        <div class="d-flex flex-row-reverse bd-highlight">
+            <div class="p-2 bd-highlight">
+                <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }} </p>
+
+                <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
+                    {{ app.user.prenom }}
+                <p> <a href="{{ path('download_etat') }}" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer ce ordre de sortie</button></a></p>                                        </p>
+            </div>
+        </div>
+    </div>
+{% else %}
+<h1>Page not found 404 </h1>
+
+<p>
+    The requested page couldn't be located. Checkout for any URL
+    misspelling or <a href="{{ path('homepage') }}">return to the authentification </a>.
+</p>
+
+{% endif %}
+
+{% endblock %}

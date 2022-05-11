@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
+        <title>Impression de produits {{ init.0.Produits }}  | Paositra malagasy</title>
+    </head>
+    <body onload="window.print()">
+
+        {# -------------Traitement de sortie-----------#}
+        {# ----------- make cle-------------#}
+        {% set ordreValue = []  %} 
+        {% set cleCourantHavingOrdreValue = []  %}
+        {% for key3, value3 in sort %} 
+            {% for key4, value4 in value3 %}
+                {% if key4 == 'ordreProd' %}
+                    {% set ordreValue = ordreValue|merge([value4])  %} 
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+
+        {# maka ny key(position) mifanaraka amin courant #}
+        {% for value in ordreValue %}
+            {% for key3, value3 in courant %} 
+                {% if value3["ordreProd"] == value %}
+                    {% set cleCourantHavingOrdreValue = cleCourantHavingOrdreValue|merge([key3])  %}                                                                                                          
+                {% endif %}   
+            {% endfor %}
+        {% endfor %}
+
+        {# mametraka ny value ao am sort #}
+        {% set sortValues = [] %}
+        {% set sortOrdres = [] %}
+        {% for key, value in sort %}
+                {% for key2, value2 in value %}
+                    {% if key2 =='sortie' %}
+                        {% set sortValues = sortValues|merge([value2])  %} 
+                    {% elseif key2 =='ordre' %} 
+                        {% set sortOrdres = sortOrdres|merge([value2])  %}                                                                                 
+                    {% endif %}
+                    
+                {% endfor %}  
+        {% endfor %}
+
+        {# mametraka ao am out #}
+        {% set out = [] %}
+        {% set k = 0 %}
+        {% if cleCourantHavingOrdreValue|length > 0 %}
+            {% for j in range(0, cleCourantHavingOrdreValue|length-1) %}
+                {% set break = false %}
+                {% for i in range(k, courant|length-1) if not break %} 
+                    {% if i == cleCourantHavingOrdreValue[j] %}
+                        {% set out = out|merge([sortValues[j]])  %} 
+                        {% if j <  cleCourantHavingOrdreValue|length-1 %}
+                            {% set k = i + 1 %}
+                            {% set break = true %}
+                        {% endif %}
+                    {% else %}  
+                        {% set out = out|merge([0])  %}                                                                                                           
+                    {% endif %}  
+                {% endfor %}
+            {% endfor %}
+        {% endif %}  
+
+        {# ----------- end make cle-------------#}
+
+        {# ------------------------#}
+        {% set initial = [] %}
+        {% set entree = [] %}
+        {% for key, value in courant %}
+            {% for key2, value2 in value %} 
+                {% if key2 =='initiale' %}
+                    {% set x = init[key].initiale %}
+                    {% set initial = initial|merge([x])  %}                                                                                                          
+                {% endif %}  
+                {% if key2 =='entrer' %}
+                    {% set x = entrer[key].entrer %}
+                    {% set entree = entree|merge([x])  %}                                                                                                          
+                {% endif %} 
+                {% if key2 =='sortie' %}
+                    {% if key < courant|length %}
+                        {% for valeur in cleCourantHavingOrdreValue %}
+                            {% set x = sort[0].sortie %}
+
+                        {% endfor %}
+                    {% endif %}                                                                                                         
+                {% endif %}     
+            {% endfor %}
+        {% endfor %}
+        {# ------------------------#}
+        <section class="container">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table" data-toggle="table" border="1">
+                    <h3 class="text-danger">Etat de stock produit {{ init.0.Produits }}  </h3>
+                        <thead>
+                            <tr class="table-danger">
+                                <th data-sortable="true" data-field="Ordre"> Ordre</th>
+                                <th scope="col" data-field="Categorie"> Categorie </th>
+                                <th scope="col" data-field="Valeur Faciales">Valeur Faciales</th>
+                                <th scope="col" data-field="Stock initial">Stock initial</th>
+                                <th scope="col" data-field="Entrée">Entrée</th>
+                                <th scope="col" data-field="Sortie">Sortie</th>
+                                <th scope="col" data-field="Sock Actuel">Stock Acteul </th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for key,value in courant %}
+                                    <tr>
+                                    {% for key2, value2 in value %} 
+                                        
+                                        {% if key2 =='ordre' %}
+                                            <td> {{ value2 }}  </td>
+                                        {% elseif key2 =='NomDeCategorie' %}
+                                            <td> {{ value2 }} </td>
+                                        {% elseif key2 =='valeurFaciale' %}
+                                            <td> {{ value2 }} </td>
+                                        {% elseif key2 =='initiale' %}
+                                            <td> {{ initial[key] }} </td> 
+                                        {% elseif key2 =='entrer' %}
+                                            <td> {{ entree[key] - initial[key] }} </td> 
+                                        {% elseif key2 =='sortie' %}
+                                            {% if out is empty %}
+                                                <td> 0 </td> 
+                                            {% else %}
+                                                <td> {{ out[key] }} </td>
+                                            {% endif %} 
+                                        {% elseif key2 =='actuelle' %}
+                                            <td> {{ value2 }} </td>                                                                                                                    
+                                        {% endif %}
+                                        
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+            <div class="d-flex flex-row-reverse bd-highlight">
+                <div class="p-2 bd-highlight">
+                    <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }} </p>
+                    <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
+                        {{ app.user.prenom }}
+                </div>
+            </div>
+        <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" 
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" 
+        crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+    </body>
+</html>

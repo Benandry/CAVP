@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Page d'inscription | Paositra malagasy! {% endblock %}
+
+{% block body%}
+    <h1 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; color:#e3151a;"> Page d'inscription de CAVP  </h1>
+    {% if notif %}
+            {{ notif }}
+    {% endif %}
+    <form method="post" style="width: 23rem;">
+        <div class="form-outline mb-4">
+            {{ form(formule) }}
+        </div>
+    </form>
+{% endblock %}

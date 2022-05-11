@@ -1,0 +1,71 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits sortie | Paositra malagasy! {% endblock %}
+
+{% block body %}
+{% if app.user %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="row" >
+        <div class="col-12">
+            <div style="box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);">
+                <div class="q-container p-4">
+                    <div class="row">
+                        <div class="col">
+                          <h4 class="q-title" style="color: #e3151a;">tous les produits sortie &#128520</h4>
+                            <div class="q-display p-3">
+                                <div class="class="table responsive-xxl"">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr class="table-danger">
+                                                <th scope="col">Nom du produits </th> 
+                                                <th scope="col">Abreviation </th>
+                                                <th scope="col">Quantités </th>
+                                                <th scope="col">Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                {% for sortie in sortie %}
+                                                    <tr>
+                                                    <td> {{ sortie.nomProduit }}</td> 
+                                                    <td> {{ sortie.Abbreviation }}</td>
+                                                    <td>{{ sortie.quantite }}</td>
+                                                    <td>{{ sortie.dateEntrer|format_date(locale='fr') }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                            <div>
+                                                <p>
+                                                    Antananarivo le ,{{ 'now' |format_date(locale='fr') }} </br>
+                                                    <span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span><br/>
+                                                     {{ app.user.prenom }} 
+                                                </p>
+                                                <p>
+                                                    <a href="{{ path('pro_sortie') }}" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer</button></a>
+                                                </p>
+                                            </div>
+                                <p class="pt-4"><strong>--Timbre postales --</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+<h1>Page not found 404 </h1>
+
+<p>
+    The requested page couldn't be located. Checkout for any URL
+    misspelling or <a href="{{ path('homepage') }}">return to the authentification </a>.
+</p>
+
+{% endif %}
+{% endblock %}
+

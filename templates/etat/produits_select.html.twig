@@ -1,0 +1,164 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits {{ init.0.Produits }} | Paositra malagasy! {% endblock %}
+
+{% block body %}
+{# -------------Traitement de sortie-----------#}
+{# ----------- make cle-------------#}
+{% set ordreValue = []  %} 
+{% set cleCourantHavingOrdreValue = []  %}
+{% for key3, value3 in sort %} 
+    {% for key4, value4 in value3 %}
+        {% if key4 == 'ordreProd' %}
+            {% set ordreValue = ordreValue|merge([value4])  %} 
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+
+{# maka ny key(position) mifanaraka amin courant #}
+{% for value in ordreValue %}
+    {% for key3, value3 in courant %} 
+        {% if value3["ordreProd"] == value %}
+            {% set cleCourantHavingOrdreValue = cleCourantHavingOrdreValue|merge([key3])  %}                                                                                                          
+        {% endif %}   
+    {% endfor %}
+{% endfor %}
+
+{# mametraka ny value ao am sort #}
+{% set sortValues = [] %}
+{% set sortOrdres = [] %}
+{% for key, value in sort %}
+        {% for key2, value2 in value %}
+            {% if key2 =='sortie' %}
+                {% set sortValues = sortValues|merge([value2])  %} 
+            {% elseif key2 =='ordre' %} 
+                {% set sortOrdres = sortOrdres|merge([value2])  %}                                                                                 
+            {% endif %}
+             
+        {% endfor %}  
+{% endfor %}
+
+{# mametraka ao am out #}
+{% set out = [] %}
+{% set k = 0 %}
+{% if cleCourantHavingOrdreValue|length > 0 %}
+    {% for j in range(0, cleCourantHavingOrdreValue|length-1) %}
+        {% set break = false %}
+        {% for i in range(k, courant|length-1) if not break %} 
+            {% if i == cleCourantHavingOrdreValue[j] %}
+                {% set out = out|merge([sortValues[j]])  %} 
+                {% if j <  cleCourantHavingOrdreValue|length-1 %}
+                    {% set k = i + 1 %}
+                    {% set break = true %}
+                {% endif %}
+            {% else %}  
+                {% set out = out|merge([0])  %}                                                                                                           
+            {% endif %}  
+        {% endfor %}
+    {% endfor %}
+{% endif %}  
+
+{# ----------- end make cle-------------#}
+{# ------------------------#}
+{% set initial = [] %}
+{% set entree = [] %}
+{% for key, value in courant %}
+    {% for key2, value2 in value %} 
+        {% if key2 =='initiale' %}
+            {% set x = init[key].initiale %}
+            {% set initial = initial|merge([x])  %}                                                                                                          
+        {% endif %}  
+        {% if key2 =='entrer' %}
+            {% set x = entrer[key].entrer %}
+            {% set entree = entree|merge([x])  %}                                                                                                          
+        {% endif %} 
+        {% if key2 =='sortie' %}
+            {% if key < courant|length %}
+                {% for valeur in cleCourantHavingOrdreValue %}
+                    {% set x = sort[0].sortie %}
+
+                {% endfor %}
+            {% endif %}                                                                                                         
+        {% endif %}     
+    {% endfor %}
+{% endfor %}
+{# ------------------------#}
+    <h4 class="text-danger"><label for="cars">Nom du produits :<em>{{ init.0.Produits }}</em></h4>  
+    <div class="row" >
+        <div class="col-12">
+            <div style="box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);">
+                <div class="q-container p-4">
+                    <div class="row">
+                        <div class="col">
+                          <h2 class="q-title"><p style="color:#333940;" class="lead" > Situation du stocks: <span style="color:#498000;">{{ 'now' |format_date(locale='fr') }}</span></p> </h2>
+                            <div class="q-display p-3">
+                                <p class="d-inline">                               
+                                   <div class="table responsive-xxl">
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                                <tr class="table-danger">
+                                                    <th scope="col"> Ordre</th>
+                                                    <th scope="col"> Categorie </th>
+                                                    <th scope="col">Valeur Faciales</th>
+                                                    <th scope="col">Stock initial</th>
+                                                    <th scope="col">Entrée</th>
+                                                    <th scope="col">Sortie</th>
+                                                    <th scope="col">Stock Acteul </th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                {% for key,value in courant %}
+                                                      <tr>
+                                                        {% for key2, value2 in value %} 
+                                                            
+                                                            {% if key2 =='ordre' %}
+                                                                <td> {{ value2 }}  </td>
+                                                            {% elseif key2 =='NomDeCategorie' %}
+                                                                <td> {{ value2 }} </td>
+                                                            {% elseif key2 =='valeurFaciale' %}
+                                                                <td> {{ value2 }} </td>
+                                                            {% elseif key2 =='initiale' %}
+                                                                <td> {{ initial[key] }} </td> 
+                                                            {% elseif key2 =='entrer' %}
+                                                                <td> {{ entree[key] - initial[key] }} </td> 
+                                                            {% elseif key2 =='sortie' %}
+                                                                {% if out is empty %}
+                                                                    <td> 0 </td> 
+                                                                {% else %}
+                                                                    <td> {{ out[key] }} </td>
+                                                                {% endif %} 
+                                                            {% elseif key2 =='actuelle' %}
+                                                                <td> {{ value2 }} </td>                                                                                                                    
+                                                            {% endif %}
+                                                            
+                                                        {% endfor %}
+                                                    </tr>
+                                                {% endfor %}
+
+                                            </tbody>
+                                        </table>
+                                   </div>
+                                </p>
+                                <div class="d-flex flex-row-reverse bd-highlight">
+                                    <div class="p-2 bd-highlight">
+                                        <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }} </p>
+
+                                        <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
+                                            {{ app.user.prenom }}
+                                        <p> <a href="{{ path('impression_product',{id: init.0.id}) }}" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer ce fichier</button></a></p>                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+{% endblock %}
+
