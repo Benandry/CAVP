@@ -375,7 +375,7 @@ $context["key2"] == "ordre")) {
                                             <thead>
                                                 <tr class=\"table-danger\">
                                                     <th scope=\"col\"> Ordre</th>
-                                                    <th scope=\"col\"> Categorie </th>
+                                                    <th data-field=\"Categorie\"> Categorie </th>
                                                     <th scope=\"col\">Valeur Faciales</th>
                                                     <th scope=\"col\">Stock initial</th>
                                                     <th scope=\"col\">Entrée</th>
@@ -459,7 +459,7 @@ $context["key2"] == "actuelle")) {
                     // line 134
                     echo "                                                                <td> ";
                     echo twig_escape_filter($this->env, $context["value2"], "html", null, true);
-                    echo " </td>                                                                                                                    
+                    echo " </td>                                                                                                                     
                                                             ";
                 }
                 // line 136
@@ -636,7 +636,7 @@ $context["key2"] == "actuelle")) {
                                             <thead>
                                                 <tr class=\"table-danger\">
                                                     <th scope=\"col\"> Ordre</th>
-                                                    <th scope=\"col\"> Categorie </th>
+                                                    <th data-field=\"Categorie\"> Categorie </th>
                                                     <th scope=\"col\">Valeur Faciales</th>
                                                     <th scope=\"col\">Stock initial</th>
                                                     <th scope=\"col\">Entrée</th>
@@ -668,7 +668,7 @@ $context["key2"] == "actuelle")) {
                                                                     <td> {{ out[key] }} </td>
                                                                 {% endif %} 
                                                             {% elseif key2 =='actuelle' %}
-                                                                <td> {{ value2 }} </td>                                                                                                                    
+                                                                <td> {{ value2 }} </td>                                                                                                                     
                                                             {% endif %}
                                                             
                                                         {% endfor %}

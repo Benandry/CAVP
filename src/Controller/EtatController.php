@@ -18,84 +18,76 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class EtatController extends AbstractController
 {
   #[Route('/etat-de-stocks', name: 'etat_de_stock')]
-  public function index(ManagerRegistry $doctrine): Response
+  public function index(ManagerRegistry $doctrine,Request $request): Response
   {
-    // Appel la fonction contient la requets avec les produits initial 
+    /*=================================Formulaire pour selectionner les produits============================ */
+    $form = $this->createFormBuilder()
+    ->add('select', EntityType::class,[
+        'class' => Produits::class])
+    ->add('submit', SubmitType::class)
+    ->getForm();
+
+    $form->handleRequest($request);
+
+    /* ===== Si les produits sont selectionnnés. On va executer les requests ci-dessous ====== */
+    if ($form->isSubmitted() && $form->isValid())
+    {
+        //============= Recuperer les données obtenus dans les formulaires ===============================//
+        $data = $form->getData();
+        // =============== recuperer ID de produit selectionné ======================//
+        $product = ($data['select'])->getId();
+        // ============= Recuperer les fonctions dans le repositorie contient la requets ===========//
+        $repository = $doctrine->getRepository(Categorie::class);
+        // ========== Qantite Initiale et Ordre de par categorie ================ //
+        $init  = $repository->findByInitPro($product);
+        //dd($init);
+    
+        // ==================la requets avec les produits entrées  ====================== // 
+        $enter  = $repository->findBytEnterPro($product);
+          //dd($enter);
+        
+        // ================= la requets avec les produits sorties ==========================//  
+        $out  = $repository->findByOutPro($product);
+        //dd($out);
+    
+        // =================== la requets avec les produits actuels ======================== //  
+        $current  = $repository->findByCurrentPro($product);
+        //dd(array_merge($init,$enter,$out,$current));
+        //Si les produits ont aucune donnés;
+        if (!$product) {
+            throw $this->createNotFoundException(
+                'No product found '
+            );
+        }
+        return $this->render('etat/produits_select.html.twig', [
+          'courant' =>$current,
+          'init' =>$init,
+          'entrer' =>$enter,
+          'sort' =>$out
+        ]);
+    }
+
+    // ===================  Appel la fonction contient la requets avec les produits initiale en generale(Tous les categories par produits) ====================== //
     $repository = $doctrine->getRepository(Categorie::class);
+    // =================== Quantite initiale en generale (Tous les categories par produits)========================== //
     $init  = $repository->findByInit();
     //dd($init);
-
-    //la requets avec les produits entrées  
+    // ==================== la requets avec les produits entrées en generale (Tous les categories par produits)=================== //  
     $enter  = $repository->findByEnter();
       //dd($enter);
-    
-    //la requets avec les produits sorties  
+    // -====================== la requets avec les produits sorties en generale(Tous les categories par produits)  =========================== // 
     $out  = $repository->findByOut();
     //dd($out);
-
-    //la requets avec les produits actuels  
+    // =========================== la requets avec les produits actuels en generale(Tous les categories par produits) =============================== //  
     $current  = $repository->findByCurrent();
-    //dd(array_merge($init,$enter,$out,$current));
-    //dd($current);
+
     return $this->render('etat/etat_de_stock.html.twig',[
         'courant' =>$current,
         'init' =>$init,
         'entrer' =>$enter,
         'sort' =>$out,
+        'form' => $form->createView()
     ]);
   }
-    //================================Selection des produits ==============================================
-    #[Route('/select_product', name: 'select')]
-    public function select(ManagerRegistry $doctrine,Request $request )
-    {
-
-        $form = $this->createFormBuilder()
-            ->add('select', EntityType::class,[
-                'class' => Produits::class])
-            ->add('submit', SubmitType::class)
-            ->getForm();
-
-            $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            $data = $form->getData();
-
-            $product = ($data['select'])->getId();
-            //dd($product);
-            
-            $repository = $doctrine->getRepository(Categorie::class);
-            $init  = $repository->findByInitPro($product);
-            //dd($init);
-        
-            //la requets avec les produits entrées  
-            $enter  = $repository->findBytEnterPro($product);
-              //dd($enter);
-            
-            //la requets avec les produits sorties  
-            $out  = $repository->findByOutPro($product);
-            //dd($out);
-        
-            //la requets avec les produits actuels  
-            $current  = $repository->findByCurrentPro($product);
-            //dd(array_merge($init,$enter,$out,$current));
-            //dd($current);
-            if (!$product) {
-                throw $this->createNotFoundException(
-                    'No product found '
-                );
-            }
-            return $this->render('etat/produits_select.html.twig', [
-              'courant' =>$current,
-              'init' =>$init,
-              'entrer' =>$enter,
-              'sort' =>$out
-            ]);
-        }
-
-
-        return $this->render('etat/produits.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
+   
 }

@@ -17,9 +17,47 @@ class HistoriqueController extends AbstractController
 {
     
     #[Route('/compte-rendu', name: 'history')]
-    public function history(ManagerRegistry $doctrine): Response
+    public function history(ManagerRegistry $doctrine,Request $request): Response
     {
 
+        
+        // =================Formulaire pour preciser la date  =================//
+        $form = $this->createFormBuilder()
+            ->add('preciser', DateType::class,[
+                'label' =>"Preciser la date :",
+                'widget' => 'single_text',
+            ])
+            ->add('submit', SubmitType::class)
+            ->getForm();
+
+            $form->handleRequest($request);
+              // =================Si la formulaire est submit  =================//
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            //==================== Recuperer les donnés dans les formulaire ===================== //
+            $data = $form->getData();
+            //==================== Modifier la format de la date  ===================== //
+            $dat = ($data['preciser']->format('Y-m-d'));
+            //==================== Recuperer le mois de la date  ===================== //
+            $month = date("m",strtotime($dat));
+            //==================== Recuperer l'annés de la date  ===================== //
+            $year = date("Y",strtotime($dat));
+
+            $repository1 = $doctrine->getRepository(Mouvement::class);
+            $histo  = $repository1->findByMois($month,$year);
+            //dd($histo);
+            if (!$histo) {
+                throw $this->createNotFoundException(
+                    'No product found '
+                );
+            }
+            return $this->render('historique/categorie_avec_date.html.twig', [
+                'history' => $histo,
+                'ymd' =>$dat
+            ]);
+        }
+
+        // =================== Compte rendu en generale ====================== //
         $repository1 = $doctrine->getRepository(Mouvement::class);
         $histo  = $repository1->findByhistory();
        // dd($histo);
@@ -28,12 +66,12 @@ class HistoriqueController extends AbstractController
                 'No product found '
             );
         }
-
         return $this->render('historique/history.html.twig', [
-            'history' => $histo
+            'history' => $histo,
+            'form' => $form->createView()
         ]);
     }
-
+    // =================== Compte rendu des produits sorties ====================== //
     #[Route('/compte-rendu-sortie', name: 'history_out')]
     public function out(ManagerRegistry $doctrine): Response
     {
@@ -51,7 +89,7 @@ class HistoriqueController extends AbstractController
             'history' => $histo
         ]);
     }
-    
+    // =================== Compte rendu des produits reintegrés  ====================== //
     #[Route('/compte-rendu-produits-integrée', name: 'integreted')]
     public function integreted(ManagerRegistry $doctrine): Response
     {
@@ -69,7 +107,7 @@ class HistoriqueController extends AbstractController
             'history' => $histo
         ]);
     }
-
+    // =================== Compte rendu des produits Entrés ====================== //
     #[Route('/compte-rendu-entrer', name: 'history_enter')]
     public function enter(ManagerRegistry $doctrine): Response
     {
@@ -85,52 +123,6 @@ class HistoriqueController extends AbstractController
 
         return $this->render('historique/history_in.html.twig', [
             'history' => $histo
-        ]);
-    }
-
-    //================================Modification de la date ==============================================
-    #[Route('/modification-de-la-date', name: 'precision_date')]
-    public function specify(ManagerRegistry $doctrine,Request $request )
-    {
-
-        $form = $this->createFormBuilder()
-            ->add('preciser', DateType::class,[
-                'label' =>"Preciser la date :",
-                'widget' => 'single_text',
-            ])
-            ->add('submit', SubmitType::class)
-            ->getForm();
-
-            $form->handleRequest($request);
-           // dd($form);
-
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            $data = $form->getData();
-           // dd($data);
-            //$obj = new DateTime('1970-04-01 00:00:00.000000');
-            //$dmy = $data->format('Y-m-d');
-            $dat = ($data['preciser']->format('Y-m-d'));
-            $month = date("m",strtotime($dat));
-            $year = date("Y",strtotime($dat));
-            //dd($year);
-            $repository1 = $doctrine->getRepository(Mouvement::class);
-            $histo  = $repository1->findByMois($month,$year);
-            //dd($histo);
-            if (!$histo) {
-                throw $this->createNotFoundException(
-                    'No product found '
-                );
-            }
-            return $this->render('historique/categorie_avec_date.html.twig', [
-                'history' => $histo,
-                'ymd' =>$dat
-            ]);
-        }
-
-
-        return $this->render('historique/precision.html.twig', [
-            'form' => $form->createView()
         ]);
     }
 

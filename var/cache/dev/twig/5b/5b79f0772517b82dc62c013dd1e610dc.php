@@ -347,7 +347,7 @@ $context["key2"] == "ordre")) {
             <div class=\"row\">
                 <div class=\"col-12\">
                     <table class=\"table\" data-toggle=\"table\" border=\"1\">
-                    <h3 class=\"text-danger\">Etat de stock produit ";
+                    <h3 class=\"text-danger\">Etat de stock produit : ";
         // line 98
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["init"]) || array_key_exists("init", $context) ? $context["init"] : (function () { throw new RuntimeError('Variable "init" does not exist.', 98, $this->source); })()), 0, [], "any", false, false, false, 98), "Produits", [], "any", false, false, false, 98), "html", null, true);
         echo "  </h3>
@@ -608,7 +608,7 @@ $context["key2"] == "actuelle")) {
             <div class=\"row\">
                 <div class=\"col-12\">
                     <table class=\"table\" data-toggle=\"table\" border=\"1\">
-                    <h3 class=\"text-danger\">Etat de stock produit {{ init.0.Produits }}  </h3>
+                    <h3 class=\"text-danger\">Etat de stock produit : {{ init.0.Produits }}  </h3>
                         <thead>
                             <tr class=\"table-danger\">
                                 <th data-sortable=\"true\" data-field=\"Ordre\"> Ordre</th>

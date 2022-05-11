@@ -3,31 +3,54 @@
 {% block title %}Compte rendu | Paositra Malagasy{% endblock %}
 
 {% block body %}
-    <div class="clearfix">
-        <span class="float-right">
-            <span> Les produits:  <span>
-            <select name="link" id='' size="1" onchamge="window.location.href=this.value;">
-                <option onClick="window.location = '{{ path('history') }}'" >Tous </option>
-                <option onClick="window.location = '{{ path('history_enter') }}'" >Entrées</option>
-                <option onClick="window.location = '{{ path('integreted') }}'" >Reintegrées</option>
-                <option onClick="window.location = '{{ path('history_out') }}'" >Sorties</option>
-            </select>
-        </span>
-    </div>
-    <h5 class="q-title"> Compte rendu produits   </h5>
+    <div style="background-color: #e5e6e7;">
+        <div class="clearfix">
+            <span class="float-right" style="margin-top: 10px;">
+                <ul class="nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span> Les produits:  <span></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown09">
+                            <a class="dropdown-item" href="{{ path('history', {'source':'tous les produits par categorie'}) }}">Tous</a>
+                            <a class="dropdown-item" href="{{ path('history_enter', {'source':'tous les produits entrée par categorie'}) }}">Entrées</a>
+                            <a class="dropdown-item" href="{{ path('integreted', {'source':'tous les produits integrés par categorie'}) }}">Reintegrées</a>
+                            <a class="dropdown-item" href="{{ path('history_out', {'source':'tous les produits sorties par categorie'}) }}">Sorties</a>
+                        </div>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <h5 class="q-title"> Compte rendu produits   </h5>
 
-    <a href="{{ path('precision_date') }}">Preciser la date</a> {{ render(controller('App\\Controller\\HistoriqueController::specify'))}}
-   <!--
-    <form action=""  method="post">
-       <label>preciser la date :</label> <input type="date" name="date_precis" value="" id="date">
-        <button type="submit">OK</button>
-    </form>
-    !-->
-   <div class="row" style="background-color: #e5e6e7;">
-        {% for histo in history%}
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"> Preciser la date</button>
+            <div class="modal" id="myModal">
+                {{ form_start(form) }}
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"> Preciser la date </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    {{ form_start(form) }}
+                    <div class="modal-body">
+                        <div class="form-group">
+                                    {{ form_row(form.preciser, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                            <div class="form-group">
+                            {{ form_row(form.submit, { 'label': 'valider' }) }}
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        <div class="row">
+            {% for histo in history%}
                 <div class="col-lg-4 col-sm-6" >
-                   <!-- <div style="box-shadow: 7px 7px 10px 0px #afafaf,-10px -10px 20px 0px #F0F0F2; background-color: #BDBDBB;"> !-->
-                   <div class="box-element card card-solid" style="margin: 20px;width: 400px; height:380px">
+                <!-- <div style="box-shadow: 7px 7px 10px 0px #afafaf,-10px -10px 20px 0px #F0F0F2; background-color: #BDBDBB;"> !-->
+                <div class="box-element card card-solid" style="margin: 20px;width: 400px; height:380px">
                         <div class="card card-body">
                             <h4 style="display: flex;"><img src="/images/calendrier.png" width="30" height="35"> : 
                                 <span class="text-uppercase" style="color:#498000;">
@@ -46,6 +69,7 @@
                         </div>
                     </div>
                 </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

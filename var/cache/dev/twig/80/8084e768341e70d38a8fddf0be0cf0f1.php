@@ -61,7 +61,7 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
         <nav class=\"navbar navbar-expand-lg navbar-light\" style=\"background-color: #ffd600;height: 80px;\">
         <a class=\"navbar-brand\" href=\"";
         // line 19
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("homepage");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("homepage", ["source" => "page d'accueil"]);
         echo "\">
             <i style=\"color: #444; font-size: 2rem;\" class=\"pb-1 fad fa-cauldron\"></i>
             <img src=\"/images/logo-PPT.webp\" width=\"50\" height=\"50\">
@@ -80,33 +80,33 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
                         <li class=\"nav-item active\">
                             <a class=\"nav-link\" href=\"";
             // line 32
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin", ["source" => "administrateur"]);
             echo "\">Administrateur<span class=\"sr-only\">(current)</span></a>
                         </li>
                         <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"";
             // line 35
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("etat_de_stock");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("etat_de_stock", ["source" => "etat de stock"]);
             echo "\">Etat de Stock</a>
                         </li>
                         <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"";
             // line 38
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("history");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("history", ["source" => "compte rendu "]);
             echo "\">Compte Rendu</a>
                         </li>
                         <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"";
             // line 41
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("order_out");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("order_out", ["source" => "ordre de sortie"]);
             echo "\">Ordre de sortie</a>
                         </li>
                     </ul>
                     <div class=\"d-flex flex-row-reverse bd-highlight\">
                         <div class=\"p-2 bd-highlight\">
-                            <a href=\" ";
+                            <a href=\"";
             // line 46
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout", ["source" => "deconnecter"]);
             echo "\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Logout</button></a>
                         </div>
                     </div>
@@ -115,9 +115,9 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
             // line 50
             echo "                    <div class=\"d-flex flex-row-reverse bd-highlight\">
                         <div class=\"p-2 bd-highlight\">
-                            <a href=\" ";
+                            <a href=\"";
             // line 52
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login", ["source" => " connecter "]);
             echo "\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Login</button></a>
                         </div>
                     </div>
@@ -215,7 +215,6 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        echo " ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -269,7 +268,7 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  238 => 65,  228 => 64,  209 => 58,  197 => 14,  193 => 13,  185 => 7,  175 => 6,  156 => 5,  145 => 79,  143 => 64,  137 => 61,  133 => 59,  131 => 58,  127 => 56,  120 => 52,  116 => 50,  109 => 46,  101 => 41,  95 => 38,  89 => 35,  83 => 32,  79 => 30,  77 => 29,  64 => 19,  59 => 16,  57 => 6,  53 => 5,  47 => 1,);
+        return array (  237 => 65,  227 => 64,  209 => 58,  197 => 14,  193 => 13,  185 => 7,  175 => 6,  156 => 5,  145 => 79,  143 => 64,  137 => 61,  133 => 59,  131 => 58,  127 => 56,  120 => 52,  116 => 50,  109 => 46,  101 => 41,  95 => 38,  89 => 35,  83 => 32,  79 => 30,  77 => 29,  64 => 19,  59 => 16,  57 => 6,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -292,7 +291,7 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
     </head>
     <body>
         <nav class=\"navbar navbar-expand-lg navbar-light\" style=\"background-color: #ffd600;height: 80px;\">
-        <a class=\"navbar-brand\" href=\"{{ path('homepage') }}\">
+        <a class=\"navbar-brand\" href=\"{{ path('homepage', {'source':'page d\\'accueil'}) }}\">
             <i style=\"color: #444; font-size: 2rem;\" class=\"pb-1 fad fa-cauldron\"></i>
             <img src=\"/images/logo-PPT.webp\" width=\"50\" height=\"50\">
             <h3 class=\"pl-2 d-inline font-weight-bold\" style=\"color: #fff;\"> CAVP Paositra Malagasy</h3>
@@ -305,33 +304,33 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
                 {% if app.user %}
                     <ul class=\"navbar-nav mr-auto\">
                         <li class=\"nav-item active\">
-                            <a class=\"nav-link\" href=\"{{ path('admin') }}\">Administrateur<span class=\"sr-only\">(current)</span></a>
+                            <a class=\"nav-link\" href=\"{{ path('admin', {'source':'administrateur'}) }}\">Administrateur<span class=\"sr-only\">(current)</span></a>
                         </li>
                         <li class=\"nav-item\">
-                            <a class=\"nav-link\" href=\"{{ path('etat_de_stock') }}\">Etat de Stock</a>
+                            <a class=\"nav-link\" href=\"{{ path('etat_de_stock', {'source':'etat de stock'}) }}\">Etat de Stock</a>
                         </li>
                         <li class=\"nav-item\">
-                            <a class=\"nav-link\" href=\"{{ path('history') }}\">Compte Rendu</a>
+                            <a class=\"nav-link\" href=\"{{ path('history', {'source':'compte rendu '}) }}\">Compte Rendu</a>
                         </li>
                         <li class=\"nav-item\">
-                            <a class=\"nav-link\" href=\"{{ path('order_out')}}\">Ordre de sortie</a>
+                            <a class=\"nav-link\" href=\"{{ path('order_out', {'source':'ordre de sortie'}) }}\">Ordre de sortie</a>
                         </li>
                     </ul>
                     <div class=\"d-flex flex-row-reverse bd-highlight\">
                         <div class=\"p-2 bd-highlight\">
-                            <a href=\" {{ path('app_logout') }}\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Logout</button></a>
+                            <a href=\"{{ path('app_logout', {'source':'deconnecter'}) }}\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Logout</button></a>
                         </div>
                     </div>
                 {% else %}
                     <div class=\"d-flex flex-row-reverse bd-highlight\">
                         <div class=\"p-2 bd-highlight\">
-                            <a href=\" {{ path('app_login') }}\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Login</button></a>
+                            <a href=\"{{ path('app_login', {'source':' connecter '}) }}\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Login</button></a>
                         </div>
                     </div>
                 {% endif %}
             </div>
         </nav>
-        {% block body %} {% endblock %}
+        {% block body %}{% endblock %}
 
         <footer class=\"mt-5 p-3 text-center\" style=\"background-color: #ffd600; botom:0; color: #444;height: 80px;\"><span style=\"color: #00634f;\">
             Centre d'Approvisionnement en Valeurs Postales </span> <i style=\"color:#e3151a;\" class=\"fa-thin fa-barcode\"></i> &copy; Copyright <span style=\"color:#498000;\">{{ 'now' |format_date(locale='fr') }}</span>
