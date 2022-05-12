@@ -83,7 +83,12 @@
         {% endif %}     
     {% endfor %}
 {% endfor %}
-{# ------------------------#}   
+{# ------------------------#}
+    {% if init.0.Produits is defined %}
+        <h4 class="text-danger"><label for="cars">Nom du produits :<em>{{ init.0.Produits }}</em></h4>
+    {% endif %}
+    
+    
     <div class="row" >
         <div class="col-12">
             <div style="box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);">
@@ -139,7 +144,9 @@
                                             <thead>
                                                 <tr class="table-danger">
                                                     <th data-sortable="true" data-field="Ordre"> Ordre</th>
-                                                    <th data-field="Categorie"> Produit </th>
+                                                    {% if init.0.Produits is not defined %}
+                                                        <th data-field="Categorie"> Produit </th>
+                                                    {% endif %}
                                                     <th data-field="produit"> Categorie </th>
                                                     <th data-field="Valeur Faciales">Valeur Faciales</th>
                                                     <th data-field="Stock initial">Stock initial</th>

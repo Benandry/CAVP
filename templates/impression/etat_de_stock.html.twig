@@ -96,6 +96,9 @@
                     <div class="col-12">
                         <table class="table" data-toggle="table" border="1">
                         <h3 class="text-danger">Etat de stock general </h3>
+                        {% if init.0.Produits is defined %}
+                            <h3 class="text-danger">Etat de stock produit : {{ init.0.Produits }}  </h3>
+                        {% endif %}
                             <thead>
                                 <tr class="table-danger">
                                     <th data-sortable="true" data-field="Ordre"> Ordre</th>

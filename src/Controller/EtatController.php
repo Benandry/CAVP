@@ -59,11 +59,12 @@ class EtatController extends AbstractController
                 'No product found '
             );
         }
-        return $this->render('etat/produits_select.html.twig', [
+        return $this->render('etat/etat_de_stock.html.twig', [
           'courant' =>$current,
           'init' =>$init,
           'entrer' =>$enter,
-          'sort' =>$out
+          'sort' =>$out,
+          'form' => $form->createView()  
         ]);
     }
 

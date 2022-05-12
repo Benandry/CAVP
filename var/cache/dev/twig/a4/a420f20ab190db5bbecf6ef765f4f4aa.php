@@ -372,6 +372,6 @@ $context["key2"] == "actuelle")) {
     </div>
 </div>
 {% endblock %}
-", "periode/annuel.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\templates\\periode\\annuel.html.twig");
+", "periode/annuel.html.twig", "E:\\symfony5\\cavp2\\CAVP\\templates\\periode\\annuel.html.twig");
     }
 }
