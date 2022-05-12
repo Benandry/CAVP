@@ -365,7 +365,7 @@ $context["key2"] == "ordre")) {
                             <div class=\"q-display p-3\">
                                 <p class=\"d-inline\">
                                 <div id=\"sidebar\">
-                                    <button type=\"button\" class=\"btn btn-light\" data-bs-toggle=\"modal\" data-bs-target=\"#myModal\"> Produits</button>
+                                    Selectionner les : <button type=\"button\" class=\"btn btn-light\" data-bs-toggle=\"modal\" data-bs-target=\"#myModal\"> Produits</button>
                                     <div class=\"modal\" id=\"myModal\">
                                         ";
         // line 99
@@ -695,7 +695,7 @@ $context["key2"] == "produit")) {
                             <div class=\"q-display p-3\">
                                 <p class=\"d-inline\">
                                 <div id=\"sidebar\">
-                                    <button type=\"button\" class=\"btn btn-light\" data-bs-toggle=\"modal\" data-bs-target=\"#myModal\"> Produits</button>
+                                    Selectionner les : <button type=\"button\" class=\"btn btn-light\" data-bs-toggle=\"modal\" data-bs-target=\"#myModal\"> Produits</button>
                                     <div class=\"modal\" id=\"myModal\">
                                         {{ form_start(form) }}
                                             <div class=\"modal-dialog\">
