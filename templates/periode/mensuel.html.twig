@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% set mois_dico = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+          'August', 'September', 'October', 'November', 'December']  %}
 {% block title %}Etat de stock | Paositra malagasy! {% endblock %}
 
 {% block body %}
@@ -90,7 +92,7 @@
                 <div class="q-container p-4">
                     <div class="row">
                         <div class="col">
-                          <h2 class="q-title"><p style="color:#333940;" class="lead" > Situation du stocks: <span style="color:#498000;"> {{ init.0.mois }}</span></p> </h2>
+                          <h2 class="q-title"><p style="color:#333940;" class="lead" > Situation du stocks: <span style="color:#498000;"> {{ mois_dico[init.0.mois - 1] }}</span></p> </h2>
                             <div class="q-display p-3">
                                 <p class="d-inline">
                                  <ul class="nav">

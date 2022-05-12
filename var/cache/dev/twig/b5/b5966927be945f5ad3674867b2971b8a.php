@@ -578,7 +578,7 @@ $context["key2"] == "produit")) {
                                         <p> <a href=\"";
         // line 201
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("download_etat");
-        echo "\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Imprimer ce fichier</button></a></p>                                        </p>
+        echo "\" target=\"_blank\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Imprimer ce fichier</button></a></p>                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -816,7 +816,7 @@ $context["key2"] == "produit")) {
 
                                         <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
                                             {{ app.user.prenom }}
-                                        <p> <a href=\"{{ path('download_etat') }}\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Imprimer ce fichier</button></a></p>                                        </p>
+                                        <p> <a href=\"{{ path('download_etat') }}\" target=\"_blank\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Imprimer ce fichier</button></a></p>                                        </p>
                                     </div>
                                 </div>
                             </div>

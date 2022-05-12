@@ -171,8 +171,9 @@ class CategorieRepository extends ServiceEntityRepository
         $init = "SELECT c.ordre, mvt.quantite initiale,MONTH(mvt.dateEntrer) mois 
         FROM  App\Entity\Categorie c INNER JOIN App\Entity\Mouvement mvt 
         WITH c.id = mvt.Categorie
-        WHERE MONTH(mvt.dateEntrer) = '$mois'
-        GROUP BY mvt.Categorie
+        WHERE MONTH(mvt.dateEntrer) = '$mois' 
+        AND mvt.id IN (SELECT MIN(mvt2.id) FROM App\Entity\Mouvement mvt2 GROUP BY mvt2.Categorie)
+        ORDER BY mvt.Categorie
         ";
 
         $stmt = $this->getEntityManager()->createQuery($init);
@@ -209,7 +210,7 @@ class CategorieRepository extends ServiceEntityRepository
     {
         $current = "SELECT c.ordre, c.NomDeCategorie,p.id produit_id, CONCAT(c.ordre,'_', p.id ) ordreProd,c.valeurFaciale,c.ordre initiale,c.ordre entrer, c.ordre sortie, SUM(mvt.quantite) actuelle 
         FROM App\Entity\Categorie c INNER JOIN App\Entity\Mouvement mvt WITH c.id = mvt.Categorie INNER JOIN App\Entity\Produits p WITH p.id = c.produit
-        WHERE MONTH(mvt.dateEntrer) = '$mois'
+        WHERE MONTH(mvt.dateEntrer) <= '$mois'
         GROUP BY mvt.Categorie ";
         $stmt = $this->getEntityManager()->createQuery($current);
 

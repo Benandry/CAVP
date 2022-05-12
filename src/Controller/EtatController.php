@@ -17,9 +17,32 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EtatController extends AbstractController
 {
-  #[Route('/etat-de-stocks', name: 'etat_de_stock')]
-  public function index(ManagerRegistry $doctrine,Request $request): Response
+  #[Route('/etat-de-stocks/{mois}', name: 'etat_de_stock')]
+  public function index(ManagerRegistry $doctrine,Request $request, $mois=''): Response
   {
+    if($mois != ''){
+        // Appel la fonction contient la requets avec les produits initial 
+        $repository = $doctrine->getRepository(Categorie::class);
+        $init  = $repository->findByInitMonth($mois);
+        //dd($init);
+        //la requets avec les produits entrées  
+        $enter  = $repository->findByEnterMonth($mois);
+        //dd($enter);
+        //la requets avec les produits sorties  
+        $out  = $repository->findByOutMonth($mois);
+        //dd($out);
+        //la requets avec les produits actuels  
+        $current  = $repository->findByCurrentMonth($mois);
+        //dd(array_merge($init,$enter,$out,$current));
+        //dd($current);
+
+        return $this->render('periode/mensuel.html.twig', [
+            'courant' =>$current,
+            'init' =>$init,
+            'entrer' =>$enter,
+            'sort' =>$out,
+        ]);
+    }
     /*=================================Formulaire pour selectionner les produits============================ */
     $form = $this->createFormBuilder()
     ->add('select', EntityType::class,[

@@ -10,24 +10,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PeriodeController extends AbstractController
 {
-    #[Route('/etat-de-stock-par-mois', name: 'periode_mensuel')]
-    public function mensuel(ManagerRegistry $doctrine): Response
+    #[Route('/etat-de-stocks/{mois}', name: 'periode_mensuel')]
+    public function mensuel(ManagerRegistry $doctrine, $mois=''): Response
     {
+        if($mois == ''){
+            return $this->redirectToRoute('etat_de_stock');
+        }
         // Appel la fonction contient la requets avec les produits initial 
         $repository = $doctrine->getRepository(Categorie::class);
-        $init  = $repository->findByInitMonth(1);
+        $init  = $repository->findByInitMonth($mois);
         //dd($init);
-
         //la requets avec les produits entrées  
-        $enter  = $repository->findByEnterMonth(1);
+        $enter  = $repository->findByEnterMonth($mois);
         //dd($enter);
-        
         //la requets avec les produits sorties  
-        $out  = $repository->findByOutMonth(1);
+        $out  = $repository->findByOutMonth($mois);
         //dd($out);
-
         //la requets avec les produits actuels  
-        $current  = $repository->findByCurrentMonth(1);
+        $current  = $repository->findByCurrentMonth($mois);
         //dd(array_merge($init,$enter,$out,$current));
         //dd($current);
 
