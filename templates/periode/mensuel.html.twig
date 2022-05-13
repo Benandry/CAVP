@@ -86,13 +86,23 @@
     {% endfor %}
 {% endfor %}
 {# ------------------------#}   
+{# ------------------------#}
+{% for key, value in initMonth %}
+    {% for key2, value2 in value %} 
+        {% if key2 =='initiale' %} 
+        {% elseif key2 =='ordre' %}
+
+        {% endif %}  
+    {% endfor %}
+{% endfor %}
+{# ------------------------#}  
     <div class="row" >
         <div class="col-12">
             <div style="box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);">
                 <div class="q-container p-4">
                     <div class="row">
                         <div class="col">
-                          <h2 class="q-title"><p style="color:#333940;" class="lead" > Situation du stocks: <span style="color:#498000;"> {{ mois_dico[init.0.mois - 1] }}</span></p> </h2>
+                          <h2 class="q-title"><p style="color:#333940;" class="lead" > Situation du stocks: <span style="color:#498000;"> {{ mois_dico[mois-1] }}</span></p> </h2>
                             <div class="q-display p-3">
                                 <p class="d-inline">
                                  <ul class="nav">
@@ -132,7 +142,8 @@
                                                             {% elseif key2 =='valeurFaciale' %}
                                                                 <td> {{ value2 }} </td>
                                                             {% elseif key2 =='initiale' %}
-                                                                <td> {{ initial[key] }} </td> 
+                                                                <td> {{ initial[key] }} </td>
+
                                                             {% elseif key2 =='entrer' %}
                                                                 <td> {{ entree[key] - initial[key] }} </td> 
                                                             {% elseif key2 =='sortie' %}

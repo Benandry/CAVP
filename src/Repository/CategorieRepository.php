@@ -22,9 +22,11 @@ class CategorieRepository extends ServiceEntityRepository
     //--=========================== Tous les categories avec les produits respectif ============================================================================
     public function findByInit()
     {
-        $init = "SELECT c.ordre, mvt.quantite initiale 
+        $init = "SELECT c.ordre, mvt.quantite initiale,p.nomProduit Produits,p.id  
         FROM  App\Entity\Categorie c INNER JOIN App\Entity\Mouvement mvt 
-        WITH c.id = mvt.Categorie
+        WITH c.id = mvt.Categorie 
+        INNER JOIN App\Entity\Produits p 
+        WITH p.id = mvt.produit
         WHERE mvt.id IN (SELECT MIN(mvt2.id) FROM App\Entity\Mouvement mvt2 GROUP BY mvt2.Categorie)      
         ORDER BY mvt.Categorie";
 

@@ -20,11 +20,15 @@ class EtatController extends AbstractController
   #[Route('/etat-de-stocks/{mois}', name: 'etat_de_stock')]
   public function index(ManagerRegistry $doctrine,Request $request, $mois=''): Response
   {
+    $isssubmitted = false;
     if($mois != ''){
         // Appel la fonction contient la requets avec les produits initial 
         $repository = $doctrine->getRepository(Categorie::class);
-        $init  = $repository->findByInitMonth($mois);
-        //dd($init);
+        $init  = $repository->findByInit();
+        $initMonth  = $repository->findByInitMonth($mois);
+        //var_dump($init);
+        //dd($initMonth);
+        
         //la requets avec les produits entrées  
         $enter  = $repository->findByEnterMonth($mois);
         //dd($enter);
@@ -34,13 +38,15 @@ class EtatController extends AbstractController
         //la requets avec les produits actuels  
         $current  = $repository->findByCurrentMonth($mois);
         //dd(array_merge($init,$enter,$out,$current));
-        //dd($current);
+       // dd($current);
 
         return $this->render('periode/mensuel.html.twig', [
             'courant' =>$current,
             'init' =>$init,
             'entrer' =>$enter,
             'sort' =>$out,
+            'mois' =>$mois,
+            'initMonth' => $initMonth
         ]);
     }
     /*=================================Formulaire pour selectionner les produits============================ */
@@ -55,6 +61,7 @@ class EtatController extends AbstractController
     /* ===== Si les produits sont selectionnnés. On va executer les requests ci-dessous ====== */
     if ($form->isSubmitted() && $form->isValid())
     {
+      $isssubmitted = true;
         //============= Recuperer les données obtenus dans les formulaires ===============================//
         $data = $form->getData();
         // =============== recuperer ID de produit selectionné ======================//
@@ -87,6 +94,7 @@ class EtatController extends AbstractController
           'init' =>$init,
           'entrer' =>$enter,
           'sort' =>$out,
+          'issubmitted' => $isssubmitted,
           'form' => $form->createView()  
         ]);
     }
@@ -110,6 +118,7 @@ class EtatController extends AbstractController
         'init' =>$init,
         'entrer' =>$enter,
         'sort' =>$out,
+        'issubmitted' => $isssubmitted,
         'form' => $form->createView()
     ]);
   }

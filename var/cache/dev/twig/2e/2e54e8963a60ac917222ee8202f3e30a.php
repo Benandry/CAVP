@@ -354,7 +354,39 @@ $context["key2"] == "ordre")) {
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['key'], $context['value'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 89
+        // line 90
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["initMonth"]) || array_key_exists("initMonth", $context) ? $context["initMonth"] : (function () { throw new RuntimeError('Variable "initMonth" does not exist.', 90, $this->source); })()));
+        foreach ($context['_seq'] as $context["key"] => $context["value"]) {
+            // line 91
+            echo "    ";
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable($context["value"]);
+            foreach ($context['_seq'] as $context["key2"] => $context["value2"]) {
+                echo " 
+        ";
+                // line 92
+                if (($context["key2"] == "initiale")) {
+                    echo " 
+        ";
+                } elseif ((                // line 93
+$context["key2"] == "ordre")) {
+                    // line 94
+                    echo "
+        ";
+                }
+                // line 95
+                echo "  
+    ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['key2'], $context['value2'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['key'], $context['value'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 99
         echo "<div class=\"row\" >
         <div class=\"col-12\">
             <div style=\"box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);\">
@@ -362,8 +394,8 @@ $context["key2"] == "ordre")) {
                     <div class=\"row\">
                         <div class=\"col\">
                           <h2 class=\"q-title\"><p style=\"color:#333940;\" class=\"lead\" > Situation du stocks: <span style=\"color:#498000;\"> ";
-        // line 95
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["mois_dico"]) || array_key_exists("mois_dico", $context) ? $context["mois_dico"] : (function () { throw new RuntimeError('Variable "mois_dico" does not exist.', 95, $this->source); })()), (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["init"]) || array_key_exists("init", $context) ? $context["init"] : (function () { throw new RuntimeError('Variable "init" does not exist.', 95, $this->source); })()), 0, [], "any", false, false, false, 95), "mois", [], "any", false, false, false, 95) - 1), [], "array", false, false, false, 95), "html", null, true);
+        // line 105
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["mois_dico"]) || array_key_exists("mois_dico", $context) ? $context["mois_dico"] : (function () { throw new RuntimeError('Variable "mois_dico" does not exist.', 105, $this->source); })()), ((isset($context["mois"]) || array_key_exists("mois", $context) ? $context["mois"] : (function () { throw new RuntimeError('Variable "mois" does not exist.', 105, $this->source); })()) - 1), [], "array", false, false, false, 105), "html", null, true);
         echo "</span></p> </h2>
                             <div class=\"q-display p-3\">
                                 <p class=\"d-inline\">
@@ -373,11 +405,11 @@ $context["key2"] == "ordre")) {
                                         <div class=\"dropdown-menu\" aria-labelledby=\"dropdown09\">
                                             <a class=\"dropdown-item\" href=\"#\">Actuel</a>
                                             <a class=\"dropdown-item\" href=\"";
-        // line 103
+        // line 113
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("periode_mensuel", ["source" => "etat mensuel"]);
         echo "\">Mensuel</a>
                                             <a class=\"dropdown-item\" href=\"";
-        // line 104
+        // line 114
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("periode_annuel", ["source" => "etat annuel"]);
         echo "\">Annuel</a>
                                         </div>
@@ -400,96 +432,97 @@ $context["key2"] == "ordre")) {
                                             <tbody>
                                                 
                                                 ";
-        // line 124
+        // line 134
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["courant"]) || array_key_exists("courant", $context) ? $context["courant"] : (function () { throw new RuntimeError('Variable "courant" does not exist.', 124, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["courant"]) || array_key_exists("courant", $context) ? $context["courant"] : (function () { throw new RuntimeError('Variable "courant" does not exist.', 134, $this->source); })()));
         foreach ($context['_seq'] as $context["key"] => $context["value"]) {
-            // line 125
+            // line 135
             echo "                                                      <tr>
                                                         ";
-            // line 126
+            // line 136
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable($context["value"]);
             foreach ($context['_seq'] as $context["key2"] => $context["value2"]) {
                 echo " 
                                                             
                                                             ";
-                // line 128
+                // line 138
                 if (($context["key2"] == "ordre")) {
-                    // line 129
+                    // line 139
                     echo "                                                                <td> ";
                     echo twig_escape_filter($this->env, $context["value2"], "html", null, true);
                     echo "  </td>
                                                             ";
-                } elseif ((                // line 130
+                } elseif ((                // line 140
 $context["key2"] == "NomDeCategorie")) {
-                    // line 131
+                    // line 141
                     echo "                                                                <td> ";
                     echo twig_escape_filter($this->env, $context["value2"], "html", null, true);
                     echo " </td>
                                                             ";
-                } elseif ((                // line 132
+                } elseif ((                // line 142
 $context["key2"] == "valeurFaciale")) {
-                    // line 133
+                    // line 143
                     echo "                                                                <td> ";
                     echo twig_escape_filter($this->env, $context["value2"], "html", null, true);
                     echo " </td>
                                                             ";
-                } elseif ((                // line 134
+                } elseif ((                // line 144
 $context["key2"] == "initiale")) {
-                    // line 135
+                    // line 145
                     echo "                                                                <td> ";
-                    echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["initial"]) || array_key_exists("initial", $context) ? $context["initial"] : (function () { throw new RuntimeError('Variable "initial" does not exist.', 135, $this->source); })()), $context["key"], [], "array", false, false, false, 135), "html", null, true);
-                    echo " </td> 
+                    echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["initial"]) || array_key_exists("initial", $context) ? $context["initial"] : (function () { throw new RuntimeError('Variable "initial" does not exist.', 145, $this->source); })()), $context["key"], [], "array", false, false, false, 145), "html", null, true);
+                    echo " </td>
+
                                                             ";
-                } elseif ((                // line 136
+                } elseif ((                // line 147
 $context["key2"] == "entrer")) {
-                    // line 137
+                    // line 148
                     echo "                                                                <td> ";
-                    echo twig_escape_filter($this->env, (twig_get_attribute($this->env, $this->source, (isset($context["entree"]) || array_key_exists("entree", $context) ? $context["entree"] : (function () { throw new RuntimeError('Variable "entree" does not exist.', 137, $this->source); })()), $context["key"], [], "array", false, false, false, 137) - twig_get_attribute($this->env, $this->source, (isset($context["initial"]) || array_key_exists("initial", $context) ? $context["initial"] : (function () { throw new RuntimeError('Variable "initial" does not exist.', 137, $this->source); })()), $context["key"], [], "array", false, false, false, 137)), "html", null, true);
+                    echo twig_escape_filter($this->env, (twig_get_attribute($this->env, $this->source, (isset($context["entree"]) || array_key_exists("entree", $context) ? $context["entree"] : (function () { throw new RuntimeError('Variable "entree" does not exist.', 148, $this->source); })()), $context["key"], [], "array", false, false, false, 148) - twig_get_attribute($this->env, $this->source, (isset($context["initial"]) || array_key_exists("initial", $context) ? $context["initial"] : (function () { throw new RuntimeError('Variable "initial" does not exist.', 148, $this->source); })()), $context["key"], [], "array", false, false, false, 148)), "html", null, true);
                     echo " </td> 
                                                             ";
-                } elseif ((                // line 138
+                } elseif ((                // line 149
 $context["key2"] == "sortie")) {
-                    // line 139
+                    // line 150
                     echo "                                                                ";
-                    if (twig_test_empty((isset($context["out"]) || array_key_exists("out", $context) ? $context["out"] : (function () { throw new RuntimeError('Variable "out" does not exist.', 139, $this->source); })()))) {
-                        // line 140
+                    if (twig_test_empty((isset($context["out"]) || array_key_exists("out", $context) ? $context["out"] : (function () { throw new RuntimeError('Variable "out" does not exist.', 150, $this->source); })()))) {
+                        // line 151
                         echo "                                                                    <td> 0 </td> 
                                                                 ";
                     } else {
-                        // line 142
+                        // line 153
                         echo "                                                                    <td> ";
-                        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["out"]) || array_key_exists("out", $context) ? $context["out"] : (function () { throw new RuntimeError('Variable "out" does not exist.', 142, $this->source); })()), $context["key"], [], "array", false, false, false, 142), "html", null, true);
+                        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["out"]) || array_key_exists("out", $context) ? $context["out"] : (function () { throw new RuntimeError('Variable "out" does not exist.', 153, $this->source); })()), $context["key"], [], "array", false, false, false, 153), "html", null, true);
                         echo " </td>
                                                                 ";
                     }
-                    // line 143
+                    // line 154
                     echo " 
                                                             ";
-                } elseif ((                // line 144
+                } elseif ((                // line 155
 $context["key2"] == "actuelle")) {
-                    // line 145
+                    // line 156
                     echo "                                                                <td> ";
                     echo twig_escape_filter($this->env, $context["value2"], "html", null, true);
                     echo " </td>                                                                                                                    
                                                             ";
                 }
-                // line 147
+                // line 158
                 echo "                                                            
                                                         ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['key2'], $context['value2'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 149
+            // line 160
             echo "                                                    </tr>
                                                 ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['key'], $context['value'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 151
+        // line 162
         echo "
                                             </tbody>
                                         </table>
@@ -498,17 +531,17 @@ $context["key2"] == "actuelle")) {
                                 <div class=\"d-flex flex-row-reverse bd-highlight\">
                                     <div class=\"p-2 bd-highlight\">
                                         <p> Antananarivo le ,";
-        // line 158
+        // line 169
         echo twig_escape_filter($this->env, $this->extensions['Twig\Extra\Intl\IntlExtension']->formatDate($this->env, "now", "medium", "", null, "gregorian", "fr"), "html", null, true);
         echo " </p>
 
                                         <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
                                             ";
-        // line 161
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 161, $this->source); })()), "user", [], "any", false, false, false, 161), "prenom", [], "any", false, false, false, 161), "html", null, true);
+        // line 172
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 172, $this->source); })()), "user", [], "any", false, false, false, 172), "prenom", [], "any", false, false, false, 172), "html", null, true);
         echo "
                                         <p> <a href=\"";
-        // line 162
+        // line 173
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("download_etat");
         echo "\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Imprimer ce fichier</button></a></p>                                        </p>
                                     </div>
@@ -543,7 +576,7 @@ $context["key2"] == "actuelle")) {
 
     public function getDebugInfo()
     {
-        return array (  512 => 162,  508 => 161,  502 => 158,  493 => 151,  486 => 149,  479 => 147,  473 => 145,  471 => 144,  468 => 143,  462 => 142,  458 => 140,  455 => 139,  453 => 138,  448 => 137,  446 => 136,  441 => 135,  439 => 134,  434 => 133,  432 => 132,  427 => 131,  425 => 130,  420 => 129,  418 => 128,  411 => 126,  408 => 125,  404 => 124,  381 => 104,  377 => 103,  366 => 95,  358 => 89,  347 => 85,  341 => 84,  335 => 83,  332 => 82,  327 => 81,  324 => 80,  322 => 79,  319 => 78,  313 => 77,  310 => 76,  308 => 75,  305 => 74,  299 => 73,  296 => 72,  294 => 71,  287 => 70,  283 => 69,  281 => 68,  279 => 67,  275 => 62,  268 => 61,  260 => 59,  255 => 58,  250 => 57,  247 => 56,  244 => 55,  241 => 54,  239 => 53,  234 => 52,  232 => 51,  224 => 50,  221 => 49,  216 => 48,  214 => 47,  212 => 46,  210 => 45,  207 => 43,  200 => 41,  193 => 40,  188 => 38,  184 => 37,  179 => 36,  176 => 35,  171 => 34,  167 => 33,  165 => 32,  163 => 31,  160 => 29,  149 => 26,  143 => 25,  141 => 24,  134 => 23,  130 => 22,  126 => 19,  116 => 17,  110 => 15,  107 => 14,  103 => 13,  97 => 12,  95 => 11,  91 => 10,  81 => 7,  62 => 5,  51 => 1,  49 => 3,  36 => 1,);
+        return array (  545 => 173,  541 => 172,  535 => 169,  526 => 162,  519 => 160,  512 => 158,  506 => 156,  504 => 155,  501 => 154,  495 => 153,  491 => 151,  488 => 150,  486 => 149,  481 => 148,  479 => 147,  473 => 145,  471 => 144,  466 => 143,  464 => 142,  459 => 141,  457 => 140,  452 => 139,  450 => 138,  443 => 136,  440 => 135,  436 => 134,  413 => 114,  409 => 113,  398 => 105,  390 => 99,  379 => 95,  375 => 94,  373 => 93,  369 => 92,  362 => 91,  358 => 90,  347 => 85,  341 => 84,  335 => 83,  332 => 82,  327 => 81,  324 => 80,  322 => 79,  319 => 78,  313 => 77,  310 => 76,  308 => 75,  305 => 74,  299 => 73,  296 => 72,  294 => 71,  287 => 70,  283 => 69,  281 => 68,  279 => 67,  275 => 62,  268 => 61,  260 => 59,  255 => 58,  250 => 57,  247 => 56,  244 => 55,  241 => 54,  239 => 53,  234 => 52,  232 => 51,  224 => 50,  221 => 49,  216 => 48,  214 => 47,  212 => 46,  210 => 45,  207 => 43,  200 => 41,  193 => 40,  188 => 38,  184 => 37,  179 => 36,  176 => 35,  171 => 34,  167 => 33,  165 => 32,  163 => 31,  160 => 29,  149 => 26,  143 => 25,  141 => 24,  134 => 23,  130 => 22,  126 => 19,  116 => 17,  110 => 15,  107 => 14,  103 => 13,  97 => 12,  95 => 11,  91 => 10,  81 => 7,  62 => 5,  51 => 1,  49 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -636,13 +669,23 @@ $context["key2"] == "actuelle")) {
     {% endfor %}
 {% endfor %}
 {# ------------------------#}   
+{# ------------------------#}
+{% for key, value in initMonth %}
+    {% for key2, value2 in value %} 
+        {% if key2 =='initiale' %} 
+        {% elseif key2 =='ordre' %}
+
+        {% endif %}  
+    {% endfor %}
+{% endfor %}
+{# ------------------------#}  
     <div class=\"row\" >
         <div class=\"col-12\">
             <div style=\"box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);\">
                 <div class=\"q-container p-4\">
                     <div class=\"row\">
                         <div class=\"col\">
-                          <h2 class=\"q-title\"><p style=\"color:#333940;\" class=\"lead\" > Situation du stocks: <span style=\"color:#498000;\"> {{ mois_dico[init.0.mois - 1] }}</span></p> </h2>
+                          <h2 class=\"q-title\"><p style=\"color:#333940;\" class=\"lead\" > Situation du stocks: <span style=\"color:#498000;\"> {{ mois_dico[mois-1] }}</span></p> </h2>
                             <div class=\"q-display p-3\">
                                 <p class=\"d-inline\">
                                  <ul class=\"nav\">
@@ -682,7 +725,8 @@ $context["key2"] == "actuelle")) {
                                                             {% elseif key2 =='valeurFaciale' %}
                                                                 <td> {{ value2 }} </td>
                                                             {% elseif key2 =='initiale' %}
-                                                                <td> {{ initial[key] }} </td> 
+                                                                <td> {{ initial[key] }} </td>
+
                                                             {% elseif key2 =='entrer' %}
                                                                 <td> {{ entree[key] - initial[key] }} </td> 
                                                             {% elseif key2 =='sortie' %}
@@ -723,6 +767,6 @@ $context["key2"] == "actuelle")) {
 
 {% endblock %}
 
-", "periode/mensuel.html.twig", "E:\\symfony5\\cavp2\\CAVP\\templates\\periode\\mensuel.html.twig");
+", "periode/mensuel.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\templates\\periode\\mensuel.html.twig");
     }
 }

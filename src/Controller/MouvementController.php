@@ -14,43 +14,45 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MouvementController extends AbstractController
 {
     //Route pour les telechargement de produits entrer
-    #[Route('/download-etat-de-stock-generaliser', name: 'download_etat')]
-    public function impressionPdf(ManagerRegistry $doctrine)
+    #[Route('/impression_product/{id}', name: 'download_etat')]
+    public function impressionPdf(ManagerRegistry $doctrine,$id='')
     {
-        $repository = $doctrine->getRepository(Categorie::class);
-        $init = $repository->findByInit();  
-        $enter = $repository->findByEnter();
-        $out = $repository->findByOut();  
-        $current  = $repository->findByCurrent();
+        $test = false ;
+        if($id != ''){
+            $repository = $doctrine->getRepository(Categorie::class);
+            $init  = $repository->findInitiale($id);  
+            $enter  = $repository->findEntrer($id); 
+            $out  = $repository->findBySortie($id);  
+            $current  = $repository->findByCourant($id);
+     
+            return $this->render('impression/select.html.twig',[
+                 'courant' =>$current,
+                 'init' =>$init,
+                 'entrer' =>$enter,
+                 'sort' =>$out,
+                 'test' =>$test
+             ]);
+        }else{
+            $test = true ;
+            $repository = $doctrine->getRepository(Categorie::class);
+            $init = $repository->findByInit();  
+            $enter = $repository->findByEnter();
+            $out = $repository->findByOut();  
+            $current  = $repository->findByCurrent();
 
-        return $this->render('impression/etat_de_stock.html.twig',[
-            'courant' =>$current,
-            'init' =>$init,
-            'entrer' =>$enter,
-            'sort' =>$out
-        ]);
+            return $this->render('impression/etat_de_stock.html.twig',[
+                'courant' =>$current,
+                'init' =>$init,
+                'entrer' =>$enter,
+                'sort' =>$out,
+                'test' =>$test
+            ]);
+        }
        
 
     }
-
-   //Route pour l'impression de produits selectionner
-   #[Route('/impression_product/{id}', name: 'impression_product')]
-   public function impressionAero(int $id , ManagerRegistry $doctrine): Response
-   {
-       $repository = $doctrine->getRepository(Categorie::class);
-       $init  = $repository->findInitiale($id);  
-       $enter  = $repository->findEntrer($id); 
-       $out  = $repository->findBySortie($id);  
-       $current  = $repository->findByCourant($id);
-
-       return $this->render('impression/select.html.twig',[
-            'courant' =>$current,
-            'init' =>$init,
-            'entrer' =>$enter,
-            'sort' =>$out
-        ]);
-    }
 }
+
 
 
 

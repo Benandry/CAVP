@@ -20,7 +20,6 @@ return [
         '/compte-rendu-sortie' => [[['_route' => 'history_out', '_controller' => 'App\\Controller\\HistoriqueController::out'], null, null, null, false, false, null]],
         '/compte-rendu-produits-integrée' => [[['_route' => 'integreted', '_controller' => 'App\\Controller\\HistoriqueController::integreted'], null, null, null, false, false, null]],
         '/compte-rendu-entrer' => [[['_route' => 'history_enter', '_controller' => 'App\\Controller\\HistoriqueController::enter'], null, null, null, false, false, null]],
-        '/download-etat-de-stock-generaliser' => [[['_route' => 'download_etat', '_controller' => 'App\\Controller\\MouvementController::impressionPdf'], null, null, null, false, false, null]],
         '/ordre-de-sortie' => [[['_route' => 'order_out', '_controller' => 'App\\Controller\\OrderController::index'], null, null, null, false, false, null]],
         '/etat-de-stock-par-année' => [[['_route' => 'periode_annuel', '_controller' => 'App\\Controller\\PeriodeController::annuel'], null, null, null, false, false, null]],
         '/inscription-sur-cavp' => [[['_route' => 'page_inscription', '_controller' => 'App\\Controller\\RegisterController::index'], null, null, null, false, false, null]],
@@ -45,15 +44,16 @@ return [
                     .'|error/(\\d+)(?:\\.([^/]++))?(*:159)'
                 .')'
                 .'|/questions/([^/]++)(*:187)'
-                .'|/etat\\-de\\-stocks(?:/([^/]++))?(?'
-                    .'|(*:229)'
+                .'|/etat\\-de\\-stock(?'
+                    .'|s(?:/([^/]++))?(*:229)'
+                    .'|(?:/([^/]++))?(*:251)'
                 .')'
-                .'|/impression_product/([^/]++)(*:266)'
+                .'|/impression_product(?:/([^/]++))?(*:293)'
                 .'|/api(?'
-                    .'|(?:/(index)(?:\\.([^/]++))?)?(*:309)'
+                    .'|(?:/(index)(?:\\.([^/]++))?)?(*:336)'
                     .'|/(?'
-                        .'|docs(?:\\.([^/]++))?(*:340)'
-                        .'|contexts/(.+)(?:\\.([^/]++))?(*:376)'
+                        .'|docs(?:\\.([^/]++))?(*:367)'
+                        .'|contexts/(.+)(?:\\.([^/]++))?(*:403)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -67,14 +67,12 @@ return [
         124 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         159 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
         187 => [[['_route' => 'app_question_show', '_controller' => 'App\\Controller\\DefaultController::show'], ['slug'], null, null, false, true, null]],
-        229 => [
-            [['_route' => 'etat_de_stock', 'mois' => '', '_controller' => 'App\\Controller\\EtatController::index'], ['mois'], null, null, false, true, null],
-            [['_route' => 'periode_mensuel', 'mois' => '', '_controller' => 'App\\Controller\\PeriodeController::mensuel'], ['mois'], null, null, false, true, null],
-        ],
-        266 => [[['_route' => 'impression_product', '_controller' => 'App\\Controller\\MouvementController::impressionAero'], ['id'], null, null, false, true, null]],
-        309 => [[['_route' => 'api_entrypoint', '_controller' => 'api_platform.action.entrypoint', '_format' => '', '_api_respond' => 'true', 'index' => 'index'], ['index', '_format'], null, null, false, true, null]],
-        340 => [[['_route' => 'api_doc', '_controller' => 'api_platform.action.documentation', '_format' => '', '_api_respond' => 'true'], ['_format'], null, null, false, true, null]],
-        376 => [
+        229 => [[['_route' => 'etat_de_stock', 'mois' => '', '_controller' => 'App\\Controller\\EtatController::index'], ['mois'], null, null, false, true, null]],
+        251 => [[['_route' => 'periode_mensuel', 'mois' => '', '_controller' => 'App\\Controller\\PeriodeController::mensuel'], ['mois'], null, null, false, true, null]],
+        293 => [[['_route' => 'download_etat', 'id' => '', '_controller' => 'App\\Controller\\MouvementController::impressionPdf'], ['id'], null, null, false, true, null]],
+        336 => [[['_route' => 'api_entrypoint', '_controller' => 'api_platform.action.entrypoint', '_format' => '', '_api_respond' => 'true', 'index' => 'index'], ['index', '_format'], null, null, false, true, null]],
+        367 => [[['_route' => 'api_doc', '_controller' => 'api_platform.action.documentation', '_format' => '', '_api_respond' => 'true'], ['_format'], null, null, false, true, null]],
+        403 => [
             [['_route' => 'api_jsonld_context', '_controller' => 'api_platform.jsonld.action.context', '_format' => 'jsonld', '_api_respond' => 'true'], ['shortName', '_format'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

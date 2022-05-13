@@ -84,11 +84,6 @@
     {% endfor %}
 {% endfor %}
 {# ------------------------#}
-    {% if init.0.Produits is defined %}
-        <h4 class="text-danger"><label for="cars">Nom du produits :<em>{{ init.0.Produits }}</em></h4>
-    {% endif %}
-    
-    
     <div class="row" >
         <div class="col-12">
             <div style="box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);">
@@ -99,34 +94,37 @@
                             <div class="q-display p-3">
                                 <p class="d-inline">
                                 <div id="sidebar">
-                                    Selectionner les : <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal"> Produits</button>
-                                    <div class="modal" id="myModal">
-                                        {{ form_start(form) }}
-                                            <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title"> Nom de produit </h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                                </div>
-                                                {{ form_start(form) }}
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                            <label for="select">Nom de produit</label>
-                                                            {{ form_widget(form.select, {'attr': {'class': 'form-control'}}) }}
+                                <div class="clearfix">
+                                    <span class="float-right" style="margin-top: 5px;">
+                                        Selectionner les : <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal"> Produits</button>
+                                        <div class="modal" id="myModal">
+                                            {{ form_start(form) }}
+                                                <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"> Nom de produit </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer">
+                                                    {{ form_start(form) }}
+                                                    <div class="modal-body">
                                                         <div class="form-group">
-                                                        {{ form_row(form.submit, { 'label': 'Selectionner' }) }}
+                                                                <label for="select">Nom de produit</label>
+                                                                {{ form_widget(form.select, {'attr': {'class': 'form-control'}}) }}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                {{ form_end(form) }}
+                                                    <div class="modal-footer">
+                                                            <div class="form-group">
+                                                            {{ form_row(form.submit, { 'label': 'Selectionner' }) }}
+                                                        </div>
+                                                    </div>
+                                                    {{ form_end(form) }}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <div class="clearfix">
-                                    <span class="float-right" style="margin-top: 10px;">
+                                            {% if issubmitted == true %}
+                                                <h4 class="text-danger"><label for="cars">Nom du produits :<em>{{ init.0.Produits }}</em></h4>
+                                            {% endif %}
                                         <ul class="nav">
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Par </a>
@@ -144,7 +142,7 @@
                                             <thead>
                                                 <tr class="table-danger">
                                                     <th data-sortable="true" data-field="Ordre"> Ordre</th>
-                                                    {% if init.0.Produits is not defined %}
+                                                    {% if issubmitted == false %}
                                                         <th data-field="Categorie"> Produit </th>
                                                     {% endif %}
                                                     <th data-field="produit"> Categorie </th>
@@ -157,7 +155,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
                                                 {% for key,value in courant %}
                                                       <tr>
                                                         {% for key2, value2 in value %} 
@@ -198,7 +195,11 @@
 
                                         <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
                                             {{ app.user.prenom }}
-                                        <p> <a href="{{ path('download_etat') }}" target="_blank" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer ce fichier</button></a></p>                                        </p>
+                                            {% if issubmitted == false %}
+                                                <p> <a href="{{ path('download_etat') }}" target="_blank" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer ce fichier generale</button></a></p>
+                                            {% else %}
+                                                <p> <a href="{{ path('download_etat',{id: init.0.id}) }}" target="_blank" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer ce fichier</button></a></p>
+                                            {% endif %}
                                     </div>
                                 </div>
                             </div>

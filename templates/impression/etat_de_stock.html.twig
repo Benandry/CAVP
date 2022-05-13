@@ -5,7 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
-        <title>Impression de etat de stock | Paositra malagasy</title>
+         {% if test == true %}
+            <title>Impression de etat de {{ init.0.Produits }}| Paositra malagasy</title>
+        {% else %}
+            <title>Impression de etat de stock | Paositra malagasy</title>
+        {% endif %}
+        
     </head>
     <body onload="window.print()">
 
@@ -96,18 +101,22 @@
                     <div class="col-12">
                         <table class="table" data-toggle="table" border="1">
                         <h3 class="text-danger">Etat de stock general </h3>
-                        {% if init.0.Produits is defined %}
+                         {% if test == false %}
                             <h3 class="text-danger">Etat de stock produit : {{ init.0.Produits }}  </h3>
                         {% endif %}
                             <thead>
                                 <tr class="table-danger">
                                     <th data-sortable="true" data-field="Ordre"> Ordre</th>
-                                    <th scope="col" data-field="Categorie"> Categorie </th>
-                                    <th scope="col" data-field="Valeur Faciales">Valeur Faciales</th>
-                                    <th scope="col" data-field="Stock initial">Stock initial</th>
-                                    <th scope="col" data-field="Entrée">Entrée</th>
-                                    <th scope="col" data-field="Sortie">Sortie</th>
-                                    <th scope="col" data-field="Sock Actuel">Stock Acteul </th>
+                                    {% if test == true %}
+                                        <th data-field="Categorie"> Produit </th>
+                                    {% endif %}
+                                    <th data-field="produit"> Categorie </th>
+                                    <th data-field="Valeur Faciales">Valeur Faciales</th>
+                                    <th data-field="Stock initial">Stock initial</th>
+                                    <th data-field="Entrée">Entrée</th>
+                                    <th data-field="Sortie">Sortie</th>
+                                    <th data-field="Sock Actuel">Stock Acteul </th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -133,9 +142,10 @@
                                                     <td> {{ out[key] }} </td>
                                                 {% endif %} 
                                             {% elseif key2 =='actuelle' %}
-                                                <td> {{ value2 }} </td>                                                                                                                    
+                                                <td> {{ value2 }} </td>  
+                                            {% elseif key2 =='produit' %}
+                                                <td> {{ value2 }} </td>                                                                                                                   
                                             {% endif %}
-                                            
                                         {% endfor %}
                                     </tr>
                                 {% endfor %}
