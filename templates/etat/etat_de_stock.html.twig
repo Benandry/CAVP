@@ -1,89 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Etat de stock | Paositra malagasy! {% endblock %}
-
 {% block body %}
-{# -------------Traitement de sortie-----------#}
-{# ----------- make cle-------------#}
-{% set ordreValue = []  %} 
-{% set cleCourantHavingOrdreValue = []  %}
-{% for key3, value3 in sort %} 
-    {% for key4, value4 in value3 %}
-        {% if key4 == 'ordreProd' %}
-            {% set ordreValue = ordreValue|merge([value4])  %} 
-        {% endif %}
-    {% endfor %}
-{% endfor %}
-
-
-{# maka ny key(position) mifanaraka amin courant #}
-{% for value in ordreValue %}
-    {% for key3, value3 in courant %} 
-        {% if value3["ordreProd"] == value %}
-            {% set cleCourantHavingOrdreValue = cleCourantHavingOrdreValue|merge([key3])  %}                                                                                                          
-        {% endif %}   
-    {% endfor %}
-{% endfor %}
-
-{# mametraka ny value ao am sort #}
-{% set sortValues = [] %}
-{% set sortOrdres = [] %}
-{% for key, value in sort %}
-        {% for key2, value2 in value %}
-            {% if key2 =='sortie' %}
-                {% set sortValues = sortValues|merge([value2])  %} 
-            {% elseif key2 =='ordre' %} 
-                {% set sortOrdres = sortOrdres|merge([value2])  %}                                                                                 
-            {% endif %}
-             
-        {% endfor %}  
-{% endfor %}
-
-{# mametraka ao am out #}
-{% set out = [] %}
-{% set k = 0 %}
-{% if cleCourantHavingOrdreValue|length > 0 %}
-    {% for j in range(0, cleCourantHavingOrdreValue|length-1) %}
-        {% set break = false %}
-        {% for i in range(k, courant|length-1) if not break %} 
-            {% if i == cleCourantHavingOrdreValue[j] %}
-                {% set out = out|merge([sortValues[j]])  %} 
-                {% if j <  cleCourantHavingOrdreValue|length-1 %}
-                    {% set k = i + 1 %}
-                    {% set break = true %}
-                {% endif %}
-            {% else %}  
-                {% set out = out|merge([0])  %}                                                                                                           
-            {% endif %}  
-        {% endfor %}
-    {% endfor %}
-{% endif %}  
-
-{# ----------- end make cle-------------#}
-
-{# ------------------------#}
-{% set initial = [] %}
-{% set entree = [] %}
-{% for key, value in courant %}
-    {% for key2, value2 in value %} 
-        {% if key2 =='initiale' %}
-            {% set x = init[key].initiale %}
-            {% set initial = initial|merge([x])  %}                                                                                                          
-        {% endif %}  
-        {% if key2 =='entrer' %}
-            {% set x = entrer[key].entrer %}
-            {% set entree = entree|merge([x])  %}                                                                                                          
-        {% endif %} 
-        {% if key2 =='sortie' %}
-            {% if key < courant|length %}
-                {% for valeur in cleCourantHavingOrdreValue %}
-                    {% set x = sort[0].sortie %}
-                {% endfor %}
-            {% endif %}                                                                                                         
-        {% endif %}     
-    {% endfor %}
-{% endfor %}
-{# ------------------------#}
     <div class="row" >
         <div class="col-12">
             <div style="box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);">
@@ -134,6 +52,13 @@
                                                     <a class="dropdown-item" href="{{ path('periode_annuel', {'source':'etat annuel'}) }}">Annuel</a>
                                                 </div>
                                             </li>
+                                            <li>
+                                             {% if isDate == true %}
+                                                {{ form_start(formD) }}
+                                                     {{ form_widget(formD) }}
+                                                {{ form_end(formD) }}
+                                             {% endif %}
+                                            </li>
                                         </ul>
                                     </span> 
                                 </div>                         
@@ -162,29 +87,27 @@
                                                             {% if key2 =='ordre' %}
                                                                 <td> {{ value2 }}  </td>
                                                             {% elseif key2 =='NomDeCategorie' %}
+                                                                <td> {{ value2 }} </td>  
+                                                            {% elseif key2 =='produit' %}
                                                                 <td> {{ value2 }} </td>
                                                             {% elseif key2 =='valeurFaciale' %}
                                                                 <td> {{ value2 }} </td>
                                                             {% elseif key2 =='initiale' %}
-                                                                <td> {{ initial[key] }} </td> 
+                                                                <td> {{ initial[key][0] }} </td> 
                                                             {% elseif key2 =='entrer' %}
-                                                                <td> {{ entree[key] - initial[key] }} </td> 
+                                                                <td> {{ entree[key][0] - initial[key][0] }} </td> 
                                                             {% elseif key2 =='sortie' %}
                                                                 {% if out is empty %}
                                                                     <td> 0 </td> 
                                                                 {% else %}
-                                                                    <td> {{ out[key] }} </td>
+                                                                    <td> {{ out[key][0] }} </td>
                                                                 {% endif %} 
                                                             {% elseif key2 =='actuelle' %}
-                                                                <td> {{ value2 }} </td>  
-                                                            {% elseif key2 =='produit' %}
                                                                 <td> {{ value2 }} </td>                                                                                                                   
                                                             {% endif %}
-                                                            
                                                         {% endfor %}
                                                     </tr>
                                                 {% endfor %}
-
                                             </tbody>
                                         </table>
                                    </div>
@@ -196,9 +119,9 @@
                                         <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
                                             {{ app.user.prenom }}
                                             {% if issubmitted == false %}
-                                                <p> <a href="{{ path('download_etat') }}" target="_blank" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer ce fichier generale</button></a></p>
+                                                <p> <a href="{{ path('impression_product') }}" target="_blank" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer ce fichier generale</button></a></p>
                                             {% else %}
-                                                <p> <a href="{{ path('download_etat',{id: init.0.id}) }}" target="_blank" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer ce fichier</button></a></p>
+                                                <p> <a href="{{ path('impression_select',{id: init.0.id}) }}" target="_blank" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer ce fichier</button></a></p>
                                             {% endif %}
                                     </div>
                                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Traitement\Traitement;
 use App\Entity\Produits;
 use App\Entity\Categorie;
 use App\Repository\ProduitsRepository;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,35 +20,62 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class EtatController extends AbstractController
 {
   #[Route('/etat-de-stocks/{mois}', name: 'etat_de_stock')]
-  public function index(ManagerRegistry $doctrine,Request $request, $mois=''): Response
+  public function index(ManagerRegistry $doctrine,Traitement $traitement,Request $request, $mois=''): Response
   {
+    
+    $val = $mois;
+    if (date($mois) > date('m-Y')) {
+      dd('Date inaproprié');
+    }
+
     $isssubmitted = false;
+    $isDate = false;
     if($mois != ''){
-        // Appel la fonction contient la requets avec les produits initial 
+        $date_split = explode('-',$mois);
+        $mois = $date_split[0];
+        $annee = $date_split[1]; 
         $repository = $doctrine->getRepository(Categorie::class);
         $init  = $repository->findByInit();
-        $initMonth  = $repository->findByInitMonth($mois);
-        //var_dump($init);
-        //dd($initMonth);
-        
-        //la requets avec les produits entrées  
-        $enter  = $repository->findByEnterMonth($mois);
+        $initMonth  = $repository->findByInitMonth($mois,$annee);
+      //==========================Maka an ilay tableau vaovao =======================//
+      $tabo;
+       for($i = 0; $i < count($init); $i++) {
+          $tabo[$i] = 0;
+       }
+
+        $enter  = $repository->findByEnterMonth($mois,$annee);
         //dd($enter);
         //la requets avec les produits sorties  
-        $out  = $repository->findByOutMonth($mois);
+        $out  = $repository->findByOutMonth($mois,$annee);
         //dd($out);
         //la requets avec les produits actuels  
-        $current  = $repository->findByCurrentMonth($mois);
+        $current  = $repository->findByCurrentMonth($mois,$annee);
         //dd(array_merge($init,$enter,$out,$current));
-       // dd($current);
-
+        //dd($current);
+        $beginCurrent  = $repository->findByBeginCurrentMonth($mois,$annee);
+      //dd($beginCurrent);
+      $out = $traitement->setSize($out, $current, 'sortie');
+      $entrer = $traitement->setSize($enter, $current, 'entrer');
+      $beginCurrent = $traitement->setSize($beginCurrent, $current, 'debut');
+      $trtmt = $traitement->index($init, $enter,$out, $current, $beginCurrent);
+      $current = $trtmt['courant'];
+      $init = $trtmt['initial'];
+      //$entrer = $trtmt['entree'];
+      //$sortie = $trtmt['out'];
+      $sortie = $out;
+      //$beginCurrent = $trtmt['beginCurrent'];
+      //dd($beginCurrent);
+//dd($val)
         return $this->render('periode/mensuel.html.twig', [
             'courant' =>$current,
             'init' =>$init,
-            'entrer' =>$enter,
-            'sort' =>$out,
+            'entrer' =>$entrer,
+            'sort' =>$sortie,
             'mois' =>$mois,
-            'initMonth' => $initMonth
+            'val' =>$val,
+            'annee' =>$annee,
+            'initMonth' =>$initMonth,
+            'beginCurrent' => $beginCurrent
         ]);
     }
     /*=================================Formulaire pour selectionner les produits============================ */
@@ -62,43 +91,40 @@ class EtatController extends AbstractController
     if ($form->isSubmitted() && $form->isValid())
     {
       $isssubmitted = true;
-        //============= Recuperer les données obtenus dans les formulaires ===============================//
-        $data = $form->getData();
-        // =============== recuperer ID de produit selectionné ======================//
-        $product = ($data['select'])->getId();
-        // ============= Recuperer les fonctions dans le repositorie contient la requets ===========//
-        $repository = $doctrine->getRepository(Categorie::class);
-        // ========== Qantite Initiale et Ordre de par categorie ================ //
-        $init  = $repository->findByInitPro($product);
-        //dd($init);
-    
-        // ==================la requets avec les produits entrées  ====================== // 
-        $enter  = $repository->findBytEnterPro($product);
-          //dd($enter);
-        
-        // ================= la requets avec les produits sorties ==========================//  
-        $out  = $repository->findByOutPro($product);
-        //dd($out);
-    
-        // =================== la requets avec les produits actuels ======================== //  
-        $current  = $repository->findByCurrentPro($product);
-        //dd(array_merge($init,$enter,$out,$current));
-        //Si les produits ont aucune donnés;
-        if (!$product) {
-            throw $this->createNotFoundException(
-                'No product found '
-            );
-        }
-        return $this->render('etat/etat_de_stock.html.twig', [
-          'courant' =>$current,
-          'init' =>$init,
-          'entrer' =>$enter,
-          'sort' =>$out,
-          'issubmitted' => $isssubmitted,
-          'form' => $form->createView()  
-        ]);
-    }
+      $isDate = false;
+      //============= Recuperer les données obtenus dans les formulaires ===============================//
+      $data = $form->getData();
+      $product = ($data['select'])->getId();
+      $repository = $doctrine->getRepository(Categorie::class);
+      $init  = $repository->findByInitPro($product);
+      $enter  = $repository->findBytEnterPro($product);
+      $out  = $repository->findByOutPro($product); 
+      $current  = $repository->findByCurrentPro($product);
 
+      if (!$product) {
+          throw $this->createNotFoundException(
+              'No product found '
+          );
+      }
+      
+      $out = $traitement->setSize($out, $current, 'sortie');
+      $entrer = $traitement->setSize($enter, $current, 'entrer');
+     // dd($entrer);
+      $trtmt = $traitement->index($init, $enter,$out, $current);
+      $current = $trtmt['courant'];
+      $initial = $trtmt['initial'];
+      return $this->render('etat/etat_de_stock.html.twig', [
+        'courant' =>$current,
+        'initial' =>$initial,
+        'entree' =>$entrer,
+        'out' =>$out,
+        'init' =>$init,
+        'issubmitted' => $isssubmitted,
+        'form' => $form->createView(),
+        'isDate' => $isDate  
+      ]);
+    }
+   $isDate = true;
     // ===================  Appel la fonction contient la requets avec les produits initiale en generale(Tous les categories par produits) ====================== //
     $repository = $doctrine->getRepository(Categorie::class);
     // =================== Quantite initiale en generale (Tous les categories par produits)========================== //
@@ -113,11 +139,62 @@ class EtatController extends AbstractController
     // =========================== la requets avec les produits actuels en generale(Tous les categories par produits) =============================== //  
     $current  = $repository->findByCurrent();
 
+    // Fomulaire de la date ================//
+    $formD = $this->createFormBuilder()
+    ->add('dateP', DateType::class,[
+      'widget' => 'single_text',
+      'label' =>"Entrer la date :"
+    ])
+    ->add('submit', SubmitType::class)
+    ->getForm();
+
+    $formD->handleRequest($request);
+    if ($formD->isSubmitted() && $formD->isValid())
+    {
+      $isDate = true;
+      //============= Recuperer les données obtenus dans les formulaires ===============================//
+      $data = $formD->getData();
+      $dateP = $data['dateP']->format('Y-m-d');
+      
+      $repository = $doctrine->getRepository(Categorie::class);
+      $init  = $repository->findByInit($dateP);
+      $enter  = $repository->findByEnter($dateP);
+      $out  = $repository->findByOut($dateP);
+      $current  = $repository->findByCurrent($dateP);
+
+      $trtmt = $traitement->index($init, $enter,$out, $current);
+      //dd($enter);
+      $current = $trtmt['courant'];
+      $initial = $trtmt['initial'];
+      $out = $traitement->setSize($out, $current, 'sortie');
+      $entrer = $traitement->setSize($enter, $current, 'entrer');
+        
+      return $this->render('etat/etat_de_stock.html.twig',[
+        'courant' =>$current,
+        'initial' =>$initial,
+        'entree' =>$entrer,
+        'formD' =>$formD->createView(),
+        'out' =>$out,
+        'issubmitted' => $isssubmitted,
+        'form' => $form->createView(),
+        'isDate' => $isDate
+      ]);
+    }
+
+    $out = $traitement->setSize($out, $current, 'sortie');
+    $entrer = $traitement->setSize($enter, $current, 'entrer');
+    $traet = $traitement->index($init, $enter,$out, $current);
+    $current = $traet['courant'];
+    $initial = $traet['initial'];
     return $this->render('etat/etat_de_stock.html.twig',[
         'courant' =>$current,
-        'init' =>$init,
-        'entrer' =>$enter,
-        'sort' =>$out,
+        //'init' =>$init,
+        'initial' =>$initial,
+        //'entrer' =>$enter,
+        'entree' =>$entrer,
+        'formD' =>$formD->createView(),
+        'out' =>$out,
+        'isDate' => $isDate,
         'issubmitted' => $isssubmitted,
         'form' => $form->createView()
     ]);

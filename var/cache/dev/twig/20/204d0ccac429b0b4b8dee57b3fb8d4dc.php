@@ -87,6 +87,6 @@ class __TwigTemplate_425ceefdfe5ce2151d5e1ea84b7f2f56 extends \Twig\Template
 {% else %}
     {{ field.formattedValue }}
 {% endif %}
-", "@EasyAdmin/crud/field/collection.html.twig", "E:\\symfony5\\cavp2\\CAVP\\vendor\\easycorp\\easyadmin-bundle\\src\\Resources\\views\\crud\\field\\collection.html.twig");
+", "@EasyAdmin/crud/field/collection.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\vendor\\easycorp\\easyadmin-bundle\\src\\Resources\\views\\crud\\field\\collection.html.twig");
     }
 }

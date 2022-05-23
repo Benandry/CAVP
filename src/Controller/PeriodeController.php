@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PeriodeController extends AbstractController
 {
-    #[Route('/etat-de-stock/{mois}', name: 'periode_mensuel')]
+    #[Route('/etat-de-stock_menseul/{mois}', name: 'periode_mensuel')]
     public function mensuel(ManagerRegistry $doctrine, $mois=''): Response
     {
         if($mois == ''){
@@ -19,7 +19,7 @@ class PeriodeController extends AbstractController
         // Appel la fonction contient la requets avec les produits initial 
         $repository = $doctrine->getRepository(Categorie::class);
         $init  = $repository->findByInitMonth($mois);
-        var_dump($init);
+       // var_dump($init);
         //la requets avec les produits entrées  
         $enter  = $repository->findByEnterMonth($mois);
         //dd($enter);

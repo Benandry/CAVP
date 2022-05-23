@@ -174,6 +174,6 @@ class __TwigTemplate_c110dba524ea93311213a59c3220cf2b extends \Twig\Template
         {% endif %}
     </div>
 {% endblock %}
-", "@WebProfiler/Profiler/open.html.twig", "E:\\symfony5\\cavp2\\CAVP\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\open.html.twig");
+", "@WebProfiler/Profiler/open.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\open.html.twig");
     }
 }

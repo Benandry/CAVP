@@ -145,6 +145,6 @@ class __TwigTemplate_1a07a2075b16764d24890ce280b8146b extends \Twig\Template
         </div>
     </form>
 {% endblock %}
-", "register/index.html.twig", "E:\\symfony5\\cavp2\\CAVP\\templates\\register\\index.html.twig");
+", "register/index.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\templates\\register\\index.html.twig");
     }
 }

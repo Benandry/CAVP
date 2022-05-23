@@ -20,6 +20,7 @@ return [
         '/compte-rendu-sortie' => [[['_route' => 'history_out', '_controller' => 'App\\Controller\\HistoriqueController::out'], null, null, null, false, false, null]],
         '/compte-rendu-produits-integrée' => [[['_route' => 'integreted', '_controller' => 'App\\Controller\\HistoriqueController::integreted'], null, null, null, false, false, null]],
         '/compte-rendu-entrer' => [[['_route' => 'history_enter', '_controller' => 'App\\Controller\\HistoriqueController::enter'], null, null, null, false, false, null]],
+        '/impression_product' => [[['_route' => 'impression_product', '_controller' => 'App\\Controller\\MouvementController::impressionProd'], null, null, null, false, false, null]],
         '/ordre-de-sortie' => [[['_route' => 'order_out', '_controller' => 'App\\Controller\\OrderController::index'], null, null, null, false, false, null]],
         '/etat-de-stock-par-année' => [[['_route' => 'periode_annuel', '_controller' => 'App\\Controller\\PeriodeController::annuel'], null, null, null, false, false, null]],
         '/inscription-sur-cavp' => [[['_route' => 'page_inscription', '_controller' => 'App\\Controller\\RegisterController::index'], null, null, null, false, false, null]],
@@ -46,14 +47,17 @@ return [
                 .'|/questions/([^/]++)(*:187)'
                 .'|/etat\\-de\\-stock(?'
                     .'|s(?:/([^/]++))?(*:229)'
-                    .'|(?:/([^/]++))?(*:251)'
+                    .'|_menseul(?:/([^/]++))?(*:259)'
                 .')'
-                .'|/impression_product(?:/([^/]++))?(*:293)'
+                .'|/impression_(?'
+                    .'|select/([^/]++)(*:298)'
+                    .'|product_mensuel(?:/([^/]++))?(*:335)'
+                .')'
                 .'|/api(?'
-                    .'|(?:/(index)(?:\\.([^/]++))?)?(*:336)'
+                    .'|(?:/(index)(?:\\.([^/]++))?)?(*:379)'
                     .'|/(?'
-                        .'|docs(?:\\.([^/]++))?(*:367)'
-                        .'|contexts/(.+)(?:\\.([^/]++))?(*:403)'
+                        .'|docs(?:\\.([^/]++))?(*:410)'
+                        .'|contexts/(.+)(?:\\.([^/]++))?(*:446)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -68,11 +72,12 @@ return [
         159 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
         187 => [[['_route' => 'app_question_show', '_controller' => 'App\\Controller\\DefaultController::show'], ['slug'], null, null, false, true, null]],
         229 => [[['_route' => 'etat_de_stock', 'mois' => '', '_controller' => 'App\\Controller\\EtatController::index'], ['mois'], null, null, false, true, null]],
-        251 => [[['_route' => 'periode_mensuel', 'mois' => '', '_controller' => 'App\\Controller\\PeriodeController::mensuel'], ['mois'], null, null, false, true, null]],
-        293 => [[['_route' => 'download_etat', 'id' => '', '_controller' => 'App\\Controller\\MouvementController::impressionPdf'], ['id'], null, null, false, true, null]],
-        336 => [[['_route' => 'api_entrypoint', '_controller' => 'api_platform.action.entrypoint', '_format' => '', '_api_respond' => 'true', 'index' => 'index'], ['index', '_format'], null, null, false, true, null]],
-        367 => [[['_route' => 'api_doc', '_controller' => 'api_platform.action.documentation', '_format' => '', '_api_respond' => 'true'], ['_format'], null, null, false, true, null]],
-        403 => [
+        259 => [[['_route' => 'periode_mensuel', 'mois' => '', '_controller' => 'App\\Controller\\PeriodeController::mensuel'], ['mois'], null, null, false, true, null]],
+        298 => [[['_route' => 'impression_select', '_controller' => 'App\\Controller\\MouvementController::impressionPdf'], ['id'], null, null, false, true, null]],
+        335 => [[['_route' => 'impression_mensuel', 'mois' => '', '_controller' => 'App\\Controller\\MouvementController::impressionProdMensuel'], ['mois'], null, null, false, true, null]],
+        379 => [[['_route' => 'api_entrypoint', '_controller' => 'api_platform.action.entrypoint', '_format' => '', '_api_respond' => 'true', 'index' => 'index'], ['index', '_format'], null, null, false, true, null]],
+        410 => [[['_route' => 'api_doc', '_controller' => 'api_platform.action.documentation', '_format' => '', '_api_respond' => 'true'], ['_format'], null, null, false, true, null]],
+        446 => [
             [['_route' => 'api_jsonld_context', '_controller' => 'api_platform.jsonld.action.context', '_format' => 'jsonld', '_api_respond' => 'true'], ['shortName', '_format'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

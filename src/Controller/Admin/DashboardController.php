@@ -33,7 +33,8 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle("Centre d'Approvisionnement de Valeurs Postals");
+            ->setTitle("Centre d'Approvisionnement de Valeurs Postals")
+            ->disableUrlSignatures();
     }
 
     public function configureMenuItems(): iterable

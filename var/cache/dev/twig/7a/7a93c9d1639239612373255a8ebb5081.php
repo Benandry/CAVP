@@ -155,6 +155,6 @@ class __TwigTemplate_ee0e3ecef6ff2df302e9f74141703ca2 extends \Twig\Template
 {% block panel %}
     {{ render(controller('web_profiler.controller.router::panelAction', { token: token })) }}
 {% endblock %}
-", "@WebProfiler/Collector/router.html.twig", "E:\\symfony5\\cavp2\\CAVP\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\router.html.twig");
+", "@WebProfiler/Collector/router.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\router.html.twig");
     }
 }
