@@ -27,6 +27,7 @@ return [
     'impression_product' => [[], ['_controller' => 'App\\Controller\\MouvementController::impressionProd'], [], [['text', '/impression_product']], [], [], []],
     'impression_mensuel' => [['mois'], ['mois' => '', '_controller' => 'App\\Controller\\MouvementController::impressionProdMensuel'], [], [['variable', '/', '[^/]++', 'mois', true], ['text', '/impression_product_mensuel']], [], [], []],
     'order_out' => [[], ['_controller' => 'App\\Controller\\OrderController::index'], [], [['text', '/ordre-de-sortie']], [], [], []],
+    'bordereau' => [[], ['_controller' => 'App\\Controller\\OrderController::getSlips'], [], [['text', '/bordereaux-envoi']], [], [], []],
     'periode_mensuel' => [['mois'], ['mois' => '', '_controller' => 'App\\Controller\\PeriodeController::mensuel'], [], [['variable', '/', '[^/]++', 'mois', true], ['text', '/etat-de-stock_menseul']], [], [], []],
     'periode_annuel' => [[], ['_controller' => 'App\\Controller\\PeriodeController::annuel'], [], [['text', '/etat-de-stock-par-année']], [], [], []],
     'page_inscription' => [[], ['_controller' => 'App\\Controller\\RegisterController::index'], [], [['text', '/inscription-sur-cavp']], [], [], []],

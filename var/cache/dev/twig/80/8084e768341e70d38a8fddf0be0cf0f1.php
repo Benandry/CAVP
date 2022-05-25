@@ -55,12 +55,12 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
         ";
         // line 6
         $this->displayBlock('stylesheets', $context, $blocks);
-        // line 16
+        // line 14
         echo "    </head>
     <body>
         <nav class=\"navbar navbar-expand-lg navbar-light\" style=\"background-color: #ffd600;height: 80px;\">
         <a class=\"navbar-brand\" href=\"";
-        // line 19
+        // line 17
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("homepage", ["source" => "page d'accueil"]);
         echo "\">
             <i style=\"color: #444; font-size: 2rem;\" class=\"pb-1 fad fa-cauldron\"></i>
@@ -73,31 +73,31 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
 
             <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
                 ";
-        // line 29
-        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 29, $this->source); })()), "user", [], "any", false, false, false, 29)) {
-            // line 30
+        // line 27
+        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 27, $this->source); })()), "user", [], "any", false, false, false, 27)) {
+            // line 28
             echo "                    <ul class=\"navbar-nav mr-auto\">
                         <li class=\"nav-item active\">
                             <a class=\"nav-link\" href=\"";
-            // line 32
+            // line 30
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin", ["source" => "administrateur"]);
             echo "\">Administrateur<span class=\"sr-only\">(current)</span></a>
                         </li>
                         <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"";
-            // line 35
+            // line 33
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("etat_de_stock", ["source" => "etat de stock"]);
             echo "\">Etat de Stock</a>
                         </li>
                         <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"";
-            // line 38
+            // line 36
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("history", ["source" => "compte rendu "]);
             echo "\">Compte Rendu</a>
                         </li>
                         <li class=\"nav-item\">
                             <a class=\"nav-link\" href=\"";
-            // line 41
+            // line 39
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("order_out", ["source" => "ordre de sortie"]);
             echo "\">Ordre de sortie</a>
                         </li>
@@ -105,43 +105,43 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
                     <div class=\"d-flex flex-row-reverse bd-highlight\">
                         <div class=\"p-2 bd-highlight\">
                             <a href=\"";
-            // line 46
+            // line 44
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout", ["source" => "deconnecter"]);
             echo "\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Logout</button></a>
                         </div>
                     </div>
                 ";
         } else {
-            // line 50
+            // line 48
             echo "                    <div class=\"d-flex flex-row-reverse bd-highlight\">
                         <div class=\"p-2 bd-highlight\">
                             <a href=\"";
-            // line 52
+            // line 50
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login", ["source" => " connecter "]);
             echo "\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Login</button></a>
                         </div>
                     </div>
                 ";
         }
-        // line 56
+        // line 54
         echo "            </div>
         </nav>
         ";
-        // line 58
+        // line 56
         $this->displayBlock('body', $context, $blocks);
-        // line 59
+        // line 57
         echo "
-        <footer class=\"mt-5 p-3 text-center\" style=\"background-color: #ffd600; botom:0; color: #444;height: 80px;\"><span style=\"color: #00634f;\">
+        <footer class=\"mt-5 p-3 text-center\" style=\"background-color: #ffd600;clear: both; color: #444;height: 80px;\"><span style=\"color: #00634f;\">
             Centre d'Approvisionnement en Valeurs Postales </span> <i style=\"color:#e3151a;\" class=\"fa-thin fa-barcode\"></i> &copy; Copyright <span style=\"color:#498000;\">";
-        // line 61
+        // line 59
         echo twig_escape_filter($this->env, $this->extensions['Twig\Extra\Intl\IntlExtension']->formatDate($this->env, "now", "medium", "", null, "gregorian", "fr"), "html", null, true);
         echo "</span>
         <a href=\"paositramada.mg/cavp\"> Paositramalagasy CAVP </a>
         </footer>
         ";
-        // line 64
+        // line 62
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 79
+        // line 77
         echo "    </body>
 </html>";
         
@@ -188,14 +188,6 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
             <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css\" integrity=\"sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=\" crossorigin=\"anonymous\" />
             <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css\" integrity=\"sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l\" crossorigin=\"anonymous\">
             <link rel=\"stylesheet\" href=\"https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css\">
-            <link rel=\"stylesheet\" href=\"";
-        // line 13
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/app.css"), "html", null, true);
-        echo "\">
-            <link rel=\"stylesheet\" href=\"";
-        // line 14
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/style.css"), "html", null, true);
-        echo "\">
         ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -205,7 +197,7 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
 
     }
 
-    // line 58
+    // line 56
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -223,7 +215,7 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
 
     }
 
-    // line 64
+    // line 62
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -233,7 +225,7 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 65
+        // line 63
         echo "            <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM\" crossorigin=\"anonymous\"></script>
             <script
               src=\"https://code.jquery.com/jquery-3.4.1.min.js\"
@@ -268,7 +260,7 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  237 => 65,  227 => 64,  209 => 58,  197 => 14,  193 => 13,  185 => 7,  175 => 6,  156 => 5,  145 => 79,  143 => 64,  137 => 61,  133 => 59,  131 => 58,  127 => 56,  120 => 52,  116 => 50,  109 => 46,  101 => 41,  95 => 38,  89 => 35,  83 => 32,  79 => 30,  77 => 29,  64 => 19,  59 => 16,  57 => 6,  53 => 5,  47 => 1,);
+        return array (  229 => 63,  219 => 62,  201 => 56,  185 => 7,  175 => 6,  156 => 5,  145 => 77,  143 => 62,  137 => 59,  133 => 57,  131 => 56,  127 => 54,  120 => 50,  116 => 48,  109 => 44,  101 => 39,  95 => 36,  89 => 33,  83 => 30,  79 => 28,  77 => 27,  64 => 17,  59 => 14,  57 => 6,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -285,8 +277,6 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
             <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css\" integrity=\"sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=\" crossorigin=\"anonymous\" />
             <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css\" integrity=\"sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l\" crossorigin=\"anonymous\">
             <link rel=\"stylesheet\" href=\"https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css\">
-            <link rel=\"stylesheet\" href=\"{{ asset('css/app.css') }}\">
-            <link rel=\"stylesheet\" href=\"{{ asset('css/style.css') }}\">
         {% endblock %}
     </head>
     <body>
@@ -332,7 +322,7 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
         </nav>
         {% block body %}{% endblock %}
 
-        <footer class=\"mt-5 p-3 text-center\" style=\"background-color: #ffd600; botom:0; color: #444;height: 80px;\"><span style=\"color: #00634f;\">
+        <footer class=\"mt-5 p-3 text-center\" style=\"background-color: #ffd600;clear: both; color: #444;height: 80px;\"><span style=\"color: #00634f;\">
             Centre d'Approvisionnement en Valeurs Postales </span> <i style=\"color:#e3151a;\" class=\"fa-thin fa-barcode\"></i> &copy; Copyright <span style=\"color:#498000;\">{{ 'now' |format_date(locale='fr') }}</span>
         <a href=\"paositramada.mg/cavp\"> Paositramalagasy CAVP </a>
         </footer>

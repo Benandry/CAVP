@@ -1,0 +1,3 @@
+<?php //App%255CEntity%255COrderTypes%2523setOtherType
+
+return [PHP_INT_MAX, []];

@@ -22,7 +22,6 @@ class RegisterController extends AbstractController
     #[Route('/inscription-sur-cavp', name: 'page_inscription')]
     public function index(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
-
         $notif = null;
         $user = new User();
         $form = $this->createForm(RegisterType::class,$user);
@@ -39,8 +38,7 @@ class RegisterController extends AbstractController
             $this->entityManager->flush();
 
             $notif = "Vous avez inscrit ";
-
-
+            return $this->redirectToRoute('app_login');
         }
 
 

@@ -20,13 +20,21 @@ class ProduitsRepository extends ServiceEntityRepository
         parent::__construct($registry, Produits::class);
     }
  
-public function findByOrder()
+public function findByOrder($types)
     {
-        $rawSql = "SELECT c.NomDeCategorie categorie , c.valeurFaciale vf ,SUM(mvt.quantite) FROM App\Entity\Mouvement mvt INNER JOIN App\Entity\Categorie c WITH c.id = mvt.Categorie GROUP BY mvt.produit";
-        $stmt = $this->getEntityManager()->createQuery($rawSql);
-
-        return $stmt->execute();
-    }
+        if($types == NULL){
+            $rawSql = " SELECT c.ordre ordre, c.NomDeCategorie categorie,COUNT(a.name) nombre_agence, c.valeurFaciale vf ,SUM(mvt.quantite) somme ,mvt.quantite nombre_cat,a.name bureau FROM App\Entity\Mouvement mvt 
+                        INNER JOIN App\Entity\Categorie c WITH c.id = mvt.Categorie
+                        INNER JOIN App\Entity\Produits p WITH p.id = mvt.produit
+                        INNER JOIN App\Entity\Agence a WITH a.id = mvt.Agence
+                        WHERE mvt.types = '$types'
+                        GROUP BY mvt.produit";
+            $stmt = $this->getEntityManager()->createQuery($rawSql);
+    
+            return $stmt->execute();
+        }
+            
+        }
 
 }
 

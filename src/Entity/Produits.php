@@ -33,6 +33,10 @@ class Produits
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Situation::class)]
     private $situations;
 
+    #[ORM\ManyToOne(targetEntity: OrderTypes::class, inversedBy: 'produits')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $types;
+
 
     public function __construct()
     {
@@ -173,6 +177,18 @@ class Produits
                 $situation->setProduit(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTypes(): ?OrderTypes
+    {
+        return $this->types;
+    }
+
+    public function setTypes(?OrderTypes $types): self
+    {
+        $this->types = $types;
 
         return $this;
     }

@@ -22,6 +22,7 @@ return [
         '/compte-rendu-entrer' => [[['_route' => 'history_enter', '_controller' => 'App\\Controller\\HistoriqueController::enter'], null, null, null, false, false, null]],
         '/impression_product' => [[['_route' => 'impression_product', '_controller' => 'App\\Controller\\MouvementController::impressionProd'], null, null, null, false, false, null]],
         '/ordre-de-sortie' => [[['_route' => 'order_out', '_controller' => 'App\\Controller\\OrderController::index'], null, null, null, false, false, null]],
+        '/bordereaux-envoi' => [[['_route' => 'bordereau', '_controller' => 'App\\Controller\\OrderController::getSlips'], null, null, null, false, false, null]],
         '/etat-de-stock-par-année' => [[['_route' => 'periode_annuel', '_controller' => 'App\\Controller\\PeriodeController::annuel'], null, null, null, false, false, null]],
         '/inscription-sur-cavp' => [[['_route' => 'page_inscription', '_controller' => 'App\\Controller\\RegisterController::index'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],

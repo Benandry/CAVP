@@ -660,6 +660,14 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
+    <service id="App\Repository\OrderOutRepository" class="App\Repository\OrderOutRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\OrderTypesRepository" class="App\Repository\OrderTypesRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\ProduitDispoRepository" class="App\Repository\ProduitDispoRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -4839,7 +4847,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.4oBlAJL"/>
+      <argument type="service" id=".service_locator.8Vl_W8J"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -8232,6 +8240,10 @@
     <service id=".abstract.instanceof.App\Repository\FournisseurRepository" class="App\Repository\FournisseurRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\MouvementRepository" class="App\Repository\MouvementRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\MouvementRepository" class="App\Repository\MouvementRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\OrderOutRepository" class="App\Repository\OrderOutRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\OrderOutRepository" class="App\Repository\OrderOutRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\OrderTypesRepository" class="App\Repository\OrderTypesRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\OrderTypesRepository" class="App\Repository\OrderTypesRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ProduitDispoRepository" class="App\Repository\ProduitDispoRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ProduitDispoRepository" class="App\Repository\ProduitDispoRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ProduitsRepository" class="App\Repository\ProduitsRepository" autowire="true" abstract="true"/>
@@ -8726,7 +8738,7 @@
         <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.fDx9uiq" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.Gt8006_" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\AgenceCrudController::autocomplete" type="service_closure" id=".service_locator.kEvhmk9"/>
@@ -8843,6 +8855,7 @@
         <argument key="App\Controller\MouvementController::impressionPdf" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\MouvementController::impressionProd" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\MouvementController::impressionProdMensuel" type="service_closure" id=".service_locator.LDwumwZ"/>
+        <argument key="App\Controller\OrderController::getSlips" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\OrderController::index" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PeriodeController::mensuel" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\RegisterController::index" type="service_closure" id=".service_locator.Isyi.eu"/>
@@ -8967,6 +8980,7 @@
         <argument key="App\Controller\MouvementController:impressionPdf" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\MouvementController:impressionProd" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\MouvementController:impressionProdMensuel" type="service_closure" id=".service_locator.LDwumwZ"/>
+        <argument key="App\Controller\OrderController:getSlips" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\OrderController:index" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PeriodeController:mensuel" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\RegisterController:index" type="service_closure" id=".service_locator.Isyi.eu"/>
@@ -9148,7 +9162,7 @@
       <argument type="service" id="cache.doctrine.orm.default.result"/>
       <factory class="Doctrine\Common\Cache\Psr6\DoctrineProvider" method="wrap"/>
     </service>
-    <service id=".service_locator.4oBlAJL" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.8Vl_W8J" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\AgenceRepository" type="service_closure" id="App\Repository\AgenceRepository"/>
@@ -9156,6 +9170,8 @@
         <argument key="App\Repository\DescriptionsRepository" type="service_closure" id="App\Repository\DescriptionsRepository"/>
         <argument key="App\Repository\FournisseurRepository" type="service_closure" id="App\Repository\FournisseurRepository"/>
         <argument key="App\Repository\MouvementRepository" type="service_closure" id="App\Repository\MouvementRepository"/>
+        <argument key="App\Repository\OrderOutRepository" type="service_closure" id="App\Repository\OrderOutRepository"/>
+        <argument key="App\Repository\OrderTypesRepository" type="service_closure" id="App\Repository\OrderTypesRepository"/>
         <argument key="App\Repository\ProduitDispoRepository" type="service_closure" id="App\Repository\ProduitDispoRepository"/>
         <argument key="App\Repository\ProduitsRepository" type="service_closure" id="App\Repository\ProduitsRepository"/>
         <argument key="App\Repository\SituationRepository" type="service_closure" id="App\Repository\SituationRepository"/>
@@ -9780,12 +9796,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.fDx9uiq"/>
+      <argument type="service" id=".service_locator.Gt8006_"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.fDx9uiq"/>
+      <argument type="service" id=".service_locator.Gt8006_"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -10948,7 +10964,7 @@
     <service id="ApiPlatform\Core\Security\ResourceAccessCheckerInterface" alias="api_platform.security.resource_access_checker"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.fDx9uiq"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.Gt8006_"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -10982,7 +10998,7 @@
     <service id=".service_locator.nTL_G5r" alias=".service_locator.esmk6IF"/>
     <service id=".service_locator.hNls88j" alias=".service_locator.ENGuM7_"/>
     <service id=".service_locator.6rNHno." alias=".service_locator.riFbGaB"/>
-    <service id=".service_locator.jGECZ5B" alias=".service_locator.fDx9uiq"/>
+    <service id=".service_locator.yFyNGyn" alias=".service_locator.Gt8006_"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.v7E14GL" alias=".service_locator.skRIKco"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
