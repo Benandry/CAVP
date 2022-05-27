@@ -29,6 +29,7 @@ class CategorieCrudController extends AbstractCrudController
             TextField::new('coteEmission'),
             IntegerField::new('ordre'),
             MoneyField::new('prixDeVente')->setCurrency("EUR"),
+            IntegerField::new('tpParPl','Nombre de TP/PL')
         ];
     }
     

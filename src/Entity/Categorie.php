@@ -43,6 +43,9 @@ class Categorie
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $coteEmission;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $tpParPl;
+
     public function __construct()
     {
         $this->situations = new ArrayCollection();
@@ -198,6 +201,18 @@ class Categorie
     public function setCoteEmission(?string $coteEmission): self
     {
         $this->coteEmission = $coteEmission;
+
+        return $this;
+    }
+
+    public function getTpParPl(): ?int
+    {
+        return $this->tpParPl;
+    }
+
+    public function setTpParPl(int $tpParPl): self
+    {
+        $this->tpParPl = $tpParPl;
 
         return $this;
     }

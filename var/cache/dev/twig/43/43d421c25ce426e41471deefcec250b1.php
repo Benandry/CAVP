@@ -99,15 +99,15 @@ class __TwigTemplate_5018102d1574fcf3927d134bd13c87ce extends \Twig\Template
         </div>
     </div>
 </span>
-
-
 <a href=\"#recapitulation\" style=\"margin:40px;\">Recapitulation </a>
 <a href=\"#repartitions\" style=\"margin:40px;\">Etat de repartition de Valeur </a>
 <a href=\"#bordereau\" style=\"margin:40px;\">Bordereau d'envoi </a>
 <h4 id=\"recapitulation\">Récapitulation N° ";
-            // line 46
+            // line 44
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, "now", "y"), "html", null, true);
-            echo "/  </h4>
+            echo "/ --";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["types_order"]) || array_key_exists("types_order", $context) ? $context["types_order"] : (function () { throw new RuntimeError('Variable "types_order" does not exist.', 44, $this->source); })()), ((isset($context["types"]) || array_key_exists("types", $context) ? $context["types"] : (function () { throw new RuntimeError('Variable "types" does not exist.', 44, $this->source); })()) - 1), [], "array", false, false, false, 44), "html", null, true);
+            echo " </h4>
     <div class=\"table responsive-xxl\">
         <table width=\"100%\" style=\"border-collapse:collapse;\" border=\"1\">
         <thead>
@@ -123,39 +123,33 @@ class __TwigTemplate_5018102d1574fcf3927d134bd13c87ce extends \Twig\Template
         </thead>
         <tbody>
             ";
-            // line 61
+            // line 59
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 61, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 59, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["pro"]) {
-                // line 62
+                // line 60
                 echo "                <tr>
                     <td> ";
-                // line 63
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "categorie", [], "any", false, false, false, 63), "html", null, true);
+                // line 61
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "categorie", [], "any", false, false, false, 61), "html", null, true);
                 echo "</td> 
                     <td>";
-                // line 64
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "somme", [], "any", false, false, false, 64), "html", null, true);
+                // line 62
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "vf", [], "any", false, false, false, 62), "html", null, true);
                 echo "</td>
+                    <td>-</td>
                     <td>";
-                // line 65
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "vf", [], "any", false, false, false, 65), "html", null, true);
+                // line 64
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "nombre_planche", [], "any", false, false, false, 64), "html", null, true);
                 echo "</td>
+                    <td>-</td>
                     <td>";
                 // line 66
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "vf", [], "any", false, false, false, 66), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "prixDeVente", [], "any", false, false, false, 66), "html", null, true);
                 echo "</td>
                     <td>";
                 // line 67
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "vf", [], "any", false, false, false, 67), "html", null, true);
-                echo "</td>
-                    <td>";
-                // line 68
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "vf", [], "any", false, false, false, 68), "html", null, true);
-                echo "</td>
-                    <td>";
-                // line 69
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "vf", [], "any", false, false, false, 69), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "bureau", [], "any", false, false, false, 67), "html", null, true);
                 echo "</td>
                 </tr>
             ";
@@ -163,22 +157,27 @@ class __TwigTemplate_5018102d1574fcf3927d134bd13c87ce extends \Twig\Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pro'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 72
+            // line 70
             echo "        <tbody>
-        </table>
+    </table>
         
     <p> Antananarivo le ,";
-            // line 75
+            // line 73
             echo twig_escape_filter($this->env, $this->extensions['Twig\Extra\Intl\IntlExtension']->formatDate($this->env, "now", "medium", "", null, "gregorian", "fr"), "html", null, true);
-            echo " </p>
-
-    <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
-        ";
-            // line 78
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 78, $this->source); })()), "user", [], "any", false, false, false, 78), "prenom", [], "any", false, false, false, 78), "html", null, true);
-            echo "
+            echo "<br>
+        <span style=\"margin-top1: 25px;\"> Chef de  Centre d'Approvisionnement en Valeurs Postales </span><br />
+        <span style=\"margin-top1: 25px;\">";
+            // line 75
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 75, $this->source); })()), "user", [], "any", false, false, false, 75), "prenom", [], "any", false, false, false, 75), "html", null, true);
+            echo "</span>
+     </p>
     
-        <h4 id=\"repartitions\">Etat de repartition de Valeurs N° </h4>
+        <h4 id=\"repartitions\">Etat de repartition de Valeurs N° ";
+            // line 78
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, "now", "y"), "html", null, true);
+            echo "/ --";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["types_order"]) || array_key_exists("types_order", $context) ? $context["types_order"] : (function () { throw new RuntimeError('Variable "types_order" does not exist.', 78, $this->source); })()), ((isset($context["types"]) || array_key_exists("types", $context) ? $context["types"] : (function () { throw new RuntimeError('Variable "types" does not exist.', 78, $this->source); })()) - 1), [], "array", false, false, false, 78), "html", null, true);
+            echo " </h4>
         <table width=\"100%\" style=\"border-collapse:collapse;\" border=\"1\">
             <thead>
                 <tr>
@@ -190,27 +189,27 @@ class __TwigTemplate_5018102d1574fcf3927d134bd13c87ce extends \Twig\Template
             </thead>
             <tbody>
                 ";
-            // line 91
+            // line 89
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 91, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 89, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["pro"]) {
-                // line 92
+                // line 90
                 echo "                    <tr>
                         <td> ";
-                // line 93
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "ordre", [], "any", false, false, false, 93), "html", null, true);
+                // line 91
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "ordre", [], "any", false, false, false, 91), "html", null, true);
                 echo "</td> 
                         <td>";
-                // line 94
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "vf", [], "any", false, false, false, 94), "html", null, true);
+                // line 92
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "vf", [], "any", false, false, false, 92), "html", null, true);
                 echo "</td>
                         <td> ";
-                // line 95
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "nombre_cat", [], "any", false, false, false, 95), "html", null, true);
+                // line 93
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "nombre_cat", [], "any", false, false, false, 93), "html", null, true);
                 echo "</td>
                         <td>";
-                // line 96
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "nombre_agence", [], "any", false, false, false, 96), "html", null, true);
+                // line 94
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "nombre_agence", [], "any", false, false, false, 94), "html", null, true);
                 echo "</td>
                     </tr>
                 ";
@@ -218,37 +217,41 @@ class __TwigTemplate_5018102d1574fcf3927d134bd13c87ce extends \Twig\Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pro'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 99
+            // line 97
             echo "            <tbody>
         </table>
     </div>
-    <p> Antananarivo le ,";
-            // line 102
+        <p> Antananarivo le ,";
+            // line 100
             echo twig_escape_filter($this->env, $this->extensions['Twig\Extra\Intl\IntlExtension']->formatDate($this->env, "now", "medium", "", null, "gregorian", "fr"), "html", null, true);
-            echo " </p>
-
-    <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
-        ";
-            // line 105
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 105, $this->source); })()), "user", [], "any", false, false, false, 105), "prenom", [], "any", false, false, false, 105), "html", null, true);
-            echo "
-    
+            echo "<br>
+        <span style=\"margin-top1: 25px;\"> Chef de  Centre d'Approvisionnement en Valeurs Postales </span><br />
+        <span style=\"margin-top1: 25px;\">";
+            // line 102
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 102, $this->source); })()), "user", [], "any", false, false, false, 102), "prenom", [], "any", false, false, false, 102), "html", null, true);
+            echo "</span>
+     </p>
     <h4 id=\"bordereau\">Bordereau d'envoi </h4>
-    <h5>Bordéreau d'envoi N° </h5>
+    <h5>Bordéreau d'envoi N° ";
+            // line 105
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, "now", "y"), "html", null, true);
+            echo "/ --";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["types_order"]) || array_key_exists("types_order", $context) ? $context["types_order"] : (function () { throw new RuntimeError('Variable "types_order" does not exist.', 105, $this->source); })()), ((isset($context["types"]) || array_key_exists("types", $context) ? $context["types"] : (function () { throw new RuntimeError('Variable "types" does not exist.', 105, $this->source); })()) - 1), [], "array", false, false, false, 105), "html", null, true);
+            echo "</h5>
     <table width=\"100%\" style=\"border-collapse: collapse;\" border=\"1\">
         ";
-            // line 110
+            // line 107
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 110, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 107, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["pro"]) {
-                // line 111
+                // line 108
                 echo "           <tr>
             <td>";
-                // line 112
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "bureau", [], "any", false, false, false, 112), "html", null, true);
+                // line 109
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "bureau", [], "any", false, false, false, 109), "html", null, true);
                 echo "</td>
             <td><a href=\"";
-                // line 113
+                // line 110
                 echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("bordereau");
                 echo "\"> <i class='fa fa-info-circle'> info</i> </a></td>
            </tr>
@@ -257,23 +260,23 @@ class __TwigTemplate_5018102d1574fcf3927d134bd13c87ce extends \Twig\Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pro'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 116
+            // line 113
             echo "    </table>           
 ";
         } else {
-            // line 118
+            // line 115
             echo "<h1>Page not found 404 </h1>
 
 <p>
     The requested page couldn't be located. Checkout for any URL
     misspelling or <a href=\"";
-            // line 122
+            // line 119
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("homepage");
             echo "\">return to the authentification </a>.
 </p>
 ";
         }
-        // line 125
+        // line 122
         echo "</body>
 </html>";
         
@@ -296,7 +299,7 @@ class __TwigTemplate_5018102d1574fcf3927d134bd13c87ce extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  277 => 125,  271 => 122,  265 => 118,  261 => 116,  252 => 113,  248 => 112,  245 => 111,  241 => 110,  233 => 105,  227 => 102,  222 => 99,  213 => 96,  209 => 95,  205 => 94,  201 => 93,  198 => 92,  194 => 91,  178 => 78,  172 => 75,  167 => 72,  158 => 69,  154 => 68,  150 => 67,  146 => 66,  142 => 65,  138 => 64,  134 => 63,  131 => 62,  127 => 61,  109 => 46,  95 => 35,  89 => 32,  81 => 27,  74 => 23,  64 => 16,  57 => 12,  55 => 11,  43 => 1,);
+        return array (  280 => 122,  274 => 119,  268 => 115,  264 => 113,  255 => 110,  251 => 109,  248 => 108,  244 => 107,  237 => 105,  231 => 102,  226 => 100,  221 => 97,  212 => 94,  208 => 93,  204 => 92,  200 => 91,  197 => 90,  193 => 89,  177 => 78,  171 => 75,  166 => 73,  161 => 70,  152 => 67,  148 => 66,  143 => 64,  138 => 62,  134 => 61,  131 => 60,  127 => 59,  107 => 44,  95 => 35,  89 => 32,  81 => 27,  74 => 23,  64 => 16,  57 => 12,  55 => 11,  43 => 1,);
     }
 
     public function getSourceContext()
@@ -341,12 +344,10 @@ class __TwigTemplate_5018102d1574fcf3927d134bd13c87ce extends \Twig\Template
         </div>
     </div>
 </span>
-
-
 <a href=\"#recapitulation\" style=\"margin:40px;\">Recapitulation </a>
 <a href=\"#repartitions\" style=\"margin:40px;\">Etat de repartition de Valeur </a>
 <a href=\"#bordereau\" style=\"margin:40px;\">Bordereau d'envoi </a>
-<h4 id=\"recapitulation\">Récapitulation N° {{ 'now' |date(\"y\") }}/  </h4>
+<h4 id=\"recapitulation\">Récapitulation N° {{ 'now' |date(\"y\") }}/ --{{ types_order[types - 1]}} </h4>
     <div class=\"table responsive-xxl\">
         <table width=\"100%\" style=\"border-collapse:collapse;\" border=\"1\">
         <thead>
@@ -364,23 +365,23 @@ class __TwigTemplate_5018102d1574fcf3927d134bd13c87ce extends \Twig\Template
             {% for pro in dispo %}
                 <tr>
                     <td> {{ pro.categorie }}</td> 
-                    <td>{{ pro.somme }}</td>
                     <td>{{ pro.vf }}</td>
-                    <td>{{ pro.vf }}</td>
-                    <td>{{ pro.vf }}</td>
-                    <td>{{ pro.vf }}</td>
-                    <td>{{ pro.vf }}</td>
+                    <td>-</td>
+                    <td>{{ pro.nombre_planche }}</td>
+                    <td>-</td>
+                    <td>{{ pro.prixDeVente }}</td>
+                    <td>{{ pro.bureau }}</td>
                 </tr>
             {% endfor %}
         <tbody>
-        </table>
+    </table>
         
-    <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }} </p>
-
-    <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
-        {{ app.user.prenom }}
+    <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }}<br>
+        <span style=\"margin-top1: 25px;\"> Chef de  Centre d'Approvisionnement en Valeurs Postales </span><br />
+        <span style=\"margin-top1: 25px;\">{{ app.user.prenom }}</span>
+     </p>
     
-        <h4 id=\"repartitions\">Etat de repartition de Valeurs N° </h4>
+        <h4 id=\"repartitions\">Etat de repartition de Valeurs N° {{ 'now' |date(\"y\") }}/ --{{ types_order[types - 1]}} </h4>
         <table width=\"100%\" style=\"border-collapse:collapse;\" border=\"1\">
             <thead>
                 <tr>
@@ -402,13 +403,12 @@ class __TwigTemplate_5018102d1574fcf3927d134bd13c87ce extends \Twig\Template
             <tbody>
         </table>
     </div>
-    <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }} </p>
-
-    <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
-        {{ app.user.prenom }}
-    
+        <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }}<br>
+        <span style=\"margin-top1: 25px;\"> Chef de  Centre d'Approvisionnement en Valeurs Postales </span><br />
+        <span style=\"margin-top1: 25px;\">{{ app.user.prenom }}</span>
+     </p>
     <h4 id=\"bordereau\">Bordereau d'envoi </h4>
-    <h5>Bordéreau d'envoi N° </h5>
+    <h5>Bordéreau d'envoi N° {{ 'now' |date(\"y\") }}/ --{{ types_order[types - 1]}}</h5>
     <table width=\"100%\" style=\"border-collapse: collapse;\" border=\"1\">
         {% for pro in dispo %}
            <tr>

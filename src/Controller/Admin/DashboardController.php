@@ -54,7 +54,7 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::subMenu('Entrée/Sortie ', 'fas fa-bacon')->setSubItems([
             MenuItem::linkToCrud("Voir l'operation ", 'fas fa-eye',Mouvement::class),
-            MenuItem::linkToCrud('Inserer un moov', 'fas fa-plus',Mouvement::class)->setAction(Crud::PAGE_NEW)
+            MenuItem::linkToCrud('Entré/Sortie en stock ', 'fas fa-plus',Mouvement::class)->setAction(Crud::PAGE_NEW)
         ]);
 
         yield MenuItem::subMenu('Agence Paositra Malagasy ', 'fas fa-home')->setSubItems([

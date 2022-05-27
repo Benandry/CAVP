@@ -22,20 +22,17 @@ class ProduitsRepository extends ServiceEntityRepository
  
 public function findByOrder($types)
     {
-        if($types == NULL){
-            $rawSql = " SELECT c.ordre ordre, c.NomDeCategorie categorie,COUNT(a.name) nombre_agence, c.valeurFaciale vf ,SUM(mvt.quantite) somme ,mvt.quantite nombre_cat,a.name bureau FROM App\Entity\Mouvement mvt 
-                        INNER JOIN App\Entity\Categorie c WITH c.id = mvt.Categorie
-                        INNER JOIN App\Entity\Produits p WITH p.id = mvt.produit
-                        INNER JOIN App\Entity\Agence a WITH a.id = mvt.Agence
-                        WHERE mvt.types = '$types'
-                        GROUP BY mvt.produit";
-            $stmt = $this->getEntityManager()->createQuery($rawSql);
-    
-            return $stmt->execute();
-        }
-            
-        }
+        $rawSql = " SELECT c.nombre_planche,c.ordre ordre,c.prixDeVente, c.NomDeCategorie categorie,COUNT(a.name) nombre_agence, c.valeurFaciale vf ,SUM(mvt.quantite) somme ,mvt.quantite nombre_cat,a.name bureau FROM App\Entity\Mouvement mvt 
+                    INNER JOIN App\Entity\Categorie c WITH c.id = mvt.Categorie
+                    INNER JOIN App\Entity\Produits p WITH p.id = mvt.produit
+                    INNER JOIN App\Entity\Agence a WITH a.id = mvt.Agence
+                    WHERE mvt.types = $types and mvt
+                    GROUP BY mvt.Categorie";
+        $stmt = $this->getEntityManager()->createQuery($rawSql);
 
+        return $stmt->execute();
+            
+     }
 }
 
 

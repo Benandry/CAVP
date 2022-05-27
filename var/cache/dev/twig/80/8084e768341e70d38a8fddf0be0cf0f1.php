@@ -83,21 +83,24 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin", ["source" => "administrateur"]);
             echo "\">Administrateur<span class=\"sr-only\">(current)</span></a>
                         </li>
-                        <li class=\"nav-item\">
+                        <li class=\"nav-item active\">
+                            <a class=\"nav-link\" href=\"#\">Produits Dispo <span class=\"sr-only\">(current)</span></a>
+                        </li>
+                        <li class=\"nav-item active\">
                             <a class=\"nav-link\" href=\"";
-            // line 33
+            // line 36
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("etat_de_stock", ["source" => "etat de stock"]);
             echo "\">Etat de Stock</a>
                         </li>
-                        <li class=\"nav-item\">
+                        <li class=\"nav-item active\">
                             <a class=\"nav-link\" href=\"";
-            // line 36
+            // line 39
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("history", ["source" => "compte rendu "]);
             echo "\">Compte Rendu</a>
                         </li>
-                        <li class=\"nav-item\">
+                        <li class=\"nav-item active\">
                             <a class=\"nav-link\" href=\"";
-            // line 39
+            // line 42
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("order_out", ["source" => "ordre de sortie"]);
             echo "\">Ordre de sortie</a>
                         </li>
@@ -105,43 +108,43 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
                     <div class=\"d-flex flex-row-reverse bd-highlight\">
                         <div class=\"p-2 bd-highlight\">
                             <a href=\"";
-            // line 44
+            // line 47
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout", ["source" => "deconnecter"]);
             echo "\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Logout</button></a>
                         </div>
                     </div>
                 ";
         } else {
-            // line 48
+            // line 51
             echo "                    <div class=\"d-flex flex-row-reverse bd-highlight\">
                         <div class=\"p-2 bd-highlight\">
                             <a href=\"";
-            // line 50
+            // line 53
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login", ["source" => " connecter "]);
             echo "\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Login</button></a>
                         </div>
                     </div>
                 ";
         }
-        // line 54
+        // line 57
         echo "            </div>
         </nav>
         ";
-        // line 56
+        // line 59
         $this->displayBlock('body', $context, $blocks);
-        // line 57
+        // line 60
         echo "
         <footer class=\"mt-5 p-3 text-center\" style=\"background-color: #ffd600;clear: both; color: #444;height: 80px;\"><span style=\"color: #00634f;\">
             Centre d'Approvisionnement en Valeurs Postales </span> <i style=\"color:#e3151a;\" class=\"fa-thin fa-barcode\"></i> &copy; Copyright <span style=\"color:#498000;\">";
-        // line 59
+        // line 62
         echo twig_escape_filter($this->env, $this->extensions['Twig\Extra\Intl\IntlExtension']->formatDate($this->env, "now", "medium", "", null, "gregorian", "fr"), "html", null, true);
         echo "</span>
         <a href=\"paositramada.mg/cavp\"> Paositramalagasy CAVP </a>
         </footer>
         ";
-        // line 62
+        // line 65
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 77
+        // line 80
         echo "    </body>
 </html>";
         
@@ -197,7 +200,7 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
 
     }
 
-    // line 56
+    // line 59
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -215,7 +218,7 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
 
     }
 
-    // line 62
+    // line 65
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -225,7 +228,7 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 63
+        // line 66
         echo "            <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM\" crossorigin=\"anonymous\"></script>
             <script
               src=\"https://code.jquery.com/jquery-3.4.1.min.js\"
@@ -260,7 +263,7 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  229 => 63,  219 => 62,  201 => 56,  185 => 7,  175 => 6,  156 => 5,  145 => 77,  143 => 62,  137 => 59,  133 => 57,  131 => 56,  127 => 54,  120 => 50,  116 => 48,  109 => 44,  101 => 39,  95 => 36,  89 => 33,  83 => 30,  79 => 28,  77 => 27,  64 => 17,  59 => 14,  57 => 6,  53 => 5,  47 => 1,);
+        return array (  232 => 66,  222 => 65,  204 => 59,  188 => 7,  178 => 6,  159 => 5,  148 => 80,  146 => 65,  140 => 62,  136 => 60,  134 => 59,  130 => 57,  123 => 53,  119 => 51,  112 => 47,  104 => 42,  98 => 39,  92 => 36,  83 => 30,  79 => 28,  77 => 27,  64 => 17,  59 => 14,  57 => 6,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -296,13 +299,16 @@ class __TwigTemplate_33cd815d2ce415ae5fc1553457bfd425 extends \Twig\Template
                         <li class=\"nav-item active\">
                             <a class=\"nav-link\" href=\"{{ path('admin', {'source':'administrateur'}) }}\">Administrateur<span class=\"sr-only\">(current)</span></a>
                         </li>
-                        <li class=\"nav-item\">
+                        <li class=\"nav-item active\">
+                            <a class=\"nav-link\" href=\"#\">Produits Dispo <span class=\"sr-only\">(current)</span></a>
+                        </li>
+                        <li class=\"nav-item active\">
                             <a class=\"nav-link\" href=\"{{ path('etat_de_stock', {'source':'etat de stock'}) }}\">Etat de Stock</a>
                         </li>
-                        <li class=\"nav-item\">
+                        <li class=\"nav-item active\">
                             <a class=\"nav-link\" href=\"{{ path('history', {'source':'compte rendu '}) }}\">Compte Rendu</a>
                         </li>
-                        <li class=\"nav-item\">
+                        <li class=\"nav-item active\">
                             <a class=\"nav-link\" href=\"{{ path('order_out', {'source':'ordre de sortie'}) }}\">Ordre de sortie</a>
                         </li>
                     </ul>

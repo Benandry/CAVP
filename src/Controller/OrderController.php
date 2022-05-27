@@ -17,12 +17,15 @@ class OrderController extends AbstractController
     #[Route('/ordre-de-sortie', name: 'order_out')]
     public function index(ManagerRegistry $doctrine,Request $request): Response
     {
+        $types = 1;
         $repository1 = $doctrine->getRepository(Produits::class);
-        $order  = $repository1->findByOrder(0);
-        dd($order);
+        $order  = $repository1->findByOrder($types);
+        
+        
+        dd($order[0]);
         if (!$order) {
             throw $this->createNotFoundException(
-                'No product found '
+                'Pas de produits trouvées '
             );
         }
         
@@ -37,12 +40,19 @@ class OrderController extends AbstractController
         {
             $data = $form->getData();
             $types = $data['select']->getId();
-            $repository1 = $doctrine->getRepository(Produits::class)->findByOrder($types);
+            $order = $doctrine->getRepository(Produits::class)->findByOrder($types);
+           // dd($order,$types);
+            return $this->render('order/ordre.html.twig',[
+                'dispo' => $order,
+                'form' =>$form->createView(),
+                'types' =>$types
+            ]);
         }
     
         return $this->render('order/ordre.html.twig',[
             'dispo' => $order,
-            'form' =>$form->createView()
+            'form' =>$form->createView(),
+            'types' =>$types
         ]);
     }
 
