@@ -15,12 +15,15 @@ return [
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/admin' => [[['_route' => 'admin', '_controller' => 'App\\Controller\\Admin\\DashboardController::index'], null, null, null, false, false, null]],
         '/homepage' => [[['_route' => 'homepage', '_controller' => 'App\\Controller\\DefaultController::homepage'], null, null, null, false, false, null]],
-        '/test' => [[['_route' => 'test', '_controller' => 'App\\Controller\\DefaultController::test'], null, null, null, false, false, null]],
+        '/product_dispo' => [[['_route' => 'Product_dispo', '_controller' => 'App\\Controller\\DefaultController::test'], null, null, null, false, false, null]],
+        '/mouvement/entrer/sortie' => [[['_route' => 'mouvement', '_controller' => 'App\\Controller\\DefaultController::new'], null, null, null, false, false, null]],
         '/compte-rendu' => [[['_route' => 'history', '_controller' => 'App\\Controller\\HistoriqueController::history'], null, null, null, false, false, null]],
         '/compte-rendu-sortie' => [[['_route' => 'history_out', '_controller' => 'App\\Controller\\HistoriqueController::out'], null, null, null, false, false, null]],
         '/compte-rendu-produits-integrée' => [[['_route' => 'integreted', '_controller' => 'App\\Controller\\HistoriqueController::integreted'], null, null, null, false, false, null]],
         '/compte-rendu-entrer' => [[['_route' => 'history_enter', '_controller' => 'App\\Controller\\HistoriqueController::enter'], null, null, null, false, false, null]],
         '/impression_product' => [[['_route' => 'impression_product', '_controller' => 'App\\Controller\\MouvementController::impressionProd'], null, null, null, false, false, null]],
+        '/mouvement/controller/crud' => [[['_route' => 'mouvement_controller_crud_index', '_controller' => 'App\\Controller\\MouvementCrudController::index'], null, ['GET' => 0], null, true, false, null]],
+        '/mouvement/controller/crud/new' => [[['_route' => 'mouvement_controller_crud_new', '_controller' => 'App\\Controller\\MouvementCrudController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/ordre-de-sortie' => [[['_route' => 'order_out', '_controller' => 'App\\Controller\\OrderController::index'], null, null, null, false, false, null]],
         '/bordereaux-envoi' => [[['_route' => 'bordereau', '_controller' => 'App\\Controller\\OrderController::getSlips'], null, null, null, false, false, null]],
         '/etat-de-stock-par-année' => [[['_route' => 'periode_annuel', '_controller' => 'App\\Controller\\PeriodeController::annuel'], null, null, null, false, false, null]],
@@ -45,20 +48,24 @@ return [
                     .')'
                     .'|error/(\\d+)(?:\\.([^/]++))?(*:159)'
                 .')'
-                .'|/questions/([^/]++)(*:187)'
                 .'|/etat\\-de\\-stock(?'
-                    .'|s(?:/([^/]++))?(*:229)'
-                    .'|_menseul(?:/([^/]++))?(*:259)'
+                    .'|s(?:/([^/]++))?(*:202)'
+                    .'|_menseul(?:/([^/]++))?(*:232)'
                 .')'
                 .'|/impression_(?'
-                    .'|select/([^/]++)(*:298)'
-                    .'|product_mensuel(?:/([^/]++))?(*:335)'
+                    .'|select/([^/]++)(*:271)'
+                    .'|product_mensuel(?:/([^/]++))?(*:308)'
+                .')'
+                .'|/mouvement/controller/crud/([^/]++)(?'
+                    .'|(*:355)'
+                    .'|/edit(*:368)'
+                    .'|(*:376)'
                 .')'
                 .'|/api(?'
-                    .'|(?:/(index)(?:\\.([^/]++))?)?(*:379)'
+                    .'|(?:/(index)(?:\\.([^/]++))?)?(*:420)'
                     .'|/(?'
-                        .'|docs(?:\\.([^/]++))?(*:410)'
-                        .'|contexts/(.+)(?:\\.([^/]++))?(*:446)'
+                        .'|docs(?:\\.([^/]++))?(*:451)'
+                        .'|contexts/(.+)(?:\\.([^/]++))?(*:487)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -71,14 +78,16 @@ return [
         114 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         124 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         159 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
-        187 => [[['_route' => 'app_question_show', '_controller' => 'App\\Controller\\DefaultController::show'], ['slug'], null, null, false, true, null]],
-        229 => [[['_route' => 'etat_de_stock', 'mois' => '', '_controller' => 'App\\Controller\\EtatController::index'], ['mois'], null, null, false, true, null]],
-        259 => [[['_route' => 'periode_mensuel', 'mois' => '', '_controller' => 'App\\Controller\\PeriodeController::mensuel'], ['mois'], null, null, false, true, null]],
-        298 => [[['_route' => 'impression_select', '_controller' => 'App\\Controller\\MouvementController::impressionPdf'], ['id'], null, null, false, true, null]],
-        335 => [[['_route' => 'impression_mensuel', 'mois' => '', '_controller' => 'App\\Controller\\MouvementController::impressionProdMensuel'], ['mois'], null, null, false, true, null]],
-        379 => [[['_route' => 'api_entrypoint', '_controller' => 'api_platform.action.entrypoint', '_format' => '', '_api_respond' => 'true', 'index' => 'index'], ['index', '_format'], null, null, false, true, null]],
-        410 => [[['_route' => 'api_doc', '_controller' => 'api_platform.action.documentation', '_format' => '', '_api_respond' => 'true'], ['_format'], null, null, false, true, null]],
-        446 => [
+        202 => [[['_route' => 'etat_de_stock', 'mois' => '', '_controller' => 'App\\Controller\\EtatController::index'], ['mois'], null, null, false, true, null]],
+        232 => [[['_route' => 'periode_mensuel', 'mois' => '', '_controller' => 'App\\Controller\\PeriodeController::mensuel'], ['mois'], null, null, false, true, null]],
+        271 => [[['_route' => 'impression_select', '_controller' => 'App\\Controller\\MouvementController::impressionPdf'], ['id'], null, null, false, true, null]],
+        308 => [[['_route' => 'impression_mensuel', 'mois' => '', '_controller' => 'App\\Controller\\MouvementController::impressionProdMensuel'], ['mois'], null, null, false, true, null]],
+        355 => [[['_route' => 'mouvement_controller_crud_show', '_controller' => 'App\\Controller\\MouvementCrudController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        368 => [[['_route' => 'mouvement_controller_crud_edit', '_controller' => 'App\\Controller\\MouvementCrudController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        376 => [[['_route' => 'mouvement_controller_crud_delete', '_controller' => 'App\\Controller\\MouvementCrudController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        420 => [[['_route' => 'api_entrypoint', '_controller' => 'api_platform.action.entrypoint', '_format' => '', '_api_respond' => 'true', 'index' => 'index'], ['index', '_format'], null, null, false, true, null]],
+        451 => [[['_route' => 'api_doc', '_controller' => 'api_platform.action.documentation', '_format' => '', '_api_respond' => 'true'], ['_format'], null, null, false, true, null]],
+        487 => [
             [['_route' => 'api_jsonld_context', '_controller' => 'api_platform.jsonld.action.context', '_format' => 'jsonld', '_api_respond' => 'true'], ['shortName', '_format'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

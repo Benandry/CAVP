@@ -26,8 +26,12 @@ input[disabled] {
 }
 
 .form-check .form-check-input {
+    border-color: var(--form-type-check-input-border-color);
     height: 15px;
     width: 15px;
+}
+.form-check:not(.form-switch) .form-check-input:not(:checked) {
+    background-color: unset;
 }
 // Used in checkbox and radio buttons
 label.form-check-label {
@@ -35,7 +39,7 @@ label.form-check-label {
     font-weight: normal;
 }
 .form-group label.form-check-label.required:after {
-    content: '';
+    display: none;
 }
 .form-widget .form-check + .form-check {
     margin-top: 5px;
@@ -43,13 +47,17 @@ label.form-check-label {
 
 .form-group label.required:after,
 .form-group .col-form-label.required:after {
-    bottom: 4px;
-    color: var(--color-danger);
-    content: "\2022"; // \2022 = &bull; (bullet)
+    background: var(--color-danger);
+    border-radius: 50%;
+    content: '';
+    display: inline-block;
     filter: opacity(75%);
     position: relative;
     right: -2px;
+    top: -8px;
     z-index: var(--zindex-700);
+    height: 4px;
+    width: 4px;
 }
 
 // Form widgets (inputs, selects, etc.)
@@ -70,17 +78,29 @@ label.form-check-label {
 .form-widget input.form-control,
 .form-widget textarea.form-control,
 .form-widget .form-select {
+    background-color: var(--form-control-bg);
+    background-repeat: no-repeat; // see https://github.com/EasyCorp/EasyAdminBundle/issues/5197
     border: 1px solid var(--form-input-border-color);
     box-shadow: var(--form-input-shadow);
+    color: var(--form-input-text-color);
     height: 30px;
     padding: 3px 7px 4px;
     white-space: nowrap;
     word-break: keep-all;
     transition: box-shadow .08s ease-in, color .08s ease-in;
 }
+body.ea-dark-scheme .form-widget .form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23adb5bd' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+.form-widget .form-select[multiple] {
+    height: auto;
+    background-image: none;
+    padding: 0;
+}
 .form-widget input.form-check-input {
-    border: 1px solid var(--gray-400);
-    box-shadow: 0 1px 2px 0 var(--gray-50);
+    border: 1px solid var(--form-type-check-input-border-color);
+    box-shadow: var(--form-type-check-input-box-shadow);
 }
 .form-widget input.form-control:focus,
 .form-widget textarea.form-control:focus,
@@ -90,6 +110,9 @@ label.form-check-label {
     border-color: var(--form-input-hover-border-color);
     box-shadow: var(--form-input-hover-shadow);
     outline: 0;
+}
+.form-check-input:checked {
+    background-color: var(--form-type-check-input-checked-bg);
 }
 .form-check-input:focus {
     box-shadow: var(--form-input-hover-shadow);
@@ -371,7 +394,7 @@ fieldset .legend-help {
         flex: 1;
 
         a {
-            color: var(--gray-800);
+            color: var(--form-panel-header-color);
             font-size: 20px;
             font-weight: bold;
 
@@ -422,7 +445,7 @@ fieldset .legend-help {
 .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline,
 .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label,
 .has-error.checkbox-inline label {
-    color: var(--gray-800);
+    color: var(--form-help-error-color);
 }
 
 .has-error .form-widget input.form-control,
@@ -432,7 +455,7 @@ fieldset .legend-help {
 .has-error .btn.input-file-container,
 .has-error .CodeMirror,
 .has-error .ea-text-editor-wrapper {
-    box-shadow: 0 0 0 1px rgba(43, 45, 80, 0), 0 0 0 1px rgba(183, 6, 32, .2), 0 0 0 2px rgba(183, 6, 32, .25), 0 1px 1px rgba(0, 0, 0, .08);
+    box-shadow: var(--form-input-error-shadow);
 }
 
 .has-error .ea-fileupload .input-group {
@@ -463,9 +486,9 @@ form .invalid-feedback > .d-block + .d-block {
 
 // Form group inputs
 .input-group-text {
-    background-color: var(--gray-100);
-    border: 1px solid var(--gray-300);
-    box-shadow: 0 1px 2px 0 var(--gray-50);
+    background-color: var(--form-input-group-text-bg);
+    border: 1px solid var(--form-input-group-text-border-color);
+    box-shadow: var(--form-input-box-shadow);
     color: var(--form-input-text-color);
     height: 30px;
     padding: 3px 10px 5px;
@@ -495,13 +518,13 @@ form .invalid-feedback > .d-block + .d-block {
     }
     .input-group .btn,
     .input-group .btn:hover {
-        border-color: transparent transparent transparent var(--button-border-color) !important;
+        background: var(--form-input-group-text-bg);
         box-shadow: none !important;
         border-radius: 0;
         color: var(--text-color);
         font-size: 17px;
-        height: 30px;
-        line-height: 30px;
+        height: 28px;
+        line-height: 28px;
         margin: 0;
         padding: 0 8px;
         vertical-align: middle;
@@ -527,11 +550,11 @@ form .invalid-feedback > .d-block + .d-block {
     }
 
     .custom-file-label {
-        background: var(--white);
+        background: var(--form-control-bg);
         border-radius: var(--border-radius);
-        border: 0;
-        box-shadow: 0 0 0 1px rgba(43, 45, 80, .16), 0 0 0 1px rgba(6, 122, 184, 0), 0 0 0 2px rgba(6, 122, 184, 0), 0 1px 1px rgba(0, 0, 0, .08);
-        color: var(--text-color-dark);
+        border: 1px solid var(--form-input-border-color);
+        box-shadow: var(--form-input-shadow);
+        color: var(--form-input-text-color);
         height: 30px;
         left: 0;
         margin: 0 !important;
@@ -549,12 +572,12 @@ form .invalid-feedback > .d-block + .d-block {
     }
 
     .input-group-text {
-        background-color: white;
-        border: none;
+        background: var(--form-input-group-text-bg);
+        border: 1px solid var(--form-input-border-color);
         box-shadow: none;
         color: var(--text-muted);
         height: 30px;
-        padding: 7px 0 7px 8px;
+        padding: 7px 0 7px 7px;
         position: absolute;
         right: 0;
         z-index: 3;
@@ -648,4 +671,20 @@ form .invalid-feedback > .d-block + .d-block {
     right: 0;
     text-align: right;
     top: 0;
+}
+
+// Fix "Browse" button for regular file inputs
+.form-control {
+    &::file-selector-button, &::-webkit-file-upload-button {
+        color: var(--button-secondary-color);
+        background-color: var(--button-secondary-bg);
+        box-shadow: var(--button-shadow);
+    }
+
+    &:hover:not(:disabled):not([readonly]) {
+        &::file-selector-button, &::-webkit-file-upload-button {
+            background-color: var(--button-secondary-bg);
+            box-shadow: var(--button-hover-shadow);
+        }
+    }
 }

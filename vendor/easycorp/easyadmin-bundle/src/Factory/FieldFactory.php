@@ -29,7 +29,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
  */
 final class FieldFactory
 {
-    private static $doctrineTypeToFieldFqcn = [
+    private static array $doctrineTypeToFieldFqcn = [
         Types::ARRAY => ArrayField::class,
         Types::BIGINT => TextField::class,
         Types::BINARY => TextareaField::class,
@@ -56,9 +56,9 @@ final class FieldFactory
         Types::TIME_IMMUTABLE => TimeField::class,
     ];
 
-    private $adminContextProvider;
-    private $authorizationChecker;
-    private $fieldConfigurators;
+    private AdminContextProvider $adminContextProvider;
+    private AuthorizationCheckerInterface $authorizationChecker;
+    private iterable $fieldConfigurators;
 
     public function __construct(AdminContextProvider $adminContextProvider, AuthorizationCheckerInterface $authorizationChecker, iterable $fieldConfigurators)
     {
@@ -137,7 +137,7 @@ final class FieldFactory
                 $guessedFieldFqcn = self::$doctrineTypeToFieldFqcn[$doctrinePropertyType] ?? null;
 
                 if (null === $guessedFieldFqcn) {
-                    throw new \RuntimeException(sprintf('The Doctrine type of the "%s" field is "%s", which is not supported by EasyAdmin yet.', $fieldDto->getProperty(), $doctrinePropertyType));
+                    throw new \RuntimeException(sprintf('The Doctrine type of the "%s" field is "%s", which is not supported by EasyAdmin. For Doctrine\'s Custom Mapping Types have a look at EasyAdmin\'s field docs.', $fieldDto->getProperty(), $doctrinePropertyType));
                 }
             }
 

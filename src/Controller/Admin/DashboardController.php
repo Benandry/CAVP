@@ -7,7 +7,6 @@ use App\Entity\Stock;
 use App\Entity\Agence;
 use App\Entity\Produits;
 use App\Entity\Categorie;
-use App\Entity\Mouvement;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -19,14 +18,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
 {
-    #[IsGranted('ROLE_ADMIN')]
+    //#[IsGranted('ROLE_ADMIN')]
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-            $routeBuilder = $this->container->get(AdminUrlGenerator::class);
-            $url = $routeBuilder->setController(ProduitsCrudController::class)->generateUrl();
-        
-            return $this->redirect($url);
+            return $this->render('admin/dashboard.html.twig');
 
     }
 
@@ -52,16 +48,15 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Ajouter des categories ', 'fas fa-plus',Categorie::class)->setAction(Crud::PAGE_NEW)
         ]);
 
-        yield MenuItem::subMenu('Entrée/Sortie ', 'fas fa-bacon')->setSubItems([
-            MenuItem::linkToCrud("Voir l'operation ", 'fas fa-eye',Mouvement::class),
-            MenuItem::linkToCrud('Entré/Sortie en stock ', 'fas fa-plus',Mouvement::class)->setAction(Crud::PAGE_NEW)
+        yield MenuItem::subMenu('Operations sur stock', 'fas fa-bacon')->setSubItems([
+            MenuItem::linkToRoute('Listes d\'operations', 'fas fa-eye','mouvement_controller_crud_index'),
+            MenuItem::linkToRoute('New Operations ', 'fas fa-plus','mouvement_controller_crud_new')
         ]);
 
         yield MenuItem::subMenu('Agence Paositra Malagasy ', 'fas fa-home')->setSubItems([
             MenuItem::linkToCrud("Liste Agences ", 'fas fa-eye',Agence::class),
             MenuItem::linkToCrud('Créer un agence', 'fas fa-plus',Agence::class)->setAction(Crud::PAGE_NEW)
         ]);
-    
         
     }
 }

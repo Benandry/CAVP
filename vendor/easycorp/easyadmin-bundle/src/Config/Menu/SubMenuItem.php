@@ -4,6 +4,7 @@ namespace EasyCorp\Bundle\EasyAdminBundle\Config\Menu;
 
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Menu\MenuItemInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\MenuItemDto;
+use Symfony\Contracts\Translation\TranslatableInterface;
 
 /**
  * @see EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem::submenu()
@@ -18,9 +19,9 @@ final class SubMenuItem implements MenuItemInterface
     }
 
     /** @var MenuItemInterface[] */
-    private $subMenuItems = [];
+    private array $subMenuItems = [];
 
-    public function __construct(string $label, ?string $icon = null)
+    public function __construct(TranslatableInterface|string $label, ?string $icon = null)
     {
         $this->dto = new MenuItemDto();
 

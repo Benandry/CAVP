@@ -4,6 +4,7 @@ namespace EasyCorp\Bundle\EasyAdminBundle\Field;
 
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Contracts\Translation\TranslatableInterface;
 
 /**
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
@@ -16,7 +17,7 @@ final class TimeField implements FieldInterface
     public const OPTION_WIDGET = 'widget';
 
     /**
-     * @param string|false|null $label
+     * @param TranslatableInterface|string|false|null $label
      */
     public static function new(string $propertyName, $label = null): self
     {
@@ -53,9 +54,8 @@ final class TimeField implements FieldInterface
     public function setFormat(string $timeFormatOrPattern): self
     {
         if (DateTimeField::FORMAT_NONE === $timeFormatOrPattern || '' === trim($timeFormatOrPattern)) {
-            $validTimeFormatsWithoutNone = array_filter(DateTimeField::VALID_DATE_FORMATS, static function ($format) {
-                return DateTimeField::FORMAT_NONE !== $format;
-            });
+            $callable = static fn (string $format): bool => DateTimeField::FORMAT_NONE !== $format;
+            $validTimeFormatsWithoutNone = array_filter(DateTimeField::VALID_DATE_FORMATS, $callable);
 
             throw new \InvalidArgumentException(sprintf('The first argument of the "%s()" method cannot be "%s" or an empty string. Use either the special time formats (%s) or a datetime Intl pattern.', __METHOD__, DateTimeField::FORMAT_NONE, implode(', ', $validTimeFormatsWithoutNone)));
         }

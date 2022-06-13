@@ -47,6 +47,10 @@ class Mouvement
     #[ORM\JoinColumn(nullable: false)]
     private $descriptions;
 
+    #[ORM\ManyToOne(targetEntity: OrderSortie::class, inversedBy: 'mouvements')]
+    #[ORM\JoinColumn(nullable: true)]
+    private $numero_de_sortie;
+
     public function __construct()
     {
         $this->dateEntrer = new \DateTime('now');
@@ -161,6 +165,18 @@ class Mouvement
     public function setDescriptions(?Descriptions $descriptions): self
     {
         $this->descriptions = $descriptions;
+
+        return $this;
+    }
+
+    public function getNumeroDeSortie(): ?OrderSortie
+    {
+        return $this->numero_de_sortie;
+    }
+
+    public function setNumeroDeSortie(?OrderSortie $numero_de_sortie): self
+    {
+        $this->numero_de_sortie = $numero_de_sortie;
 
         return $this;
     }

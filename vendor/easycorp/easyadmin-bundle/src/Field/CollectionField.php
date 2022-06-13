@@ -5,6 +5,7 @@ namespace EasyCorp\Bundle\EasyAdminBundle\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Contracts\Translation\TranslatableInterface;
 
 /**
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
@@ -21,7 +22,7 @@ final class CollectionField implements FieldInterface
     public const OPTION_RENDER_EXPANDED = 'renderExpanded';
 
     /**
-     * @param string|false|null $label
+     * @param TranslatableInterface|string|false|null $label
      */
     public static function new(string $propertyName, $label = null): self
     {
@@ -31,7 +32,7 @@ final class CollectionField implements FieldInterface
             ->setTemplateName('crud/field/collection')
             ->setFormType(CollectionType::class)
             ->addCssClass('field-collection')
-            ->addJsFiles(Asset::new('bundles/easyadmin/form-type-collection.js')->onlyOnForms())
+            ->addJsFiles(Asset::new('bundles/easyadmin/field-collection.js')->onlyOnForms())
             ->setDefaultColumns('col-md-8 col-xxl-7')
             ->setCustomOption(self::OPTION_ALLOW_ADD, true)
             ->setCustomOption(self::OPTION_ALLOW_DELETE, true)

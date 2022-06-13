@@ -18,28 +18,7 @@ use Symfony\Component\Intl\Exception\MissingResourceException;
  */
 final class CountryConfigurator implements FieldConfiguratorInterface
 {
-    // This list reflects the PNG files stored in src/Resources/public/images/flags/
-    private const FLAGS_WITH_IMAGE_FILE = [
-        'AD', 'AE', 'AF', 'AG', 'AL', 'AM', 'AR', 'AT', 'AU', 'AZ', 'BA', 'BB',
-        'BD', 'BE', 'BF', 'BG', 'BH', 'BI', 'BJ', 'BN', 'BO', 'BR', 'BS', 'BT',
-        'BW', 'BY', 'BZ', 'CA', 'CD', 'CF', 'CG', 'CH', 'CI', 'CL', 'CM', 'CN',
-        'CO', 'CR', 'CU', 'CV', 'CY', 'CZ', 'DE', 'DJ', 'DK', 'DM', 'DO', 'DZ',
-        'EC', 'EE', 'EG', 'ER', 'ES', 'ET', 'FI', 'FJ', 'FM', 'FR', 'GA', 'GB',
-        'GD', 'GE', 'GF', 'GH', 'GM', 'GN', 'GP', 'GQ', 'GR', 'GT', 'GW', 'GY',
-        'HK', 'HN', 'HR', 'HT', 'HU', 'ID', 'IE', 'IL', 'IN', 'IQ', 'IR', 'IS',
-        'IT', 'JM', 'JO', 'JP', 'KE', 'KG', 'KH', 'KI', 'KM', 'KN', 'KP', 'KR',
-        'KW', 'KZ', 'LA', 'LB', 'LC', 'LI', 'LK', 'LR', 'LS', 'LT', 'LU', 'LV',
-        'LY', 'MA', 'MC', 'MD', 'ME', 'MG', 'MH', 'MK', 'ML', 'MM', 'MN', 'MQ',
-        'MR', 'MT', 'MU', 'MV', 'MW', 'MX', 'MY', 'MZ', 'NA', 'NC', 'NE', 'NG',
-        'NI', 'NL', 'NO', 'NP', 'NR', 'NZ', 'OM', 'PA', 'PE', 'PG', 'PH', 'PK',
-        'PL', 'PR', 'PS', 'PT', 'PW', 'PY', 'QA', 'RE', 'RO', 'RS', 'RU', 'RW',
-        'SA', 'SB', 'SD', 'SE', 'SG', 'SI', 'SK', 'SL', 'SM', 'SN', 'SO', 'SR',
-        'SS', 'SC', 'SV', 'SY', 'SZ', 'TD', 'TG', 'TH', 'TJ', 'TL', 'TM', 'TN',
-        'TO', 'ST', 'TT', 'TV', 'TW', 'TZ', 'UA', 'UG', 'US', 'UY', 'UZ', 'VA',
-        'VC', 'VE', 'TR', 'VN', 'VU', 'WS', 'XK', 'YE', 'ZA', 'ZM', 'ZW',
-    ];
-
-    private $assetPackages;
+    private Packages $assetPackages;
 
     public function __construct(Packages $assetPackages)
     {
@@ -83,7 +62,7 @@ final class CountryConfigurator implements FieldConfiguratorInterface
             }
 
             return Countries::getName($countryCode);
-        } catch (MissingResourceException $e) {
+        } catch (MissingResourceException) {
             return null;
         }
     }
@@ -101,12 +80,8 @@ final class CountryConfigurator implements FieldConfiguratorInterface
                 $flagCode = Countries::getAlpha2Code($flagCode);
             }
 
-            if (empty($flagCode) || !\in_array($flagCode, self::FLAGS_WITH_IMAGE_FILE)) {
-                $flagCode = 'UNKNOWN';
-            }
-
-            return $flagCode;
-        } catch (MissingResourceException $e) {
+            return '' === $flagCode ? 'UNKNOWN' : $flagCode;
+        } catch (MissingResourceException) {
             return null;
         }
     }
@@ -127,8 +102,7 @@ final class CountryConfigurator implements FieldConfiguratorInterface
             }
 
             $countryCodeAlpha2 = $usesAlpha3Codes ? Countries::getAlpha2Code($countryCode) : $countryCode;
-            $flagImageName = \in_array($countryCodeAlpha2, self::FLAGS_WITH_IMAGE_FILE, true) ? $countryCodeAlpha2 : 'UNKNOWN';
-            $flagImagePath = $this->assetPackages->getUrl(sprintf('bundles/easyadmin/images/flags/%s.png', $flagImageName));
+            $flagImagePath = $this->assetPackages->getUrl(sprintf('bundles/easyadmin/images/flags/%s.svg', $countryCodeAlpha2));
             $choiceKey = sprintf('<img src="%s" class="country-flag" loading="lazy" alt="%s"> %s', $flagImagePath, $countryName, $countryName);
 
             $choices[$choiceKey] = $countryCode;

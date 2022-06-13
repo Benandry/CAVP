@@ -5,6 +5,7 @@ namespace EasyCorp\Bundle\EasyAdminBundle\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Type\CodeEditorType;
+use Symfony\Contracts\Translation\TranslatableInterface;
 
 /**
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
@@ -22,7 +23,7 @@ final class CodeEditorField implements FieldInterface
     private const ALLOWED_LANGUAGES = ['css', 'dockerfile', 'js', 'markdown', 'nginx', 'php', 'shell', 'sql', 'twig', 'xml', 'yaml-frontmatter', 'yaml'];
 
     /**
-     * @param string|false|null $label
+     * @param TranslatableInterface|string|false|null $label
      */
     public static function new(string $propertyName, $label = null): self
     {
@@ -32,8 +33,8 @@ final class CodeEditorField implements FieldInterface
             ->setTemplateName('crud/field/code_editor')
             ->setFormType(CodeEditorType::class)
             ->addCssClass('field-code_editor')
-            ->addCssFiles(Asset::new('bundles/easyadmin/form-type-code-editor.css')->onlyOnForms())
-            ->addJsFiles(Asset::new('bundles/easyadmin/form-type-code-editor.js')->onlyOnForms())
+            ->addCssFiles(Asset::new('bundles/easyadmin/field-code-editor.css')->onlyOnForms())
+            ->addJsFiles(Asset::new('bundles/easyadmin/field-code-editor.js')->onlyOnForms())
             ->setDefaultColumns('col-md-12 col-xxl-10')
             ->setCustomOption(self::OPTION_INDENT_WITH_TABS, false)
             ->setCustomOption(self::OPTION_LANGUAGE, 'markdown')

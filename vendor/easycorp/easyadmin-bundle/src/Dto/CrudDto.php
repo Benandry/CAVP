@@ -5,63 +5,64 @@ namespace EasyCorp\Bundle\EasyAdminBundle\Dto;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Translation\TranslatableMessageBuilder;
+use function Symfony\Component\Translation\t;
+use Symfony\Contracts\Translation\TranslatableInterface;
 
 /**
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
 final class CrudDto
 {
-    private $controllerFqcn;
-    /** @var AssetsDto */
-    private $fieldAssetsDto;
-    private $pageName;
-    private $actionName;
-    /** @var ActionConfigDto */
-    private $actionConfigDto;
-    private $filters;
-    private $entityFqcn;
+    private ?string $controllerFqcn = null;
+    private AssetsDto $fieldAssetsDto;
+    private ?string $pageName = null;
+    private ?string $actionName = null;
+    private ?ActionConfigDto $actionConfigDto = null;
+    private ?FilterConfigDto $filters = null;
+    private ?string $entityFqcn = null;
     private $entityLabelInSingular;
     private $entityLabelInPlural;
-    private $defaultPageTitles = [
+    private array $defaultPageTitles = [
         Crud::PAGE_DETAIL => 'page_title.detail',
         Crud::PAGE_EDIT => 'page_title.edit',
         Crud::PAGE_INDEX => 'page_title.index',
         Crud::PAGE_NEW => 'page_title.new',
     ];
-    private $customPageTitles;
-    private $helpMessages;
-    private $datePattern;
-    private $timePattern;
-    private $dateTimePattern;
-    private $dateIntervalFormat;
-    private $timezone;
-    private $numberFormat;
-    private $defaultSort;
-    private $searchFields;
-    private $showEntityActionsAsDropdown;
-    /** @var PaginatorDto */
-    private $paginatorDto;
+    private array $customPageTitles = [
+        Crud::PAGE_DETAIL => null,
+        Crud::PAGE_EDIT => null,
+        Crud::PAGE_INDEX => null,
+        Crud::PAGE_NEW => null,
+    ];
+    private array $helpMessages = [
+        Crud::PAGE_DETAIL => null,
+        Crud::PAGE_EDIT => null,
+        Crud::PAGE_INDEX => null,
+        Crud::PAGE_NEW => null,
+    ];
+    private ?string $datePattern = 'medium';
+    private ?string $timePattern = 'medium';
+    private array $dateTimePattern = ['medium', 'medium'];
+    private string $dateIntervalFormat = '%%y Year(s) %%m Month(s) %%d Day(s)';
+    private ?string $timezone = null;
+    private ?string $numberFormat = null;
+    private array $defaultSort = [];
+    private ?array $searchFields = [];
+    private bool $autofocusSearch = false;
+    private bool $showEntityActionsAsDropdown = true;
+    private ?PaginatorDto $paginatorDto = null;
     private $overriddenTemplates;
-    private $formThemes;
-    private $newFormOptions;
-    private $editFormOptions;
-    private $entityPermission;
-    private $contentWidth;
-    private $sidebarWidth;
+    private array $formThemes = ['@EasyAdmin/crud/form_theme.html.twig'];
+    private KeyValueStore $newFormOptions;
+    private KeyValueStore $editFormOptions;
+    private ?string $entityPermission = null;
+    private ?string $contentWidth = null;
+    private ?string $sidebarWidth = null;
 
     public function __construct()
     {
-        $this->customPageTitles = [Crud::PAGE_DETAIL => null, Crud::PAGE_EDIT => null, Crud::PAGE_INDEX => null, Crud::PAGE_NEW => null];
-        $this->helpMessages = [Crud::PAGE_DETAIL => null, Crud::PAGE_EDIT => null, Crud::PAGE_INDEX => null, Crud::PAGE_NEW => null];
         $this->fieldAssetsDto = new AssetsDto();
-        $this->datePattern = 'medium';
-        $this->timePattern = 'medium';
-        $this->dateTimePattern = ['medium', 'medium'];
-        $this->dateIntervalFormat = '%%y Year(s) %%m Month(s) %%d Day(s)';
-        $this->defaultSort = [];
-        $this->searchFields = [];
-        $this->showEntityActionsAsDropdown = true;
-        $this->formThemes = ['@EasyAdmin/crud/form_theme.html.twig'];
         $this->newFormOptions = KeyValueStore::new();
         $this->editFormOptions = KeyValueStore::new();
         $this->overriddenTemplates = [];
@@ -107,13 +108,16 @@ final class CrudDto
         $this->entityFqcn = $entityFqcn;
     }
 
-    public function getEntityLabelInSingular($entityInstance = null, $pageName = null): ?string
+    public function getEntityLabelInSingular($entityInstance = null, $pageName = null): TranslatableInterface|string|null
     {
         if (null === $this->entityLabelInSingular) {
             return null;
         }
 
-        if (\is_string($this->entityLabelInSingular)) {
+        if (
+            \is_string($this->entityLabelInSingular)
+            || $this->entityLabelInSingular instanceof TranslatableInterface
+        ) {
             return $this->entityLabelInSingular;
         }
 
@@ -121,20 +125,23 @@ final class CrudDto
     }
 
     /**
-     * @param string|callable $label
+     * @param TranslatableInterface|string|callable $label
      */
     public function setEntityLabelInSingular($label): void
     {
         $this->entityLabelInSingular = $label;
     }
 
-    public function getEntityLabelInPlural($entityInstance = null, $pageName = null): ?string
+    public function getEntityLabelInPlural($entityInstance = null, $pageName = null): TranslatableInterface|string|null
     {
         if (null === $this->entityLabelInPlural) {
             return null;
         }
 
-        if (\is_string($this->entityLabelInPlural)) {
+        if (
+            \is_string($this->entityLabelInPlural)
+            || $this->entityLabelInPlural instanceof TranslatableInterface
+        ) {
             return $this->entityLabelInPlural;
         }
 
@@ -142,47 +149,86 @@ final class CrudDto
     }
 
     /**
-     * @param string|callable $label
+     * @param TranslatableInterface|string|callable $label
      */
     public function setEntityLabelInPlural($label): void
     {
         $this->entityLabelInPlural = $label;
     }
 
-    public function getCustomPageTitle(string $pageName = null, $entityInstance = null): ?string
+    public function getCustomPageTitle(string $pageName = null, $entityInstance = null, array $translationParameters = []): ?TranslatableInterface
     {
         $title = $this->customPageTitles[$pageName ?? $this->pageName];
         if (\is_callable($title)) {
-            return null !== $entityInstance ? $title($entityInstance) : $title();
+            $title = null !== $entityInstance ? $title($entityInstance) : $title();
         }
 
-        return $title;
+        if (empty($title)) {
+            return null;
+        }
+
+        if ($title instanceof TranslatableInterface) {
+            return TranslatableMessageBuilder::withParameters($title, $translationParameters);
+        }
+
+        return t($title, $translationParameters);
     }
 
     /**
-     * @param string|callable $pageTitle
+     * @param TranslatableInterface|string|callable $pageTitle
      */
-    public function setCustomPageTitle(string $pageName, $pageTitle): void
+    public function setCustomPageTitle(string $pageName, /* TranslatableInterface|string|callable */ $pageTitle): void
     {
+        if (!\is_string($pageTitle)
+            && !$pageTitle instanceof TranslatableInterface
+            && !\is_callable($pageTitle)) {
+            trigger_deprecation(
+                'easycorp/easyadmin-bundle',
+                '4.0.5',
+                'Argument "%s" for "%s" must be one of these types: %s. Passing type "%s" will cause an error in 5.0.0.',
+                '$pageTitle',
+                __METHOD__,
+                '"string" or "callable"',
+                \gettype($pageTitle)
+            );
+        }
+
         $this->customPageTitles[$pageName] = $pageTitle;
     }
 
-    public function getDefaultPageTitle(string $pageName = null, $entityInstance = null): ?string
+    public function getDefaultPageTitle(string $pageName = null, /* ?object */ $entityInstance = null, array $translationParameters = []): ?TranslatableInterface
     {
+        if (!\is_object($entityInstance)
+            && null !== $entityInstance) {
+            trigger_deprecation(
+                'easycorp/easyadmin-bundle',
+                '4.0.5',
+                'Argument "%s" for "%s" must be one of these types: %s. Passing type "%s" will cause an error in 5.0.0.',
+                '$entityInstance',
+                __METHOD__,
+                '"object" or "null"',
+                \gettype($entityInstance)
+            );
+        }
+
         if (null !== $entityInstance) {
             if (method_exists($entityInstance, '__toString')) {
                 $entityAsString = (string) $entityInstance;
 
                 if (!empty($entityAsString)) {
-                    return $entityAsString;
+                    return t($entityAsString, $translationParameters, 'EasyAdminBundle');
                 }
             }
         }
 
-        return $this->defaultPageTitles[$pageName ?? $this->pageName] ?? null;
+        if (!$this->defaultPageTitles[$pageName ?? $this->pageName]) {
+            return null;
+        }
+
+        return t($this->defaultPageTitles[$pageName ?? $this->pageName], $translationParameters, 'EasyAdminBundle');
     }
 
-    public function getHelpMessage(string $pageName = null): string
+    public function getHelpMessage(string $pageName = null): TranslatableInterface|string
     {
         return $this->helpMessages[$pageName ?? $this->pageName] ?? '';
     }
@@ -192,7 +238,7 @@ final class CrudDto
         return $this->helpMessages;
     }
 
-    public function setHelpMessage(string $pageName, string $helpMessage): void
+    public function setHelpMessage(string $pageName, TranslatableInterface|string $helpMessage): void
     {
         $this->helpMessages[$pageName] = $helpMessage;
     }
@@ -277,6 +323,16 @@ final class CrudDto
         $this->searchFields = $searchFields;
     }
 
+    public function autofocusSearch(): bool
+    {
+        return $this->autofocusSearch;
+    }
+
+    public function setAutofocusSearch(bool $autofocusSearch): void
+    {
+        $this->autofocusSearch = $autofocusSearch;
+    }
+
     public function isSearchEnabled(): bool
     {
         return null !== $this->searchFields;
@@ -322,12 +378,12 @@ final class CrudDto
         $this->formThemes = $formThemes;
     }
 
-    public function getNewFormOptions(): ?KeyValueStore
+    public function getNewFormOptions(): KeyValueStore
     {
         return $this->newFormOptions;
     }
 
-    public function getEditFormOptions(): ?KeyValueStore
+    public function getEditFormOptions(): KeyValueStore
     {
         return $this->editFormOptions;
     }

@@ -19,10 +19,11 @@ class OrderController extends AbstractController
     {
         $types = 1;
         $repository1 = $doctrine->getRepository(Produits::class);
-        $order  = $repository1->findByOrder($types);
-        
-        
-        dd($order[0]);
+        $order = $repository1->findByOrder();
+        $agency = $repository1->findAgency();
+        //dd($order[0]);
+
+
         if (!$order) {
             throw $this->createNotFoundException(
                 'Pas de produits trouvées '
@@ -40,7 +41,7 @@ class OrderController extends AbstractController
         {
             $data = $form->getData();
             $types = $data['select']->getId();
-            $order = $doctrine->getRepository(Produits::class)->findByOrder($types);
+            $order = $doctrine->getRepository(Produits::class)->findByOrder();
            // dd($order,$types);
             return $this->render('order/ordre.html.twig',[
                 'dispo' => $order,
@@ -52,7 +53,8 @@ class OrderController extends AbstractController
         return $this->render('order/ordre.html.twig',[
             'dispo' => $order,
             'form' =>$form->createView(),
-            'types' =>$types
+            'types' =>$types,
+            'agency' => $agency[0]['nombre_agence']
         ]);
     }
 
@@ -60,7 +62,7 @@ class OrderController extends AbstractController
     public function getSlips(ManagerRegistry $doctrine): Response
     {
         $repository1 = $doctrine->getRepository(Produits::class);
-        $order  = $repository1->findByOrder(1);
+        $order  = $repository1->findByOrder();
        // dd($order);
         if (!$order) {
             throw $this->createNotFoundException(

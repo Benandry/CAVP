@@ -40,12 +40,14 @@ class MouvementRepository extends ServiceEntityRepository
 
     public function findByhistory()
     {
-        $rawSql = "SELECT p.nomProduit product,mvt.dateEntrer dat, c.NomDeCategorie categorie,mvt.quantite nombre, f.name reference , a.name destination, t.name types
+        $rawSql = "SELECT mvt.id, p.nomProduit product,mvt.dateEntrer dat, c.NomDeCategorie categorie,mvt.quantite nombre, f.name reference , a.name destination, t.name types,d.information desccriptions,u.nom user
             FROM App\Entity\Mouvement mvt INNER JOIN App\Entity\Produits p 
-            WITH p.id = mvt.produit INNER JOIN App\Entity\Categorie c WITH c.id = mvt.Categorie
+            WITH p.id = mvt.produit 
+            INNER JOIN App\Entity\Categorie c WITH c.id = mvt.Categorie
             INNER JOIN App\Entity\Fournisseur f WITH f.id = mvt.reference
             INNER JOIN App\Entity\Agence a WITH a.id = mvt.Agence
             INNER JOIN App\Entity\Types t WITH t.id = mvt.types
+            INNER JOIN App\Entity\User u WITH u.id = mvt.User
             INNER JOIN App\Entity\Descriptions d WITH d.id = mvt.descriptions
             ORDER BY mvt.dateEntrer DESC";
         $stmt = $this->getEntityManager()->createQuery($rawSql);

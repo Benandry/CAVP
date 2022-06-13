@@ -2,7 +2,6 @@
 
 namespace EasyCorp\Bundle\EasyAdminBundle\Orm;
 
-use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\CountWalker;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -17,12 +16,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
  */
 final class EntityPaginator implements EntityPaginatorInterface
 {
-    private $adminUrlGenerator;
-    private $entityFactory;
-    private $currentPage;
-    private $pageSize;
-    private $rangeSize;
-    private $rangeEdgeSize;
+    private AdminUrlGenerator $adminUrlGenerator;
+    private EntityFactory $entityFactory;
+    private ?int $currentPage = null;
+    private ?int $pageSize = null;
+    private ?int $rangeSize = null;
+    private ?int $rangeEdgeSize = null;
     private $results;
     private $numResults;
 
@@ -40,7 +39,6 @@ final class EntityPaginator implements EntityPaginatorInterface
         $this->currentPage = max(1, $paginatorDto->getPageNumber());
         $firstResult = ($this->currentPage - 1) * $this->pageSize;
 
-        /** @var Query $query */
         $query = $queryBuilder
             ->setFirstResult($firstResult)
             ->setMaxResults($this->pageSize)
@@ -187,6 +185,6 @@ final class EntityPaginator implements EntityPaginatorInterface
         $nextPageUrl = !$this->hasNextPage() ? null : $this->adminUrlGenerator->set(EA::PAGE, $this->getNextPage())->removeReferrer()->generateUrl();
         $jsonResult['next_page'] = $nextPageUrl;
 
-        return json_encode($jsonResult);
+        return json_encode($jsonResult, \JSON_THROW_ON_ERROR);
     }
 }

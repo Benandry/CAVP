@@ -17,6 +17,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
+use function Symfony\Component\Translation\t;
 
 /**
  * This class is useful to extend your dashboard from it instead of implementing
@@ -53,14 +55,19 @@ abstract class AbstractDashboardController extends AbstractController implements
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('__ea__page_title.dashboard', 'fa fa-home');
+        yield MenuItem::linkToDashboard(t('page_title.dashboard', domain: 'EasyAdminBundle'), 'fa fa-home');
     }
 
     public function configureUserMenu(UserInterface $user): UserMenu
     {
-        $userMenuItems = [MenuItem::section(), MenuItem::linkToLogout('__ea__user.sign_out', 'fa-sign-out')];
+        $userMenuItems = [];
+
+        if (class_exists(LogoutUrlGenerator::class)) {
+            $userMenuItems[] = MenuItem::section();
+            $userMenuItems[] = MenuItem::linkToLogout(t('user.sign_out', domain: 'EasyAdminBundle'), 'fa-sign-out');
+        }
         if ($this->isGranted(Permission::EA_EXIT_IMPERSONATION)) {
-            $userMenuItems[] = MenuItem::linkToExitImpersonation('__ea__user.exit_impersonation', 'fa-user-lock');
+            $userMenuItems[] = MenuItem::linkToExitImpersonation(t('user.exit_impersonation', domain: 'EasyAdminBundle'), 'fa-user-lock');
         }
 
         $userName = '';

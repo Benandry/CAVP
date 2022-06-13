@@ -10,3 +10,11 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
+
+import $ from 'jquery';
+
+$(document).ready(function(){
+    alert("Mety ilay ")
+  });
+
+  alert('Bonjour')

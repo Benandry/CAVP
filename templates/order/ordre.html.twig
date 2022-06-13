@@ -44,35 +44,35 @@
 <h4 id="recapitulation">Récapitulation N° {{ 'now' |date("y") }}/ --{{ types_order[types - 1]}} </h4>
     <div class="table responsive-xxl">
         <table width="100%" style="border-collapse:collapse;" border="1">
-        <thead>
-            <tr>
-                <th>Categorie </th>
-                <th>Valeur Faciales </th>
-                <th>TP/PL </th>
-                <th>Nombre de planche </th>
-                <th>Nombre TP </th>
-                <th>Montant </th>
-                <th>Obervatiions </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for pro in dispo %}
+            <thead>
                 <tr>
-                    <td> {{ pro.categorie }}</td> 
-                    <td>{{ pro.vf }}</td>
-                    <td>-</td>
-                    <td>{{ pro.nombre_planche }}</td>
-                    <td>-</td>
-                    <td>{{ pro.prixDeVente }}</td>
-                    <td>{{ pro.bureau }}</td>
+                    <th>Categorie </th>
+                    <th>Valeur Faciales </th>
+                    <th>TP/PL </th>
+                    <th>Planche </th>
+                    <th>TP </th>
+                    <th>Montant </th>
+                    <th>Obervatiions </th>
                 </tr>
-            {% endfor %}
-        <tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for pro in dispo %}
+                    <tr>
+                        <td> {{ pro.categorie }}</td> 
+                        <td>{{ pro.vf }}</td>
+                        <td>{{ pro.tpParPl }}</td>
+                        <td>{{ pro.quantite|abs}}</td>
+                        <td>{{ pro.tpParPl * pro.quantite|abs }}</td>
+                        <td>{{ pro.tpParPl * pro.quantite|abs * pro.vf }}</td>
+                        <td rowspan="4">{{ agency }} bureau</td>
+                    </tr>
+                {% endfor %}
+            <tbody>
+        </table>
         
     <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }}<br>
         <span style="margin-top1: 25px;"> Chef de  Centre d'Approvisionnement en Valeurs Postales </span><br />
-        <span style="margin-top1: 25px;">{{ app.user.prenom }}</span>
+        <span style="margin-top1: 25px;">{{ app.user.nom }}</span>
      </p>
     
         <h4 id="repartitions">Etat de repartition de Valeurs N° {{ 'now' |date("y") }}/ --{{ types_order[types - 1]}} </h4>
@@ -99,7 +99,7 @@
     </div>
         <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }}<br>
         <span style="margin-top1: 25px;"> Chef de  Centre d'Approvisionnement en Valeurs Postales </span><br />
-        <span style="margin-top1: 25px;">{{ app.user.prenom }}</span>
+        <span style="margin-top1: 25px;">{{ app.user.nom }}</span>
      </p>
     <h4 id="bordereau">Bordereau d'envoi </h4>
     <h5>Bordéreau d'envoi N° {{ 'now' |date("y") }}/ --{{ types_order[types - 1]}}</h5>

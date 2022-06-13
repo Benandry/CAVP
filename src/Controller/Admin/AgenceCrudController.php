@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Agence;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
@@ -15,6 +17,17 @@ class AgenceCrudController extends AbstractCrudController
         return Agence::class;
     }
 
+    public function configureFilters(Filters $filters):Filters
+    {
+        return $filters->add('name','Agences');
+    }
+    public function configureCrud(Crud $crud):Crud
+    {
+        return $crud
+                ->setEntityLabelInPlural('Categories')
+                ->setEntityLabelInSingular('Categorie')
+                ->setDefaultSort(['name' => 'asc']);
+    }
     
     public function configureFields(string $pageName): iterable
     {

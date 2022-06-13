@@ -2,8 +2,10 @@
 
 namespace EasyCorp\Bundle\EasyAdminBundle\Field;
 
+use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Contracts\Translation\TranslatableInterface;
 
 /**
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
@@ -15,9 +17,11 @@ final class BooleanField implements FieldInterface
     public const OPTION_RENDER_AS_SWITCH = 'renderAsSwitch';
     /** @internal */
     public const OPTION_TOGGLE_URL = 'toggleUrl';
+    /** @internal */
+    public const CSRF_TOKEN_NAME = 'ea-toggle';
 
     /**
-     * @param string|false|null $label
+     * @param TranslatableInterface|string|false|null $label
      */
     public static function new(string $propertyName, $label = null): self
     {
@@ -27,6 +31,7 @@ final class BooleanField implements FieldInterface
             ->setTemplateName('crud/field/boolean')
             ->setFormType(CheckboxType::class)
             ->addCssClass('field-boolean')
+            ->addJsFiles(Asset::new('bundles/easyadmin/field-boolean.js')->onlyOnIndex())
             ->setCustomOption(self::OPTION_RENDER_AS_SWITCH, true);
     }
 

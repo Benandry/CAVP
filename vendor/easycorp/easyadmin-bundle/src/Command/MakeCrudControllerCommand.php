@@ -4,6 +4,7 @@ namespace EasyCorp\Bundle\EasyAdminBundle\Command;
 
 use Doctrine\Persistence\ManagerRegistry;
 use EasyCorp\Bundle\EasyAdminBundle\Maker\ClassMaker;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -16,13 +17,15 @@ use function Symfony\Component\String\u;
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
+#[AsCommand(
+    name: 'make:admin:crud',
+    description: 'Creates a new EasyAdmin CRUD controller class',
+)]
 class MakeCrudControllerCommand extends Command
 {
-    protected static $defaultName = 'make:admin:crud';
-    protected static $defaultDescription = 'Creates a new EasyAdmin CRUD controller class';
-    private $projectDir;
-    private $classMaker;
-    private $doctrine;
+    private string $projectDir;
+    private ClassMaker $classMaker;
+    private ManagerRegistry $doctrine;
 
     public function __construct(string $projectDir, ClassMaker $classMaker, ManagerRegistry $doctrine, string $name = null)
     {
@@ -35,7 +38,6 @@ class MakeCrudControllerCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription(self::$defaultDescription)
             ->setHelp($this->getCommandHelp())
         ;
     }
@@ -71,9 +73,11 @@ class MakeCrudControllerCommand extends Command
         $guessedNamespace = u($controllerDir)->equalsTo('src')
             ? 'App'
             : u($controllerDir)->replace('/', ' ')->replace('\\', ' ')->replace('src ', 'app ')->title(true)->replace(' ', '\\')->trimEnd(\DIRECTORY_SEPARATOR);
-        $namespace = $io->ask('Namespace of the generated CRUD controller', $guessedNamespace, static function (string $namespace) {
-            return u($namespace)->replace('/', '\\')->toString();
-        });
+        $namespace = $io->ask(
+            'Namespace of the generated CRUD controller',
+            $guessedNamespace,
+            static fn (string $namespace): string => u($namespace)->replace('/', '\\')->toString()
+        );
 
         $generatedFilePath = $this->classMaker->make(
             sprintf('%s/%s', $controllerDir, $controllerFileNamePattern),
@@ -109,15 +113,14 @@ class MakeCrudControllerCommand extends Command
     private function getCommandHelp(): string
     {
         return <<<'HELP'
-The <info>%command.name%</info> command creates a new EasyAdmin CRUD controler
-class to manage some Doctrine entity in your application.
+            The <info>%command.name%</info> command creates a new EasyAdmin CRUD controler
+            class to manage some Doctrine entity in your application.
 
-Follow the steps shown by the command to select the Doctrine entity and the
-location and namespace of the generated class.
+            Follow the steps shown by the command to select the Doctrine entity and the
+            location and namespace of the generated class.
 
-This command never changes or overwrites an existing class, so you can run it
-safely as many times as needed to create multiple CRUD controllers.
-HELP
-        ;
+            This command never changes or overwrites an existing class, so you can run it
+            safely as many times as needed to create multiple CRUD controllers.
+            HELP;
     }
 }

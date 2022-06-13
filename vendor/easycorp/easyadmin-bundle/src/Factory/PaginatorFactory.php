@@ -3,7 +3,7 @@
 namespace EasyCorp\Bundle\EasyAdminBundle\Factory;
 
 use Doctrine\ORM\QueryBuilder;
-use EasyCorp\Bundle\EasyAdminBundle\Orm\EntityPaginator;
+use EasyCorp\Bundle\EasyAdminBundle\Contracts\Orm\EntityPaginatorInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Provider\AdminContextProvider;
 
 /**
@@ -11,16 +11,16 @@ use EasyCorp\Bundle\EasyAdminBundle\Provider\AdminContextProvider;
  */
 final class PaginatorFactory
 {
-    private $adminContextProvider;
-    private $entityPaginator;
+    private AdminContextProvider $adminContextProvider;
+    private EntityPaginatorInterface $entityPaginator;
 
-    public function __construct(AdminContextProvider $adminContextProvider, EntityPaginator $entityPaginator)
+    public function __construct(AdminContextProvider $adminContextProvider, EntityPaginatorInterface $entityPaginator)
     {
         $this->adminContextProvider = $adminContextProvider;
         $this->entityPaginator = $entityPaginator;
     }
 
-    public function create(QueryBuilder $queryBuilder): EntityPaginator
+    public function create(QueryBuilder $queryBuilder): EntityPaginatorInterface
     {
         $adminContext = $this->adminContextProvider->getContext();
         $paginatorDto = $adminContext->getCrud()->getPaginator();

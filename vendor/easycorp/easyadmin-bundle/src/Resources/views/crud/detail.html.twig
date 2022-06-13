@@ -2,45 +2,43 @@
 {# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
 {% extends ea.templatePath('layout') %}
 
-{% trans_default_domain ea.i18n.translationDomain %}
-
 {% block body_id 'ea-detail-' ~ entity.name ~ '-' ~ entity.primaryKeyValue %}
 {% block body_class 'ea-detail ea-detail-' ~ entity.name %}
 
-{% set ea_field_assts = ea.crud.fieldAssets(constant('EasyCorp\\Bundle\\EasyAdminBundle\\Config\\Crud::PAGE_DETAIL')) %}
+{% set ea_field_assets = ea.crud.fieldAssets(constant('EasyCorp\\Bundle\\EasyAdminBundle\\Config\\Crud::PAGE_DETAIL')) %}
 
 {% block configured_head_contents %}
     {{ parent() }}
-    {% for htmlContent in ea_field_assts.headContents %}
+    {% for htmlContent in ea_field_assets.headContents %}
         {{ htmlContent|raw }}
     {% endfor %}
 {% endblock %}
 
 {% block configured_body_contents %}
     {{ parent() }}
-    {% for htmlContent in ea_field_assts.bodyContents %}
+    {% for htmlContent in ea_field_assets.bodyContents %}
         {{ htmlContent|raw }}
     {% endfor %}
 {% endblock %}
 
 {% block configured_stylesheets %}
     {{ parent() }}
-    {{ include('@EasyAdmin/includes/_css_assets.html.twig', { assets: ea_field_assts.cssAssets }, with_context = false) }}
-    {{ include('@EasyAdmin/includes/_encore_link_tags.html.twig', { assets: ea_field_assts.webpackEncoreAssets }, with_context = false) }}
+    {{ include('@EasyAdmin/includes/_css_assets.html.twig', { assets: ea_field_assets.cssAssets }, with_context = false) }}
+    {{ include('@EasyAdmin/includes/_encore_link_tags.html.twig', { assets: ea_field_assets.webpackEncoreAssets }, with_context = false) }}
 {% endblock %}
 
 {% block configured_javascripts %}
     {{ parent() }}
-    {{ include('@EasyAdmin/includes/_js_assets.html.twig', { assets: ea_field_assts.jsAssets }, with_context = false) }}
-    {{ include('@EasyAdmin/includes/_encore_script_tags.html.twig', { assets: ea_field_assts.webpackEncoreAssets }, with_context = false) }}
+    {{ include('@EasyAdmin/includes/_js_assets.html.twig', { assets: ea_field_assets.jsAssets }, with_context = false) }}
+    {{ include('@EasyAdmin/includes/_encore_script_tags.html.twig', { assets: ea_field_assets.webpackEncoreAssets }, with_context = false) }}
 {% endblock %}
 
 {% block content_title %}
     {%- apply spaceless -%}
-        {% set custom_page_title = ea.crud.customPageTitle(pageName, entity ? entity.instance : null) %}
+        {% set custom_page_title = ea.crud.customPageTitle(pageName, entity ? entity.instance : null, ea.i18n.translationParameters) %}
         {{ custom_page_title is null
-            ? (ea.crud.defaultPageTitle|trans(ea.i18n.translationParameters, 'EasyAdminBundle'))|raw
-            : (custom_page_title|trans(ea.i18n.translationParameters))|raw }}
+            ? ea.crud.defaultPageTitle(null, null, ea.i18n.translationParameters)|trans|raw
+            : custom_page_title|trans|raw }}
     {%- endapply -%}
 {% endblock %}
 
@@ -112,7 +110,7 @@
                             {% if panel_icon %}
                                 <i class="form-panel-icon {{ panel_icon }}"></i>
                             {% endif %}
-                            {{ panel_label|raw }}
+                            {{ panel_label|trans|raw }}
                         </a>
 
                         {% if panel_help %}
@@ -136,12 +134,12 @@
 {% macro render_field(entity, field) %}
     <div class="data-row {{ field.cssClass }}">
         <dt>
-            {{ field.label|raw }}
+            {{ field.label|trans|raw }}
 
             {% if field.help is not empty %}
-                <span class="data-help">
-                    <i class="far fa-question-circle" data-bs-toggle="tooltip" title="{{ field.help|e('html_attr') }}"></i>
-                </span>
+                <a tabindex="0" class="data-help" data-bs-toggle="popover" data-bs-custom-class="ea-content-help-popover" data-bs-animation="true" data-bs-html="true" data-bs-placement="right" data-bs-trigger="focus" data-bs-content="{{ field.help|e('html_attr') }}">
+                    <i class="far fa-question-circle"></i>
+                </a>
             {% endif %}
         </dt>
         <dd>

@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title> Mouvement entrer sortie de CAVP | Paositra Malagasy</title>
+<script> 
+$(document).ready(function(){
+  $("#flip").click(function(){
+    $("#panel").slideDown("slow");
+  });
+});
+
+$(document).ready(function(){
+  $("#flip1").click(function(){
+    $("#panel").slideUp("slow");
+  });
+});
+</script>
+<style> 
+#panel, #flip,#flip1 {
+  padding: 5px;
+  text-align: center;
+  background-color: #e5eecc;
+  border: solid 1px #c3c3c3;
+}
+
+#panel {
+  padding: 50px;
+  display: none;
+}
+</style>
+</head>
+<body>
+    <h3>Editer le mouvement</h3>
+    <div id="flip1">Fermer les formulaire</div>
+	<div id="flip">Afficher les formulaire</div>
+	<div id="panel">
+        {{ form_start(form) }}
+            {{ form_row(form.produit, {'attr': {'class': 'form-control'}}) }}
+            {{ form_row(form.Categorie) }}
+            {{ form_row(form.Agence) }}
+            {{ form_row(form.dateEntrer) }}
+            {{ form_row(form.descriptions) }}
+            {{ form_row(form.User) }}
+            {{ form_row(form.quantite) }}
+            {{ form_row(form.reference) }}
+            {{ form_row(form.types) }}
+            {{ form_row(form.numero_de_sortie) }}
+        {{ form_end(form) }}</p>
+	</div>
+    <a href="{{ path('mouvement_controller_crud_index') }}">Afficher la liste</a>
+
+    <form method="post" action="{{ path('mouvement_controller_crud_delete', {'id': mouvement.id}) }}" onsubmit="return confirm('Vous etes sur pour supprimer');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ mouvement.id) }}">
+        <button class="btn btn-danger">Delete</button>
+    </form>
+</body>
+</html>

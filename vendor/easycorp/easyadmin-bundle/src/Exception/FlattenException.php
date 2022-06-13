@@ -10,8 +10,7 @@ use Symfony\Component\ErrorHandler\Exception\FlattenException as BaseFlattenExce
  */
 final class FlattenException extends BaseFlattenException
 {
-    /** @var ExceptionContext */
-    private $context;
+    private ?ExceptionContext $context = null;
 
     public static function create(\Exception $exception, ?int $statusCode = null, array $headers = []): static
     {
@@ -19,7 +18,6 @@ final class FlattenException extends BaseFlattenException
             throw new \RuntimeException(sprintf('You should only try to create an instance of "%s" with a "EasyCorp\Bundle\EasyAdminBundle\Exception\BaseException" instance, or subclass. "%s" given.', __CLASS__, \get_class($exception)));
         }
 
-        /** @var FlattenException $e */
         $e = parent::create($exception, $statusCode, $headers);
         $e->context = $exception->getContext();
 

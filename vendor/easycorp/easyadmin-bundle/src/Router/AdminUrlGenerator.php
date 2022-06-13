@@ -16,26 +16,23 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 final class AdminUrlGenerator
 {
-    private $isInitialized;
-    private $adminContextProvider;
-    private $urlGenerator;
-    private $dashboardControllerRegistry;
-    private $crudControllerRegistry;
-    private $urlSigner;
-    private $dashboardRoute;
-    private $includeReferrer;
-    private $addSignature;
-    private $routeParameters;
-    private $currentPageReferrer;
+    private bool $isInitialized = false;
+    private AdminContextProvider $adminContextProvider;
+    private UrlGeneratorInterface $urlGenerator;
+    private DashboardControllerRegistry $dashboardControllerRegistry;
+    private CrudControllerRegistry $crudControllerRegistry;
+    private ?string $dashboardRoute = null;
+    private ?bool $includeReferrer = null;
+    private array $routeParameters = [];
+    private ?string $currentPageReferrer = null;
+    private ?string $customPageReferrer = null;
 
-    public function __construct(AdminContextProvider $adminContextProvider, UrlGeneratorInterface $urlGenerator, DashboardControllerRegistry $dashboardControllerRegistry, CrudControllerRegistry $crudControllerRegistry, UrlSigner $urlSigner)
+    public function __construct(AdminContextProvider $adminContextProvider, UrlGeneratorInterface $urlGenerator, DashboardControllerRegistry $dashboardControllerRegistry, CrudControllerRegistry $crudControllerRegistry)
     {
-        $this->isInitialized = false;
         $this->adminContextProvider = $adminContextProvider;
         $this->urlGenerator = $urlGenerator;
         $this->dashboardControllerRegistry = $dashboardControllerRegistry;
         $this->crudControllerRegistry = $crudControllerRegistry;
-        $this->urlSigner = $urlSigner;
     }
 
     public function setDashboard(string $dashboardControllerFqcn): self
@@ -169,30 +166,40 @@ final class AdminUrlGenerator
         return $this;
     }
 
-    public function addSignature(bool $addSignature = true): self
+    public function setReferrer(string $referrer): self
     {
         if (false === $this->isInitialized) {
             $this->initialize();
         }
 
-        $this->addSignature = $addSignature;
+        $this->includeReferrer = true;
+        $this->customPageReferrer = $referrer;
+
+        return $this;
+    }
+
+    public function addSignature(bool $addSignature = true): self
+    {
+        trigger_deprecation(
+            'easycorp/easyadmin-bundle',
+            '4.1.0',
+            'EasyAdmin URLs no longer include signatures because they don\'t provide any additional security. Calling the "%s" method has no effect, so you can stop calling it. This method will be removed in future EasyAdmin versions.',
+            __METHOD__,
+        );
 
         return $this;
     }
 
     public function getSignature(): string
     {
-        if (false === $this->isInitialized) {
-            $this->initialize();
-        }
+        trigger_deprecation(
+            'easycorp/easyadmin-bundle',
+            '4.1.0',
+            'EasyAdmin URLs no longer include signatures because they don\'t provide any additional security. Calling the "%s" method will always return an empty string, so you can stop calling it. This method will be removed in future EasyAdmin versions.',
+            __METHOD__,
+        );
 
-        $this->addSignature = true;
-        $url = $this->generateUrl();
-        $urlParts = parse_url($url);
-        $queryString = $urlParts['query'];
-        parse_str($queryString, $queryParts);
-
-        return $queryParts['signature'];
+        return '';
     }
 
     // this method allows to omit the 'generateUrl()' call in templates, making code more concise
@@ -208,7 +215,7 @@ final class AdminUrlGenerator
         }
 
         if (true === $this->includeReferrer) {
-            $this->setRouteParameter(EA::REFERRER, $this->currentPageReferrer);
+            $this->setRouteParameter(EA::REFERRER, $this->customPageReferrer ?? $this->currentPageReferrer);
         }
 
         if (false === $this->includeReferrer) {
@@ -255,18 +262,15 @@ final class AdminUrlGenerator
         $this->dashboardRoute = explode('.', $this->dashboardRoute, 2)[0];
 
         // this removes any parameter with a NULL value
-        $routeParameters = array_filter($this->routeParameters, static function ($parameterValue) {
-            return null !== $parameterValue;
-        });
+        $routeParameters = array_filter(
+            $this->routeParameters,
+            static fn ($parameterValue): bool => null !== $parameterValue
+        );
         ksort($routeParameters, \SORT_STRING);
 
         $context = $this->adminContextProvider->getContext();
         $urlType = null !== $context && false === $context->getAbsoluteUrls() ? UrlGeneratorInterface::RELATIVE_PATH : UrlGeneratorInterface::ABSOLUTE_URL;
         $url = $this->urlGenerator->generate($this->dashboardRoute, $routeParameters, $urlType);
-
-        if ($this->signUrls()) {
-            $url = $this->urlSigner->sign($url);
-        }
 
         // this is important to start the generation a each URL from the same initial state
         // otherwise, some parameters used when generating some URL could leak to other URLs
@@ -314,21 +318,8 @@ final class AdminUrlGenerator
         }
 
         $this->includeReferrer = null;
-        $this->addSignature = null;
+        $this->customPageReferrer = null;
 
         $this->routeParameters = $currentRouteParameters;
-    }
-
-    private function signUrls(): bool
-    {
-        if (null !== $this->addSignature) {
-            return $this->addSignature;
-        }
-
-        if (null !== $adminContext = $this->adminContextProvider->getContext()) {
-            return $adminContext->getSignedUrls();
-        }
-
-        return true;
     }
 }

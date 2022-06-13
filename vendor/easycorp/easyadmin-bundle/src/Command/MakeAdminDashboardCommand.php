@@ -3,6 +3,7 @@
 namespace EasyCorp\Bundle\EasyAdminBundle\Command;
 
 use EasyCorp\Bundle\EasyAdminBundle\Maker\ClassMaker;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -16,12 +17,14 @@ use function Symfony\Component\String\u;
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
+#[AsCommand(
+    name: 'make:admin:dashboard',
+    description: 'Creates a new EasyAdmin Dashboard class',
+)]
 class MakeAdminDashboardCommand extends Command
 {
-    protected static $defaultName = 'make:admin:dashboard';
-    protected static $defaultDescription = 'Creates a new EasyAdmin Dashboard class';
-    private $classMaker;
-    private $projectDir;
+    private ClassMaker $classMaker;
+    private string $projectDir;
 
     public function __construct(ClassMaker $classMaker, string $projectDir, string $name = null)
     {
@@ -33,7 +36,6 @@ class MakeAdminDashboardCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription(self::$defaultDescription)
             ->setHelp($this->getCommandHelp())
         ;
     }
@@ -43,9 +45,11 @@ class MakeAdminDashboardCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $fs = new Filesystem();
 
-        $controllerClassName = $io->ask('Which class name do you prefer for your Dashboard controller?', 'DashboardController', static function (string $className) {
-            return u($className)->ensureEnd('Controller')->toString();
-        });
+        $controllerClassName = $io->ask(
+            'Which class name do you prefer for your Dashboard controller?',
+            'DashboardController',
+            fn (string $className): string => u($className)->ensureEnd('Controller')->toString()
+        );
 
         $projectDir = $this->projectDir;
         $controllerDir = $io->ask(
@@ -106,13 +110,12 @@ class MakeAdminDashboardCommand extends Command
     private function getCommandHelp(): string
     {
         return <<<'HELP'
-The <info>%command.name%</info> command creates a new EasyAdmin Dashboard class
-in your application. Follow the steps shown by the command to configure the
-name and location of the new class.
+            The <info>%command.name%</info> command creates a new EasyAdmin Dashboard class
+            in your application. Follow the steps shown by the command to configure the
+            name and location of the new class.
 
-This command never changes or overwrites an existing class, so you can run it
-safely as many times as needed to create multiple dashboards.
-HELP
-        ;
+            This command never changes or overwrites an existing class, so you can run it
+            safely as many times as needed to create multiple dashboards.
+            HELP;
     }
 }

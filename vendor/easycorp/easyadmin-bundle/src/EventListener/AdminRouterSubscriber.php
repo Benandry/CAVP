@@ -8,14 +8,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\DashboardControllerInte
 use EasyCorp\Bundle\EasyAdminBundle\Factory\AdminContextFactory;
 use EasyCorp\Bundle\EasyAdminBundle\Factory\ControllerFactory;
 use EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry;
-use EasyCorp\Bundle\EasyAdminBundle\Registry\DashboardControllerRegistry;
-use EasyCorp\Bundle\EasyAdminBundle\Router\UrlSigner;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\Matcher\RequestMatcherInterface;
 use Twig\Environment;
@@ -35,27 +32,23 @@ use Twig\Environment;
  */
 class AdminRouterSubscriber implements EventSubscriberInterface
 {
-    private $adminContextFactory;
-    private $dashboardControllerRegistry;
-    private $crudControllerRegistry;
-    private $controllerFactory;
-    private $controllerResolver;
-    private $urlGenerator;
-    private $requestMatcher;
-    private $twig;
-    private $urlSigner;
+    private AdminContextFactory $adminContextFactory;
+    private CrudControllerRegistry $crudControllerRegistry;
+    private ControllerFactory $controllerFactory;
+    private ControllerResolverInterface $controllerResolver;
+    private UrlGeneratorInterface $urlGenerator;
+    private RequestMatcherInterface $requestMatcher;
+    private Environment $twig;
 
-    public function __construct(AdminContextFactory $adminContextFactory, DashboardControllerRegistry $dashboardControllerRegistry, CrudControllerRegistry $crudControllerRegistry, ControllerFactory $controllerFactory, ControllerResolverInterface $controllerResolver, UrlGeneratorInterface $urlGenerator, RequestMatcherInterface $requestMatcher, Environment $twig, UrlSigner $urlSigner)
+    public function __construct(AdminContextFactory $adminContextFactory, CrudControllerRegistry $crudControllerRegistry, ControllerFactory $controllerFactory, ControllerResolverInterface $controllerResolver, UrlGeneratorInterface $urlGenerator, RequestMatcherInterface $requestMatcher, Environment $twig)
     {
         $this->adminContextFactory = $adminContextFactory;
-        $this->dashboardControllerRegistry = $dashboardControllerRegistry;
         $this->crudControllerRegistry = $crudControllerRegistry;
         $this->controllerFactory = $controllerFactory;
         $this->controllerResolver = $controllerResolver;
         $this->urlGenerator = $urlGenerator;
         $this->requestMatcher = $requestMatcher;
         $this->twig = $twig;
-        $this->urlSigner = $urlSigner;
     }
 
     public static function getSubscribedEvents(): array
@@ -95,10 +88,6 @@ class AdminRouterSubscriber implements EventSubscriberInterface
 
         // this makes the AdminContext available in all templates as a short named variable
         $this->twig->addGlobal('ea', $adminContext);
-
-        if ($adminContext->getSignedUrls() && false === $this->urlSigner->check($request->getUri())) {
-            throw new AccessDeniedHttpException('The signature of the URL is not valid.');
-        }
     }
 
     /**
@@ -213,10 +202,7 @@ class AdminRouterSubscriber implements EventSubscriberInterface
         return $parameters['_controller'] ?? null;
     }
 
-    /**
-     * @return callable|false
-     */
-    private function getSymfonyControllerInstance(string $controllerFqcn, array $routeParams)
+    private function getSymfonyControllerInstance(string $controllerFqcn, array $routeParams): callable|false
     {
         $newRequest = new Request([], [], ['_controller' => $controllerFqcn, '_route_params' => $routeParams], [], [], []);
 

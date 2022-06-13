@@ -10,18 +10,18 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
  */
 final class ActionConfigDto
 {
-    private $pageName;
+    private ?string $pageName = null;
     /** @var ActionDto[] */
-    private $actions = [
+    private array $actions = [
         Crud::PAGE_DETAIL => [],
         Crud::PAGE_EDIT => [],
         Crud::PAGE_INDEX => [],
         Crud::PAGE_NEW => [],
     ];
     /** @var string[] */
-    private $disabledActions = [];
+    private array $disabledActions = [];
     /** @var string[] */
-    private $actionPermissions = [];
+    private array $actionPermissions = [];
 
     public function __construct()
     {
@@ -89,16 +89,13 @@ final class ActionConfigDto
     public function disableActions(array $actionNames): void
     {
         foreach ($actionNames as $actionName) {
-            if (!\in_array($actionName, $this->disabledActions)) {
+            if (!\in_array($actionName, $this->disabledActions, true)) {
                 $this->disabledActions[] = $actionName;
             }
         }
     }
 
-    /**
-     * @return array|ActionCollection
-     */
-    public function getActions()
+    public function getActions(): ActionCollection|array
     {
         return null === $this->pageName ? $this->actions : ActionCollection::new($this->actions[$this->pageName]);
     }

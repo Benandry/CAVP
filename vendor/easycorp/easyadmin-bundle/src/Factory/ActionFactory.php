@@ -12,28 +12,27 @@ use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Provider\AdminContextProvider;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Security\Permission;
+use EasyCorp\Bundle\EasyAdminBundle\Translation\TranslatableMessageBuilder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
-use function Symfony\Component\String\u;
-use Symfony\Contracts\Translation\TranslatorInterface;
+use function Symfony\Component\Translation\t;
+use Symfony\Contracts\Translation\TranslatableInterface;
 
 /**
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
 final class ActionFactory
 {
-    private $adminContextProvider;
-    private $authChecker;
-    private $translator;
-    private $adminUrlGenerator;
-    private $csrfTokenManager;
+    private AdminContextProvider $adminContextProvider;
+    private AuthorizationCheckerInterface $authChecker;
+    private AdminUrlGenerator $adminUrlGenerator;
+    private ?CsrfTokenManagerInterface $csrfTokenManager;
 
-    public function __construct(AdminContextProvider $adminContextProvider, AuthorizationCheckerInterface $authChecker, TranslatorInterface $translator, AdminUrlGenerator $adminUrlGenerator, CsrfTokenManagerInterface $csrfTokenManager)
+    public function __construct(AdminContextProvider $adminContextProvider, AuthorizationCheckerInterface $authChecker, AdminUrlGenerator $adminUrlGenerator, ?CsrfTokenManagerInterface $csrfTokenManager = null)
     {
         $this->adminContextProvider = $adminContextProvider;
         $this->authChecker = $authChecker;
-        $this->translator = $translator;
         $this->adminUrlGenerator = $adminUrlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
     }
@@ -112,19 +111,16 @@ final class ActionFactory
 
         if (false === $actionDto->getLabel()) {
             $actionDto->setHtmlAttribute('title', $actionDto->getName());
+        } elseif (!$actionDto->getLabel() instanceof TranslatableInterface) {
+            $translationParameters = array_merge(
+                $defaultTranslationParameters,
+                $actionDto->getTranslationParameters()
+            );
+            $label = $actionDto->getLabel();
+            $translatableActionLabel = empty($label) ? $label : t($label, $translationParameters, $translationDomain);
+            $actionDto->setLabel($translatableActionLabel);
         } else {
-            $uLabel = u($actionDto->getLabel());
-            // labels with this prefix are considered internal and must be translated
-            // with 'EasyAdminBundle' translation domain, regardless of the backend domain
-            if ($uLabel->startsWith('__ea__')) {
-                $uLabel = $uLabel->after('__ea__');
-                $translationDomain = 'EasyAdminBundle';
-            }
-
-            $translationParameters = array_merge($defaultTranslationParameters, $actionDto->getTranslationParameters());
-            $label = $uLabel->toString();
-            $translatedActionLabel = empty($label) ? $label : $this->translator->trans($label, $translationParameters, $translationDomain);
-            $actionDto->setLabel($translatedActionLabel);
+            $actionDto->setLabel(TranslatableMessageBuilder::withParameters($actionDto->getLabel(), $defaultTranslationParameters));
         }
 
         $defaultTemplatePath = $adminContext->getTemplatePath('crud/action');
@@ -148,7 +144,7 @@ final class ActionFactory
             $actionDto->addHtmlAttributes([
                 'data-bs-toggle' => 'modal',
                 'data-bs-target' => '#modal-batch-action',
-                'data-action-csrf-token' => $this->csrfTokenManager->getToken('ea-batch-action-'.$actionDto->getName()),
+                'data-action-csrf-token' => $this->csrfTokenManager ? $this->csrfTokenManager->getToken('ea-batch-action-'.$actionDto->getName()) : null,
                 'data-action-batch' => 'true',
                 'data-entity-fqcn' => $adminContext->getCrud()->getEntityFqcn(),
                 'data-action-url' => $actionDto->getLinkUrl(),

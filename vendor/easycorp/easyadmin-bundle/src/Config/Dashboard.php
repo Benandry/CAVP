@@ -10,8 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Dto\DashboardDto;
  */
 final class Dashboard
 {
-    /** @var DashboardDto */
-    private $dto;
+    private DashboardDto $dto;
 
     private function __construct(DashboardDto $dashboardDto)
     {
@@ -73,6 +72,13 @@ final class Dashboard
 
     public function disableUrlSignatures(bool $disableSignatures = true): self
     {
+        trigger_deprecation(
+            'easycorp/easyadmin-bundle',
+            '4.1.0',
+            'EasyAdmin URLs no longer include signatures because they don\'t provide any additional security. You can stop calling the "%s" method to disable them. This method will be removed in future EasyAdmin versions.',
+            __METHOD__,
+        );
+
         $this->dto->setSignedUrls(!$disableSignatures);
 
         return $this;
@@ -81,6 +87,13 @@ final class Dashboard
     public function generateRelativeUrls(bool $relativeUrls = true): self
     {
         $this->dto->setAbsoluteUrls(!$relativeUrls);
+
+        return $this;
+    }
+
+    public function disableDarkMode(bool $disableDarkMode = true): self
+    {
+        $this->dto->setEnableDarkMode(!$disableDarkMode);
 
         return $this;
     }

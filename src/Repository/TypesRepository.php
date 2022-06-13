@@ -19,32 +19,26 @@ class TypesRepository extends ServiceEntityRepository
         parent::__construct($registry, Types::class);
     }
 
-    // /**
-    //  * @return Types[] Returns an array of Types objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findByProduct()
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $product = "SELECT SUM(mvt.quantite) nombre, p.nomProduit objet
+        FROM App\Entity\Mouvement mvt INNER JOIN App\Entity\Produits p 
+        WITH p.id = mvt.produit 
+        GROUP BY mvt.produit";
 
-    /*
-    public function findOneBySomeField($value): ?Types
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $stmt = $this->getEntityManager()->createQuery($product);
+
+        return $stmt->execute();
     }
-    */
+
+    public function findByOne()
+    {
+        $product = "SELECT p.nomProduit objet,p.Abbreviation abbr,p.nomProduit nombre,p.nomProduit valeur
+        FROM App\Entity\Produits p";
+
+        $stmt = $this->getEntityManager()->createQuery($product);
+
+        return $stmt->execute();
+    }
+    
 }

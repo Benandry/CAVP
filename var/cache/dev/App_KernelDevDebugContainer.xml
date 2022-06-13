@@ -15,7 +15,6 @@
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="TwigBundle">Symfony\Bundle\TwigBundle\TwigBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
-      <parameter key="WebpackEncoreBundle">Symfony\WebpackEncoreBundle\WebpackEncoreBundle</parameter>
       <parameter key="TwigExtraBundle">Twig\Extra\TwigExtraBundle\TwigExtraBundle</parameter>
       <parameter key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</parameter>
       <parameter key="MonologBundle">Symfony\Bundle\MonologBundle\MonologBundle</parameter>
@@ -24,6 +23,8 @@
       <parameter key="NelmioCorsBundle">Nelmio\CorsBundle\NelmioCorsBundle</parameter>
       <parameter key="ApiPlatformBundle">ApiPlatform\Core\Bridge\Symfony\Bundle\ApiPlatformBundle</parameter>
       <parameter key="EasyAdminBundle">EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle</parameter>
+      <parameter key="ChartjsBundle">Symfony\UX\Chartjs\ChartjsBundle</parameter>
+      <parameter key="WebpackEncoreBundle">Symfony\WebpackEncoreBundle\WebpackEncoreBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -49,10 +50,6 @@
       <parameter key="WebProfilerBundle" type="collection">
         <parameter key="path">C:\Users\Nandry\Desktop\CAVP\vendor\symfony\web-profiler-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\WebProfilerBundle</parameter>
-      </parameter>
-      <parameter key="WebpackEncoreBundle" type="collection">
-        <parameter key="path">C:\Users\Nandry\Desktop\CAVP\vendor\symfony\webpack-encore-bundle\src</parameter>
-        <parameter key="namespace">Symfony\WebpackEncoreBundle</parameter>
       </parameter>
       <parameter key="TwigExtraBundle" type="collection">
         <parameter key="path">C:\Users\Nandry\Desktop\CAVP\vendor\twig\extra-bundle</parameter>
@@ -85,6 +82,14 @@
       <parameter key="EasyAdminBundle" type="collection">
         <parameter key="path">C:\Users\Nandry\Desktop\CAVP\vendor\easycorp\easyadmin-bundle\src</parameter>
         <parameter key="namespace">EasyCorp\Bundle\EasyAdminBundle</parameter>
+      </parameter>
+      <parameter key="ChartjsBundle" type="collection">
+        <parameter key="path">C:\Users\Nandry\Desktop\CAVP\vendor\symfony\ux-chartjs</parameter>
+        <parameter key="namespace">Symfony\UX\Chartjs</parameter>
+      </parameter>
+      <parameter key="WebpackEncoreBundle" type="collection">
+        <parameter key="path">C:\Users\Nandry\Desktop\CAVP\vendor\symfony\webpack-encore-bundle\src</parameter>
+        <parameter key="namespace">Symfony\WebpackEncoreBundle</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -547,14 +552,6 @@
         <argument type="service" id=".service_locator.1hOIQqn.App\Controller\Admin\DashboardController"/>
       </call>
     </service>
-    <service id="App\Controller\Admin\MouvementCrudController" class="App\Controller\Admin\MouvementCrudController" public="true" autowire="true" autoconfigure="true">
-      <tag name="ea.crud_controller"/>
-      <tag name="controller.service_arguments"/>
-      <tag name="container.service_subscriber"/>
-      <call method="setContainer">
-        <argument type="service" id=".service_locator.Pq4jHMT.App\Controller\Admin\MouvementCrudController"/>
-      </call>
-    </service>
     <service id="App\Controller\Admin\ProduitsCrudController" class="App\Controller\Admin\ProduitsCrudController" public="true" autowire="true" autoconfigure="true">
       <tag name="ea.crud_controller"/>
       <tag name="controller.service_arguments"/>
@@ -599,6 +596,13 @@
         <argument type="service" id=".service_locator.mx0UMmY.App\Controller\MouvementController"/>
       </call>
     </service>
+    <service id="App\Controller\MouvementCrudController" class="App\Controller\MouvementCrudController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.mx0UMmY.App\Controller\MouvementCrudController"/>
+      </call>
+    </service>
     <service id="App\Controller\OrderController" class="App\Controller\OrderController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -628,10 +632,10 @@
         <argument type="service" id=".service_locator.mx0UMmY.App\Controller\SecurityController"/>
       </call>
     </service>
-    <service id="App\Form\EntrerType" class="App\Form\EntrerType" autowire="true" autoconfigure="true">
+    <service id="App\Form\MonthType" class="App\Form\MonthType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
-    <service id="App\Form\MonthType" class="App\Form\MonthType" autowire="true" autoconfigure="true">
+    <service id="App\Form\MouvementType" class="App\Form\MouvementType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\RegisterType" class="App\Form\RegisterType" autowire="true" autoconfigure="true">
@@ -660,15 +664,11 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
-    <service id="App\Repository\OrderOutRepository" class="App\Repository\OrderOutRepository" autowire="true" autoconfigure="true">
+    <service id="App\Repository\OrderSortieRepository" class="App\Repository\OrderSortieRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\OrderTypesRepository" class="App\Repository\OrderTypesRepository" autowire="true" autoconfigure="true">
-      <tag name="doctrine.repository_service"/>
-      <argument type="service" id="doctrine"/>
-    </service>
-    <service id="App\Repository\ProduitDispoRepository" class="App\Repository\ProduitDispoRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -817,9 +817,6 @@
         <argument key="debug.validator" type="service" id="debug.validator" on-invalid="ignore_uninitialized"/>
         <argument key="doctrine" type="service" id="doctrine" on-invalid="ignore_uninitialized"/>
         <argument key="form.type.entity" type="service" id="form.type.entity" on-invalid="ignore_uninitialized"/>
-        <argument key="webpack_encore.tag_renderer" type="service" id="webpack_encore.tag_renderer" on-invalid="ignore_uninitialized"/>
-        <argument key="cache.webpack_encore" type="service" id="cache.webpack_encore" on-invalid="ignore_uninitialized"/>
-        <argument key="webpack_encore.entrypoint_lookup[_default]" type="service" id="webpack_encore.entrypoint_lookup[_default]" on-invalid="ignore_uninitialized"/>
         <argument key="security.token_storage" type="service" id="security.token_storage" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="monolog.handler.main" type="service" id="monolog.handler.main" on-invalid="ignore_uninitialized"/>
@@ -829,6 +826,9 @@
         <argument key="api_platform.cache.subresource_operation_factory" type="service" id="api_platform.cache.subresource_operation_factory" on-invalid="ignore_uninitialized"/>
         <argument key="api_platform.cache.metadata.resource" type="service" id="api_platform.cache.metadata.resource" on-invalid="ignore_uninitialized"/>
         <argument key="api_platform.cache.metadata.property" type="service" id="api_platform.cache.metadata.property" on-invalid="ignore_uninitialized"/>
+        <argument key="webpack_encore.tag_renderer" type="service" id="webpack_encore.tag_renderer" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.webpack_encore" type="service" id="cache.webpack_encore" on-invalid="ignore_uninitialized"/>
+        <argument key="webpack_encore.entrypoint_lookup[_default]" type="service" id="webpack_encore.entrypoint_lookup[_default]" on-invalid="ignore_uninitialized"/>
         <argument key=".debug.http_client" type="service" id=".debug.http_client" on-invalid="ignore_uninitialized"/>
       </argument>
       <argument type="collection">
@@ -889,15 +889,6 @@
         <argument key="form.type.entity" type="collection">
           <argument>reset</argument>
         </argument>
-        <argument key="webpack_encore.tag_renderer" type="collection">
-          <argument>reset</argument>
-        </argument>
-        <argument key="cache.webpack_encore" type="collection">
-          <argument>reset</argument>
-        </argument>
-        <argument key="webpack_encore.entrypoint_lookup[_default]" type="collection">
-          <argument>reset</argument>
-        </argument>
         <argument key="security.token_storage" type="collection">
           <argument>disableUsageTracking</argument>
           <argument>setToken</argument>
@@ -924,6 +915,15 @@
           <argument>reset</argument>
         </argument>
         <argument key="api_platform.cache.metadata.property" type="collection">
+          <argument>reset</argument>
+        </argument>
+        <argument key="webpack_encore.tag_renderer" type="collection">
+          <argument>reset</argument>
+        </argument>
+        <argument key="cache.webpack_encore" type="collection">
+          <argument>reset</argument>
+        </argument>
+        <argument key="webpack_encore.entrypoint_lookup[_default]" type="collection">
           <argument>reset</argument>
         </argument>
         <argument key=".debug.http_client" type="collection">
@@ -1067,13 +1067,13 @@
         <argument>cache.validator_expression_language</argument>
         <argument>cache.doctrine.orm.default.result</argument>
         <argument>cache.doctrine.orm.default.query</argument>
-        <argument>cache.webpack_encore</argument>
         <argument>cache.security_expression_language</argument>
         <argument>api_platform.cache.route_name_resolver</argument>
         <argument>api_platform.cache.identifiers_extractor</argument>
         <argument>api_platform.cache.subresource_operation_factory</argument>
         <argument>api_platform.cache.metadata.resource</argument>
         <argument>api_platform.cache.metadata.property</argument>
+        <argument>cache.webpack_encore</argument>
       </argument>
       <call method="setName">
         <argument>cache:pool:clear</argument>
@@ -1108,13 +1108,13 @@
         <argument>cache.validator_expression_language</argument>
         <argument>cache.doctrine.orm.default.result</argument>
         <argument>cache.doctrine.orm.default.query</argument>
-        <argument>cache.webpack_encore</argument>
         <argument>cache.security_expression_language</argument>
         <argument>api_platform.cache.route_name_resolver</argument>
         <argument>api_platform.cache.identifiers_extractor</argument>
         <argument>api_platform.cache.subresource_operation_factory</argument>
         <argument>api_platform.cache.metadata.resource</argument>
         <argument>api_platform.cache.metadata.property</argument>
+        <argument>cache.webpack_encore</argument>
       </argument>
       <call method="setName">
         <argument>cache:pool:delete</argument>
@@ -1137,13 +1137,13 @@
         <argument>cache.validator_expression_language</argument>
         <argument>cache.doctrine.orm.default.result</argument>
         <argument>cache.doctrine.orm.default.query</argument>
-        <argument>cache.webpack_encore</argument>
         <argument>cache.security_expression_language</argument>
         <argument>api_platform.cache.route_name_resolver</argument>
         <argument>api_platform.cache.identifiers_extractor</argument>
         <argument>api_platform.cache.subresource_operation_factory</argument>
         <argument>api_platform.cache.metadata.resource</argument>
         <argument>api_platform.cache.metadata.property</argument>
+        <argument>cache.webpack_encore</argument>
       </argument>
       <call method="setName">
         <argument>cache:pool:list</argument>
@@ -1516,8 +1516,8 @@
         <argument>EasyCorp\Bundle\EasyAdminBundle\Form\Type</argument>
       </argument>
       <argument type="collection">
-        <argument>App\Form\EntrerType</argument>
         <argument>App\Form\MonthType</argument>
+        <argument>App\Form\MouvementType</argument>
         <argument>App\Form\RegisterType</argument>
         <argument>App\Form\RegistrationFormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
@@ -1797,13 +1797,13 @@
         <argument key="cache.annotations" type="service" id="cache.annotations" on-invalid="ignore_uninitialized"/>
         <argument key="cache.property_info" type="service" id="cache.property_info" on-invalid="ignore_uninitialized"/>
         <argument key="cache.validator_expression_language" type="service" id="cache.validator_expression_language" on-invalid="ignore_uninitialized"/>
-        <argument key="cache.webpack_encore" type="service" id="cache.webpack_encore" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="api_platform.cache.route_name_resolver" type="service" id="api_platform.cache.route_name_resolver" on-invalid="ignore_uninitialized"/>
         <argument key="api_platform.cache.identifiers_extractor" type="service" id="api_platform.cache.identifiers_extractor" on-invalid="ignore_uninitialized"/>
         <argument key="api_platform.cache.subresource_operation_factory" type="service" id="api_platform.cache.subresource_operation_factory" on-invalid="ignore_uninitialized"/>
         <argument key="api_platform.cache.metadata.resource" type="service" id="api_platform.cache.metadata.resource" on-invalid="ignore_uninitialized"/>
         <argument key="api_platform.cache.metadata.property" type="service" id="api_platform.cache.metadata.property" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.webpack_encore" type="service" id="cache.webpack_encore" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
     <service id="cache.global_clearer" class="Symfony\Component\HttpKernel\CacheClearer\Psr6CacheClearer" public="true">
@@ -1819,13 +1819,13 @@
         <argument key="cache.validator_expression_language" type="service" id="cache.validator_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.doctrine.orm.default.result" type="service" id="cache.doctrine.orm.default.result" on-invalid="ignore_uninitialized"/>
         <argument key="cache.doctrine.orm.default.query" type="service" id="cache.doctrine.orm.default.query" on-invalid="ignore_uninitialized"/>
-        <argument key="cache.webpack_encore" type="service" id="cache.webpack_encore" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="api_platform.cache.route_name_resolver" type="service" id="api_platform.cache.route_name_resolver" on-invalid="ignore_uninitialized"/>
         <argument key="api_platform.cache.identifiers_extractor" type="service" id="api_platform.cache.identifiers_extractor" on-invalid="ignore_uninitialized"/>
         <argument key="api_platform.cache.subresource_operation_factory" type="service" id="api_platform.cache.subresource_operation_factory" on-invalid="ignore_uninitialized"/>
         <argument key="api_platform.cache.metadata.resource" type="service" id="api_platform.cache.metadata.resource" on-invalid="ignore_uninitialized"/>
         <argument key="api_platform.cache.metadata.property" type="service" id="api_platform.cache.metadata.property" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.webpack_encore" type="service" id="cache.webpack_encore" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
     <service id="identity_translator" class="Symfony\Component\Translation\IdentityTranslator"/>
@@ -2114,6 +2114,7 @@
             <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\validator/Resources/translations\validators.he.xlf</argument>
             <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\form/Resources/translations\validators.he.xlf</argument>
             <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\security-core/Resources/translations\security.he.xlf</argument>
+            <argument>C:\Users\Nandry\Desktop\CAVP\vendor\easycorp\easyadmin-bundle\src/Resources/translations\EasyAdminBundle.he.php</argument>
           </argument>
           <argument key="hr" type="collection">
             <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\validator/Resources/translations\validators.hr.xlf</argument>
@@ -2319,7 +2320,6 @@
           <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\debug-bundle/translations</argument>
           <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\twig-bundle/translations</argument>
           <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\web-profiler-bundle/translations</argument>
-          <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\webpack-encore-bundle\src/translations</argument>
           <argument>C:\Users\Nandry\Desktop\CAVP\vendor\twig\extra-bundle/translations</argument>
           <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\security-bundle/translations</argument>
           <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\monolog-bundle/translations</argument>
@@ -2327,6 +2327,8 @@
           <argument>C:\Users\Nandry\Desktop\CAVP\vendor\sensio\framework-extra-bundle\src/translations</argument>
           <argument>C:\Users\Nandry\Desktop\CAVP\vendor\nelmio\cors-bundle/translations</argument>
           <argument>C:\Users\Nandry\Desktop\CAVP\vendor\api-platform\core\src\Bridge\Symfony\Bundle/translations</argument>
+          <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\ux-chartjs/translations</argument>
+          <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\webpack-encore-bundle\src/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
           <argument key="scanned_directories" type="collection">
@@ -2341,7 +2343,6 @@
             <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\debug-bundle/translations</argument>
             <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\twig-bundle/translations</argument>
             <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\web-profiler-bundle/translations</argument>
-            <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\webpack-encore-bundle\src/translations</argument>
             <argument>C:\Users\Nandry\Desktop\CAVP\vendor\twig\extra-bundle/translations</argument>
             <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\security-bundle/translations</argument>
             <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\monolog-bundle/translations</argument>
@@ -2349,6 +2350,8 @@
             <argument>C:\Users\Nandry\Desktop\CAVP\vendor\sensio\framework-extra-bundle\src/translations</argument>
             <argument>C:\Users\Nandry\Desktop\CAVP\vendor\nelmio\cors-bundle/translations</argument>
             <argument>C:\Users\Nandry\Desktop\CAVP\vendor\api-platform\core\src\Bridge\Symfony\Bundle/translations</argument>
+            <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\ux-chartjs/translations</argument>
+            <argument>C:\Users\Nandry\Desktop\CAVP\vendor\symfony\webpack-encore-bundle\src/translations</argument>
           </argument>
         </argument>
       </argument>
@@ -2606,14 +2609,6 @@
         <argument>0</argument>
       </call>
       <call method="addListener">
-        <argument>kernel.exception</argument>
-        <argument type="collection">
-          <argument type="service_closure" id="webpack_encore.exception_listener"/>
-          <argument>onKernelException</argument>
-        </argument>
-        <argument>0</argument>
-      </call>
-      <call method="addListener">
         <argument>Symfony\Component\Security\Http\Event\CheckPassportEvent</argument>
         <argument type="collection">
           <argument type="service_closure" id="security.listener.user_provider"/>
@@ -2786,6 +2781,14 @@
         <argument type="collection">
           <argument type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\EventListener\CrudResponseListener"/>
           <argument>onKernelView</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.exception</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="webpack_encore.exception_listener"/>
+          <argument>onKernelException</argument>
         </argument>
         <argument>0</argument>
       </call>
@@ -3316,6 +3319,14 @@
           <argument>onKernelController</argument>
         </argument>
         <argument>128</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.finish_request</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="Symfony\WebpackEncoreBundle\EventListener\ResetAssetsEventListener"/>
+          <argument>resetAssets</argument>
+        </argument>
+        <argument>0</argument>
       </call>
       <call method="addListener">
         <argument>Symfony\Component\Security\Http\Event\CheckPassportEvent</argument>
@@ -3942,7 +3953,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.skRIKco"/>
+      <argument type="service" id=".service_locator.gWVDS1o"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4583,10 +4594,6 @@
         <argument type="service" id="cache.doctrine.orm.default.query"/>
       </call>
       <call method="addInstance">
-        <argument>cache.webpack_encore</argument>
-        <argument type="service" id="cache.webpack_encore"/>
-      </call>
-      <call method="addInstance">
         <argument>cache.security_expression_language</argument>
         <argument type="service" id="cache.security_expression_language"/>
       </call>
@@ -4609,6 +4616,10 @@
       <call method="addInstance">
         <argument>api_platform.cache.metadata.property</argument>
         <argument type="service" id="api_platform.cache.metadata.property"/>
+      </call>
+      <call method="addInstance">
+        <argument>cache.webpack_encore</argument>
+        <argument type="service" id="cache.webpack_encore"/>
       </call>
     </service>
     <service id="cache_pool_clearer.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\CachePoolClearerCacheWarmer">
@@ -4847,7 +4858,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.8Vl_W8J"/>
+      <argument type="service" id=".service_locator.CqiDTc."/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -5468,16 +5479,19 @@
         <argument type="service" id="twig.extension.webprofiler"/>
       </call>
       <call method="addExtension">
-        <argument type="service" id="webpack_encore.twig_entry_files_extension"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="webpack_encore.twig_stimulus_extension"/>
-      </call>
-      <call method="addExtension">
         <argument type="service" id="twig.extension.intl"/>
       </call>
       <call method="addExtension">
         <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="chartjs.twig_extension"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="webpack_encore.twig_entry_files_extension"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="webpack_encore.twig_stimulus_extension"/>
       </call>
       <call method="addGlobal">
         <argument>app</argument>
@@ -5797,72 +5811,6 @@
       <argument>^/((index|app(_[\w]+)?)\.php/)?_wdt</argument>
       <argument type="service" id="web_profiler.csp.handler"/>
       <argument type="service" id="data_collector.dump" on-invalid="ignore"/>
-    </service>
-    <service id=".1_ServiceLocator~_DhKl7M" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="webpack_encore.entrypoint_lookup_collection" type="service_closure" id="webpack_encore.entrypoint_lookup_collection"/>
-        <argument key="webpack_encore.tag_renderer" type="service_closure" id="webpack_encore.tag_renderer"/>
-      </argument>
-    </service>
-    <service id="webpack_encore.entrypoint_lookup_collection" class="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupCollection">
-      <argument type="service" id=".service_locator.Yi4Ff.p"/>
-      <argument>_default</argument>
-    </service>
-    <service id="webpack_encore.tag_renderer" class="Symfony\WebpackEncoreBundle\Asset\TagRenderer">
-      <tag name="kernel.reset" method="reset"/>
-      <argument type="service" id="webpack_encore.entrypoint_lookup_collection"/>
-      <argument type="service" id="assets.packages"/>
-      <argument type="collection"/>
-      <argument type="collection">
-        <argument key="defer">true</argument>
-      </argument>
-      <argument type="collection"/>
-      <argument type="service" id="debug.event_dispatcher"/>
-    </service>
-    <service id="webpack_encore.twig_entry_files_extension" class="Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension">
-      <tag name="twig.extension"/>
-      <argument type="service" id=".1_ServiceLocator~_DhKl7M"/>
-    </service>
-    <service id="webpack_encore.twig_stimulus_extension" class="Symfony\WebpackEncoreBundle\Twig\StimulusTwigExtension">
-      <tag name="twig.extension"/>
-    </service>
-    <service id="webpack_encore.entrypoint_lookup.cache_warmer" class="Symfony\WebpackEncoreBundle\CacheWarmer\EntrypointCacheWarmer">
-      <tag name="kernel.cache_warmer"/>
-      <argument type="collection">
-        <argument key="_default">C:\Users\Nandry\Desktop\CAVP/public/build/entrypoints.json</argument>
-      </argument>
-      <argument>C:\Users\Nandry\Desktop\CAVP\var\cache\dev/webpack_encore.cache.php</argument>
-    </service>
-    <service id="webpack_encore.cache" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter">
-      <argument>C:\Users\Nandry\Desktop\CAVP\var\cache\dev/webpack_encore.cache.php</argument>
-      <argument type="service" id="cache.webpack_encore"/>
-      <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
-    </service>
-    <service id="cache.webpack_encore" class="Symfony\Component\Cache\Adapter\TraceableAdapter">
-      <tag name="cache.pool"/>
-      <tag name="kernel.reset" method="reset"/>
-      <argument type="service" id="cache.webpack_encore.recorder_inner"/>
-    </service>
-    <service id="webpack_encore.exception_listener" class="Symfony\WebpackEncoreBundle\EventListener\ExceptionListener">
-      <tag name="kernel.event_listener" event="kernel.exception"/>
-      <argument type="service" id="webpack_encore.entrypoint_lookup_collection"/>
-      <argument type="collection">
-        <argument>_default</argument>
-      </argument>
-    </service>
-    <service id="webpack_encore.entrypoint_lookup[_default]" class="Symfony\WebpackEncoreBundle\Asset\EntrypointLookup">
-      <tag name="kernel.reset" method="reset"/>
-      <argument>C:\Users\Nandry\Desktop\CAVP/public/build/entrypoints.json</argument>
-      <argument>null</argument>
-      <argument>_default</argument>
-      <argument>true</argument>
-    </service>
-    <service id=".service_locator.Yi4Ff.p" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="_default" type="service_closure" id="webpack_encore.entrypoint_lookup[_default]"/>
-      </argument>
     </service>
     <service id="twig.missing_extension_suggestor" class="Twig\Extra\TwigExtraBundle\MissingExtensionSuggestor"/>
     <service id="twig.extension.intl" class="Twig\Extra\Intl\IntlExtension">
@@ -7913,6 +7861,7 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension" class="EasyCorp\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension">
       <tag name="twig.extension"/>
       <argument type="service" id="service_locator_EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
+      <argument type="service" id="security.csrf.token_manager" on-invalid="null"/>
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Form\Extension\EaCrudFormTypeExtension" class="EasyCorp\Bundle\EasyAdminBundle\Form\Extension\EaCrudFormTypeExtension">
       <tag name="form.type_extension"/>
@@ -7933,18 +7882,14 @@
       <tag name="container.hot_path"/>
       <tag name="container.hot_path"/>
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Factory\AdminContextFactory"/>
-      <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Registry\DashboardControllerRegistry"/>
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry"/>
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Factory\ControllerFactory"/>
       <argument type="service" id="debug.controller_resolver"/>
       <argument type="service" id="router.default"/>
       <argument type="service" id="router.default"/>
       <argument type="service" id="twig"/>
-      <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\UrlSigner"/>
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Factory\ControllerFactory" class="EasyCorp\Bundle\EasyAdminBundle\Factory\ControllerFactory">
-      <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Registry\DashboardControllerRegistry"/>
-      <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry"/>
       <argument type="service" id="debug.controller_resolver"/>
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\EventListener\CrudResponseListener" class="EasyCorp\Bundle\EasyAdminBundle\EventListener\CrudResponseListener">
@@ -7954,7 +7899,6 @@
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Factory\AdminContextFactory" class="EasyCorp\Bundle\EasyAdminBundle\Factory\AdminContextFactory">
       <argument>C:\Users\Nandry\Desktop\CAVP\var\cache\dev</argument>
-      <argument type="service" id="translator.data_collector"/>
       <argument type="service" id="security.token_storage" on-invalid="null"/>
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Factory\MenuFactory"/>
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry"/>
@@ -7965,7 +7909,6 @@
       <argument type="service" id="router.default"/>
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Registry\DashboardControllerRegistry"/>
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry"/>
-      <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\UrlSigner"/>
     </service>
     <service id="service_locator_EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -7979,8 +7922,6 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Factory\MenuFactory" class="EasyCorp\Bundle\EasyAdminBundle\Factory\MenuFactory">
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Provider\AdminContextProvider"/>
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Security\AuthorizationChecker"/>
-      <argument type="service" id="translator.data_collector"/>
-      <argument type="service" id="router.default"/>
       <argument type="service" id="security.logout_url_generator"/>
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
@@ -8004,6 +7945,7 @@
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Orm\EntityUpdater" class="EasyCorp\Bundle\EasyAdminBundle\Orm\EntityUpdater">
       <argument type="service" id="property_accessor"/>
+      <argument type="service" id="debug.validator"/>
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Factory\PaginatorFactory" class="EasyCorp\Bundle\EasyAdminBundle\Factory\PaginatorFactory">
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Provider\AdminContextProvider"/>
@@ -8059,9 +8001,8 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Factory\ActionFactory" class="EasyCorp\Bundle\EasyAdminBundle\Factory\ActionFactory">
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Provider\AdminContextProvider"/>
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Security\AuthorizationChecker"/>
-      <argument type="service" id="translator.data_collector"/>
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
-      <argument type="service" id="security.csrf.token_manager"/>
+      <argument type="service" id="security.csrf.token_manager" on-invalid="null"/>
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Security\SecurityVoter" class="EasyCorp\Bundle\EasyAdminBundle\Security\SecurityVoter">
       <tag name="security.voter"/>
@@ -8079,7 +8020,6 @@
       <tag name="ea.field_configurator"/>
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Factory\EntityFactory"/>
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
-      <argument type="service" id="translator.data_collector"/>
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\AvatarConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\AvatarConfigurator">
       <tag name="ea.field_configurator"/>
@@ -8087,6 +8027,7 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\BooleanConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\BooleanConfigurator">
       <tag name="ea.field_configurator"/>
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
+      <argument type="service" id="security.csrf.token_manager" on-invalid="null"/>
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\CodeEditorConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\CodeEditorConfigurator">
       <tag name="ea.field_configurator"/>
@@ -8103,7 +8044,6 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\CommonPreConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\CommonPreConfigurator">
       <tag name="ea.field_configurator" priority="9999"/>
       <tag name="ea.field_configurator"/>
-      <argument type="service" id="translator.data_collector"/>
       <argument type="service" id="property_accessor"/>
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\CountryConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\CountryConfigurator">
@@ -8153,11 +8093,9 @@
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\ChoiceConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\ChoiceConfigurator">
       <tag name="ea.field_configurator"/>
-      <argument type="service" id="translator.data_collector"/>
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\SlugConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\SlugConfigurator">
       <tag name="ea.field_configurator"/>
-      <argument type="service" id="translator.data_collector"/>
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\TelephoneConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\TelephoneConfigurator">
       <tag name="ea.field_configurator"/>
@@ -8174,6 +8112,85 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\UrlConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\UrlConfigurator">
       <tag name="ea.field_configurator"/>
     </service>
+    <service id="chartjs.builder" class="Symfony\UX\Chartjs\Builder\ChartBuilder"/>
+    <service id="chartjs.twig_extension" class="Symfony\UX\Chartjs\Twig\ChartExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id="webpack_encore.twig_stimulus_extension"/>
+    </service>
+    <service id=".1_ServiceLocator~_DhKl7M" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="webpack_encore.entrypoint_lookup_collection" type="service_closure" id="webpack_encore.entrypoint_lookup_collection"/>
+        <argument key="webpack_encore.tag_renderer" type="service_closure" id="webpack_encore.tag_renderer"/>
+      </argument>
+    </service>
+    <service id="webpack_encore.entrypoint_lookup_collection" class="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupCollection">
+      <argument type="service" id=".service_locator.Yi4Ff.p"/>
+      <argument>_default</argument>
+    </service>
+    <service id="webpack_encore.tag_renderer" class="Symfony\WebpackEncoreBundle\Asset\TagRenderer">
+      <tag name="kernel.reset" method="reset"/>
+      <argument type="service" id="webpack_encore.entrypoint_lookup_collection"/>
+      <argument type="service" id="assets.packages"/>
+      <argument type="collection"/>
+      <argument type="collection">
+        <argument key="defer">true</argument>
+      </argument>
+      <argument type="collection"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="webpack_encore.twig_entry_files_extension" class="Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id=".1_ServiceLocator~_DhKl7M"/>
+    </service>
+    <service id="webpack_encore.twig_stimulus_extension" class="Symfony\WebpackEncoreBundle\Twig\StimulusTwigExtension">
+      <tag name="twig.extension"/>
+    </service>
+    <service id="webpack_encore.entrypoint_lookup.cache_warmer" class="Symfony\WebpackEncoreBundle\CacheWarmer\EntrypointCacheWarmer">
+      <tag name="kernel.cache_warmer"/>
+      <argument type="collection">
+        <argument key="_default">C:\Users\Nandry\Desktop\CAVP/public/build/entrypoints.json</argument>
+      </argument>
+      <argument>C:\Users\Nandry\Desktop\CAVP\var\cache\dev/webpack_encore.cache.php</argument>
+    </service>
+    <service id="webpack_encore.cache" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter">
+      <argument>C:\Users\Nandry\Desktop\CAVP\var\cache\dev/webpack_encore.cache.php</argument>
+      <argument type="service" id="cache.webpack_encore"/>
+      <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
+    </service>
+    <service id="cache.webpack_encore" class="Symfony\Component\Cache\Adapter\TraceableAdapter">
+      <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
+      <argument type="service" id="cache.webpack_encore.recorder_inner"/>
+    </service>
+    <service id="webpack_encore.exception_listener" class="Symfony\WebpackEncoreBundle\EventListener\ExceptionListener">
+      <tag name="kernel.event_listener" event="kernel.exception"/>
+      <argument type="service" id="webpack_encore.entrypoint_lookup_collection"/>
+      <argument type="collection">
+        <argument>_default</argument>
+      </argument>
+    </service>
+    <service id="Symfony\WebpackEncoreBundle\EventListener\ResetAssetsEventListener" class="Symfony\WebpackEncoreBundle\EventListener\ResetAssetsEventListener">
+      <tag name="kernel.event_subscriber"/>
+      <tag name="container.hot_path"/>
+      <argument type="service" id="webpack_encore.entrypoint_lookup_collection"/>
+      <argument type="collection">
+        <argument>_default</argument>
+      </argument>
+    </service>
+    <service id="webpack_encore.entrypoint_lookup[_default]" class="Symfony\WebpackEncoreBundle\Asset\EntrypointLookup">
+      <tag name="kernel.reset" method="reset"/>
+      <argument>C:\Users\Nandry\Desktop\CAVP/public/build/entrypoints.json</argument>
+      <argument>null</argument>
+      <argument>_default</argument>
+      <argument>false</argument>
+    </service>
+    <service id=".service_locator.Yi4Ff.p" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="_default" type="service_closure" id="webpack_encore.entrypoint_lookup[_default]"/>
+      </argument>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\AgenceCrudController" class="App\Controller\Admin\AgenceCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\AgenceCrudController" class="App\Controller\Admin\AgenceCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\AgenceCrudController" class="App\Controller\Admin\AgenceCrudController" autowire="true" abstract="true"/>
@@ -8186,10 +8203,6 @@
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\DashboardControllerInterface.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\MouvementCrudController" class="App\Controller\Admin\MouvementCrudController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\MouvementCrudController" class="App\Controller\Admin\MouvementCrudController" autowire="true" abstract="true"/>
-    <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\MouvementCrudController" class="App\Controller\Admin\MouvementCrudController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\Admin\MouvementCrudController" class="App\Controller\Admin\MouvementCrudController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\ProduitsCrudController" class="App\Controller\Admin\ProduitsCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\ProduitsCrudController" class="App\Controller\Admin\ProduitsCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\ProduitsCrudController" class="App\Controller\Admin\ProduitsCrudController" autowire="true" abstract="true"/>
@@ -8210,6 +8223,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\MouvementController" class="App\Controller\MouvementController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\MouvementController" class="App\Controller\MouvementController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\MouvementController" class="App\Controller\MouvementController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\MouvementCrudController" class="App\Controller\MouvementCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\MouvementCrudController" class="App\Controller\MouvementCrudController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\MouvementCrudController" class="App\Controller\MouvementCrudController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\OrderController" class="App\Controller\OrderController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\OrderController" class="App\Controller\OrderController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\OrderController" class="App\Controller\OrderController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -8222,10 +8238,10 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\EntrerType" class="App\Form\EntrerType" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Form\EntrerType" class="App\Form\EntrerType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\MonthType" class="App\Form\MonthType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\MonthType" class="App\Form\MonthType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\MouvementType" class="App\Form\MouvementType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\MouvementType" class="App\Form\MouvementType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegisterType" class="App\Form\RegisterType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RegisterType" class="App\Form\RegisterType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
@@ -8240,12 +8256,10 @@
     <service id=".abstract.instanceof.App\Repository\FournisseurRepository" class="App\Repository\FournisseurRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\MouvementRepository" class="App\Repository\MouvementRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\MouvementRepository" class="App\Repository\MouvementRepository" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\OrderOutRepository" class="App\Repository\OrderOutRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\OrderOutRepository" class="App\Repository\OrderOutRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\OrderSortieRepository" class="App\Repository\OrderSortieRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\OrderSortieRepository" class="App\Repository\OrderSortieRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\OrderTypesRepository" class="App\Repository\OrderTypesRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\OrderTypesRepository" class="App\Repository\OrderTypesRepository" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ProduitDispoRepository" class="App\Repository\ProduitDispoRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\ProduitDispoRepository" class="App\Repository\ProduitDispoRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ProduitsRepository" class="App\Repository\ProduitsRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ProduitsRepository" class="App\Repository\ProduitsRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\SituationRepository" class="App\Repository\SituationRepository" autowire="true" abstract="true"/>
@@ -8641,6 +8655,12 @@
         <argument key="loader" type="service_closure" id=".errored..service_locator.xUrKPVU.Symfony\Component\Config\Loader\LoaderInterface"/>
       </argument>
     </service>
+    <service id=".service_locator.OGjUKCt" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="filters" type="service_closure" id=".errored..service_locator.OGjUKCt.EasyCorp\Bundle\EasyAdminBundle\Config\Filters"/>
+      </argument>
+    </service>
     <service id=".service_locator.XpfeRo6" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8657,12 +8677,6 @@
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="actions" type="service_closure" id=".errored..service_locator.R8Qy2_..EasyCorp\Bundle\EasyAdminBundle\Config\Actions"/>
-      </argument>
-    </service>
-    <service id=".service_locator.OGjUKCt" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="filters" type="service_closure" id=".errored..service_locator.OGjUKCt.EasyCorp\Bundle\EasyAdminBundle\Config\Filters"/>
       </argument>
     </service>
     <service id=".service_locator.kEvhmk9" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8713,6 +8727,12 @@
         <argument key="user" type="service_closure" id=".errored..service_locator.st3ASTR.Symfony\Component\Security\Core\User\UserInterface"/>
       </argument>
     </service>
+    <service id=".service_locator.GQZbvNR" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="doctrine" type="service_closure" id="doctrine"/>
+      </argument>
+    </service>
     <service id=".service_locator.LDwumwZ" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8720,10 +8740,23 @@
         <argument key="traitement" type="service_closure" id="App\Traitement\Traitement"/>
       </argument>
     </service>
-    <service id=".service_locator.GQZbvNR" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.kCQsiBI" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="doctrine" type="service_closure" id="doctrine"/>
+        <argument key="mouvementRepository" type="service_closure" id="App\Repository\MouvementRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.l45KXOv" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="mouvement" type="service_closure" id=".errored..service_locator.l45KXOv.App\Entity\Mouvement"/>
+      </argument>
+    </service>
+    <service id=".service_locator.8O4DYxJ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="mouvement" type="service_closure" id=".errored..service_locator.8O4DYxJ.App\Entity\Mouvement"/>
       </argument>
     </service>
     <service id=".service_locator.Isyi.eu" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8738,7 +8771,7 @@
         <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.Gt8006_" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.zIojiy6" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\AgenceCrudController::autocomplete" type="service_closure" id=".service_locator.kEvhmk9"/>
@@ -8784,27 +8817,6 @@
         <argument key="App\Controller\Admin\CategorieCrudController::renderFilters" type="service_closure" id=".service_locator.kEvhmk9"/>
         <argument key="App\Controller\Admin\CategorieCrudController::updateEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\Admin\DashboardController::configureUserMenu" type="service_closure" id=".service_locator.st3ASTR"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::autocomplete" type="service_closure" id=".service_locator.kEvhmk9"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::batchDelete" type="service_closure" id=".service_locator.esmk6IF"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::configureActions" type="service_closure" id=".service_locator.R8Qy2_."/>
-        <argument key="App\Controller\Admin\MouvementCrudController::configureAssets" type="service_closure" id=".service_locator.XdMPwIJ"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::configureCrud" type="service_closure" id=".service_locator.XpfeRo6"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::configureFilters" type="service_closure" id=".service_locator.OGjUKCt"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::configureResponseParameters" type="service_closure" id=".service_locator.W.c5h2_"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::createEditForm" type="service_closure" id=".service_locator.riFbGaB"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::createEditFormBuilder" type="service_closure" id=".service_locator.riFbGaB"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::createIndexQueryBuilder" type="service_closure" id=".service_locator.ENGuM7_"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::createNewForm" type="service_closure" id=".service_locator.riFbGaB"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::createNewFormBuilder" type="service_closure" id=".service_locator.riFbGaB"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::delete" type="service_closure" id=".service_locator.kEvhmk9"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::deleteEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::detail" type="service_closure" id=".service_locator.kEvhmk9"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::edit" type="service_closure" id=".service_locator.kEvhmk9"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::index" type="service_closure" id=".service_locator.kEvhmk9"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::new" type="service_closure" id=".service_locator.kEvhmk9"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::persistEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::renderFilters" type="service_closure" id=".service_locator.kEvhmk9"/>
-        <argument key="App\Controller\Admin\MouvementCrudController::updateEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\Admin\ProduitsCrudController::autocomplete" type="service_closure" id=".service_locator.kEvhmk9"/>
         <argument key="App\Controller\Admin\ProduitsCrudController::batchDelete" type="service_closure" id=".service_locator.esmk6IF"/>
         <argument key="App\Controller\Admin\ProduitsCrudController::configureActions" type="service_closure" id=".service_locator.R8Qy2_."/>
@@ -8847,6 +8859,7 @@
         <argument key="App\Controller\Admin\UserCrudController::persistEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\Admin\UserCrudController::renderFilters" type="service_closure" id=".service_locator.kEvhmk9"/>
         <argument key="App\Controller\Admin\UserCrudController::updateEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
+        <argument key="App\Controller\DefaultController::test" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\EtatController::index" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\HistoriqueController::enter" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\HistoriqueController::history" type="service_closure" id=".service_locator.GQZbvNR"/>
@@ -8855,6 +8868,11 @@
         <argument key="App\Controller\MouvementController::impressionPdf" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\MouvementController::impressionProd" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\MouvementController::impressionProdMensuel" type="service_closure" id=".service_locator.LDwumwZ"/>
+        <argument key="App\Controller\MouvementCrudController::delete" type="service_closure" id=".service_locator.8O4DYxJ"/>
+        <argument key="App\Controller\MouvementCrudController::edit" type="service_closure" id=".service_locator.8O4DYxJ"/>
+        <argument key="App\Controller\MouvementCrudController::index" type="service_closure" id=".service_locator.kCQsiBI"/>
+        <argument key="App\Controller\MouvementCrudController::new" type="service_closure" id=".service_locator.aKM6MDa"/>
+        <argument key="App\Controller\MouvementCrudController::show" type="service_closure" id=".service_locator.l45KXOv"/>
         <argument key="App\Controller\OrderController::getSlips" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\OrderController::index" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PeriodeController::mensuel" type="service_closure" id=".service_locator.GQZbvNR"/>
@@ -8909,27 +8927,6 @@
         <argument key="App\Controller\Admin\CategorieCrudController:renderFilters" type="service_closure" id=".service_locator.kEvhmk9"/>
         <argument key="App\Controller\Admin\CategorieCrudController:updateEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\Admin\DashboardController:configureUserMenu" type="service_closure" id=".service_locator.st3ASTR"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:autocomplete" type="service_closure" id=".service_locator.kEvhmk9"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:batchDelete" type="service_closure" id=".service_locator.esmk6IF"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:configureActions" type="service_closure" id=".service_locator.R8Qy2_."/>
-        <argument key="App\Controller\Admin\MouvementCrudController:configureAssets" type="service_closure" id=".service_locator.XdMPwIJ"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:configureCrud" type="service_closure" id=".service_locator.XpfeRo6"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:configureFilters" type="service_closure" id=".service_locator.OGjUKCt"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:configureResponseParameters" type="service_closure" id=".service_locator.W.c5h2_"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:createEditForm" type="service_closure" id=".service_locator.riFbGaB"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:createEditFormBuilder" type="service_closure" id=".service_locator.riFbGaB"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:createIndexQueryBuilder" type="service_closure" id=".service_locator.ENGuM7_"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:createNewForm" type="service_closure" id=".service_locator.riFbGaB"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:createNewFormBuilder" type="service_closure" id=".service_locator.riFbGaB"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:delete" type="service_closure" id=".service_locator.kEvhmk9"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:deleteEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:detail" type="service_closure" id=".service_locator.kEvhmk9"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:edit" type="service_closure" id=".service_locator.kEvhmk9"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:index" type="service_closure" id=".service_locator.kEvhmk9"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:new" type="service_closure" id=".service_locator.kEvhmk9"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:persistEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:renderFilters" type="service_closure" id=".service_locator.kEvhmk9"/>
-        <argument key="App\Controller\Admin\MouvementCrudController:updateEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\Admin\ProduitsCrudController:autocomplete" type="service_closure" id=".service_locator.kEvhmk9"/>
         <argument key="App\Controller\Admin\ProduitsCrudController:batchDelete" type="service_closure" id=".service_locator.esmk6IF"/>
         <argument key="App\Controller\Admin\ProduitsCrudController:configureActions" type="service_closure" id=".service_locator.R8Qy2_."/>
@@ -8972,6 +8969,7 @@
         <argument key="App\Controller\Admin\UserCrudController:persistEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\Admin\UserCrudController:renderFilters" type="service_closure" id=".service_locator.kEvhmk9"/>
         <argument key="App\Controller\Admin\UserCrudController:updateEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
+        <argument key="App\Controller\DefaultController:test" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\EtatController:index" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\HistoriqueController:enter" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\HistoriqueController:history" type="service_closure" id=".service_locator.GQZbvNR"/>
@@ -8980,6 +8978,11 @@
         <argument key="App\Controller\MouvementController:impressionPdf" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\MouvementController:impressionProd" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\MouvementController:impressionProdMensuel" type="service_closure" id=".service_locator.LDwumwZ"/>
+        <argument key="App\Controller\MouvementCrudController:delete" type="service_closure" id=".service_locator.8O4DYxJ"/>
+        <argument key="App\Controller\MouvementCrudController:edit" type="service_closure" id=".service_locator.8O4DYxJ"/>
+        <argument key="App\Controller\MouvementCrudController:index" type="service_closure" id=".service_locator.kCQsiBI"/>
+        <argument key="App\Controller\MouvementCrudController:new" type="service_closure" id=".service_locator.aKM6MDa"/>
+        <argument key="App\Controller\MouvementCrudController:show" type="service_closure" id=".service_locator.l45KXOv"/>
         <argument key="App\Controller\OrderController:getSlips" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\OrderController:index" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PeriodeController:mensuel" type="service_closure" id=".service_locator.GQZbvNR"/>
@@ -9059,11 +9062,11 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.skRIKco" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.gWVDS1o" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Form\EntrerType" type="service_closure" id="App\Form\EntrerType"/>
         <argument key="App\Form\MonthType" type="service_closure" id="App\Form\MonthType"/>
+        <argument key="App\Form\MouvementType" type="service_closure" id="App\Form\MouvementType"/>
         <argument key="App\Form\RegisterType" type="service_closure" id="App\Form\RegisterType"/>
         <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\CrudFormType" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Form\Type\CrudFormType"/>
@@ -9162,7 +9165,7 @@
       <argument type="service" id="cache.doctrine.orm.default.result"/>
       <factory class="Doctrine\Common\Cache\Psr6\DoctrineProvider" method="wrap"/>
     </service>
-    <service id=".service_locator.8Vl_W8J" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.CqiDTc." class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\AgenceRepository" type="service_closure" id="App\Repository\AgenceRepository"/>
@@ -9170,9 +9173,8 @@
         <argument key="App\Repository\DescriptionsRepository" type="service_closure" id="App\Repository\DescriptionsRepository"/>
         <argument key="App\Repository\FournisseurRepository" type="service_closure" id="App\Repository\FournisseurRepository"/>
         <argument key="App\Repository\MouvementRepository" type="service_closure" id="App\Repository\MouvementRepository"/>
-        <argument key="App\Repository\OrderOutRepository" type="service_closure" id="App\Repository\OrderOutRepository"/>
+        <argument key="App\Repository\OrderSortieRepository" type="service_closure" id="App\Repository\OrderSortieRepository"/>
         <argument key="App\Repository\OrderTypesRepository" type="service_closure" id="App\Repository\OrderTypesRepository"/>
-        <argument key="App\Repository\ProduitDispoRepository" type="service_closure" id="App\Repository\ProduitDispoRepository"/>
         <argument key="App\Repository\ProduitsRepository" type="service_closure" id="App\Repository\ProduitsRepository"/>
         <argument key="App\Repository\SituationRepository" type="service_closure" id="App\Repository\SituationRepository"/>
         <argument key="App\Repository\TypesRepository" type="service_closure" id="App\Repository\TypesRepository"/>
@@ -9403,7 +9405,6 @@
       <argument type="collection">
         <argument>App\Controller\Admin\AgenceCrudController</argument>
         <argument>App\Controller\Admin\CategorieCrudController</argument>
-        <argument>App\Controller\Admin\MouvementCrudController</argument>
         <argument>App\Controller\Admin\ProduitsCrudController</argument>
         <argument>App\Controller\Admin\UserCrudController</argument>
       </argument>
@@ -9493,12 +9494,6 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.1hOIQqn" method="withContext"/>
     </service>
-    <service id=".service_locator.Pq4jHMT.App\Controller\Admin\MouvementCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\Admin\MouvementCrudController"/>
-      <argument>App\Controller\Admin\MouvementCrudController</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.Pq4jHMT" method="withContext"/>
-    </service>
     <service id=".service_locator.Pq4jHMT.App\Controller\Admin\ProduitsCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\Admin\ProduitsCrudController"/>
       <argument>App\Controller\Admin\ProduitsCrudController</argument>
@@ -9551,6 +9546,12 @@
     <service id=".service_locator.mx0UMmY.App\Controller\MouvementController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\MouvementController"/>
       <argument>App\Controller\MouvementController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.mx0UMmY" method="withContext"/>
+    </service>
+    <service id=".service_locator.mx0UMmY.App\Controller\MouvementCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\MouvementCrudController"/>
+      <argument>App\Controller\MouvementCrudController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.mx0UMmY" method="withContext"/>
     </service>
@@ -9796,12 +9797,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.Gt8006_"/>
+      <argument type="service" id=".service_locator.zIojiy6"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.Gt8006_"/>
+      <argument type="service" id=".service_locator.zIojiy6"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -9880,10 +9881,10 @@
     </service>
     <service id=".errored..service_locator.bRdave9.Symfony\Component\HttpFoundation\Response" class="Symfony\Component\HttpFoundation\Response"/>
     <service id=".errored..service_locator.xUrKPVU.Symfony\Component\Config\Loader\LoaderInterface" class="Symfony\Component\Config\Loader\LoaderInterface"/>
+    <service id=".errored..service_locator.OGjUKCt.EasyCorp\Bundle\EasyAdminBundle\Config\Filters" class="EasyCorp\Bundle\EasyAdminBundle\Config\Filters"/>
     <service id=".errored..service_locator.XpfeRo6.EasyCorp\Bundle\EasyAdminBundle\Config\Crud" class="EasyCorp\Bundle\EasyAdminBundle\Config\Crud"/>
     <service id=".errored..service_locator.XdMPwIJ.EasyCorp\Bundle\EasyAdminBundle\Config\Assets" class="EasyCorp\Bundle\EasyAdminBundle\Config\Assets"/>
     <service id=".errored..service_locator.R8Qy2_..EasyCorp\Bundle\EasyAdminBundle\Config\Actions" class="EasyCorp\Bundle\EasyAdminBundle\Config\Actions"/>
-    <service id=".errored..service_locator.OGjUKCt.EasyCorp\Bundle\EasyAdminBundle\Config\Filters" class="EasyCorp\Bundle\EasyAdminBundle\Config\Filters"/>
     <service id=".errored..service_locator.kEvhmk9.EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext" class="EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext"/>
     <service id=".errored..service_locator.esmk6IF.EasyCorp\Bundle\EasyAdminBundle\Dto\BatchActionDto" class="EasyCorp\Bundle\EasyAdminBundle\Dto\BatchActionDto"/>
     <service id=".errored..service_locator.esmk6IF.EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext" class="EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext"/>
@@ -9896,6 +9897,8 @@
     <service id=".errored..service_locator.riFbGaB.EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore" class="EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore"/>
     <service id=".errored..service_locator.W.c5h2_.EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore" class="EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore"/>
     <service id=".errored..service_locator.st3ASTR.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface"/>
+    <service id=".errored..service_locator.l45KXOv.App\Entity\Mouvement" class="App\Entity\Mouvement"/>
+    <service id=".errored..service_locator.8O4DYxJ.App\Entity\Mouvement" class="App\Entity\Mouvement"/>
     <service id=".console.command.about.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>about</argument>
       <argument type="collection"/>
@@ -10665,14 +10668,6 @@
     </service>
     <service id="cache.doctrine.orm.default.result.recorder_inner" class="Symfony\Component\Cache\Adapter\ArrayAdapter"/>
     <service id="cache.doctrine.orm.default.query.recorder_inner" class="Symfony\Component\Cache\Adapter\ArrayAdapter"/>
-    <service id="cache.webpack_encore.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface">
-      <argument>De28IkEZAL</argument>
-      <argument>0</argument>
-      <argument>%container.build_id%</argument>
-      <argument>C:\Users\Nandry\Desktop\CAVP\var\cache\dev/pools/system</argument>
-      <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
-      <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
-    </service>
     <service id="cache.security_expression_language.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface">
       <argument>OTAMBPYlhO</argument>
       <argument>0</argument>
@@ -10715,6 +10710,14 @@
     </service>
     <service id="api_platform.cache.metadata.property.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface">
       <argument>8ZtlLnMNcQ</argument>
+      <argument>0</argument>
+      <argument>%container.build_id%</argument>
+      <argument>C:\Users\Nandry\Desktop\CAVP\var\cache\dev/pools/system</argument>
+      <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
+      <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
+    </service>
+    <service id="cache.webpack_encore.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface">
+      <argument>De28IkEZAL</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
       <argument>C:\Users\Nandry\Desktop\CAVP\var\cache\dev/pools/system</argument>
@@ -10861,8 +10864,6 @@
     <service id="doctrine.migrations.metadata_storage" alias="doctrine.migrations.storage.table_storage"/>
     <service id="Twig_Environment" alias="twig"/>
     <service id="Twig\Environment" alias="twig"/>
-    <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupCollectionInterface" alias="webpack_encore.entrypoint_lookup_collection"/>
-    <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface" alias="webpack_encore.entrypoint_lookup[_default]"/>
     <service id="Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface" alias="security.authorization_checker"/>
     <service id="Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface" alias="security.token_storage"/>
     <service id="Symfony\Component\Security\Core\Security" alias="security.helper"/>
@@ -10962,9 +10963,12 @@
     <service id="api_platform.message_bus" alias="debug.traced.messenger.bus.default"/>
     <service id="api_platform.security.expression_language" alias="security.expression_language"/>
     <service id="ApiPlatform\Core\Security\ResourceAccessCheckerInterface" alias="api_platform.security.resource_access_checker"/>
+    <service id="Symfony\UX\Chartjs\Builder\ChartBuilderInterface" alias="chartjs.builder"/>
+    <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupCollectionInterface" alias="webpack_encore.entrypoint_lookup_collection"/>
+    <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface" alias="webpack_encore.entrypoint_lookup[_default]"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.Gt8006_"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.zIojiy6"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -10990,17 +10994,18 @@
     <service id="api_platform.name_converter" alias="serializer.name_converter.metadata_aware"/>
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
-    <service id=".service_locator.XDGmiR3" alias=".1_ServiceLocator~_DhKl7M"/>
     <service id=".service_locator.bnaLdkn" alias="api_platform.serializer_locator"/>
     <service id=".service_locator.Xbsa8iG" alias="api_platform.filter_locator"/>
     <service id=".service_locator.Mo0FXEU" alias="service_locator_EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
+    <service id=".service_locator.XDGmiR3" alias=".1_ServiceLocator~_DhKl7M"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
     <service id=".service_locator.nTL_G5r" alias=".service_locator.esmk6IF"/>
     <service id=".service_locator.hNls88j" alias=".service_locator.ENGuM7_"/>
     <service id=".service_locator.6rNHno." alias=".service_locator.riFbGaB"/>
-    <service id=".service_locator.yFyNGyn" alias=".service_locator.Gt8006_"/>
+    <service id=".service_locator.Fgoq2HH" alias=".service_locator.8O4DYxJ"/>
+    <service id=".service_locator.RckdGIs" alias=".service_locator.zIojiy6"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
-    <service id=".service_locator.v7E14GL" alias=".service_locator.skRIKco"/>
+    <service id=".service_locator.Mc7dgRT" alias=".service_locator.gWVDS1o"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator.v_Ds_92" alias=".service_locator.Pq4jHMT"/>
@@ -11069,10 +11074,10 @@
     <service id="api_platform.metadata.property.metadata_factory.cached.inner" alias="api_platform.metadata.property.metadata_factory.validator"/>
     <service id=".service_locator.FatRZu2" alias=".service_locator.bRdave9"/>
     <service id=".service_locator.uo5c0SP" alias=".service_locator.xUrKPVU"/>
+    <service id=".service_locator.O2PHm7f" alias=".service_locator.OGjUKCt"/>
     <service id=".service_locator.Wy8wQ7q" alias=".service_locator.XpfeRo6"/>
     <service id=".service_locator.mZvIess" alias=".service_locator.XdMPwIJ"/>
     <service id=".service_locator.Uj8JhjH" alias=".service_locator.R8Qy2_."/>
-    <service id=".service_locator.O2PHm7f" alias=".service_locator.OGjUKCt"/>
     <service id=".service_locator.nmHbo7B" alias=".service_locator.kEvhmk9"/>
     <service id=".service_locator.6l7iQLM" alias=".service_locator.esmk6IF"/>
     <service id=".service_locator.NMJNzQ2" alias=".service_locator.ENGuM7_"/>
@@ -11080,8 +11085,11 @@
     <service id=".service_locator.UNSqNV2" alias=".service_locator.riFbGaB"/>
     <service id=".service_locator.YGHh.DA" alias=".service_locator.W.c5h2_"/>
     <service id=".service_locator..Z_8zjg" alias=".service_locator.st3ASTR"/>
-    <service id=".service_locator.3uVtF_U" alias=".service_locator.LDwumwZ"/>
     <service id=".service_locator.FPFiL9q" alias=".service_locator.GQZbvNR"/>
+    <service id=".service_locator.3uVtF_U" alias=".service_locator.LDwumwZ"/>
+    <service id=".service_locator.DrYjh4O" alias=".service_locator.kCQsiBI"/>
+    <service id=".service_locator.M_HiBH3" alias=".service_locator.l45KXOv"/>
+    <service id=".service_locator.v5wJ4bk" alias=".service_locator.8O4DYxJ"/>
     <service id=".service_locator.CBTsee1" alias=".service_locator.Isyi.eu"/>
     <service id=".service_locator.URfgn8g" alias=".service_locator.zFcJjKU"/>
     <service id=".service_locator.wRX4COv" alias=".service_locator.Pq4jHMT"/>

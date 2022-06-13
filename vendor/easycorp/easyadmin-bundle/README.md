@@ -18,15 +18,16 @@ $ composer require easycorp/easyadmin-bundle
 Documentation
 -------------
 
-Read [EasyAdmin Docs][1] at the official Symfony website.
+  * Read [EasyAdmin Docs][1] on the official Symfony website
+  * Check out the [EasyAdmin video tutorial][2] on SymfonyCasts
 
 Versions
 --------
 
 | Repository Branch | EasyAdmin Version | Symfony Compatibility  | PHP Compatibility | Status               | Docs
 | ----------------- | ----------------- | ---------------------- | ----------------- | -------------------- | ---
-| `4.x`             | `4.x`             | `5.x`, and `6.x`       | `8.0.2` or higher | New features and bug fixes | [Read Docs](https://symfony.com/bundles/EasyAdminBundle/master/index.html)
-| `3.x`             | `3.x`             | `4.x`, and `5.x`       | `7.2.5` or higher | Bug fixes only; no new features | [Read Docs](https://symfony.com/bundles/EasyAdminBundle/3.x/index.html)
+| `4.x`             | `4.x`             | `5.4`, and `6.x`       | `8.0.2` or higher | New features and bug fixes | [Read Docs](https://symfony.com/bundles/EasyAdminBundle/master/index.html)
+| `3.x`             | `3.x`             | `4.4`, and `5.x`       | `7.2.5` or higher | Bug fixes only; no new features | [Read Docs](https://symfony.com/bundles/EasyAdminBundle/3.x/index.html)
 | `2.x`             | `2.x`             | `4.x`, and `5.x`       | `7.1.3` or higher | No longer maintained | [Read Docs](https://symfony.com/bundles/EasyAdminBundle/2.x/index.html)
 | `1.x`             | `1.x`             | `2.x`, `3.x` and `4.x` | `5.3.0` or higher | No longer maintained | -
 
@@ -43,3 +44,4 @@ License
 This software is published under the [MIT License](LICENSE.md)
 
 [1]: https://symfony.com/doc/4.x/bundles/EasyAdminBundle/index.html
+[2]: https://symfonycasts.com/screencast/easyadminbundle

@@ -19,20 +19,24 @@ class ProduitsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Produits::class);
     }
- 
-public function findByOrder($types)
+    public function findByOrder()
     {
-        $rawSql = " SELECT c.nombre_planche,c.ordre ordre,c.prixDeVente, c.NomDeCategorie categorie,COUNT(a.name) nombre_agence, c.valeurFaciale vf ,SUM(mvt.quantite) somme ,mvt.quantite nombre_cat,a.name bureau FROM App\Entity\Mouvement mvt 
+        $rawSql = " SELECT c.tpParPl,mvt.quantite,c.ordre ordre,c.prixDeVente, c.NomDeCategorie categorie,COUNT(a.name) nombre_agence, c.valeurFaciale vf ,SUM(mvt.quantite) somme ,mvt.quantite nombre_cat,a.name bureau FROM App\Entity\Mouvement mvt 
                     INNER JOIN App\Entity\Categorie c WITH c.id = mvt.Categorie
                     INNER JOIN App\Entity\Produits p WITH p.id = mvt.produit
                     INNER JOIN App\Entity\Agence a WITH a.id = mvt.Agence
-                    WHERE mvt.types = $types and mvt
+                    WHERE mvt.types = 2
                     GROUP BY mvt.Categorie";
         $stmt = $this->getEntityManager()->createQuery($rawSql);
-
         return $stmt->execute();
-            
-     }
+    }
+    public function findAgency()
+    {
+        $rawSql = " SELECT COUNT(a.name) nombre_agence FROM App\Entity\Mouvement mvt 
+                    INNER JOIN App\Entity\Agence a WITH a.id = mvt.Agence
+                    WHERE mvt.types =2 ";
+        $stmt = $this->getEntityManager()->createQuery($rawSql);
+        return $stmt->execute();
+    }
+    
 }
-
-

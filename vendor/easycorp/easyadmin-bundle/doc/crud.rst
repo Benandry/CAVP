@@ -222,6 +222,8 @@ Search, Order, and Pagination Options
             ->setSearchFields(['name', 'description', 'seller.email', 'seller.address.zipCode'])
             // set it to null to disable and hide the search box
             ->setSearchFields(null)
+            // call this method to focus the search input automatically when loading the 'index' page
+            ->setAutofocusSearch()
 
             // defines the initial sorting applied to the list of entities
             // (user can later change this sorting by clicking on the table columns)
@@ -505,12 +507,6 @@ associated to the given template name:
 
 Generating Admin URLs
 ---------------------
-
-.. versionadded:: 3.2
-
-    The ``AdminUrlGenerator`` class was introduced in EasyAdmin 3.2.0. In earlier
-    versions, you had to use the ``CrudUrlGenerator`` class and call the
-    ``build()`` method to start building a URL.
 
 :ref:`As explained <dashboard-route>` in the article about Dashboards, all URLs
 of a given dashboard use the same route and they only differ in the query string

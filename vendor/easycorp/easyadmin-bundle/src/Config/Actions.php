@@ -3,14 +3,14 @@
 namespace EasyCorp\Bundle\EasyAdminBundle\Config;
 
 use EasyCorp\Bundle\EasyAdminBundle\Dto\ActionConfigDto;
+use function Symfony\Component\Translation\t;
 
 /**
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
 final class Actions
 {
-    /** @var ActionConfigDto */
-    private $dto;
+    private ActionConfigDto $dto;
 
     private function __construct(ActionConfigDto $actionConfigDto)
     {
@@ -24,31 +24,18 @@ final class Actions
         return new self($dto);
     }
 
-    /**
-     * @param string|Action $actionNameOrObject
-     */
-    public function add(string $pageName, $actionNameOrObject): self
+    public function add(string $pageName, Action|string $actionNameOrObject): self
     {
         return $this->doAddAction($pageName, $actionNameOrObject);
     }
 
-    /**
-     * @param string|Action $actionNameOrObject
-     */
-    public function addBatchAction($actionNameOrObject): self
+    public function addBatchAction(Action|string $actionNameOrObject): self
     {
         return $this->doAddAction(Crud::PAGE_INDEX, $actionNameOrObject, true);
     }
 
-    /**
-     * @param string|Action $actionNameOrObject
-     */
-    public function set(string $pageName, $actionNameOrObject): self
+    public function set(string $pageName, Action|string $actionNameOrObject): self
     {
-        if (!\is_string($actionNameOrObject) && !$actionNameOrObject instanceof Action) {
-            throw new \InvalidArgumentException(sprintf('The argument of "%s" can only be either a string with the action name or a "%s" object with the action config.', __METHOD__, Action::class));
-        }
-
         $action = \is_string($actionNameOrObject) ? $this->createBuiltInAction($pageName, $actionNameOrObject) : $actionNameOrObject;
 
         $this->dto->appendAction($pageName, $action->getAsDto());
@@ -158,14 +145,14 @@ final class Actions
     private function createBuiltInAction(string $pageName, string $actionName): Action
     {
         if (Action::BATCH_DELETE === $actionName) {
-            return Action::new(Action::BATCH_DELETE, '__ea__action.delete', null)
+            return Action::new(Action::BATCH_DELETE, t('action.delete', domain: 'EasyAdminBundle'), null)
                 ->linkToCrudAction(Action::BATCH_DELETE)
                 ->setCssClass('action-'.Action::BATCH_DELETE)
-                ->addCssClass('btn btn-secondary pr-0 text-danger');
+                ->addCssClass('btn btn-danger pr-0');
         }
 
         if (Action::NEW === $actionName) {
-            return Action::new(Action::NEW, '__ea__action.new', null)
+            return Action::new(Action::NEW, t('action.new', domain: 'EasyAdminBundle'), null)
                 ->createAsGlobalAction()
                 ->linkToCrudAction(Action::NEW)
                 ->setCssClass('action-'.Action::NEW)
@@ -173,21 +160,21 @@ final class Actions
         }
 
         if (Action::EDIT === $actionName) {
-            return Action::new(Action::EDIT, '__ea__action.edit', null)
+            return Action::new(Action::EDIT, t('action.edit', domain: 'EasyAdminBundle'), null)
                 ->linkToCrudAction(Action::EDIT)
                 ->setCssClass('action-'.Action::EDIT)
                 ->addCssClass(Crud::PAGE_DETAIL === $pageName ? 'btn btn-primary' : '');
         }
 
         if (Action::DETAIL === $actionName) {
-            return Action::new(Action::DETAIL, '__ea__action.detail')
+            return Action::new(Action::DETAIL, t('action.detail', domain: 'EasyAdminBundle'))
                 ->linkToCrudAction(Action::DETAIL)
                 ->setCssClass('action-'.Action::DETAIL)
                 ->addCssClass(Crud::PAGE_EDIT === $pageName ? 'btn btn-secondary' : '');
         }
 
         if (Action::INDEX === $actionName) {
-            return Action::new(Action::INDEX, '__ea__action.index')
+            return Action::new(Action::INDEX, t('action.index', domain: 'EasyAdminBundle'))
                 ->linkToCrudAction(Action::INDEX)
                 ->setCssClass('action-'.Action::INDEX)
                 ->addCssClass(\in_array($pageName, [Crud::PAGE_DETAIL, Crud::PAGE_EDIT, Crud::PAGE_NEW], true) ? 'btn btn-secondary' : '');
@@ -196,14 +183,14 @@ final class Actions
         if (Action::DELETE === $actionName) {
             $cssClass = \in_array($pageName, [Crud::PAGE_DETAIL, Crud::PAGE_EDIT], true) ? 'btn btn-secondary pr-0 text-danger' : 'text-danger';
 
-            return Action::new(Action::DELETE, '__ea__action.delete', Crud::PAGE_INDEX === $pageName ? null : 'fa fa-fw fa-trash-o')
+            return Action::new(Action::DELETE, t('action.delete', domain: 'EasyAdminBundle'), Crud::PAGE_INDEX === $pageName ? null : 'fa fa-fw fa-trash-o')
                 ->linkToCrudAction(Action::DELETE)
                 ->setCssClass('action-'.Action::DELETE)
                 ->addCssClass($cssClass);
         }
 
         if (Action::SAVE_AND_RETURN === $actionName) {
-            return Action::new(Action::SAVE_AND_RETURN, Crud::PAGE_EDIT === $pageName ? '__ea__action.save' : '__ea__action.create')
+            return Action::new(Action::SAVE_AND_RETURN, t(Crud::PAGE_EDIT === $pageName ? 'action.save' : 'action.create', domain: 'EasyAdminBundle'))
                 ->setCssClass('action-'.Action::SAVE_AND_RETURN)
                 ->addCssClass('btn btn-primary action-save')
                 ->displayAsButton()
@@ -212,7 +199,7 @@ final class Actions
         }
 
         if (Action::SAVE_AND_CONTINUE === $actionName) {
-            return Action::new(Action::SAVE_AND_CONTINUE, Crud::PAGE_EDIT === $pageName ? '__ea__action.save_and_continue' : '__ea__action.create_and_continue', 'far fa-edit')
+            return Action::new(Action::SAVE_AND_CONTINUE, t(Crud::PAGE_EDIT === $pageName ? 'action.save_and_continue' : 'action.create_and_continue', domain: 'EasyAdminBundle'), 'far fa-edit')
                 ->setCssClass('action-'.Action::SAVE_AND_CONTINUE)
                 ->addCssClass('btn btn-secondary action-save')
                 ->displayAsButton()
@@ -221,7 +208,7 @@ final class Actions
         }
 
         if (Action::SAVE_AND_ADD_ANOTHER === $actionName) {
-            return Action::new(Action::SAVE_AND_ADD_ANOTHER, '__ea__action.create_and_add_another')
+            return Action::new(Action::SAVE_AND_ADD_ANOTHER, t('action.create_and_add_another', domain: 'EasyAdminBundle'))
                 ->setCssClass('action-'.Action::SAVE_AND_ADD_ANOTHER)
                 ->addCssClass('btn btn-secondary action-save')
                 ->displayAsButton()
@@ -232,12 +219,8 @@ final class Actions
         throw new \InvalidArgumentException(sprintf('The "%s" action is not a built-in action, so you can\'t add or configure it via its name. Either refer to one of the built-in actions or create a custom action called "%s".', $actionName, $actionName));
     }
 
-    private function doAddAction(string $pageName, $actionNameOrObject, bool $isBatchAction = false): self
+    private function doAddAction(string $pageName, Action|string $actionNameOrObject, bool $isBatchAction = false): self
     {
-        if (!\is_string($actionNameOrObject) && !$actionNameOrObject instanceof Action) {
-            throw new \InvalidArgumentException(sprintf('The argument of "%s" can only be either a string with the action name or a "%s" object with the action config.', __METHOD__, Action::class));
-        }
-
         $actionName = \is_string($actionNameOrObject) ? $actionNameOrObject : (string) $actionNameOrObject;
         $action = \is_string($actionNameOrObject) ? $this->createBuiltInAction($pageName, $actionNameOrObject) : $actionNameOrObject;
 
