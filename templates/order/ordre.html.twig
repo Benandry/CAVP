@@ -1,123 +1,117 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <title> Odre de sortie | Paositra Malagasy</title>
-</head>
-<body>
-{% set types_order = ['PN','FP']  %}
-{% if app.user %} 
-<span class="float-right" style="margin-top: 5px;">
-    Selectionner le : <button type="button" class="btn btn-secondary btn-light" data-bs-toggle="modal" data-bs-target="#myModal"> Types</button>
-    <div class="modal" id="myModal">
-        {{ form_start(form) }}
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"> Types</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                {{ form_start(form) }}
-                <div class="modal-body">
-                    <div class="form-group">
-                            <label for="select">Types de sortie :</label>
-                            {{ form_widget(form.select, {'attr': {'class': 'form-control'}}) }}
+{% extends 'base.html.twig' %}
+
+{% block title %}Ordre de sortie | Paositra Malagasy{% endblock %}
+
+{% block body %}
+    {% set types_order = ['PN','FP']  %}
+    {% if app.user %} 
+    <span class="float-right" style="margin-top: 5px;">
+        Selectionner le : <button type="button" class="btn btn-secondary btn-light" data-bs-toggle="modal" data-bs-target="#myModal"> Types</button>
+        <div class="modal" id="myModal">
+            {{ form_start(form) }}
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"> Types</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
-                </div>
-                <div class="modal-footer">
+                    {{ form_start(form) }}
+                    <div class="modal-body">
                         <div class="form-group">
-                        {{ form_row(form.submit, { 'label': 'Selectionner'}) }}
+                                <label for="select">Types de sortie :</label>
+                                {{ form_widget(form.select, {'attr': {'class': 'form-control'}}) }}
+                        </div>
                     </div>
-                </div>
-                {{ form_end(form) }}
+                    <div class="modal-footer">
+                            <div class="form-group">
+                            {{ form_row(form.submit, { 'label': 'Selectionner'}) }}
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</span>
-<a href="#recapitulation" style="margin:40px;">Recapitulation </a>
-<a href="#repartitions" style="margin:40px;">Etat de repartition de Valeur </a>
-<a href="#bordereau" style="margin:40px;">Bordereau d'envoi </a>
-<h4 id="recapitulation">Récapitulation N° {{ 'now' |date("y") }}/ --{{ types_order[types - 1]}} </h4>
-    <div class="table responsive-xxl">
-        <table width="100%" style="border-collapse:collapse;" border="1">
-            <thead>
-                <tr>
-                    <th>Categorie </th>
-                    <th>Valeur Faciales </th>
-                    <th>TP/PL </th>
-                    <th>Planche </th>
-                    <th>TP </th>
-                    <th>Montant </th>
-                    <th>Obervatiions </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for pro in dispo %}
+    </span>
+    <a href="#recapitulation" style="margin:40px;">Recapitulation </a>
+    <a href="#repartitions" style="margin:40px;">Etat de repartition de Valeur </a>
+    <a href="#bordereau" style="margin:40px;">Bordereau d'envoi </a>
+    <h4 id="recapitulation">Récapitulation N° {{ 'now' |date("y") }}/ --{{ types_order[types - 1]}} </h4>
+        <div class="table responsive-xxl">
+            <table width="100%" style="border-collapse:collapse;" border="1">
+                <thead>
                     <tr>
-                        <td> {{ pro.categorie }}</td> 
-                        <td>{{ pro.vf }}</td>
-                        <td>{{ pro.tpParPl }}</td>
-                        <td>{{ pro.quantite|abs}}</td>
-                        <td>{{ pro.tpParPl * pro.quantite|abs }}</td>
-                        <td>{{ pro.tpParPl * pro.quantite|abs * pro.vf }}</td>
-                        <td rowspan="4">{{ agency }} bureau</td>
+                        <th>Categorie </th>
+                        <th>Valeur Faciales </th>
+                        <th>TP/PL </th>
+                        <th>Planche </th>
+                        <th>TP </th>
+                        <th>Montant </th>
+                        <th>Obervatiions </th>
                     </tr>
-                {% endfor %}
-            <tbody>
-        </table>
-        
-    <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }}<br>
-        <span style="margin-top1: 25px;"> Chef de  Centre d'Approvisionnement en Valeurs Postales </span><br />
-        <span style="margin-top1: 25px;">{{ app.user.nom }}</span>
-     </p>
-    
-        <h4 id="repartitions">Etat de repartition de Valeurs N° {{ 'now' |date("y") }}/ --{{ types_order[types - 1]}} </h4>
-        <table width="100%" style="border-collapse:collapse;" border="1">
-            <thead>
-                <tr>
-                    <th>Ordre </th>
-                    <th>Valeur Faciales </th>
-                    <th>Valeur </th>
-                    <th>total par bureau </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for pro in dispo %}
-                    <tr>
-                        <td> {{ pro.ordre }}</td> 
-                        <td>{{ pro.vf }}</td>
-                        <td> {{ pro.nombre_cat }}</td>
-                        <td>{{ pro.nombre_agence }}</td>
-                    </tr>
-                {% endfor %}
-            <tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    {% for pro in dispo %}
+                        <tr>
+                            <td> {{ pro.categorie }}</td> 
+                            <td>{{ pro.vf }}</td>
+                            <td>{{ pro.tpParPl }}</td>
+                            <td>{{ pro.quantite|abs}}</td>
+                            <td>{{ pro.tpParPl * pro.quantite|abs }}</td>
+                            <td>{{ pro.tpParPl * pro.quantite|abs * pro.vf }}</td>
+                            <td rowspan="4">{{ agency }} bureau</td>
+                        </tr>
+                    {% endfor %}
+                <tbody>
+            </table>
+            
         <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }}<br>
-        <span style="margin-top1: 25px;"> Chef de  Centre d'Approvisionnement en Valeurs Postales </span><br />
-        <span style="margin-top1: 25px;">{{ app.user.nom }}</span>
-     </p>
-    <h4 id="bordereau">Bordereau d'envoi </h4>
-    <h5>Bordéreau d'envoi N° {{ 'now' |date("y") }}/ --{{ types_order[types - 1]}}</h5>
-    <table width="100%" style="border-collapse: collapse;" border="1">
-        {% for pro in dispo %}
-           <tr>
-            <td>{{ pro.bureau }}</td>
-            <td><a href="{{ path('bordereau') }}"> <i class='fa fa-info-circle'> info</i> </a></td>
-           </tr>
-        {% endfor %}
-    </table>           
-{% else %}
-<h1>Page not found 404 </h1>
+            <span style="margin-top1: 25px;"> Chef de  Centre d'Approvisionnement en Valeurs Postales </span><br />
+            <span style="margin-top1: 25px;">{{ app.user.nom }}</span>
+        </p>
+        
+            <h4 id="repartitions">Etat de repartition de Valeurs N° {{ 'now' |date("y") }}/ --{{ types_order[types - 1]}} </h4>
+            <table width="100%" style="border-collapse:collapse;" border="1">
+                <thead>
+                    <tr>
+                        <th>Ordre </th>
+                        <th>Valeur Faciales </th>
+                        <th>Valeur </th>
+                        <th>total par bureau </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pro in dispo %}
+                        <tr>
+                            <td> {{ pro.ordre }}</td> 
+                            <td>{{ pro.vf }}</td>
+                            <td> {{ pro.nombre_cat }}</td>
+                            <td>{{ pro.nombre_agence }}</td>
+                        </tr>
+                    {% endfor %}
+                <tbody>
+            </table>
+        </div>
+            <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }}<br>
+            <span style="margin-top1: 25px;"> Chef de  Centre d'Approvisionnement en Valeurs Postales </span><br />
+            <span style="margin-top1: 25px;">{{ app.user.nom }}</span>
+        </p>
+        <h4 id="bordereau">Bordereau d'envoi </h4>
+        <h5>Bordéreau d'envoi N° {{ 'now' |date("y") }}/ --{{ types_order[types - 1]}}</h5>
+        <table width="100%" style="border-collapse: collapse;" border="1">
+            {% for pro in dispo %}
+            <tr>
+                <td>{{ pro.bureau }}</td>
+                <td><a href="{{ path('bordereau') }}"> <i class='fa fa-info-circle'> info</i> </a></td>
+            </tr>
+            {% endfor %}
+        </table>           
+    {% else %}
+    <h1>Page not found 404 </h1>
 
-<p>
-    The requested page couldn't be located. Checkout for any URL
-    misspelling or <a href="{{ path('homepage') }}">return to the authentification </a>.
-</p>
-{% endif %}
-</body>
-</html>
+    <p>
+        The requested page couldn't be located. Checkout for any URL
+        misspelling or <a href="{{ path('homepage') }}">return to the authentification </a>.
+    </p>
+    {% endif %}    
+{% endblock %}

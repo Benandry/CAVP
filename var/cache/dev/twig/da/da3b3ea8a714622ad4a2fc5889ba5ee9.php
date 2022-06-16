@@ -46,35 +46,37 @@ class __TwigTemplate_af06a773e060b9f06de95f3666f6b4c0 extends \Twig\Template
   <meta charset=\"utf-8\">
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
   <title> Authentification de cavp | Paositra Malagasy </title>
-  <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css\" integrity=\"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh\" crossorigin=\"anonymous\">
-  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Spartan&display=swap\">
-  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css\" integrity=\"sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=\" crossorigin=\"anonymous\" />
-  <link rel=\"stylesheet\" href=\"";
-        // line 10
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/app.css"), "html", null, true);
-        echo "\">
-  <link rel=\"stylesheet\" href=\"";
-        // line 11
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/style.css"), "html", null, true);
-        echo "\">
+   ";
+        // line 7
+        echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackLinkTags("app");
+        echo "
+   ";
+        // line 8
+        echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("app");
+        echo "
 </head>
 <body>
-    <section class=\"vh-100\" style=\"background-color: #c82232;\" >
+    <section class=\"vh-100\" style=\"background-color: #ffffff;\" >
         <div class=\"container py-5 h-100\">
             <div class=\"row d-flex justify-content-center align-items-center h-100\">
                 <div class=\"col col-xl-10\">
                     <div class=\"col-lg-6 col-sm-6\" >
                         <div class=\"box-element card card-solid\" style=\"margin: 0% 0% 10% 50%;width: 400px;text-align: center;\">
-                            <div class=\"card card-body\">
+                            <div class=\"card card-body\" >
                                 <form method=\"post\">
                                     <div class=\"d-flex align-items-center mb-3 pb-1\">
                                         <i style=\"color: #444; font-size: 2rem;\" class=\"pb-1 fad fa-cauldron\"></i>
-                                        <span class=\"h3 fw-bold mb-0\" style=\"color:#e3151a;margin: 2px auto;\"><img src=\"/images/logo-PPT.webp\" width=\"50\" height=\"50\">Paositra malagasy</span>
+                                        <span class=\"h3 fw-bold mb-0\" style=\"color:#e3151a;margin: 2px auto;\">
+                                            <img src=\"";
+        // line 22
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/images/logo-PPT.webp"), "html", null, true);
+        echo "\" width=\"60\" height=\"70\">Paositra malagasy
+                                        </span>
                                     </div>
                                     <div class=\"form-outline mb-4\">
                                         <input type=\"email\" value=\"";
-        // line 27
-        echo twig_escape_filter($this->env, (isset($context["last_username"]) || array_key_exists("last_username", $context) ? $context["last_username"] : (function () { throw new RuntimeError('Variable "last_username" does not exist.', 27, $this->source); })()), "html", null, true);
+        // line 26
+        echo twig_escape_filter($this->env, (isset($context["last_username"]) || array_key_exists("last_username", $context) ? $context["last_username"] : (function () { throw new RuntimeError('Variable "last_username" does not exist.', 26, $this->source); })()), "html", null, true);
         echo "\" name=\"email\" id=\"inputEmail\" class=\"form-control validate\" autocomplete=\"email\" placeholder=\" Adresse email\" required
                                             style=\"border: 2px solid #999999;border-radius: 14px;;text-align: center;margin: 5px auto;cursor: pointer;height: 35px;width: 300px;\"/>                                         
                                     </div>
@@ -84,17 +86,17 @@ class __TwigTemplate_af06a773e060b9f06de95f3666f6b4c0 extends \Twig\Template
                                             style=\"border: 2px solid #999999;text-align: center;margin: 5px auto;border-radius: 14px;cursor: pointer;height: 35px;width: 300px;\"/>
                                     </div>
                                     <input type=\"hidden\" name=\"_csrf_token\" value=\"";
-        // line 35
+        // line 34
         echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken("authenticate"), "html", null, true);
         echo "\"/>
                                     ";
-        // line 46
+        // line 45
         echo "                                    <div class=\"pt-1 mb-4\">
                                         <button class=\"btn btn-danger btn-lg btn-block\" type=\"submit\" style=\"border: 2px solid #fff;margin: 5px auto;text-align: center;border-radius: 24px;width: 300px;\">Connexion</button>
                                     </div>
                                         <p class=\"mb-5 pb-lg-2\" style=\"color: #393f81;\">Don't have an account? 
                                         <a href=\"";
-        // line 50
+        // line 49
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("page_inscription");
         echo "\" style=\"color:#498000; text-decoration:none;\">Register here</a>
                                         </p>
@@ -129,7 +131,7 @@ class __TwigTemplate_af06a773e060b9f06de95f3666f6b4c0 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  98 => 50,  92 => 46,  88 => 35,  77 => 27,  58 => 11,  54 => 10,  43 => 1,);
+        return array (  100 => 49,  94 => 45,  90 => 34,  79 => 26,  72 => 22,  55 => 8,  51 => 7,  43 => 1,);
     }
 
     public function getSourceContext()
@@ -140,24 +142,23 @@ class __TwigTemplate_af06a773e060b9f06de95f3666f6b4c0 extends \Twig\Template
   <meta charset=\"utf-8\">
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
   <title> Authentification de cavp | Paositra Malagasy </title>
-  <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css\" integrity=\"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh\" crossorigin=\"anonymous\">
-  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Spartan&display=swap\">
-  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css\" integrity=\"sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=\" crossorigin=\"anonymous\" />
-  <link rel=\"stylesheet\" href=\"{{ asset('css/app.css') }}\">
-  <link rel=\"stylesheet\" href=\"{{ asset('css/style.css') }}\">
+   {{ encore_entry_link_tags('app') }}
+   {{ encore_entry_script_tags('app') }}
 </head>
 <body>
-    <section class=\"vh-100\" style=\"background-color: #c82232;\" >
+    <section class=\"vh-100\" style=\"background-color: #ffffff;\" >
         <div class=\"container py-5 h-100\">
             <div class=\"row d-flex justify-content-center align-items-center h-100\">
                 <div class=\"col col-xl-10\">
                     <div class=\"col-lg-6 col-sm-6\" >
                         <div class=\"box-element card card-solid\" style=\"margin: 0% 0% 10% 50%;width: 400px;text-align: center;\">
-                            <div class=\"card card-body\">
+                            <div class=\"card card-body\" >
                                 <form method=\"post\">
                                     <div class=\"d-flex align-items-center mb-3 pb-1\">
                                         <i style=\"color: #444; font-size: 2rem;\" class=\"pb-1 fad fa-cauldron\"></i>
-                                        <span class=\"h3 fw-bold mb-0\" style=\"color:#e3151a;margin: 2px auto;\"><img src=\"/images/logo-PPT.webp\" width=\"50\" height=\"50\">Paositra malagasy</span>
+                                        <span class=\"h3 fw-bold mb-0\" style=\"color:#e3151a;margin: 2px auto;\">
+                                            <img src=\"{{ asset('build/images/logo-PPT.webp') }}\" width=\"60\" height=\"70\">Paositra malagasy
+                                        </span>
                                     </div>
                                     <div class=\"form-outline mb-4\">
                                         <input type=\"email\" value=\"{{ last_username }}\" name=\"email\" id=\"inputEmail\" class=\"form-control validate\" autocomplete=\"email\" placeholder=\" Adresse email\" required

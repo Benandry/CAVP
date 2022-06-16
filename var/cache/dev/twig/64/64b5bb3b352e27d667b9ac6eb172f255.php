@@ -24,10 +24,16 @@ class __TwigTemplate_5881d8446c78e287e4a75e3736ee1f5d extends \Twig\Template
 
         $this->source = $this->getSourceContext();
 
-        $this->parent = false;
-
         $this->blocks = [
+            'title' => [$this, 'block_title'],
+            'body' => [$this, 'block_body'],
         ];
+    }
+
+    protected function doGetParent(array $context)
+    {
+        // line 1
+        return "base.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = [])
@@ -39,31 +45,58 @@ class __TwigTemplate_5881d8446c78e287e4a75e3736ee1f5d extends \Twig\Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "mouvement_controller_crud/index.html.twig"));
 
-        // line 1
-        echo "<!DOCTYPE html>
-<html>
-<head>
-    <meta charset=\"utf-8\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\">
-  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\"></script>
-  <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js\"></script>
-    <title> Mouvement entrer sortie de CAVP | Paositra Malagasy</title>
-</head>
-<body>
-    <h3>Mouvementr entrer/Sortie de CAVP </h3>
+        $this->parent = $this->loadTemplate("base.html.twig", "mouvement_controller_crud/index.html.twig", 1);
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+    }
+
+    // line 3
+    public function block_title($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+
+        echo " Mouvement entrer sortie de CAVP | Paositra Malagasy";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+    }
+
+    // line 5
+    public function block_body($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+
+        // line 6
+        echo "
+    <h3 class=\"h3\">Mouvementr entrer/Sortie de CAVP </h3>
+         <input id=\"myInput\" type=\"text\" placeholder=\"Search..\"> <i class=\"fas fa-search\"></i>
+        ";
+        // line 9
+        echo twig_escape_filter($this->env, twig_length_filter($this->env, (isset($context["mouvements"]) || array_key_exists("mouvements", $context) ? $context["mouvements"] : (function () { throw new RuntimeError('Variable "mouvements" does not exist.', 9, $this->source); })())), "html", null, true);
+        echo " lignes  
+    <div class=\"d-flex flex-row-reverse bd-highlight\">
         <a href=\"";
-        // line 13
+        // line 11
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("mouvement_controller_crud_new");
-        echo "\">Creer un mouvement Entrer Sortie</a>
-    <div class=\"input-group\">
-        <div class=\"form-outline\">
-            ";
-        // line 16
-        echo twig_escape_filter($this->env, twig_length_filter($this->env, (isset($context["mouvements"]) || array_key_exists("mouvements", $context) ? $context["mouvements"] : (function () { throw new RuntimeError('Variable "mouvements" does not exist.', 16, $this->source); })())), "html", null, true);
-        echo " lignes <i class=\"fas fa-search\"></i>
-            <input id=\"myInput\" type=\"text\" placeholder=\"Search..\">
-        </div>
+        echo "\"  class=\"btn btn-secondary\" >Creer un mouvement Entrer Sortie</a>
     </div>
     <div class=\"table responsive\">
         <table class=\"table table-striped\" >
@@ -83,65 +116,65 @@ class __TwigTemplate_5881d8446c78e287e4a75e3736ee1f5d extends \Twig\Template
             </thead>
             <tbody id=\"myTable\">
             ";
-        // line 37
+        // line 30
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["mouvements"]) || array_key_exists("mouvements", $context) ? $context["mouvements"] : (function () { throw new RuntimeError('Variable "mouvements" does not exist.', 37, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["mouvements"]) || array_key_exists("mouvements", $context) ? $context["mouvements"] : (function () { throw new RuntimeError('Variable "mouvements" does not exist.', 30, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["mouvement"]) {
-            // line 38
+            // line 31
             echo "                <tr>
                     <td>";
+            // line 32
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "product", [], "any", false, false, false, 32), "html", null, true);
+            echo "</td>
+                    <td>";
+            // line 33
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "categorie", [], "any", false, false, false, 33), "html", null, true);
+            echo "</td>
+                    <td>";
+            // line 34
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "types", [], "any", false, false, false, 34), "html", null, true);
+            echo "</td>
+                    <td>";
+            // line 35
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "desccriptions", [], "any", false, false, false, 35), "html", null, true);
+            echo "</td>
+                    <td>";
+            // line 36
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "destination", [], "any", false, false, false, 36), "html", null, true);
+            echo "</td>
+                    <td>";
+            // line 37
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "reference", [], "any", false, false, false, 37), "html", null, true);
+            echo "</td>
+                    <td>";
+            // line 38
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "user", [], "any", false, false, false, 38), "html", null, true);
+            echo "</td>
+                    <td>";
             // line 39
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "product", [], "any", false, false, false, 39), "html", null, true);
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "dat", [], "any", false, false, false, 39), "Y-m-d"), "html", null, true);
             echo "</td>
                     <td>";
             // line 40
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "categorie", [], "any", false, false, false, 40), "html", null, true);
-            echo "</td>
-                    <td>";
-            // line 41
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "types", [], "any", false, false, false, 41), "html", null, true);
-            echo "</td>
-                    <td>";
-            // line 42
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "desccriptions", [], "any", false, false, false, 42), "html", null, true);
-            echo "</td>
-                    <td>";
-            // line 43
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "destination", [], "any", false, false, false, 43), "html", null, true);
-            echo "</td>
-                    <td>";
-            // line 44
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "reference", [], "any", false, false, false, 44), "html", null, true);
-            echo "</td>
-                    <td>";
-            // line 45
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "user", [], "any", false, false, false, 45), "html", null, true);
-            echo "</td>
-                    <td>";
-            // line 46
-            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "dat", [], "any", false, false, false, 46), "Y-m-d"), "html", null, true);
-            echo "</td>
-                    <td>";
-            // line 47
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["mouvement"], "nombre", [], "any", false, false, false, 47), "html", null, true);
+            echo twig_escape_filter($this->env, abs(twig_get_attribute($this->env, $this->source, $context["mouvement"], "nombre", [], "any", false, false, false, 40)), "html", null, true);
             echo "</td>
                     <td>
                         <a href=\"";
-            // line 49
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("mouvement_controller_crud_show", ["id" => twig_get_attribute($this->env, $this->source, $context["mouvement"], "id", [], "any", false, false, false, 49)]), "html", null, true);
+            // line 42
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("mouvement_controller_crud_show", ["id" => twig_get_attribute($this->env, $this->source, $context["mouvement"], "id", [], "any", false, false, false, 42)]), "html", null, true);
             echo "\">Detail</a>
                         <a href=\"";
-            // line 50
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("mouvement_controller_crud_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["mouvement"], "id", [], "any", false, false, false, 50)]), "html", null, true);
+            // line 43
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("mouvement_controller_crud_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["mouvement"], "id", [], "any", false, false, false, 43)]), "html", null, true);
             echo "\">Modifier</a>   
                         <form method=\"post\" action=\"";
-            // line 51
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("mouvement_controller_crud_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["mouvement"], "id", [], "any", false, false, false, 51)]), "html", null, true);
+            // line 44
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("mouvement_controller_crud_delete", ["id" => twig_get_attribute($this->env, $this->source, $context["mouvement"], "id", [], "any", false, false, false, 44)]), "html", null, true);
             echo "\" onsubmit=\"return confirm('Vous etes sur pour supprimer');\">
                             <input type=\"hidden\" name=\"_token\" value=\"";
-            // line 52
-            echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . twig_get_attribute($this->env, $this->source, $context["mouvement"], "id", [], "any", false, false, false, 52))), "html", null, true);
+            // line 45
+            echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . twig_get_attribute($this->env, $this->source, $context["mouvement"], "id", [], "any", false, false, false, 45))), "html", null, true);
             echo "\">
                             <button>Delete</button>
                         </form>
@@ -151,7 +184,7 @@ class __TwigTemplate_5881d8446c78e287e4a75e3736ee1f5d extends \Twig\Template
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 58
+            // line 51
             echo "                <tr>
                     <td colspan=\"4\">no records found</td>
                 </tr>
@@ -160,29 +193,16 @@ class __TwigTemplate_5881d8446c78e287e4a75e3736ee1f5d extends \Twig\Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['mouvement'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 62
+        // line 55
         echo "            </tbody>
         </table>
-    </div>
-     <script>
-        \$(document).ready(function(){
-        \$(\"#myInput\").on(\"keyup\", function() {
-            var value = \$(this).val().toLowerCase();
-            \$(\"#myTable tr\").filter(function() {
-            \$(this).toggle(\$(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-        });
-</script> 
-</body>
-</html>
-
+    </div> 
 ";
         
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
         
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
 
     }
 
@@ -198,29 +218,22 @@ class __TwigTemplate_5881d8446c78e287e4a75e3736ee1f5d extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  164 => 62,  155 => 58,  144 => 52,  140 => 51,  136 => 50,  132 => 49,  127 => 47,  123 => 46,  119 => 45,  115 => 44,  111 => 43,  107 => 42,  103 => 41,  99 => 40,  95 => 39,  92 => 38,  87 => 37,  63 => 16,  57 => 13,  43 => 1,);
+        return array (  197 => 55,  188 => 51,  177 => 45,  173 => 44,  169 => 43,  165 => 42,  160 => 40,  156 => 39,  152 => 38,  148 => 37,  144 => 36,  140 => 35,  136 => 34,  132 => 33,  128 => 32,  125 => 31,  120 => 30,  98 => 11,  93 => 9,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Source("<!DOCTYPE html>
-<html>
-<head>
-    <meta charset=\"utf-8\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\">
-  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\"></script>
-  <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js\"></script>
-    <title> Mouvement entrer sortie de CAVP | Paositra Malagasy</title>
-</head>
-<body>
-    <h3>Mouvementr entrer/Sortie de CAVP </h3>
-        <a href=\"{{ path('mouvement_controller_crud_new') }}\">Creer un mouvement Entrer Sortie</a>
-    <div class=\"input-group\">
-        <div class=\"form-outline\">
-            {{ mouvements|length }} lignes <i class=\"fas fa-search\"></i>
-            <input id=\"myInput\" type=\"text\" placeholder=\"Search..\">
-        </div>
+        return new Source("{% extends 'base.html.twig' %}
+
+{% block title %} Mouvement entrer sortie de CAVP | Paositra Malagasy{% endblock %}
+
+{% block body %}
+
+    <h3 class=\"h3\">Mouvementr entrer/Sortie de CAVP </h3>
+         <input id=\"myInput\" type=\"text\" placeholder=\"Search..\"> <i class=\"fas fa-search\"></i>
+        {{ mouvements|length }} lignes  
+    <div class=\"d-flex flex-row-reverse bd-highlight\">
+        <a href=\"{{ path('mouvement_controller_crud_new') }}\"  class=\"btn btn-secondary\" >Creer un mouvement Entrer Sortie</a>
     </div>
     <div class=\"table responsive\">
         <table class=\"table table-striped\" >
@@ -249,7 +262,7 @@ class __TwigTemplate_5881d8446c78e287e4a75e3736ee1f5d extends \Twig\Template
                     <td>{{ mouvement.reference }}</td>
                     <td>{{ mouvement.user }}</td>
                     <td>{{ mouvement.dat|date('Y-m-d') }}</td>
-                    <td>{{ mouvement.nombre }}</td>
+                    <td>{{ mouvement.nombre|abs }}</td>
                     <td>
                         <a href=\"{{ path('mouvement_controller_crud_show', {'id': mouvement.id}) }}\">Detail</a>
                         <a href=\"{{ path('mouvement_controller_crud_edit', {'id': mouvement.id}) }}\">Modifier</a>   
@@ -266,20 +279,8 @@ class __TwigTemplate_5881d8446c78e287e4a75e3736ee1f5d extends \Twig\Template
             {% endfor %}
             </tbody>
         </table>
-    </div>
-     <script>
-        \$(document).ready(function(){
-        \$(\"#myInput\").on(\"keyup\", function() {
-            var value = \$(this).val().toLowerCase();
-            \$(\"#myTable tr\").filter(function() {
-            \$(this).toggle(\$(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-        });
-</script> 
-</body>
-</html>
-
+    </div> 
+{% endblock %}
 ", "mouvement_controller_crud/index.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\templates\\mouvement_controller_crud\\index.html.twig");
     }
 }

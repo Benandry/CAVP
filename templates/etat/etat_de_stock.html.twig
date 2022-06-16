@@ -100,7 +100,7 @@
                                                                 {% if out is empty %}
                                                                     <td> 0 </td> 
                                                                 {% else %}
-                                                                    <td> {{ out[key][0] }} </td>
+                                                                    <td> {{ out[key][0]|abs }} </td>
                                                                 {% endif %} 
                                                             {% elseif key2 =='actuelle' %}
                                                                 <td> {{ value2 }} </td>                                                                                                                   

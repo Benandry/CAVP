@@ -280,7 +280,7 @@ $context["key2"] == "sortie")) {
                     } else {
                         // line 103
                         echo "                                                                    <td> ";
-                        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["out"]) || array_key_exists("out", $context) ? $context["out"] : (function () { throw new RuntimeError('Variable "out" does not exist.', 103, $this->source); })()), $context["key"], [], "array", false, false, false, 103), 0, [], "array", false, false, false, 103), "html", null, true);
+                        echo twig_escape_filter($this->env, abs(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["out"]) || array_key_exists("out", $context) ? $context["out"] : (function () { throw new RuntimeError('Variable "out" does not exist.', 103, $this->source); })()), $context["key"], [], "array", false, false, false, 103), 0, [], "array", false, false, false, 103)), "html", null, true);
                         echo " </td>
                                                                 ";
                     }
@@ -480,7 +480,7 @@ $context["key2"] == "actuelle")) {
                                                                 {% if out is empty %}
                                                                     <td> 0 </td> 
                                                                 {% else %}
-                                                                    <td> {{ out[key][0] }} </td>
+                                                                    <td> {{ out[key][0]|abs }} </td>
                                                                 {% endif %} 
                                                             {% elseif key2 =='actuelle' %}
                                                                 <td> {{ value2 }} </td>                                                                                                                   

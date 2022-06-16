@@ -12,7 +12,7 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* home/homepage.html.twig */
+/* /home/homepage.html.twig */
 class __TwigTemplate_90dacf16a8154924f9b95ea51ba279cc extends \Twig\Template
 {
     private $source;
@@ -40,12 +40,12 @@ class __TwigTemplate_90dacf16a8154924f9b95ea51ba279cc extends \Twig\Template
     {
         $macros = $this->macros;
         $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "home/homepage.html.twig"));
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "/home/homepage.html.twig"));
 
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "home/homepage.html.twig"));
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "/home/homepage.html.twig"));
 
-        $this->parent = $this->loadTemplate("base.html.twig", "home/homepage.html.twig", 1);
+        $this->parent = $this->loadTemplate("base.html.twig", "/home/homepage.html.twig", 1);
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -86,74 +86,74 @@ class __TwigTemplate_90dacf16a8154924f9b95ea51ba279cc extends \Twig\Template
 
         // line 5
         echo "
-<div class=\" jumbotron\" style=\"background-color: #ffe77b; margin-top: 20px\">
-    <div class=\"container\">
-        <h1 class=\"display-4\" style=\"color: #fff\">Home page CAVP </h1>
-        <p>Centre d'Approvisionement des Valeurs Postales est la fusion du Centre d’approvisionnement en Timbres-Poste et le Service Philatélique auparavant. Il est rattaché directement à la Direction des Opérations Postales. Le CAVP est composé de : section commande, section expédition et secrétariat</p>
-    </div>
-</div>
-<div class=\"container\">
-    <div class=\"row mb-3\" style=\"display: flex;\">
-        <div style=\"margin: 5rem auto\" >
-            <img src=\"/images/cavp-accueil.png\" alt=\"\">
+<main>
+  <div id=\"myCarousel\" class=\"carousel slide\" data-bs-ride=\"carousel\">
+    <div class=\"carousel-inner\">
+      <div class=\"overlay-image\" style=\"background-image:url('image/logofront.png');\"></div>
+      <div class=\"carousel-item active\">
+        <div class=\"container\">
+          <div class=\"carousel-caption text-start\">
+            <h1>Centre d'Approvisionnement en Valeurs Postales </h1>
+            <p><a class=\"btn btn-lg btn-primary\" href=\"#\">Sign up today</a></p>
+          </div>
         </div>
-        
+      </div>
+
     </div>
-    <div class=\"row\" >
-        <div class=\"col-12\">
-            <div style=\"box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);\">
-                <div class=\"q-container p-4\">
-                    <div class=\"row\">
-                        <div class=\"col-2 text-center\">
-                            <img src=\"";
-        // line 25
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/menabe-maitso.png"), "html", null, true);
-        echo "\" width=\"100\" height=\"100\">
-                            <div class=\"d-block mt-3 vote-arrows\">
-                                <a class=\"vote-up\" href=\"#\"><i class=\"far fa-arrow-alt-circle-up\"></i></a>
-                                <a class=\"vote-down\" href=\"#\"><i class=\"far fa-arrow-alt-circle-down\"></i></a>
-                            </div>
-                        </div>
-                        <div class=\"col\">
-                          <h2 class=\"q-title\">Information </h2>
-                            <div class=\"q-display p-3\">
-                                <i class=\"fa fa-quote-left mr-3\"></i>
-                                <p class=\"d-inline\">
-                                    Le CAVP assure l’approvisionnement des bureaux en valeurs postales tel que Timbre-poste et Produits Nouveaux Postaux (autres produits et produits philatéliques qu’il confectionne par ses soins. 
-                                     Il effectue la vente par correspondance à l’Etranger, et gère les comptes de réserve des philatélistes. 
-                                     Le CAVP élabore le catalogue des produits philatéliques dont il dispose au caveau.</p>
-                                <p class=\"pt-4\"><strong>--Timbre postales --</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  </div>
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class=\"container marketing\">
+
+    <!-- Three columns of text below the carousel -->
     <div class=\"row\">
-        <div class=\"col-12\">
-            <div style=\"box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);\">
-                <div class=\"q-container-show p-4\">
-                    <div class=\"row\">
-                        <div class=\"col-2 text-center\">
-                            <img src=\"/images/TIMBRE 1200dpi.jpg\" width=\"150\" height=\"200\">
-                        </div>
-                        <div class=\"col\">
-                            <h1 class=\"q-title-show\"> CAVP </h1>
-                            <div class=\"q-display p-3\">
-                                <i class=\"fa fa-quote-left mr-3\"></i>
-                                <p class=\"d-inline\">CAVP est la fusion du Centre d’approvisionnement en Timbres-Poste et le Service Philatélique auparavant. Il est rattaché directement à la Direction des Opérations Postales.</p>
-                                <i class=\"fa fa-quote-left mr-3\"></i>
-                                <p class=\"pt-4\"><strong>-- Produit des valeurs Postaux -- </strong></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+      <div class=\"col-lg-4\">
+        <img loading=\"lazy\" width=\"150\" height=\"150\" src=\"";
+        // line 33
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/images/vonona.png"), "html", null, true);
+        echo "\"/>
+        <h2 class = \"h1\">Information </h2>
+            <p>
+                Le CAVP assure l’approvisionnement des bureaux en valeurs postales tel que Timbre-poste et Produits Nouveaux Postaux (autres produits et produits philatéliques qu’il confectionne par ses soins. 
+                Il effectue la vente par correspondance à l’Etranger, et gère les comptes de réserve des philatélistes. 
+                Le CAVP élabore le catalogue des produits philatéliques dont il dispose au caveau.
+            </p>
+      </div>
+
+      <div class=\"col-lg-4\">
+        <img loading=\"lazy\" width=\"150\" height=\"150\"src=\"";
+        // line 43
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/images/menabe-maitso.png"), "html", null, true);
+        echo "\"/>
+        <h2 class=\"q-title-show\">CAVP</h2> 
+            <p>
+                Centre d'Approvisionement des Valeurs Postales est la fusion du Centre d’approvisionnement en Timbres-Poste et le Service Philatélique auparavant. 
+                Il est rattaché directement à la Direction des Opérations Postales. Le CAVP est composé de : section commande, section expédition et secrétariat
+            </p>
+      </div>
+
+      <div class=\"col-lg-4\">
+        <img loading=\"lazy\" width=\"150\" height=\"150\"src=\"";
+        // line 52
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/images/TIMBRE 1200dpi.jpg "), "html", null, true);
+        echo "\"/>
+        <h2 class=\"q-title-show\">Produits Postaux</h2>
+        <p class=\"d-inline\">    
+            CAVP est la fusion du Centre d’approvisionnement en Timbres-Poste et le Service Philatélique auparavant.
+            Il est rattaché directement à la Direction des Opérations Postales.</p>
+      </div>
+      >
     </div>
 
-</div>
+    <hr class=\"featurette-divider\">
+
+  </div>
+</main>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -165,7 +165,7 @@ class __TwigTemplate_90dacf16a8154924f9b95ea51ba279cc extends \Twig\Template
 
     public function getTemplateName()
     {
-        return "home/homepage.html.twig";
+        return "/home/homepage.html.twig";
     }
 
     public function isTraitable()
@@ -175,7 +175,7 @@ class __TwigTemplate_90dacf16a8154924f9b95ea51ba279cc extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  110 => 25,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
+        return array (  143 => 52,  131 => 43,  118 => 33,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -185,72 +185,66 @@ class __TwigTemplate_90dacf16a8154924f9b95ea51ba279cc extends \Twig\Template
 
 {% block body %}
 
-<div class=\" jumbotron\" style=\"background-color: #ffe77b; margin-top: 20px\">
-    <div class=\"container\">
-        <h1 class=\"display-4\" style=\"color: #fff\">Home page CAVP </h1>
-        <p>Centre d'Approvisionement des Valeurs Postales est la fusion du Centre d’approvisionnement en Timbres-Poste et le Service Philatélique auparavant. Il est rattaché directement à la Direction des Opérations Postales. Le CAVP est composé de : section commande, section expédition et secrétariat</p>
-    </div>
-</div>
-<div class=\"container\">
-    <div class=\"row mb-3\" style=\"display: flex;\">
-        <div style=\"margin: 5rem auto\" >
-            <img src=\"/images/cavp-accueil.png\" alt=\"\">
+<main>
+  <div id=\"myCarousel\" class=\"carousel slide\" data-bs-ride=\"carousel\">
+    <div class=\"carousel-inner\">
+      <div class=\"overlay-image\" style=\"background-image:url('image/logofront.png');\"></div>
+      <div class=\"carousel-item active\">
+        <div class=\"container\">
+          <div class=\"carousel-caption text-start\">
+            <h1>Centre d'Approvisionnement en Valeurs Postales </h1>
+            <p><a class=\"btn btn-lg btn-primary\" href=\"#\">Sign up today</a></p>
+          </div>
         </div>
-        
+      </div>
+
     </div>
-    <div class=\"row\" >
-        <div class=\"col-12\">
-            <div style=\"box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);\">
-                <div class=\"q-container p-4\">
-                    <div class=\"row\">
-                        <div class=\"col-2 text-center\">
-                            <img src=\"{{ asset('images/menabe-maitso.png') }}\" width=\"100\" height=\"100\">
-                            <div class=\"d-block mt-3 vote-arrows\">
-                                <a class=\"vote-up\" href=\"#\"><i class=\"far fa-arrow-alt-circle-up\"></i></a>
-                                <a class=\"vote-down\" href=\"#\"><i class=\"far fa-arrow-alt-circle-down\"></i></a>
-                            </div>
-                        </div>
-                        <div class=\"col\">
-                          <h2 class=\"q-title\">Information </h2>
-                            <div class=\"q-display p-3\">
-                                <i class=\"fa fa-quote-left mr-3\"></i>
-                                <p class=\"d-inline\">
-                                    Le CAVP assure l’approvisionnement des bureaux en valeurs postales tel que Timbre-poste et Produits Nouveaux Postaux (autres produits et produits philatéliques qu’il confectionne par ses soins. 
-                                     Il effectue la vente par correspondance à l’Etranger, et gère les comptes de réserve des philatélistes. 
-                                     Le CAVP élabore le catalogue des produits philatéliques dont il dispose au caveau.</p>
-                                <p class=\"pt-4\"><strong>--Timbre postales --</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  </div>
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class=\"container marketing\">
+
+    <!-- Three columns of text below the carousel -->
     <div class=\"row\">
-        <div class=\"col-12\">
-            <div style=\"box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);\">
-                <div class=\"q-container-show p-4\">
-                    <div class=\"row\">
-                        <div class=\"col-2 text-center\">
-                            <img src=\"/images/TIMBRE 1200dpi.jpg\" width=\"150\" height=\"200\">
-                        </div>
-                        <div class=\"col\">
-                            <h1 class=\"q-title-show\"> CAVP </h1>
-                            <div class=\"q-display p-3\">
-                                <i class=\"fa fa-quote-left mr-3\"></i>
-                                <p class=\"d-inline\">CAVP est la fusion du Centre d’approvisionnement en Timbres-Poste et le Service Philatélique auparavant. Il est rattaché directement à la Direction des Opérations Postales.</p>
-                                <i class=\"fa fa-quote-left mr-3\"></i>
-                                <p class=\"pt-4\"><strong>-- Produit des valeurs Postaux -- </strong></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+      <div class=\"col-lg-4\">
+        <img loading=\"lazy\" width=\"150\" height=\"150\" src=\"{{ asset('build/images/vonona.png') }}\"/>
+        <h2 class = \"h1\">Information </h2>
+            <p>
+                Le CAVP assure l’approvisionnement des bureaux en valeurs postales tel que Timbre-poste et Produits Nouveaux Postaux (autres produits et produits philatéliques qu’il confectionne par ses soins. 
+                Il effectue la vente par correspondance à l’Etranger, et gère les comptes de réserve des philatélistes. 
+                Le CAVP élabore le catalogue des produits philatéliques dont il dispose au caveau.
+            </p>
+      </div>
+
+      <div class=\"col-lg-4\">
+        <img loading=\"lazy\" width=\"150\" height=\"150\"src=\"{{ asset('build/images/menabe-maitso.png') }}\"/>
+        <h2 class=\"q-title-show\">CAVP</h2> 
+            <p>
+                Centre d'Approvisionement des Valeurs Postales est la fusion du Centre d’approvisionnement en Timbres-Poste et le Service Philatélique auparavant. 
+                Il est rattaché directement à la Direction des Opérations Postales. Le CAVP est composé de : section commande, section expédition et secrétariat
+            </p>
+      </div>
+
+      <div class=\"col-lg-4\">
+        <img loading=\"lazy\" width=\"150\" height=\"150\"src=\"{{ asset('build/images/TIMBRE 1200dpi.jpg ') }}\"/>
+        <h2 class=\"q-title-show\">Produits Postaux</h2>
+        <p class=\"d-inline\">    
+            CAVP est la fusion du Centre d’approvisionnement en Timbres-Poste et le Service Philatélique auparavant.
+            Il est rattaché directement à la Direction des Opérations Postales.</p>
+      </div>
+      >
     </div>
 
-</div>
+    <hr class=\"featurette-divider\">
+
+  </div>
+</main>
 {% endblock %}
-", "home/homepage.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\templates\\home\\homepage.html.twig");
+", "/home/homepage.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\templates\\home\\homepage.html.twig");
     }
 }

@@ -7,6 +7,7 @@
 {% block body %}
 
 {# ------------------------#}   
+{% if app.user %}
 
     <div class="row" >
         <div class="col-12">
@@ -95,6 +96,15 @@
             </div>
         </div>
     </div>
+    
+    {% else %}
+    <h1>Page not found 404 </h1>
+
+    <p>
+        The requested page couldn't be located. Checkout for any URL
+        misspelling or <a href="{{ path('homepage') }}">return to the authentification </a>.
+    </p>
+    {% endif %}   
     
 
 {% endblock %}

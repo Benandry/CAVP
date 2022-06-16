@@ -54,13 +54,14 @@ class MouvementController extends AbstractController
         $traet = $traitement->index($init, $enter,$out, $current);
         $current = $traet['courant'];
         $initial = $traet['initial'];
-
+        $imp = true;
         return $this->render('impression/etat_de_stock.html.twig',[
             'courant' =>$current,
             'initial' =>$initial,
             'init' => $init,
             'entrer' =>$entrer,
-            'sort' =>$out
+            'sort' =>$out,
+            'imp' => $imp
         ]);
     }
       //Route pour les telechargement de produits entrer

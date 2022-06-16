@@ -65,7 +65,7 @@ class __TwigTemplate_2d2b2c16e11219f4a90ff21b9d4fea49 extends \Twig\Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "main"));
 
         // line 4
-        echo "    <h2>Bienvenu dans l'espace d'administrateur de CAVP </h2>
+        echo "    <h2>Bienvenu dans l'espace d'administration de CAVP </h2>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -95,7 +95,7 @@ class __TwigTemplate_2d2b2c16e11219f4a90ff21b9d4fea49 extends \Twig\Template
         return new Source("{% extends '@EasyAdmin/page/content.html.twig' %}
 
 {% block main %}
-    <h2>Bienvenu dans l'espace d'administrateur de CAVP </h2>
+    <h2>Bienvenu dans l'espace d'administration de CAVP </h2>
 {% endblock %}", "admin/dashboard.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\templates\\admin\\dashboard.html.twig");
     }
 }

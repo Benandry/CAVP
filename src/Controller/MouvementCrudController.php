@@ -31,6 +31,7 @@ class MouvementCrudController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+           // dd($form->getData());
             $entityManager->persist($mouvement);
             $entityManager->flush();
 

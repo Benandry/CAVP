@@ -26,15 +26,15 @@ class MouvementType extends AbstractType
         $builder
             ->add('produit',EntityType::class,[
                 'class' => Produits::class,
-                'label' => "Produits" 
+                'label' => "Nom de produit :" 
             ])
             ->add('Categorie',EntityType::class,[
                 'class' => Categorie::class,
-                'label' => "Categorie" 
+                'label' => "Nom de categorie :" 
             ])
             ->add('Agence',EntityType::class,[
                 'class' => Agence::class,
-                'label' => "Agences :" 
+                'label' => " Agences :" 
             ])
             ->add('dateEntrer',DateType::class,[
                 'label' => 'Date d\'operation :'
@@ -64,7 +64,10 @@ class MouvementType extends AbstractType
             ])
             ->add('submit',SubmitType::class,[
                 'label' => "Effectuer l'operation ",
-            ]);
+                'validate' => true,
+            ])
+            ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
