@@ -8,55 +8,61 @@
         {% endblock %}
     </head>
     <body>
-        
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand titre" href="{{ path('homepage', {'source':'page d\'acceuil de CAVP'}) }}">CAVP Paositra Malagasy</a>
+                <a class="navbar-brand titre fw-bold" href="{{ path('homepage', {'source':'page d\'acceuil de CAVP'}) }}"> CAVP Paositra Malagasy</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     {% if app.user %}
                         <ul class="navbar-nav me-auto mb-2 mb-md-0">
                             <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ path('admin', {'source':'administrateur'}) }}">Administrateur</a>
+                            <a class="nav-link btn btn-outline-ligth btn-lg liens" aria-current="page" href="{{ path('admin', {'source':'administrateur'}) }}"><i class='fas fa-user-cog' class="admin"></i> Administrateur</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link" href="{{ path('Product_dispo', {'source':'produits disponible'}) }}">Produits Dispo</a>
+                            <a class="nav-link btn btn-outline-ligth btn-lg liens" href="{{ path('Product_dispo', {'source':'produitsdisponible'}) }}" ><i class='fas fa-coins' class="admin"></i> Recapitulation </a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link" href="{{ path('etat_de_stock', {'source':'etat de stock'}) }}">Etat de Stock</a>
+                            <a class="nav-link btn btn-outline-ligth btn-lg liens"  href="{{ path('etat_de_stock', {'source':'etatdestock'}) }}"> <i class='fas fa-bacon' class="admin"></i> Etat de Stock</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link" href="{{ path('order_out', {'source':'ordre de sortie'}) }}">Ordre de sortie</a>
+                            <a class="nav-link btn btn-outline-ligth btn-lg liens"  href="{{ path('order_out', {'source':'ordredesortie'}) }}"> <i class='fas fa-external-link-alt'></i>  Ordre de sortie</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link" href="{{ path('history', {'source':'compte rendu '}) }}">Compte Rendu</a>
+                            <a class="nav-link btn btn-outline-ligth btn-lg liens"  href="{{ path('history', {'source':'compterendu '}) }}"> <i class="fas fa-file-alt"></i>  Compte Rendu</a>
                             </li>
                         </ul>
                         <div class="d-flex">
-                            <a href="{{ path('app_logout', {'source':'deconnecter'}) }}" class="btn btn-outline-danger">Logout</a>
+                            <a href="{{ path('app_logout', {'source':'deconnecter'}) }}" class="btn btn-outline-danger btn-sm"> <i class="fa-solid fa-user-slash"></i>Deconnexion</a>
                         </div>
                     {% else %}
-                        <div class="d-flex">
-                        <a href="{{ path('app_login', {'source':' connecter '}) }}" class="btn btn-outline-danger">Login</a>
-                        </div>
+                        <span class="float-end">
+                            <a href="{{ path('app_login', {'source':' connecter '}) }}" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-user"></i>Connexion</a>
+                        </span>
                     {% endif %}
                 </div>
             </div>
-            </nav>
-        </div>
-
-    {% block body %}{% endblock %}
+        </nav>
+    </header>
+    {% block body %}
+    <main>
+    </main>
+    {% endblock %}
 
   <!-- FOOTER -->
-  <footer class="container">
-    <p class="float-end"><a href="#">Back to top</a>
-    </p>
-    <p>&copy; Copyright <span style="color:#498000;">{{ 'now' | date('Y') }}</span> Paositra Malagasy <i style="color:#e3151a;" class="fa-thin fa-barcode"></i>
-        <a href="paositramada.mg/cavp"> Paositramalagasy CAVP </a></p>
-  </footer>
+
+
+  
+<footer class="footer mt-auto py-3 bg-light">
+  <div class="container">
+        <p>
+            &copy; Copyright <span style="color:#498000;">{{ 'now' | date('Y') }}</span> Paositra Malagasy <i style="color:#e3151a;" class="fa-thin fa-barcode"></i>
+            <a href="paositramada.mg/cavp"> Paositramalagasy CAVP </a>
+        </p>
+  </div>
+</footer>
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}

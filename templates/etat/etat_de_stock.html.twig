@@ -2,127 +2,200 @@
 
 {% block title %}Etat de stock | Paositra malagasy! {% endblock %}
 {% block body %}
-    <div class="row" >
-        <div class="col-12">
-            <div style="box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);">
-                <div class="q-container p-4">
-                    <div class="row">
-                        <div class="col">
-                          <h2 class="q-title"><p style="color:#333940;" class="lead" > Situation du stocks: <span style="color:#498000;">{{ 'now' |format_date(locale='fr') }}</span></p> </h2>
-                            <div class="q-display p-3">
-                                <p class="d-inline">
-                                <div id="sidebar">
-                                <div class="clearfix">
-                                    <span class="float-right" style="margin-top: 5px;">
-                                        Selectionner les : <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal"> Produits</button>
-                                        <div class="modal" id="myModal">
-                                            {{ form_start(form) }}
+    <main>
+        {% if app.user %}
+            <div class="row" >
+                <div class="col-12">
+                    <div style="box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);">
+                        <div class="q-container p-4">
+                            <div class="row">
+                                <div class="col">
+                                <h2 class="fw-bolder"> Situation du stocks: <span style="color:#498000;">{{ 'now' |format_date(locale='fr') }}</span></h2>
+                                    <div class="q-display p-3">
+                                            <span class="btn btn-danger btn-sm disabled">Selectionner les : </span>
+                                            <button type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#myModal"> Produits</button>
+                                            <div class="modal" id="myModal">
+                                                {{ form_start(form) }}
                                                 <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title"> Nom de produit </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                                    </div>
-                                                    {{ form_start(form) }}
-                                                    <div class="modal-body">
-                                                        <div class="form-group">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title"> Nom de produit </h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        {{ form_start(form) }}
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
                                                                 <label for="select">Nom de produit</label>
                                                                 {{ form_widget(form.select, {'attr': {'class': 'form-control'}}) }}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                            <div class="form-group">
-                                                            {{ form_row(form.submit, { 'label': 'Selectionner' }) }}
+                                                        <div class="modal-footer">
+                                                                <div class="form-group">
+                                                                    {{ form_row(form.submit, { 'label': 'Selectionner' }) }}
+                                                                </div>
                                                         </div>
-                                                    </div>
-                                                    {{ form_end(form) }}
+                                                        {{ form_end(form) }}
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            {% if isDate == true %}
+                                                <span class="float-end">
+                                                    <span class="btn btn-danger btn-sm disabled">Preciser : </span>
+                                                    <button type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#myModal2">la date </button>
+                                                    <div class="modal" id="myModal2">
+                                                        <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title"> Date preciser </h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                            </div>
+                                                            {{ form_start(formD) }}
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label for="select">Date </label>
+                                                                    {{ form_widget(formD.dateP,{'label': 'Date '}) }}
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                    <div class="form-group">
+                                                                        {{ form_row(formD.preciser, { 'label': 'preciser' }) }}
+                                                                    </div>
+                                                            </div>
+                                                            {{ form_end(formD) }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </span>
+                                            {% endif %}   
                                             {% if issubmitted == true %}
-                                                <h4 class="text-danger"><label for="cars">Nom du produits :<em>{{ init.0.Produits }}</em></h4>
+                                                <h4 class="text-danger"><label for="cars">Nom du produits :<em>  {{ init.0.Produits }}</em></h4>
                                             {% endif %}
-                                        <ul class="nav">
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Par </a>
-                                                <div class="dropdown-menu" aria-labelledby="dropdown09">
-                                                    <a class="dropdown-item" href="#">Actuel</a>
-                                                    <a class="dropdown-item" href="{{ path('periode_mensuel', {'source':'etat mensuel'}) }}">Mensuel</a>
-                                                    <a class="dropdown-item" href="{{ path('periode_annuel', {'source':'etat annuel'}) }}">Annuel</a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                             {% if isDate == true %}
-                                                {{ form_start(formD) }}
-                                                     {{ form_widget(formD) }}
-                                                {{ form_end(formD) }}
-                                             {% endif %}
-                                            </li>
-                                        </ul>
-                                    </span> 
-                                </div>                         
-                                   <div class="table responsive-xxl">
-                                        <table class="table table-striped table-bordered table-hover" data-toggle="table" data-search="true">
-                                            <thead>
-                                                <tr class="table-danger">
-                                                    <th data-sortable="true" data-field="Ordre"> Ordre</th>
-                                                    {% if issubmitted == false %}
-                                                        <th data-field="Categorie"> Produit </th>
-                                                    {% endif %}
-                                                    <th data-field="produit"> Categorie </th>
-                                                    <th data-field="Valeur Faciales">Valeur Faciales</th>
-                                                    <th data-field="Stock initial">Stock initial</th>
-                                                    <th data-field="Entrée">Entrée</th>
-                                                    <th data-field="Sortie">Sortie</th>
-                                                    <th data-field="Sock Actuel">Stock Acteul </th>
-                                                    
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {% for key,value in courant %}
-                                                      <tr>
-                                                        {% for key2, value2 in value %} 
-                                                            
-                                                            {% if key2 =='ordre' %}
-                                                                <td> {{ value2 }}  </td>
-                                                            {% elseif key2 =='NomDeCategorie' %}
-                                                                <td> {{ value2 }} </td>  
-                                                            {% elseif key2 =='produit' %}
-                                                                <td> {{ value2 }} </td>
-                                                            {% elseif key2 =='valeurFaciale' %}
-                                                                <td> {{ value2 }} </td>
-                                                            {% elseif key2 =='initiale' %}
-                                                                <td> {{ initial[key][0] }} </td> 
-                                                            {% elseif key2 =='entrer' %}
-                                                                <td> {{ entree[key][0] - initial[key][0] }} </td> 
-                                                            {% elseif key2 =='sortie' %}
-                                                                {% if out is empty %}
-                                                                    <td> 0 </td> 
-                                                                {% else %}
-                                                                    <td> {{ out[key][0]|abs }} </td>
-                                                                {% endif %} 
-                                                            {% elseif key2 =='actuelle' %}
-                                                                <td> {{ value2 }} </td>                                                                                                                   
-                                                            {% endif %}
-                                                        {% endfor %}
-                                                    </tr>
-                                                {% endfor %}
-                                            </tbody>
-                                        </table>
-                                   </div>
-                                </p>
-                                <div class="d-flex flex-row-reverse bd-highlight">
-                                    <div class="p-2 bd-highlight">
-                                        <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }} </p>
+                                            <!--*****************************************************************************************************-->
+                                            <span class="text-center">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-secondary dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Etat par 
+                                                    </a>
 
-                                        <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
-                                            {{ app.user.prenom }}
-                                            {% if issubmitted == false %}
-                                                <p> <a href="{{ path('impression_product') }}" target="_blank" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer ce fichier generale</button></a></p>
-                                            {% else %}
-                                                <p> <a href="{{ path('impression_select',{id: init.0.id}) }}" target="_blank" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer ce fichier</button></a></p>
-                                            {% endif %}
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                        <li>
+                                                            <a class="dropdown-item" href="{{ path('history', {'source':'tous les produits par categorie'}) }}">Actuel</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="{{ path('periode_mensuel', {'source':'etat mensuel'}) }}">Mensuel</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="{{ path('periode_annuel', {'source':'etat annuel'}) }}">Annuel</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </span>
+
+                                            <!-- **********************************************************************************-->
+                                        </div>
+                                        <div class="d-flex flex-row-reverse bd-highlight">
+                                            <div class="p-2 bd-highlight">
+                                                <input id="search" type="text"  placeholder="Recherche..."> 
+                                            </div>
+                                        </div>
+
+                                        <div class="table responsive-xxl">
+                                                <table class="table table-striped table-bordered table-hover" id="myTable" >
+                                                    <thead>
+                                                        <tr class="table-danger">
+                                                            <th data-sortable="true" data-field="Ordre"> Ordre</th>
+                                                            {% if issubmitted == false %}
+                                                                <th data-field="Categorie"> Produit </th>
+                                                            {% endif %}
+                                                            <th data-field="produit"> Categorie </th>
+                                                            <th data-field="Valeur Faciales">Valeur Faciales</th>
+                                                            <th data-field="Stock initial">Stock initial</th>
+                                                            <th data-field="Entrée">Entrée</th>
+                                                            <th data-field="Sortie">Sortie</th>
+                                                            <th data-field="Sock Actuel">Stock Acteul </th>
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="table">
+                                                    {% set sumValueInit = 0 %}
+                                                    {% set sumValueEnter = 0 %}
+                                                    {% set sumValueOut = 0 %}
+                                                    {% set sumValueCurrent = 0 %}
+                                                    {% set valeur = 0 %}
+                                                        {% for key,value in courant %}
+                                                            <tr>
+                                                                {% for key2, value2 in value %} 
+                                                                    
+                                                                    {% if key2 =='ordre' %}
+                                                                        <td> {{ value2 }}  </td>
+                                                                    {% elseif key2 =='NomDeCategorie' %}
+                                                                        <td> {{ value2 }} </td>  
+                                                                    {% elseif key2 =='produit' %}
+                                                                        <td> {{ value2 }} </td>
+                                                                    {% elseif key2 =='valeurFaciale' %}
+                                                                        <td> {{ value2 }} </td>
+                                                                    {% elseif key2 =='initiale' %}
+                                                                        {% set valeur = initial[key][0] %}
+                                                                        <td> {{ valeur }} </td>
+                                                                        {% set sumValueInit = sumValueInit + valeur %} 
+                                                                    {% elseif key2 =='entrer' %}
+                                                                        {% set valeur = entree[key][0] - initial[key][0] %}
+                                                                        <td> {{ valeur }} </td> 
+                                                                        {% set sumValueEnter = sumValueEnter + valeur %}
+                                                                    {% elseif key2 =='sortie' %}
+                                                                        {% if out is empty %}
+                                                                            {% set valeur = 0 %}
+                                                                            <td> {{ valeur }} </td> 
+                                                                            {% set sumValueOut = sumValueOut + valeur %}
+                                                                        {% else %}
+                                                                            {% set valeur = out[key][0]|abs %}
+                                                                            {% set sumValueOut = sumValueOut + valeur %}
+                                                                            <td> {{ valeur }} </td>
+                                                                        {% endif %} 
+                                                                    {% elseif key2 =='actuelle' %}
+                                                                        {% set valeur = value2 %}
+                                                                        {% set sumValueCurrent = sumValueCurrent + valeur %}
+                                                                        <td> {{ valeur }} </td>                                                                                                                   
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </tr>
+                                                        {% endfor %}
+                                                            <tr>
+                                                                {% set valeur = 0 %}
+                                                                {% if issubmitted == true %}
+                                                                    <th colspan="3" class="text-right pr-3"> Total (nombre)</th>
+                                                                {% else %}
+                                                                <th colspan="4" class="text-right pr-3"> Total (nombre)</th>
+                                                                {% endif %}
+                                                                {% for key, value in total %}
+                                                                            {% if key == "initiale"  %}
+                                                                                {% set valeur = sumValueInit %}
+                                                                                <th>  {{ valeur }} </th>
+                                                                            {% elseif key == "entrer" %}
+                                                                                <th> {{ sumValueEnter }} </th>
+                                                                            {% elseif key == "sortie"%} 
+                                                                                <th>{{ sumValueOut }} </th>
+                                                                            {% elseif key == "actuelle" %}                                                                            
+                                                                                <th> {{ sumValueCurrent }} </th>
+                                                                            {% endif %}
+                                                                {% endfor %}
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                        </p>
+                                        <div class="d-flex flex-row-reverse bd-highlight">
+                                            <div class="p-2 bd-highlight">
+                                                <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }} </p>
+                                                <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
+                                                
+                                                    {% if issubmitted == false %}
+                                                        <p> <a href="{{ path('impression_product') }}" target="_blank" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer</button></a></p>
+                                                    {% else %}
+                                                        <p> <a href="{{ path('impression_select',{id: init.0.id}) }}" target="_blank" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer ce fichier</button></a></p>
+                                                    {% endif %}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -130,9 +203,14 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    
+        {% else %}
+            <h1>Page not found 404 </h1>
+            <p>
+                The requested page couldn't be located. Checkout for any URL
+                misspelling or <a href="{{ path('homepage') }}">return to the authentification </a>.
+            </p>
+        {% endif %}
+    </main>
 
 {% endblock %}
 

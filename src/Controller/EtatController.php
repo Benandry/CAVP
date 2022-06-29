@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Traitement\Traitement;
 use App\Entity\Produits;
 use App\Entity\Categorie;
+use App\Traitement\Traitement;
 use App\Repository\ProduitsRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,8 +15,10 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+//#[IsGranted('ROLE_ADMIN')]
 class EtatController extends AbstractController
 {
   #[Route('/etat-de-stocks/{mois}', name: 'etat_de_stock')]
@@ -60,14 +62,14 @@ class EtatController extends AbstractController
       $trtmt = $traitement->index($init, $enter,$out, $current, $beginCurrent);
       $current = $trtmt['courant'];
       $init = $trtmt['initial'];
-      //$entrer = $trtmt['entree'];
-      //$sortie = $trtmt['out'];
+      $total = $current[0];
       $sortie = $out;
       //$beginCurrent = $trtmt['beginCurrent'];
       //dd($beginCurrent);
 //dd($val)
         return $this->render('periode/mensuel.html.twig', [
-            'courant' =>$current,
+            'total' => $total, 
+          'courant' =>$current,
             'init' =>$init,
             'entrer' =>$entrer,
             'sort' =>$sortie,
@@ -113,7 +115,10 @@ class EtatController extends AbstractController
       $trtmt = $traitement->index($init, $enter,$out, $current);
       $current = $trtmt['courant'];
       $initial = $trtmt['initial'];
+      $total = $current[0];
+      
       return $this->render('etat/etat_de_stock.html.twig', [
+        'total' => $total,
         'courant' =>$current,
         'initial' =>$initial,
         'entree' =>$entrer,
@@ -145,7 +150,7 @@ class EtatController extends AbstractController
       'widget' => 'single_text',
       'label' =>"Entrer la date :"
     ])
-    ->add('submit', SubmitType::class)
+    ->add('preciser', SubmitType::class)
     ->getForm();
 
     $formD->handleRequest($request);
@@ -168,8 +173,10 @@ class EtatController extends AbstractController
       $initial = $trtmt['initial'];
       $out = $traitement->setSize($out, $current, 'sortie');
       $entrer = $traitement->setSize($enter, $current, 'entrer');
+      $total = $current[0];
         
       return $this->render('etat/etat_de_stock.html.twig',[
+        'total' =>$total,
         'courant' =>$current,
         'initial' =>$initial,
         'entree' =>$entrer,
@@ -180,15 +187,19 @@ class EtatController extends AbstractController
         'isDate' => $isDate
       ]);
     }
-
+    //dd($out);
     $out = $traitement->setSize($out, $current, 'sortie');
     $entrer = $traitement->setSize($enter, $current, 'entrer');
     $traet = $traitement->index($init, $enter,$out, $current);
     $current = $traet['courant'];
     $initial = $traet['initial'];
+    $total = $current[0];
+   // dd($out);
+
+    //dd($total);
     return $this->render('etat/etat_de_stock.html.twig',[
         'courant' =>$current,
-        //'init' =>$init,
+        'total' =>$total,
         'initial' =>$initial,
         //'entrer' =>$enter,
         'entree' =>$entrer,

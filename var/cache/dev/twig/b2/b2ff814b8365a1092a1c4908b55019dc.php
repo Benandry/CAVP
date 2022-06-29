@@ -87,106 +87,106 @@ class __TwigTemplate_b021b7ba73977a25c8c8299cbeb4ca48 extends \Twig\Template
         // line 7
         if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 7, $this->source); })()), "user", [], "any", false, false, false, 7)) {
             // line 8
-            echo "<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-    <div class=\"row\" >
-        <div class=\"col-12\">
-            <div style=\"box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);\">
-                <div class=\"q-container p-4\">
-                    <div class=\"row\">
-                        <div class=\"col\">
-                          <h4 class=\"q-title\" style=\"color: #e3151a;\">Touts les produits entrée &#128520</h4>
-                            <div class=\"q-display p-3\">
-                                <div class=\"class=\"table responsive-xxl\"\">
-                                    <table class=\"table table-striped table-bordered table-hover\">
-                                        <thead>
-                                            <tr class=\"table-danger\">
-                                                <th scope=\"col\"> Nom du produits </th>
-                                                <th scope=\"col\"> Abreviation </th>  
-                                                <th scope=\"col\"> Quantités </th>
-                                                <th scope=\"col\">  Date  </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            ";
-            // line 31
-            $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["entrer"]) || array_key_exists("entrer", $context) ? $context["entrer"] : (function () { throw new RuntimeError('Variable "entrer" does not exist.', 31, $this->source); })()));
-            foreach ($context['_seq'] as $context["_key"] => $context["entre"]) {
-                // line 32
-                echo "                                                <tr>
-                                                    <td> ";
-                // line 33
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["entre"], "nomProduit", [], "any", false, false, false, 33), "html", null, true);
-                echo "</td> 
-                                                    <td> ";
-                // line 34
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["entre"], "Abbreviation", [], "any", false, false, false, 34), "html", null, true);
-                echo "</td> 
-                                                    <td>";
-                // line 35
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["entre"], "quantite", [], "any", false, false, false, 35), "html", null, true);
-                echo "</td>
-                                                    <td>";
-                // line 36
-                echo twig_escape_filter($this->env, $this->extensions['Twig\Extra\Intl\IntlExtension']->formatDate($this->env, twig_get_attribute($this->env, $this->source, $context["entre"], "dateEntrer", [], "any", false, false, false, 36), "medium", "", null, "gregorian", "fr"), "html", null, true);
-                echo "</td>
+            echo "    <main>
+        <div class=\"row\" >
+            <div class=\"col-12\">
+                <div style=\"box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);\">
+                    <div class=\"q-container p-4\">
+                        <div class=\"row\">
+                            <div class=\"col\">
+                            <h4 class=\"q-title\" style=\"color: #e3151a;\">Touts les produits entrée &#128520</h4>
+                                <div class=\"q-display p-3\">
+                                    <div class=\"class=\"table responsive-xxl\"\">
+                                        <table class=\"table table-striped table-bordered table-hover\">
+                                            <thead>
+                                                <tr class=\"table-danger\">
+                                                    <th scope=\"col\"> Nom du produits </th>
+                                                    <th scope=\"col\"> Abreviation </th>  
+                                                    <th scope=\"col\"> Quantités </th>
+                                                    <th scope=\"col\">  Date  </th>
                                                 </tr>
-                                            ";
+                                            </thead>
+                                            <tbody>
+                                                ";
+            // line 28
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["entrer"]) || array_key_exists("entrer", $context) ? $context["entrer"] : (function () { throw new RuntimeError('Variable "entrer" does not exist.', 28, $this->source); })()));
+            foreach ($context['_seq'] as $context["_key"] => $context["entre"]) {
+                // line 29
+                echo "                                                    <tr>
+                                                        <td> ";
+                // line 30
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["entre"], "nomProduit", [], "any", false, false, false, 30), "html", null, true);
+                echo "</td> 
+                                                        <td> ";
+                // line 31
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["entre"], "Abbreviation", [], "any", false, false, false, 31), "html", null, true);
+                echo "</td> 
+                                                        <td>";
+                // line 32
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["entre"], "quantite", [], "any", false, false, false, 32), "html", null, true);
+                echo "</td>
+                                                        <td>";
+                // line 33
+                echo twig_escape_filter($this->env, $this->extensions['Twig\Extra\Intl\IntlExtension']->formatDate($this->env, twig_get_attribute($this->env, $this->source, $context["entre"], "dateEntrer", [], "any", false, false, false, 33), "medium", "", null, "gregorian", "fr"), "html", null, true);
+                echo "</td>
+                                                    </tr>
+                                                ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['entre'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 39
-            echo "                                        </tbody>
-                                    </table>
-                                </div>
-                                        <div>
-                                            <p>
-                                                Antananarivo le ,";
-            // line 44
+            // line 36
+            echo "                                            </tbody>
+                                        </table>
+                                    </div>
+                                            <div>
+                                                <p>
+                                                    Antananarivo le ,";
+            // line 41
             echo twig_escape_filter($this->env, $this->extensions['Twig\Extra\Intl\IntlExtension']->formatDate($this->env, "now", "medium", "", null, "gregorian", "fr"), "html", null, true);
             echo " </br>
 
-                                                <span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span><br/>
-                                                 ";
-            // line 47
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 47, $this->source); })()), "user", [], "any", false, false, false, 47), "prenom", [], "any", false, false, false, 47), "html", null, true);
+                                                    <span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span><br/>
+                                                    ";
+            // line 44
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 44, $this->source); })()), "user", [], "any", false, false, false, 44), "prenom", [], "any", false, false, false, 44), "html", null, true);
             echo " 
 
-                                            </p>
-                                            <p>
-                                                <a href=\"";
-            // line 51
+                                                </p>
+                                                <p>
+                                                    <a href=\"";
+            // line 48
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("pro_entrer");
             echo "\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Imprimer</button></a>
-                                            </p>
-                                        </div>
-                                <p class=\"pt-4\"><strong>--Timbre postales --</strong></p>
+                                                </p>
+                                            </div>
+                                    <p class=\"pt-4\"><strong>--Timbre postales --</strong></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-";
+        ";
         } else {
-            // line 63
-            echo "<h1>Page not found 404 </h1>
+            // line 60
+            echo "        <h1>Page not found 404 </h1>
 
-<p>
-    The requested page couldn't be located. Checkout for any URL
-    misspelling or <a href=\"";
-            // line 67
+        <p>
+            The requested page couldn't be located. Checkout for any URL
+            misspelling or <a href=\"";
+            // line 64
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("homepage");
             echo "\">return to the authentification </a>.
-</p>
+        </p>
 
-";
+        ";
         }
+        // line 68
+        echo "    </main>
+";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -207,7 +207,7 @@ class __TwigTemplate_b021b7ba73977a25c8c8299cbeb4ca48 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  184 => 67,  178 => 63,  163 => 51,  156 => 47,  150 => 44,  143 => 39,  134 => 36,  130 => 35,  126 => 34,  122 => 33,  119 => 32,  115 => 31,  90 => 8,  88 => 7,  78 => 6,  59 => 4,  36 => 2,);
+        return array (  188 => 68,  181 => 64,  175 => 60,  160 => 48,  153 => 44,  147 => 41,  140 => 36,  131 => 33,  127 => 32,  123 => 31,  119 => 30,  116 => 29,  112 => 28,  90 => 8,  88 => 7,  78 => 6,  59 => 4,  36 => 2,);
     }
 
     public function getSourceContext()
@@ -219,69 +219,67 @@ class __TwigTemplate_b021b7ba73977a25c8c8299cbeb4ca48 extends \Twig\Template
 
 {% block body %}
 {% if app.user %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-    <div class=\"row\" >
-        <div class=\"col-12\">
-            <div style=\"box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);\">
-                <div class=\"q-container p-4\">
-                    <div class=\"row\">
-                        <div class=\"col\">
-                          <h4 class=\"q-title\" style=\"color: #e3151a;\">Touts les produits entrée &#128520</h4>
-                            <div class=\"q-display p-3\">
-                                <div class=\"class=\"table responsive-xxl\"\">
-                                    <table class=\"table table-striped table-bordered table-hover\">
-                                        <thead>
-                                            <tr class=\"table-danger\">
-                                                <th scope=\"col\"> Nom du produits </th>
-                                                <th scope=\"col\"> Abreviation </th>  
-                                                <th scope=\"col\"> Quantités </th>
-                                                <th scope=\"col\">  Date  </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for entre in entrer %}
-                                                <tr>
-                                                    <td> {{ entre.nomProduit }}</td> 
-                                                    <td> {{ entre.Abbreviation }}</td> 
-                                                    <td>{{ entre.quantite }}</td>
-                                                    <td>{{ entre.dateEntrer|format_date(locale='fr') }}</td>
+    <main>
+        <div class=\"row\" >
+            <div class=\"col-12\">
+                <div style=\"box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);\">
+                    <div class=\"q-container p-4\">
+                        <div class=\"row\">
+                            <div class=\"col\">
+                            <h4 class=\"q-title\" style=\"color: #e3151a;\">Touts les produits entrée &#128520</h4>
+                                <div class=\"q-display p-3\">
+                                    <div class=\"class=\"table responsive-xxl\"\">
+                                        <table class=\"table table-striped table-bordered table-hover\">
+                                            <thead>
+                                                <tr class=\"table-danger\">
+                                                    <th scope=\"col\"> Nom du produits </th>
+                                                    <th scope=\"col\"> Abreviation </th>  
+                                                    <th scope=\"col\"> Quantités </th>
+                                                    <th scope=\"col\">  Date  </th>
                                                 </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                {% for entre in entrer %}
+                                                    <tr>
+                                                        <td> {{ entre.nomProduit }}</td> 
+                                                        <td> {{ entre.Abbreviation }}</td> 
+                                                        <td>{{ entre.quantite }}</td>
+                                                        <td>{{ entre.dateEntrer|format_date(locale='fr') }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                            <div>
+                                                <p>
+                                                    Antananarivo le ,{{ 'now' |format_date(locale='fr') }} </br>
+
+                                                    <span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span><br/>
+                                                    {{ app.user.prenom }} 
+
+                                                </p>
+                                                <p>
+                                                    <a href=\"{{ path('pro_entrer') }}\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Imprimer</button></a>
+                                                </p>
+                                            </div>
+                                    <p class=\"pt-4\"><strong>--Timbre postales --</strong></p>
                                 </div>
-                                        <div>
-                                            <p>
-                                                Antananarivo le ,{{ 'now' |format_date(locale='fr') }} </br>
-
-                                                <span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span><br/>
-                                                 {{ app.user.prenom }} 
-
-                                            </p>
-                                            <p>
-                                                <a href=\"{{ path('pro_entrer') }}\" style=\"color: #fff; text-decoration:none;\"><button class=\"btn btn-outline-danger\" >Imprimer</button></a>
-                                            </p>
-                                        </div>
-                                <p class=\"pt-4\"><strong>--Timbre postales --</strong></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-{% else %}
-<h1>Page not found 404 </h1>
+        {% else %}
+        <h1>Page not found 404 </h1>
 
-<p>
-    The requested page couldn't be located. Checkout for any URL
-    misspelling or <a href=\"{{ path('homepage') }}\">return to the authentification </a>.
-</p>
+        <p>
+            The requested page couldn't be located. Checkout for any URL
+            misspelling or <a href=\"{{ path('homepage') }}\">return to the authentification </a>.
+        </p>
 
-{% endif %}
+        {% endif %}
+    </main>
 {% endblock %}
 
 ", "mouvement/entrer.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\templates\\mouvement\\entrer.html.twig");

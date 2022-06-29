@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+        <style>
+            table,tr,th,td {
+                    border: 2px solid black;
+                }
+            #arret{
+                margin-top: 15px;
+                font-family: italic;
+            }
+        </style>
+        <title>Impression de etat de stock | Paositra malagasy</title>
+    </head>
+    <body onload="window.print()">
+        <h4 class="fw-bold" style="color: #dc3444;">Recaputilation generale de situation de stock de valeurs Postaux </h4>
+        <div class="table responsive-xxl">
+            <table width="100%" style="border-collapse:collapse;" border="1" id="table1">
+                <thead>
+                    <tr>
+                        <th>OBJETS </th>
+                        <th>ABBREVIATIONS </th>
+                        <th>NOMBRES </th>
+                        <th>VALEURS </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set sumValue = 0 %}
+                    {% set sumNumber = 0 %}
+                    {% for index in product %}
+                        <tr>
+                            <td> {{ index.objet }} </td>
+                            <td> {{ index.abbr }} </td>
+                            <td> {{ index.nombre }} </td>
+                            <td> {{ index.valeur }} </td>
+                            {% set sumNumber = sumNumber + index.nombre %}
+                            {% set sumValue = sumValue + index.valeur %}
+                        </tr>
+                    {% endfor %}
+                        <tr>
+                        <th colspan="2" class="text-right pr-3" > Totaux(Valeur) </th>
+                        <th> {{ sumNumber }} </th>
+                        <th> {{ sumValue }}</th>
+                        </tr>
+                <tbody>
+            </table>
+            <div>
+                <p id="arret"><span class="text-uppercase"> Arreté a :</span></p>
+            </div>
+        </div>
+            <div class="d-flex flex-row-reverse bd-highlight">
+                <div class="p-2 bd-highlight">
+                    <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }} </p>
+                    <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
+                </div>
+            </div>
+    </div>
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}  
+ </body>
+</html>

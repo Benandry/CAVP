@@ -24,19 +24,19 @@ class MouvementRepository extends ServiceEntityRepository
     // /**
     //  * @return Mouvement[] Returns an array of Mouvement objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function findByCat($value)
     {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+       // $value = 2;
+        $rawSql = "SELECT c.id iDcategorie, c.NomDeCategorie categorie
+            FROM  App\Entity\Produits p
+            INNER JOIN App\Entity\Categorie c WITH c.produit = p.id 
+            WHERE p.id = $value ";
+        $stmt = $this->getEntityManager()->createQuery($rawSql);
+
+        return $stmt->execute();
     }
-    */
+    
 
     public function findByhistory()
     {

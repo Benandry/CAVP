@@ -8727,12 +8727,6 @@
         <argument key="user" type="service_closure" id=".errored..service_locator.st3ASTR.Symfony\Component\Security\Core\User\UserInterface"/>
       </argument>
     </service>
-    <service id=".service_locator.GQZbvNR" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="doctrine" type="service_closure" id="doctrine"/>
-      </argument>
-    </service>
     <service id=".service_locator.LDwumwZ" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8740,10 +8734,23 @@
         <argument key="traitement" type="service_closure" id="App\Traitement\Traitement"/>
       </argument>
     </service>
+    <service id=".service_locator.GQZbvNR" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="doctrine" type="service_closure" id="doctrine"/>
+      </argument>
+    </service>
     <service id=".service_locator.kCQsiBI" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="mouvementRepository" type="service_closure" id="App\Repository\MouvementRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.Vq5yBlp" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="doctrine" type="service_closure" id="doctrine"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
     <service id=".service_locator.l45KXOv" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8771,7 +8778,7 @@
         <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.zIojiy6" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.fHGbJRu" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\AgenceCrudController::autocomplete" type="service_closure" id=".service_locator.kEvhmk9"/>
@@ -8859,7 +8866,9 @@
         <argument key="App\Controller\Admin\UserCrudController::persistEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\Admin\UserCrudController::renderFilters" type="service_closure" id=".service_locator.kEvhmk9"/>
         <argument key="App\Controller\Admin\UserCrudController::updateEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
-        <argument key="App\Controller\DefaultController::test" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\DefaultController::disponible" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\DefaultController::public" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\DefaultController::test" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\EtatController::index" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\HistoriqueController::enter" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\HistoriqueController::history" type="service_closure" id=".service_locator.GQZbvNR"/>
@@ -8871,10 +8880,11 @@
         <argument key="App\Controller\MouvementCrudController::delete" type="service_closure" id=".service_locator.8O4DYxJ"/>
         <argument key="App\Controller\MouvementCrudController::edit" type="service_closure" id=".service_locator.8O4DYxJ"/>
         <argument key="App\Controller\MouvementCrudController::index" type="service_closure" id=".service_locator.kCQsiBI"/>
-        <argument key="App\Controller\MouvementCrudController::new" type="service_closure" id=".service_locator.aKM6MDa"/>
+        <argument key="App\Controller\MouvementCrudController::new" type="service_closure" id=".service_locator.Vq5yBlp"/>
         <argument key="App\Controller\MouvementCrudController::show" type="service_closure" id=".service_locator.l45KXOv"/>
         <argument key="App\Controller\OrderController::getSlips" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\OrderController::index" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\OrderController::test" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PeriodeController::mensuel" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\RegisterController::index" type="service_closure" id=".service_locator.Isyi.eu"/>
         <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.zFcJjKU"/>
@@ -8969,7 +8979,9 @@
         <argument key="App\Controller\Admin\UserCrudController:persistEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\Admin\UserCrudController:renderFilters" type="service_closure" id=".service_locator.kEvhmk9"/>
         <argument key="App\Controller\Admin\UserCrudController:updateEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
-        <argument key="App\Controller\DefaultController:test" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\DefaultController:disponible" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\DefaultController:public" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\DefaultController:test" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\EtatController:index" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\HistoriqueController:enter" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\HistoriqueController:history" type="service_closure" id=".service_locator.GQZbvNR"/>
@@ -8981,10 +8993,11 @@
         <argument key="App\Controller\MouvementCrudController:delete" type="service_closure" id=".service_locator.8O4DYxJ"/>
         <argument key="App\Controller\MouvementCrudController:edit" type="service_closure" id=".service_locator.8O4DYxJ"/>
         <argument key="App\Controller\MouvementCrudController:index" type="service_closure" id=".service_locator.kCQsiBI"/>
-        <argument key="App\Controller\MouvementCrudController:new" type="service_closure" id=".service_locator.aKM6MDa"/>
+        <argument key="App\Controller\MouvementCrudController:new" type="service_closure" id=".service_locator.Vq5yBlp"/>
         <argument key="App\Controller\MouvementCrudController:show" type="service_closure" id=".service_locator.l45KXOv"/>
         <argument key="App\Controller\OrderController:getSlips" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\OrderController:index" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\OrderController:test" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PeriodeController:mensuel" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\RegisterController:index" type="service_closure" id=".service_locator.Isyi.eu"/>
         <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.zFcJjKU"/>
@@ -9797,12 +9810,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.zIojiy6"/>
+      <argument type="service" id=".service_locator.fHGbJRu"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.zIojiy6"/>
+      <argument type="service" id=".service_locator.fHGbJRu"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -10968,7 +10981,7 @@
     <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface" alias="webpack_encore.entrypoint_lookup[_default]"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.zIojiy6"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.fHGbJRu"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -11002,8 +11015,9 @@
     <service id=".service_locator.nTL_G5r" alias=".service_locator.esmk6IF"/>
     <service id=".service_locator.hNls88j" alias=".service_locator.ENGuM7_"/>
     <service id=".service_locator.6rNHno." alias=".service_locator.riFbGaB"/>
+    <service id=".service_locator.k8sYntp" alias=".service_locator.Vq5yBlp"/>
     <service id=".service_locator.Fgoq2HH" alias=".service_locator.8O4DYxJ"/>
-    <service id=".service_locator.RckdGIs" alias=".service_locator.zIojiy6"/>
+    <service id=".service_locator.1mP7SBh" alias=".service_locator.fHGbJRu"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.Mc7dgRT" alias=".service_locator.gWVDS1o"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
@@ -11085,9 +11099,10 @@
     <service id=".service_locator.UNSqNV2" alias=".service_locator.riFbGaB"/>
     <service id=".service_locator.YGHh.DA" alias=".service_locator.W.c5h2_"/>
     <service id=".service_locator..Z_8zjg" alias=".service_locator.st3ASTR"/>
-    <service id=".service_locator.FPFiL9q" alias=".service_locator.GQZbvNR"/>
     <service id=".service_locator.3uVtF_U" alias=".service_locator.LDwumwZ"/>
+    <service id=".service_locator.FPFiL9q" alias=".service_locator.GQZbvNR"/>
     <service id=".service_locator.DrYjh4O" alias=".service_locator.kCQsiBI"/>
+    <service id=".service_locator.uacLucP" alias=".service_locator.Vq5yBlp"/>
     <service id=".service_locator.M_HiBH3" alias=".service_locator.l45KXOv"/>
     <service id=".service_locator.v5wJ4bk" alias=".service_locator.8O4DYxJ"/>
     <service id=".service_locator.CBTsee1" alias=".service_locator.Isyi.eu"/>

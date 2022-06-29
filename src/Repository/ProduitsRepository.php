@@ -19,24 +19,47 @@ class ProduitsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Produits::class);
     }
-    public function findByOrder()
+    public function findByOrder($types,$numero,$bureau = NULL)
     {
-        $rawSql = " SELECT c.tpParPl,mvt.quantite,c.ordre ordre,c.prixDeVente, c.NomDeCategorie categorie,COUNT(a.name) nombre_agence, c.valeurFaciale vf ,SUM(mvt.quantite) somme ,mvt.quantite nombre_cat,a.name bureau FROM App\Entity\Mouvement mvt 
+        if ($bureau == NULL) {
+            $clause =" WHERE mvt.types = 2 AND p.types = ".$types." AND mvt.numero_de_sortie = ".$numero;
+        }else {
+            $clause = "WHERE mvt.types = 2 AND a.id = ".$bureau." AND p.types = ".$types." AND mvt.numero_de_sortie = ".$numero;
+        }
+        $rawSql = " SELECT c.tpParPl,mvt.quantite,c.ordre ordre,c.prixDeVente, c.NomDeCategorie categorie,
+                    COUNT(a.name) nombre_agence, c.valeurFaciale vf ,SUM(mvt.quantite) somme ,mvt.quantite nombre_cat,a.name bureau, n.numero_de_sortie numero, a.id idBureau,
+                    n.id numeroSortie
+                    FROM App\Entity\Mouvement mvt 
                     INNER JOIN App\Entity\Categorie c WITH c.id = mvt.Categorie
                     INNER JOIN App\Entity\Produits p WITH p.id = mvt.produit
                     INNER JOIN App\Entity\Agence a WITH a.id = mvt.Agence
-                    WHERE mvt.types = 2
+                    INNER JOIN App\Entity\OrderSortie n WITH n.id = mvt.numero_de_sortie
+                    $clause
                     GROUP BY mvt.Categorie";
         $stmt = $this->getEntityManager()->createQuery($rawSql);
         return $stmt->execute();
     }
-    public function findAgency()
+
+    public function findAgency($numero = NULL,$types)
     {
+    
         $rawSql = " SELECT COUNT(a.name) nombre_agence FROM App\Entity\Mouvement mvt 
                     INNER JOIN App\Entity\Agence a WITH a.id = mvt.Agence
-                    WHERE mvt.types =2 ";
+                    WHERE mvt.types = 2 AND mvt.numero_de_sortie = $numero AND mvt.numero_de_sortie = $types";
+
         $stmt = $this->getEntityManager()->createQuery($rawSql);
         return $stmt->execute();
     }
     
+    public function findByNumeroProduct($types)
+    {
+        $rawSql = " SELECT DISTINCT t.id types_product ,o.numero_de_sortie numero,o.id types
+                    FROM App\Entity\Produits p 
+                    INNER JOIN App\Entity\OrderTypes t With t.id = p.types
+                    INNER JOIN App\Entity\Mouvement mvt WITH mvt.produit = p.id 
+                    LEFT JOIN App\Entity\OrderSortie o WITH mvt.numero_de_sortie = o.id 
+                    WHERE mvt.types = 2 AND t.id = $types ";
+        $stmt = $this->getEntityManager()->createQuery($rawSql);
+        return $stmt->execute();
+    }
 }

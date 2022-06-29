@@ -19,6 +19,11 @@ class OrderSortie
     #[ORM\Column(type: 'date')]
     private $dateOrdre;
 
+    public function __toString()
+    {   
+       return $this->getNumeroDeSortie();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

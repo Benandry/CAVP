@@ -1,30 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mouvement entrer sortie de CAVP | Paositra Malagasy {% endblock %}
+{% block title %}Modification de l'operation | Paositra Malagasy {% endblock %}
 
 {% block body %}
-   
-  <h3>Editer le mouvement</h3>
-  <div id="flip1">Fermer les formulaire</div>
-	<div id="flip">Afficher les formulaire</div>
-	<div id="panel">
-        {{ form_start(form) }}
-            {{ form_row(form.produit, {'attr': {'class': 'form-control'}}) }}
-            {{ form_row(form.Categorie) }}
-            {{ form_row(form.Agence) }}
-            {{ form_row(form.dateEntrer) }}
-            {{ form_row(form.descriptions) }}
-            {{ form_row(form.User) }}
-            {{ form_row(form.quantite) }}
-            {{ form_row(form.reference) }}
-            {{ form_row(form.types) }}
-            {{ form_row(form.numero_de_sortie) }}
-        {{ form_end(form) }}</p>
-	</div>
-    <a href="{{ path('mouvement_controller_crud_index') }}">Afficher la liste</a>
+    <main>
+    {% if app.user %}
+        <h2 class="fw-bolder text-center">Editer l'operation sur le categorie " "</h2>
+                <div id="flip">Afficher les formulaire</div>
+            <div id="panel">
+                {{ form_start(form) }}
+                        <div class="row">
+                            <div class="col-4">
+                                {{ form_row(form.produit) }}
+                            </div>
+                            <div class="col-4">
+                                {{ form_row(form.Categorie) }}
+                            </div>
+                            <div class="col-4">
+                                {{ form_row(form.Agence) }}
+                            </div>
+                            <div class="col-4">
+                                {{ form_row(form.types) }}
+                            </div>
+                            <div class="col-4" id="dateEntrer">
+                                {{ form_row(form.dateEntrer) }}
+                            </div>
+                            <div class="col-4">
+                                {{ form_row(form.descriptions) }}
+                            </div>
+                            <div class="col-4">
+                                {{ form_row(form.User) }}
+                            </div>
+                            <div id="quantite" class="col-4">
+                                {{ form_row(form.quantite) }}
+                            </div>
+                            <div class="col-4">
+                                {{ form_row(form.reference) }}
+                            </div>
+                            <div id="numero" class="col-4">
+                                {{ form_row(form.numero_de_sortie) }}
+                            </div>
+                        </div>
+                {{ form_end(form) }}</p>
+            </div>
+            <a href="{{ path('mouvement_controller_crud_index') }}">Afficher la liste</a>
 
-    <form method="post" action="{{ path('mouvement_controller_crud_delete', {'id': mouvement.id}) }}" onsubmit="return confirm('Vous etes sur pour supprimer');">
-        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ mouvement.id) }}">
-        <button class="btn btn-danger">Delete</button>
-    </form>
+            <form method="post" action="{{ path('mouvement_controller_crud_delete', {'id': mouvement.id}) }}" onsubmit="return confirm('Vous etes sur pour supprimer');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ mouvement.id) }}">
+                <button class="btn btn-danger btn-sm float-end">Supprimer</button>
+            </form>
+        {% else %}
+            <h1>Page not found 404 </h1>
+
+            <p>
+                The requested page couldn't be located. Checkout for any URL
+                misspelling or <a href="{{ path('app_login') }}">return to the authentification </a>.
+            </p>
+        {% endif %}
+    </main>
 {% endblock %}

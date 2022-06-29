@@ -85,90 +85,92 @@ class __TwigTemplate_faa59416eb1d3bb50c735d9a05b6b2cf extends \Twig\Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        echo "    <div class=\"row\" style=\"background-color: #e5e6e7;\">
-        <div class=\"clearfix\">
-            <span class=\"float-right\" style=\"margin-top: 10px;\">
-                <ul class=\"nav\">
-                    <li class=\"nav-item dropdown\">
-                        <a class=\"nav-link dropdown-toggle\" href=\"#\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><span> Les produits:  <span></a>
-                        <div class=\"dropdown-menu\" aria-labelledby=\"dropdown09\">
-                            <a class=\"dropdown-item\" href=\"";
-        // line 13
+        echo "    <main>
+        <div class=\"row\" style=\"background-color: #e5e6e7;\">
+            <div class=\"clearfix\">
+                <span class=\"float-right\" style=\"margin-top: 10px;\">
+                    <ul class=\"nav\">
+                        <li class=\"nav-item dropdown\">
+                            <a class=\"nav-link dropdown-toggle\" href=\"#\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><span> Les produits:  <span></a>
+                            <div class=\"dropdown-menu\" aria-labelledby=\"dropdown09\">
+                                <a class=\"dropdown-item\" href=\"";
+        // line 14
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("history", ["source" => "tous les produits par categorie"]);
         echo "\">Tous</a>
-                            <a class=\"dropdown-item\" href=\"";
-        // line 14
+                                <a class=\"dropdown-item\" href=\"";
+        // line 15
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("history_enter", ["source" => "tous les produits entrée par categorie"]);
         echo "\">Entrées</a>
-                            <a class=\"dropdown-item\" href=\"";
-        // line 15
+                                <a class=\"dropdown-item\" href=\"";
+        // line 16
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("integreted", ["source" => "tous les produits integrés par categorie"]);
         echo "\">Reintegrées</a>
-                            <a class=\"dropdown-item\" href=\"";
-        // line 16
+                                <a class=\"dropdown-item\" href=\"";
+        // line 17
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("history_out", ["source" => "tous les produits sorties par categorie"]);
         echo "\">Sorties</a>
-                        </div>
-                    </li>
-                </ul>
-            </span>
-        </div>
-         <h5 class=\"q-title\"> Compte rendu produits Entrées  </h5>
-        ";
-        // line 23
+                            </div>
+                        </li>
+                    </ul>
+                </span>
+            </div>
+            <h5 class=\"q-title\"> Compte rendu produits Entrées  </h5>
+            ";
+        // line 24
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["history"]) || array_key_exists("history", $context) ? $context["history"] : (function () { throw new RuntimeError('Variable "history" does not exist.', 23, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["history"]) || array_key_exists("history", $context) ? $context["history"] : (function () { throw new RuntimeError('Variable "history" does not exist.', 24, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["histo"]) {
-            // line 24
-            echo "            <div class=\"col-lg-4 col-sm-6\" >
-                <!-- <div style=\"box-shadow: 7px 7px 10px 0px #afafaf,-10px -10px 20px 0px #F0F0F2; background-color: #BDBDBB;\"> !-->
-                <div class=\"box-element card card-solid\" style=\"margin: 20px;\">
-                    <div class=\"card card-body\">
-                        <h4 style=\"display: flex;\"><img src=\"/images/calendrier.png\" width=\"30\" height=\"35\"> : 
-                            <span class=\"text-uppercase\" style=\"color:#498000;\">
-                            ";
-            // line 30
-            echo twig_escape_filter($this->env, $this->extensions['Twig\Extra\Intl\IntlExtension']->formatDate($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "dat", [], "any", false, false, false, 30), "medium", "", null, "gregorian", "fr"), "html", null, true);
+            // line 25
+            echo "                <div class=\"col-lg-4 col-sm-6\" >
+                    <!-- <div style=\"box-shadow: 7px 7px 10px 0px #afafaf,-10px -10px 20px 0px #F0F0F2; background-color: #BDBDBB;\"> !-->
+                    <div class=\"box-element card card-solid\" style=\"margin: 20px;\">
+                        <div class=\"card card-body\">
+                            <h4 style=\"display: flex;\"><img src=\"/images/calendrier.png\" width=\"30\" height=\"35\"> : 
+                                <span class=\"text-uppercase\" style=\"color:#498000;\">
+                                ";
+            // line 31
+            echo twig_escape_filter($this->env, $this->extensions['Twig\Extra\Intl\IntlExtension']->formatDate($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "dat", [], "any", false, false, false, 31), "medium", "", null, "gregorian", "fr"), "html", null, true);
             echo "
 
-                            </span>
-                        </h4>
-                        <p> <span> <img src=\"";
-            // line 34
+                                </span>
+                            </h4>
+                            <p> <span> <img src=\"";
+            // line 35
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/shopping-voucher-mail.png"), "html", null, true);
             echo "\" alt=\"img product\" width=\"25\" height=\"30\"></span>produits : <span style=\"color:#498000;\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "product", [], "any", false, false, false, 34), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "product", [], "any", false, false, false, 35), "html", null, true);
             echo "</span> <p>
-                        <p> Categorie : <span style=\"color:#498000;\">";
-            // line 35
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "categorie", [], "any", false, false, false, 35), "html", null, true);
-            echo "</span> <p>
-                        <p> Action : <span style=\"color:#498000;\">";
+                            <p> Categorie : <span style=\"color:#498000;\">";
             // line 36
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "types", [], "any", false, false, false, 36), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "categorie", [], "any", false, false, false, 36), "html", null, true);
             echo "</span> <p>
-                        <p><u>Nombre ajouté:</u> <span style=\"color:#498000;\">";
+                            <p> Action : <span style=\"color:#498000;\">";
             // line 37
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "nombre", [], "any", false, false, false, 37), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "types", [], "any", false, false, false, 37), "html", null, true);
             echo "</span> <p>
-                        <p> Reference : <span style=\"color:#498000;\">";
+                            <p><u>Nombre ajouté:</u> <span style=\"color:#498000;\">";
             // line 38
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "reference", [], "any", false, false, false, 38), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "nombre", [], "any", false, false, false, 38), "html", null, true);
             echo "</span> <p>
-                        <p> Destination : <span style=\"color:#498000;\">";
+                            <p> Reference : <span style=\"color:#498000;\">";
             // line 39
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "destination", [], "any", false, false, false, 39), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "reference", [], "any", false, false, false, 39), "html", null, true);
             echo "</span> <p>
+                            <p> Destination : <span style=\"color:#498000;\">";
+            // line 40
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "destination", [], "any", false, false, false, 40), "html", null, true);
+            echo "</span> <p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        ";
+            ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['histo'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 44
-        echo "    </div>
+        // line 45
+        echo "        </div>
+    </main>
                         
 ";
         
@@ -191,7 +193,7 @@ class __TwigTemplate_faa59416eb1d3bb50c735d9a05b6b2cf extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  171 => 44,  160 => 39,  156 => 38,  152 => 37,  148 => 36,  144 => 35,  138 => 34,  131 => 30,  123 => 24,  119 => 23,  109 => 16,  105 => 15,  101 => 14,  97 => 13,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  172 => 45,  161 => 40,  157 => 39,  153 => 38,  149 => 37,  145 => 36,  139 => 35,  132 => 31,  124 => 25,  120 => 24,  110 => 17,  106 => 16,  102 => 15,  98 => 14,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -201,45 +203,47 @@ class __TwigTemplate_faa59416eb1d3bb50c735d9a05b6b2cf extends \Twig\Template
 {% block title %}Compte rendu des produits entrées | Paositra Malagasy{% endblock %}
 
 {% block body %}
-    <div class=\"row\" style=\"background-color: #e5e6e7;\">
-        <div class=\"clearfix\">
-            <span class=\"float-right\" style=\"margin-top: 10px;\">
-                <ul class=\"nav\">
-                    <li class=\"nav-item dropdown\">
-                        <a class=\"nav-link dropdown-toggle\" href=\"#\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><span> Les produits:  <span></a>
-                        <div class=\"dropdown-menu\" aria-labelledby=\"dropdown09\">
-                            <a class=\"dropdown-item\" href=\"{{ path('history', {'source':'tous les produits par categorie'}) }}\">Tous</a>
-                            <a class=\"dropdown-item\" href=\"{{ path('history_enter', {'source':'tous les produits entrée par categorie'}) }}\">Entrées</a>
-                            <a class=\"dropdown-item\" href=\"{{ path('integreted', {'source':'tous les produits integrés par categorie'}) }}\">Reintegrées</a>
-                            <a class=\"dropdown-item\" href=\"{{ path('history_out', {'source':'tous les produits sorties par categorie'}) }}\">Sorties</a>
-                        </div>
-                    </li>
-                </ul>
-            </span>
-        </div>
-         <h5 class=\"q-title\"> Compte rendu produits Entrées  </h5>
-        {% for histo in history%}
-            <div class=\"col-lg-4 col-sm-6\" >
-                <!-- <div style=\"box-shadow: 7px 7px 10px 0px #afafaf,-10px -10px 20px 0px #F0F0F2; background-color: #BDBDBB;\"> !-->
-                <div class=\"box-element card card-solid\" style=\"margin: 20px;\">
-                    <div class=\"card card-body\">
-                        <h4 style=\"display: flex;\"><img src=\"/images/calendrier.png\" width=\"30\" height=\"35\"> : 
-                            <span class=\"text-uppercase\" style=\"color:#498000;\">
-                            {{ histo.dat|format_date(locale='fr') }}
+    <main>
+        <div class=\"row\" style=\"background-color: #e5e6e7;\">
+            <div class=\"clearfix\">
+                <span class=\"float-right\" style=\"margin-top: 10px;\">
+                    <ul class=\"nav\">
+                        <li class=\"nav-item dropdown\">
+                            <a class=\"nav-link dropdown-toggle\" href=\"#\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"><span> Les produits:  <span></a>
+                            <div class=\"dropdown-menu\" aria-labelledby=\"dropdown09\">
+                                <a class=\"dropdown-item\" href=\"{{ path('history', {'source':'tous les produits par categorie'}) }}\">Tous</a>
+                                <a class=\"dropdown-item\" href=\"{{ path('history_enter', {'source':'tous les produits entrée par categorie'}) }}\">Entrées</a>
+                                <a class=\"dropdown-item\" href=\"{{ path('integreted', {'source':'tous les produits integrés par categorie'}) }}\">Reintegrées</a>
+                                <a class=\"dropdown-item\" href=\"{{ path('history_out', {'source':'tous les produits sorties par categorie'}) }}\">Sorties</a>
+                            </div>
+                        </li>
+                    </ul>
+                </span>
+            </div>
+            <h5 class=\"q-title\"> Compte rendu produits Entrées  </h5>
+            {% for histo in history%}
+                <div class=\"col-lg-4 col-sm-6\" >
+                    <!-- <div style=\"box-shadow: 7px 7px 10px 0px #afafaf,-10px -10px 20px 0px #F0F0F2; background-color: #BDBDBB;\"> !-->
+                    <div class=\"box-element card card-solid\" style=\"margin: 20px;\">
+                        <div class=\"card card-body\">
+                            <h4 style=\"display: flex;\"><img src=\"/images/calendrier.png\" width=\"30\" height=\"35\"> : 
+                                <span class=\"text-uppercase\" style=\"color:#498000;\">
+                                {{ histo.dat|format_date(locale='fr') }}
 
-                            </span>
-                        </h4>
-                        <p> <span> <img src=\"{{ asset('images/shopping-voucher-mail.png') }}\" alt=\"img product\" width=\"25\" height=\"30\"></span>produits : <span style=\"color:#498000;\">{{ histo.product }}</span> <p>
-                        <p> Categorie : <span style=\"color:#498000;\">{{ histo.categorie }}</span> <p>
-                        <p> Action : <span style=\"color:#498000;\">{{ histo.types }}</span> <p>
-                        <p><u>Nombre ajouté:</u> <span style=\"color:#498000;\">{{ histo.nombre }}</span> <p>
-                        <p> Reference : <span style=\"color:#498000;\">{{ histo.reference }}</span> <p>
-                        <p> Destination : <span style=\"color:#498000;\">{{ histo.destination }}</span> <p>
+                                </span>
+                            </h4>
+                            <p> <span> <img src=\"{{ asset('images/shopping-voucher-mail.png') }}\" alt=\"img product\" width=\"25\" height=\"30\"></span>produits : <span style=\"color:#498000;\">{{ histo.product }}</span> <p>
+                            <p> Categorie : <span style=\"color:#498000;\">{{ histo.categorie }}</span> <p>
+                            <p> Action : <span style=\"color:#498000;\">{{ histo.types }}</span> <p>
+                            <p><u>Nombre ajouté:</u> <span style=\"color:#498000;\">{{ histo.nombre }}</span> <p>
+                            <p> Reference : <span style=\"color:#498000;\">{{ histo.reference }}</span> <p>
+                            <p> Destination : <span style=\"color:#498000;\">{{ histo.destination }}</span> <p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
+    </main>
                         
 {% endblock %}
 ", "historique/history_in.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\templates\\historique\\history_in.html.twig");

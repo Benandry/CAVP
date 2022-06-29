@@ -1,46 +1,246 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <title> Recaputilation generales | Paositra Malagasy</title>
-</head>
-<body>
-    <h4 id="repartitions">Recaputilation generale de situation de stock de valeurs Postaux </h4>
-    <div class="table responsive-xxl">
-        <table width="100%" style="border-collapse:collapse;" border="1">
-            <thead>
-                <tr>
-                    <th>OBJETS </th>
-                    <th>ABBREVIATIONS </th>
-                    <th>NOMBRES </th>
-                    <th>VALEURS </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for key,value in product %}
-                    <tr>
-                        {% for key2, value2 in value %}
-                            {% if key2 == 'objet' %}
-                                <td> {{ value2 }}</td>
-                            {% elseif key2 == 'nombre' %}
-                                <td> {{ value2 }}</td>
-                            {% elseif key2 == 'abbr' %}
-                                <td> {{ value2 }}</td> 
-                            {% elseif key2 == 'valeur' %}
-                                <td> {{ value2 }}</td>
-                            {% endif %}
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            <tbody>
-        </table>
-    </div>
-    <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }}<br>
-        <span style="margin-top1: 25px;"> Chef de  Centre d'Approvisionnement en Valeurs Postales </span><br />
-        <span style="margin-top1: 25px;">{{ app.user.nom }}</span>
-     </p>
-</body>
-</html>
+{% extends 'base.html.twig' %}
+
+{% block title %}Recaputilation generales | Paositra Malagasy
+{% endblock %}
+
+{% block body %}
+	<main>
+		{% if app.user %}
+			{% set mois_tab = [ {'00' :'Janvier', '01' :'Février','02' :'Mars','03' :'Avril','04' :'Mai','05' :'Juin','06' :'Juillet','07' :'Aout','08' :'Septembre','09' :'Octobre','10' :'Novembre','11' :'Décembre' }] %}
+			{% set mois = 'now' | date('F') %}
+			<h2 class="fw-bolder text-center">Rapport général</h2>
+
+			<div class="col-lg-12">
+				<nav class="nav nav-tabs">
+					<a class="nav-item nav-link active" style="font-size:16px;" href="#recapitulation" data-toggle="tab">Récapitulation Générale</a>
+					<a class="nav-item nav-link" style="font-size:16px;" href="#situation" data-toggle="tab">Situation Générale</a>
+				</nav>
+				<div
+					class="tab-content">
+					<!-- Situation -->
+					<div class="tab-pane active" id="recapitulation" style="text-align:justify">
+						<div class="row">
+							<div class="col-lg-12">
+								<h4 class="fw-bold">Récapitulation Générale de la situation des stocks des Valeurs Postales, Mois du
+									{{ mois }}
+									{{ 'now' | date('Y') }}</h4>
+							</div>
+							<div class="table responsive-xxl">
+								<table class="table" id="recap">
+									<thead>
+										<tr>
+											<th>OBJETS
+											</th>
+											<th>ABBREVIATIONS
+											</th>
+											<th>NOMBRES
+											</th>
+											<th>VALEURS
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% set sumValue = 0 %}
+										{% set sumNumber = 0 %}
+										{% for index in product %}
+											<tr>
+												<td>
+													{{ index.objet }}
+												</td>
+												<td>
+													{{ index.abbr }}
+												</td>
+												<td>
+													{{ index.nombre }}
+												</td>
+												<td>
+													{{ index.valeur }}
+												</td>
+												{% set sumNumber = sumNumber + index.nombre %}
+												{% set sumValue = sumValue + index.valeur %}
+											</tr>
+										{% endfor %}
+									</tbody>
+									<tfoot>
+										<tr>
+											<th colspan="2" class="text-right pr-3">
+												Totaux(Valeur)
+											</th>
+											<th>
+												{{ sumNumber }}
+											</th>
+											<th>
+												{{ sumValue }}
+											</th>
+										</tr>
+									</tfoot>
+								</table>
+								<div>
+									<p id="arret">
+										<span class="text-uppercase">
+											Arreté a :</span>
+									</p>
+								</div>
+								<div class="d-flex flex-row-reverse bd-highlight">
+									<div class="p-2 bd-highlight">
+										<p>
+											Antananarivo le ,{{ 'now' |format_date(locale='fr') }}
+										</p>
+										<p>
+											<span>
+												Chef de  Centre d'Approvisionnement en Valeurs Postales
+											</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane" id="situation" style="text-align:justify">
+					<div class="row">
+						<div class="col-lg-12">
+							<h4 class="fw-bold">Situation Générale de la situation des stocks des Valeurs Postales, Mois du
+								{{ mois }}
+								{{ 'now' | date('Y') }}</h4>
+							<div class="table responsive-xxl">
+								<table class="table" id="myTable">
+									<thead>
+										<tr>
+											<th>Produits
+											</th>
+											<th>Quantité de stock initial
+											</th>
+											<th>Valeur de stock initial
+											</th>
+											<th>Produits recus quantité
+											</th>
+											<th>Produits recus valeur
+											</th>
+											<th>Produits sortie quantité
+											</th>
+											<th>Produits sortie valeur
+											</th>
+											<th>Stock final quantité
+											</th>
+											<th>Stock final valeur
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+                                    {% set sumQuantInt = 0 %}
+                                    {% set sumValueInit = 0 %}
+                                    {% set sumQuantEntrer = 0 %}
+									{% set sumQuantCurrent = 0 %}
+									{% set sumValueCurrent = 0 %}
+									{% set sumQuantSortie = 0 %}
+									{% set sumValSortie = 0 %}
+									{% set sumValRRecus = 0 %}
+                                        {% for key,value in courant %}
+                                            <tr>
+                                                {% for key2, value2 in value %}             
+                                                    {% if key2 =='nomProduit' %}
+                                                        <td> {{ value2 }} </td> 
+                                                    {% elseif key2 =='quantite_init' %}
+                                                    	{% set valeur = initial[key][0] %}
+														{% set sumQuantInt = sumQuantInt + valeur %} 
+                                                        <td> {{ valeur }} </td> 
+													{% elseif key2 =='valeur_init' %}
+														{% set valeur = init[key]['prix_net'] %}
+														{% set sumValueInit = sumValueInit + valeur %} 
+														<td> {{ valeur }} </td> 
+													{% elseif key2 =='qunad_recus' %}
+                                                    	{% set valeur = quantiteEntrer[key][0] %}
+														{% set sumQuantEntrer = sumQuantEntrer + valeur %} 
+                                                        <td> {{ valeur }} </td> 
+													{% elseif key2 =='val_recus' %}
+														{% set valeur = valeurEntrer[key][0] %}
+														{% set sumValRRecus = sumValRRecus + valeur %}
+                                                        <td> {{ valeur }} </td> 
+													{% elseif key2 =='quantite_sortie' %}
+                                                    	{% set valeur = quantiteOut[key][0]|abs %}
+														{% set sumQuantSortie = sumQuantSortie + valeur %} 
+                                                        <td> {{ valeur }} </td> 
+													{% elseif key2 =='val_sortie' %}
+                                                        {% set valeur = valueOut[key][0]|abs %}
+														{% set sumValSortie = sumValSortie + valeur %} 
+														<td> {{ valeur }} </td> 
+													{% elseif key2 =='quantite_actuelle' %}
+                                                    	{% set valeur = courant[key]['quantite_actuelle'] %}
+														{% set sumQuantCurrent = sumQuantCurrent + valeur %} 
+                                                        <td> {{ valeur }} </td>
+													{% elseif key2 =='value_actuelle' %}
+                                                        {% set valeur = courant[key]['prix_net'] %}
+														{% set sumValueCurrent = sumValueCurrent + valeur %} 
+                                                        <td> {{ valeur }} </td>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </tr>
+                                        {% endfor %}
+										<tfoot>
+											<tr>
+												<th>
+													Totales(Valeur)
+												</th>
+												<th>
+													{{ sumQuantInt }}
+												</th>
+												<th>
+													{{ sumValueInit }}
+												</th>
+												<th>
+													{{ sumQuantEntrer }}
+												</th>
+												<th>
+													{{ sumValRRecus }}
+												</th>
+												<th>
+													{{ sumQuantSortie|abs }}
+												</th>
+												<th>
+													{{ sumValSortie }}
+												</th>
+												<th>
+													{{ sumQuantCurrent }}
+												</th>
+												<th>
+													{{ sumValueCurrent }}
+												</th>
+											</tr>
+										</tfoot>
+									</tbody>
+								</table>
+								<div>
+									<p id="arret">
+										<span class="text-uppercase">
+											Arreté a :</span>
+									</p>
+								</div>
+							</div>
+							<div class="d-flex flex-row-reverse bd-highlight">
+								<div class="p-2 bd-highlight">
+									<p>
+										Antananarivo le ,{{ 'now' |format_date(locale='fr') }}
+									</p>
+									<p>
+										<span>
+											Chef de  Centre d'Approvisionnement en Valeurs Postales
+										</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% else %}
+			<h1>Page not found 404
+			</h1>
+			<p>
+				The requested page couldn't be located. Checkout for any URL misspelling or
+				<a href="{{ path('app_login') }}">return to the authentification
+				</a>.
+			</p>
+		{% endif %}
+	</main>
+{% endblock %}

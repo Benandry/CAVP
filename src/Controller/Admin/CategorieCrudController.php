@@ -7,7 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -46,7 +46,7 @@ class CategorieCrudController extends AbstractCrudController
             TextField::new('AnneeEmission'),
             TextField::new('coteEmission'),
             IntegerField::new('ordre'),
-            MoneyField::new('prixDeVente')->setCurrency("EUR"),
+            NumberField::new('prixDeVente'),
             IntegerField::new('tpParPl','Nombre de TP/PL')
         ];
     }

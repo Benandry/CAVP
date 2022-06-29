@@ -1,45 +1,95 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Compte rendu des produits Sorties | Paositra Malagasy{% endblock %}
+{% block title %}Compte rendu des produits Sorties | Paositra Malagasy
+{% endblock %}
 
 {% block body %}
-    <div class="row" style="background-color: #e5e6e7;">
-        <div class="clearfix">
-            <span class="float-right" style="margin-top: 10px;">
-                <ul class="nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span> Les produits:  <span></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown09">
-                            <a class="dropdown-item" href="{{ path('history', {'source':'tous les produits par categorie'}) }}">Tous</a>
-                            <a class="dropdown-item" href="{{ path('history_enter', {'source':'tous les produits entrée par categorie'}) }}">Entrées</a>
-                            <a class="dropdown-item" href="{{ path('integreted', {'source':'tous les produits integrés par categorie'}) }}">Reintegrées</a>
-                            <a class="dropdown-item" href="{{ path('history_out', {'source':'tous les produits sorties par categorie'}) }}">Sorties</a>
-                        </div>
-                    </li>
-                </ul>
-            </span>
-        </div>
-        <h5 class="q-title"> Compte rendu produits Sorties  </h5>
-        {% for histo in history%}
-            <div class="col-lg-4 col-sm-6" >
-                <!-- <div style="box-shadow: 7px 7px 10px 0px #afafaf,-10px -10px 20px 0px #F0F0F2; background-color: #BDBDBB;"> !-->
-                <div class="box-element card card-solid" style="margin: 20px;">
-                    <div class="card card-body">
-                        <h4 style="display: flex;"><img src="/images/calendrier.png" width="30" height="35"> : 
-                            <span class="text-uppercase" style="color:#498000;">
-                            {{ histo.dat|format_date(locale='fr') }}
+	<main>
+		{% if app.user %}
+			<div class="row" style="background-color: #e5e6e7;">
+				<span class="float-end">
+					<div class="dropdown">
+						<a class="btn btn-secondary dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+							Types d'opreations
+						</a>
 
-                            </span>
-                        </h4>
-                        <p> <span> <img src="{{ asset('images/shopping-voucher-mail.png') }}" alt="img product" width="25" height="30"></span>produits : <span style="color:#498000;">{{ histo.product }}</span> <p>
-                        <p> Categorie : <span style="color:#498000;">{{ histo.categorie }}</span> <p>
-                        <p> Action : <span style="color:#498000;">{{ histo.types }}</span> <p>
-                        <p><u>Nombre sortie:</u> <span style="color:#498000;">{{ histo.nombre }}</span> <p>
-                        <p> Reference : <span style="color:#498000;">{{ histo.reference }}</span> <p>
-                        <p> Destination : <span style="color:#498000;">{{ histo.destination }}</span> <p>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							<li>
+								<a class="dropdown-item" href="{{ path('history', {'source':'tous les produits par categorie'}) }}">Tous</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('history_enter', {'source':'tous les produits entrée par categorie'}) }}">Entrées</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('integreted', {'source':'tous les produits integrés par categorie'}) }}">Reintegrées</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('history_out', {'source':'tous les produits sorties par categorie'}) }}">Sorties</a>
+							</li>
+						</ul>
+					</div>
+				</span>
+				<h2 class="fw-bolder text-center">
+					Compte rendu produits Sorties
+				</h2>
+				{% for histo in history%}
+					<div
+						class="col-lg-4 col-sm-6">
+						<!-- <div style="box-shadow: 7px 7px 10px 0px #afafaf,-10px -10px 20px 0px #F0F0F2; background-color: #BDBDBB;"> !-->
+						<div class="box-element card card-solid" style="margin: 20px;">
+							<div class="card card-body">
+								<h4 style="display: flex;"><img src="/images/calendrier.png" width="30" height="35">
+									:
+									<span class="text-uppercase" style="color:#498000;">
+										{{ histo.dat|format_date(locale='fr') }}
+
+									</span>
+								</h4>
+								<p>
+									<span>
+										<img src="{{ asset('images/shopping-voucher-mail.png') }}" alt="img product" width="25" height="30"></span>produits :
+									<span style="color:#498000;">{{ histo.product }}</span>
+								</p>
+								<p></p>
+								<p>
+									Categorie :
+									<span style="color:#498000;">{{ histo.categorie }}</span>
+								</p>
+								<p></p>
+								<p>
+									Action :
+									<span style="color:#498000;">{{ histo.types }}</span>
+								</p>
+								<p></p>
+								<p>
+									<u>Nombre sortie:</u>
+									<span style="color:#498000;">{{ histo.nombre }}</span>
+								</p>
+								<p></p>
+								<p>
+									Reference :
+									<span style="color:#498000;">{{ histo.reference }}</span>
+								</p>
+								<p></p>
+								<p>
+									Destination :
+									<span style="color:#498000;">{{ histo.destination }}</span>
+								</p>
+								<p></p>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+			<h1>Page not found 404
+			</h1>
+			<p>
+				The requested page couldn't be located. Checkout for any URL
+												                misspelling or
+				<a href="{{ path('homepage') }}">return to the authentification
+				</a>.
+			</p>
+		{% endif %}
+	</main>
 {% endblock %}

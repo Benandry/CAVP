@@ -16,8 +16,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class MouvementType extends AbstractType
 {
@@ -47,7 +47,7 @@ class MouvementType extends AbstractType
                 'class' => User::class,
                 'label' => "Chef de CAVP responsable :" 
             ])
-            ->add('quantite',IntegerType::class,[
+            ->add('quantite',TextType::class,[
                 'label' => 'Quantité: '
             ])
             ->add('reference',EntityType::class,[

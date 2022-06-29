@@ -45,61 +45,46 @@ class __TwigTemplate_ad17bb88f1cd0d326c59dfe1706ac244 extends \Twig\Template
 <head>
   <meta charset=\"utf-8\">
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-  <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css\" integrity=\"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh\" crossorigin=\"anonymous\">
-  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Spartan&display=swap\">
-  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css\" integrity=\"sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=\" crossorigin=\"anonymous\" />
+   ";
+        // line 6
+        echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackLinkTags("app");
+        echo "
+   ";
+        // line 7
+        echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("app");
+        echo "
   <title> Inscription sur cavp | Paositra Malagasy</title>
 </head>
-<body>
-
-    <section class=\"vh-100\" style=\"background-color: #c82232;\">
-        <div class=\"container py-5 h-100\">
-            <div class=\"row d-flex justify-content-center align-items-center h-100\">
-                <div class=\"col col-xl-10\">
-                    <div class=\"col-lg-6 col-sm-6\" >
-                        <div class=\"box-element card card-solid\" style=\"margin: 0% 0% 10% 50%;width: 450px;heigth: 700px;text-align: center;\">
-                            <div class=\"card card-body\">
-                                <div class=\"d-flex align-items-center mb-3 pb-1\">
-                                        <i style=\"color: #444; font-size: 2rem;\" class=\"pb-1 fad fa-cauldron\"></i>
-                                        <span class=\"h3 fw-bold mb-0\" style=\"color:#e3151a;margin: 2px auto;\"><img src=\"/images/logo-PPT.webp\" width=\"50\" height=\"50\">Page d'inscription de CAVP</span>
-                                    </div>
-                                <h1 class=\"fw-normal mb-3 pb-3\" style=\"letter-spacing: 1px; color:#e3151a;\">  </h1>
-                                    ";
-        // line 25
-        if ((isset($context["notif"]) || array_key_exists("notif", $context) ? $context["notif"] : (function () { throw new RuntimeError('Variable "notif" does not exist.', 25, $this->source); })())) {
-            // line 26
-            echo "                                            ";
-            echo twig_escape_filter($this->env, (isset($context["notif"]) || array_key_exists("notif", $context) ? $context["notif"] : (function () { throw new RuntimeError('Variable "notif" does not exist.', 26, $this->source); })()), "html", null, true);
-            echo "
-                                    ";
-        }
-        // line 28
-        echo "                                    <form method=\"post\" style=\"width: 23rem;\">
-                                        <div class=\"form-outline mb-4\">
-                                            ";
-        // line 30
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["formule"]) || array_key_exists("formule", $context) ? $context["formule"] : (function () { throw new RuntimeError('Variable "formule" does not exist.', 30, $this->source); })()), 'form');
-        echo "
-                                        </div>
-                                    </form>
-                            </div>
-                        </div>
-                    </div>    
+<body class=\"corps\">
+    <div > 
+        <div class=\"box-element card-solid\" id=\"inscriptions\">
+            <div class=\"card card-body\">
+                <div class=\"d-flex align-items-center mb-3 pb-1\">
+                    <i class=\"pb-1 fad fa-cauldron\"></i>
+                    <h3 class=\"fw-normal \" style=\"color:#e3151a;margin: 2px auto;\">Page d'inscription de CAVP</h3>
                 </div>
+                ";
+        // line 18
+        if ((isset($context["notif"]) || array_key_exists("notif", $context) ? $context["notif"] : (function () { throw new RuntimeError('Variable "notif" does not exist.', 18, $this->source); })())) {
+            // line 19
+            echo "                        ";
+            echo twig_escape_filter($this->env, (isset($context["notif"]) || array_key_exists("notif", $context) ? $context["notif"] : (function () { throw new RuntimeError('Variable "notif" does not exist.', 19, $this->source); })()), "html", null, true);
+            echo "
+                ";
+        }
+        // line 21
+        echo "                <form method=\"post\" style=\"width: 23rem;\">
+                    <div class=\"form-outline mb-4\">
+                        ";
+        // line 23
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["formule"]) || array_key_exists("formule", $context) ? $context["formule"] : (function () { throw new RuntimeError('Variable "formule" does not exist.', 23, $this->source); })()), 'form');
+        echo "
+                    </div>
+                </form>
             </div>
         </div>
-    </section>
-
-
-
-
-
-
-
-
-
-
-
+    </div>
+                
 </body>
 </html>";
         
@@ -122,7 +107,7 @@ class __TwigTemplate_ad17bb88f1cd0d326c59dfe1706ac244 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  81 => 30,  77 => 28,  71 => 26,  69 => 25,  43 => 1,);
+        return array (  80 => 23,  76 => 21,  70 => 19,  68 => 18,  54 => 7,  50 => 6,  43 => 1,);
     }
 
     public function getSourceContext()
@@ -132,51 +117,30 @@ class __TwigTemplate_ad17bb88f1cd0d326c59dfe1706ac244 extends \Twig\Template
 <head>
   <meta charset=\"utf-8\">
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-  <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css\" integrity=\"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh\" crossorigin=\"anonymous\">
-  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Spartan&display=swap\">
-  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css\" integrity=\"sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=\" crossorigin=\"anonymous\" />
+   {{ encore_entry_link_tags('app') }}
+   {{ encore_entry_script_tags('app') }}
   <title> Inscription sur cavp | Paositra Malagasy</title>
 </head>
-<body>
-
-    <section class=\"vh-100\" style=\"background-color: #c82232;\">
-        <div class=\"container py-5 h-100\">
-            <div class=\"row d-flex justify-content-center align-items-center h-100\">
-                <div class=\"col col-xl-10\">
-                    <div class=\"col-lg-6 col-sm-6\" >
-                        <div class=\"box-element card card-solid\" style=\"margin: 0% 0% 10% 50%;width: 450px;heigth: 700px;text-align: center;\">
-                            <div class=\"card card-body\">
-                                <div class=\"d-flex align-items-center mb-3 pb-1\">
-                                        <i style=\"color: #444; font-size: 2rem;\" class=\"pb-1 fad fa-cauldron\"></i>
-                                        <span class=\"h3 fw-bold mb-0\" style=\"color:#e3151a;margin: 2px auto;\"><img src=\"/images/logo-PPT.webp\" width=\"50\" height=\"50\">Page d'inscription de CAVP</span>
-                                    </div>
-                                <h1 class=\"fw-normal mb-3 pb-3\" style=\"letter-spacing: 1px; color:#e3151a;\">  </h1>
-                                    {% if notif %}
-                                            {{ notif }}
-                                    {% endif %}
-                                    <form method=\"post\" style=\"width: 23rem;\">
-                                        <div class=\"form-outline mb-4\">
-                                            {{ form(formule) }}
-                                        </div>
-                                    </form>
-                            </div>
-                        </div>
-                    </div>    
+<body class=\"corps\">
+    <div > 
+        <div class=\"box-element card-solid\" id=\"inscriptions\">
+            <div class=\"card card-body\">
+                <div class=\"d-flex align-items-center mb-3 pb-1\">
+                    <i class=\"pb-1 fad fa-cauldron\"></i>
+                    <h3 class=\"fw-normal \" style=\"color:#e3151a;margin: 2px auto;\">Page d'inscription de CAVP</h3>
                 </div>
+                {% if notif %}
+                        {{ notif }}
+                {% endif %}
+                <form method=\"post\" style=\"width: 23rem;\">
+                    <div class=\"form-outline mb-4\">
+                        {{ form(formule) }}
+                    </div>
+                </form>
             </div>
         </div>
-    </section>
-
-
-
-
-
-
-
-
-
-
-
+    </div>
+                
 </body>
 </html>", "register/index.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\templates\\register\\index.html.twig");
     }

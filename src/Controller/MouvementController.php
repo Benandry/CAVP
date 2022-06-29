@@ -1,22 +1,25 @@
 <?php
 namespace App\Controller;
 
-use App\Traitement\Traitement;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use App\Entity\Categorie;
 use App\Entity\Mouvement;
+use App\Traitement\Traitement;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+//#[IsGranted('ROLE_ADMIN')]
 class MouvementController extends AbstractController
 {
     //Route pour les telechargement de produits entrer
     #[Route('/impression_select/{id}', name: 'impression_select')]
     public function impressionPdf(ManagerRegistry $doctrine,$id='' ,Traitement $traitement)
     {
+        $isSubmitted = true;
         $test = false ;
         $repository = $doctrine->getRepository(Categorie::class);
         $init  = $repository->findByInitPro($id);
@@ -29,13 +32,16 @@ class MouvementController extends AbstractController
         $traet = $traitement->index($init, $enter,$out, $current);
         $current = $traet['courant'];
         $initial = $traet['initial'];
+        $total = $current[0];
 
         return $this->render('impression/select.html.twig',[
                 'courant' =>$current,
                 'initial' =>$initial,
                 'init' => $init,
                 'entrer' =>$entrer,
-                'sort' =>$out
+                'out' =>$out,
+                'issubmitted' => $isSubmitted,
+                'total' =>$total
             ]);
         
     }
