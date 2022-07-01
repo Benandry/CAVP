@@ -26,8 +26,8 @@ class ProduitsRepository extends ServiceEntityRepository
         }else {
             $clause = "WHERE mvt.types = 2 AND a.id = ".$bureau." AND p.types = ".$types." AND mvt.numero_de_sortie = ".$numero;
         }
-        $rawSql = " SELECT c.tpParPl,mvt.quantite,c.ordre ordre,c.prixDeVente, c.NomDeCategorie categorie,
-                    COUNT(a.name) nombre_agence, c.valeurFaciale vf ,SUM(mvt.quantite) somme ,mvt.quantite nombre_cat,a.name bureau, n.numero_de_sortie numero, a.id idBureau,
+        $rawSql = " SELECT c.tpParPl,mvt.quantite,c.ordre ordre, c.valeurFaciale vf ,mvt.quantite nombre_cat, c.prixDeVente, c.NomDeCategorie categorie,
+                    COUNT(a.name) nombre_agence,SUM(mvt.quantite) somme,a.name bureau, n.numero_de_sortie numero, a.id idBureau,
                     n.id numeroSortie
                     FROM App\Entity\Mouvement mvt 
                     INNER JOIN App\Entity\Categorie c WITH c.id = mvt.Categorie

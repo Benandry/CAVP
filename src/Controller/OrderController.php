@@ -68,19 +68,21 @@ class OrderController extends AbstractController
                 'form' =>$form->createView(),
                 'types' =>$types,
                 'agency' =>$a,
-                'numero' =>$order[0]['numero']
+                'numero' =>$order[0]['numero'],
+                'numero_de_sortie' => $order[0]['numeroSortie']
             ]);
         }
     //********************************************************************************************************************** */
   //  $numTyp = $doctrine->getRepository(Produits::class)->findByNumeroProduct();
-        //dd($numTyp);
+       // dd($order);
     
         return $this->render('order/ordre.html.twig',[
             'dispo' => $order,
             'form' =>$form->createView(),
             'types' =>$types,
             'agency' => $agency,
-            'numero' =>$order[0]['numero']
+            'numero' =>$order[0]['numero'],
+            'numero_de_sortie' => $order[0]['numeroSortie']
         ]);
     }
 
@@ -111,7 +113,35 @@ class OrderController extends AbstractController
        // dd($order);
        return new JsonResponse($numTyp);
     }
+    /**
+     * @Route("/impresion/ordre_de_sortie/recaputilation/{types}/{numero}", name="ordre_de_sortie_recaputilation")
+     */
+    public function orderOutRecap(ManagerRegistry $doctrine,$types,$numero): Response
+    {
+        //dd($numero);
+        $order = $doctrine->getRepository(Produits::class)->findByOrder($types,$numero);
+       //dd($order);
+       return $this->render('Impression/ordreSortie/recaputilation.html.twig',[
+        'dispo' => $order,
+        'types' => $types,
+        'numero' =>$order[0]['numero']
+       ]);
+    }
 
+    /**
+     * @Route("/impresion/ordre_de_sortie/repartition/{types}/{numero}", name="ordre_de_sortie_repartition")
+     */
+    public function orderOutRepart(ManagerRegistry $doctrine,$types,$numero): Response
+    {
+        //dd($numero);
+        $order = $doctrine->getRepository(Produits::class)->findByOrder($types,$numero);
+       //dd($order);
+       return $this->render('Impression/ordreSortie/repartition.html.twig',[
+        'dispo' => $order,
+        'types' => $types,
+        'numero' =>$order[0]['numero']
+       ]);
+    }
    
 }
 

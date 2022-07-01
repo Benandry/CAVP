@@ -16,16 +16,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MouvementController extends AbstractController
 {
     //Route pour les telechargement de produits entrer
-    #[Route('/impression_select/{id}', name: 'impression_select')]
-    public function impressionPdf(ManagerRegistry $doctrine,$id='' ,Traitement $traitement)
+    #[Route('/impression_select/{id}/{mois}/{annee}', name: 'impression_select')]
+    public function impressionPdf(ManagerRegistry $doctrine,$id='' ,Traitement $traitement,$mois,$annee)
     {
         $isSubmitted = true;
         $test = false ;
         $repository = $doctrine->getRepository(Categorie::class);
-        $init  = $repository->findByInitPro($id);
-        $enter  = $repository->findBytEnterPro($id);
-        $out  = $repository->findByOutPro($id); 
-        $current  = $repository->findByCurrentPro($id);
+        $init  = $repository->findByInitPro($id,$mois,$annee);
+        $enter  = $repository->findBytEnterPro($id,$mois,$annee);
+        $out  = $repository->findByOutPro($id,$mois,$annee); 
+        $current  = $repository->findByCurrentPro($id,$mois,$annee);
 
         $out = $traitement->setSize($out, $current, 'sortie');
         $entrer = $traitement->setSize($enter, $current, 'entrer');
@@ -34,40 +34,44 @@ class MouvementController extends AbstractController
         $initial = $traet['initial'];
         $total = $current[0];
 
-        return $this->render('impression/select.html.twig',[
+        return $this->render('impression/etat/select_produit.html.twig',[
                 'courant' =>$current,
                 'initial' =>$initial,
                 'init' => $init,
                 'entrer' =>$entrer,
                 'out' =>$out,
                 'issubmitted' => $isSubmitted,
-                'total' =>$total
+                'total' =>$total,
+                'month' => $mois,
+                'year' => $annee
+                
             ]);
         
     }
     //Route pour les telechargement de produits entrer
-    #[Route('/impression_product', name: 'impression_product')]
-    public function impressionProd(ManagerRegistry $doctrine,Traitement $traitement)
+    #[Route('/impression_product/{mois}/{annee}', name: 'impression_product')]
+    public function impressionProd(ManagerRegistry $doctrine,Traitement $traitement,$mois,$annee)
     {
+
         $repository = $doctrine->getRepository(Categorie::class);
-        $init  = $repository->findByInit(); 
-        $enter  = $repository->findByEnter();
-        $out  = $repository->findByOut();
-        $current  = $repository->findByCurrent();
+        $init  = $repository->findByInit($mois,$annee); 
+        $enter  = $repository->findByEnter($mois,$annee); 
+        $out  = $repository->findByOut($mois,$annee);  
+        $current  = $repository->findByCurrent($mois,$annee);
 
         $out = $traitement->setSize($out, $current, 'sortie');
         $entrer = $traitement->setSize($enter, $current, 'entrer');
         $traet = $traitement->index($init, $enter,$out, $current);
         $current = $traet['courant'];
         $initial = $traet['initial'];
-        $imp = true;
-        return $this->render('impression/etat_de_stock.html.twig',[
+        return $this->render('impression/etat/etat_de_stock.html.twig',[
             'courant' =>$current,
             'initial' =>$initial,
             'init' => $init,
             'entrer' =>$entrer,
             'sort' =>$out,
-            'imp' => $imp
+            'month' => $mois,
+            'year' => $annee
         ]);
     }
       //Route pour les telechargement de produits entrer

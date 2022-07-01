@@ -61,7 +61,7 @@ class __TwigTemplate_ad17bb88f1cd0d326c59dfe1706ac244 extends \Twig\Template
             <div class=\"card card-body\">
                 <div class=\"d-flex align-items-center mb-3 pb-1\">
                     <i class=\"pb-1 fad fa-cauldron\"></i>
-                    <h3 class=\"fw-normal \" style=\"color:#e3151a;margin: 2px auto;\">Page d'inscription de CAVP</h3>
+                    <h3 class=\"fw-normal\" style=\"color:#e3151a;margin: 2px auto;\">Page d'inscription de CAVP</h3>
                 </div>
                 ";
         // line 18
@@ -127,7 +127,7 @@ class __TwigTemplate_ad17bb88f1cd0d326c59dfe1706ac244 extends \Twig\Template
             <div class=\"card card-body\">
                 <div class=\"d-flex align-items-center mb-3 pb-1\">
                     <i class=\"pb-1 fad fa-cauldron\"></i>
-                    <h3 class=\"fw-normal \" style=\"color:#e3151a;margin: 2px auto;\">Page d'inscription de CAVP</h3>
+                    <h3 class=\"fw-normal\" style=\"color:#e3151a;margin: 2px auto;\">Page d'inscription de CAVP</h3>
                 </div>
                 {% if notif %}
                         {{ notif }}

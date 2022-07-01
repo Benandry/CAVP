@@ -8778,7 +8778,7 @@
         <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.fHGbJRu" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.p0vp1Dz" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\AgenceCrudController::autocomplete" type="service_closure" id=".service_locator.kEvhmk9"/>
@@ -8867,6 +8867,7 @@
         <argument key="App\Controller\Admin\UserCrudController::renderFilters" type="service_closure" id=".service_locator.kEvhmk9"/>
         <argument key="App\Controller\Admin\UserCrudController::updateEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\DefaultController::disponible" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\DefaultController::new" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\DefaultController::public" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\DefaultController::test" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\EtatController::index" type="service_closure" id=".service_locator.LDwumwZ"/>
@@ -8884,6 +8885,8 @@
         <argument key="App\Controller\MouvementCrudController::show" type="service_closure" id=".service_locator.l45KXOv"/>
         <argument key="App\Controller\OrderController::getSlips" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\OrderController::index" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\OrderController::orderOutRecap" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\OrderController::orderOutRepart" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\OrderController::test" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PeriodeController::mensuel" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\RegisterController::index" type="service_closure" id=".service_locator.Isyi.eu"/>
@@ -8980,6 +8983,7 @@
         <argument key="App\Controller\Admin\UserCrudController:renderFilters" type="service_closure" id=".service_locator.kEvhmk9"/>
         <argument key="App\Controller\Admin\UserCrudController:updateEntity" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\DefaultController:disponible" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\DefaultController:new" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\DefaultController:public" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\DefaultController:test" type="service_closure" id=".service_locator.LDwumwZ"/>
         <argument key="App\Controller\EtatController:index" type="service_closure" id=".service_locator.LDwumwZ"/>
@@ -8997,6 +9001,8 @@
         <argument key="App\Controller\MouvementCrudController:show" type="service_closure" id=".service_locator.l45KXOv"/>
         <argument key="App\Controller\OrderController:getSlips" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\OrderController:index" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\OrderController:orderOutRecap" type="service_closure" id=".service_locator.GQZbvNR"/>
+        <argument key="App\Controller\OrderController:orderOutRepart" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\OrderController:test" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\PeriodeController:mensuel" type="service_closure" id=".service_locator.GQZbvNR"/>
         <argument key="App\Controller\RegisterController:index" type="service_closure" id=".service_locator.Isyi.eu"/>
@@ -9810,12 +9816,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.fHGbJRu"/>
+      <argument type="service" id=".service_locator.p0vp1Dz"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.fHGbJRu"/>
+      <argument type="service" id=".service_locator.p0vp1Dz"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -10981,7 +10987,7 @@
     <service id="Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface" alias="webpack_encore.entrypoint_lookup[_default]"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.fHGbJRu"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.p0vp1Dz"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -11017,7 +11023,7 @@
     <service id=".service_locator.6rNHno." alias=".service_locator.riFbGaB"/>
     <service id=".service_locator.k8sYntp" alias=".service_locator.Vq5yBlp"/>
     <service id=".service_locator.Fgoq2HH" alias=".service_locator.8O4DYxJ"/>
-    <service id=".service_locator.1mP7SBh" alias=".service_locator.fHGbJRu"/>
+    <service id=".service_locator.9AM9Zgw" alias=".service_locator.p0vp1Dz"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.Mc7dgRT" alias=".service_locator.gWVDS1o"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>

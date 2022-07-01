@@ -66,6 +66,13 @@ class __TwigTemplate_2d2b2c16e11219f4a90ff21b9d4fea49 extends \Twig\Template
 
         // line 4
         echo "    <h2 class=\"fw-bold\" style=\"color: #e31419;\">Bienvenu dans l'espace d'administration de CAVP </h2>
+        <p>
+            <span>Vous etes connectée en tant que <b>";
+        // line 6
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 6, $this->source); })()), "user", [], "any", false, false, false, 6), "nom", [], "any", false, false, false, 6), "html", null, true);
+        echo "</b> .<span><br/>
+            Cette page  est uniquement pour les utilisateurs qui ont les roles Admin
+        </p>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -87,7 +94,7 @@ class __TwigTemplate_2d2b2c16e11219f4a90ff21b9d4fea49 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  68 => 4,  58 => 3,  35 => 1,);
+        return array (  72 => 6,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -96,6 +103,10 @@ class __TwigTemplate_2d2b2c16e11219f4a90ff21b9d4fea49 extends \Twig\Template
 
 {% block main %}
     <h2 class=\"fw-bold\" style=\"color: #e31419;\">Bienvenu dans l'espace d'administration de CAVP </h2>
+        <p>
+            <span>Vous etes connectée en tant que <b>{{ app.user.nom}}</b> .<span><br/>
+            Cette page  est uniquement pour les utilisateurs qui ont les roles Admin
+        </p>
 {% endblock %}", "admin/dashboard.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\templates\\admin\\dashboard.html.twig");
     }
 }

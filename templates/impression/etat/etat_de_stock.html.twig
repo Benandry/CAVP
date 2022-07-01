@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+        <title>Impression de etat de stock | Paositra malagasy</title>
+    </head>
+    <body onload="window.print()">
+        <div class="container">
+            <h3 class="text-danger text-center">Etat de stock general du mois {{ month }}/{{ year }} </h3>
+            <div class="table responsive-xxl">
+                <table class="table table-bordered table-hover" >
+                    <thead>
+                        <tr class="table-danger">
+                            <th data-sortable="true" data-field="Ordre"> Ordre</th>
+                            <th data-field="Categorie"> Produit </th>
+                            <th data-field="produit"> Categorie </th>
+                            <th data-field="Valeur Faciales">Valeur Faciales</th>
+                            <th data-field="Stock initial">Stock initial</th>
+                            <th data-field="Entrée">Entrée</th>
+                            <th data-field="Sortie">Sortie</th>
+                            <th data-field="Sock Actuel">Stock Acteul </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key,value in courant %}
+                                <tr>
+                                {% for key2, value2 in value %} 
+                                    
+                                    {% if key2 =='ordre' %}
+                                        <td> {{ value2 }}  </td>
+                                    {% elseif key2 =='NomDeCategorie' %}
+                                        <td> {{ value2 }} </td>
+                                    {% elseif key2 =='valeurFaciale' %}
+                                        <td> {{ value2 }} </td>
+                                    {% elseif key2 =='initiale' %}
+                                        <td> {{ initial[key][0] }} </td> 
+                                    {% elseif key2 =='entrer' %}
+                                        <td> {{ entrer[key][0] - initial[key][0] }} </td> 
+                                    {% elseif key2 =='sortie' %}
+                                        {% if sort is empty %}
+                                            <td> 0 </td> 
+                                        {% else %}
+                                            <td> {{ sort[key][0]|abs }} </td>
+                                        {% endif %} 
+                                    {% elseif key2 =='actuelle' %}
+                                        <td> {{ value2 }} </td>  
+                                    {% elseif key2 =='produit' %}
+                                        <td> {{ value2 }} </td>                                                                                                                   
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            <div class="d-flex flex-row-reverse bd-highlight">
+                <div class="p-2 bd-highlight">
+                    <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }} </p>
+                    <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
+                </div>
+            </div>
+        </div>
+         {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}    
+    </body>
+</html>

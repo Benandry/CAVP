@@ -9,23 +9,21 @@
 			{% set mois_tab = [ {'00' :'Janvier', '01' :'Février','02' :'Mars','03' :'Avril','04' :'Mai','05' :'Juin','06' :'Juillet','07' :'Aout','08' :'Septembre','09' :'Octobre','10' :'Novembre','11' :'Décembre' }] %}
 			{% set mois = 'now' | date('F') %}
 			<h2 class="fw-bolder text-center">Rapport général</h2>
-
-			<div class="col-lg-12">
-				<nav class="nav nav-tabs">
-					<a class="nav-item nav-link active" style="font-size:16px;" href="#recapitulation" data-toggle="tab">Récapitulation Générale</a>
-					<a class="nav-item nav-link" style="font-size:16px;" href="#situation" data-toggle="tab">Situation Générale</a>
-				</nav>
-				<div
-					class="tab-content">
-					<!-- Situation -->
-					<div class="tab-pane active" id="recapitulation" style="text-align:justify">
-						<div class="row">
-							<div class="col-lg-12">
-								<h4 class="fw-bold">Récapitulation Générale de la situation des stocks des Valeurs Postales, Mois du
-									{{ mois }}
-									{{ 'now' | date('Y') }}</h4>
-							</div>
+			<form action="{{ path('Product_dispo') }}">
+				<label for="ldate">Preciser le mois et annee:</label>
+				<input type="month" id="ldate" name="ldate">
+				<input type="submit" value="Submit">
+			</form> 
+			<ul class="nav nav-tabs">
+				<li class="nav-items"><a class="nav-link active" data-bs-toggle="tab" href="#recaputilation">Recaputilation generales</a></li>
+				<li class="nav-items"><a class="nav-link" data-bs-toggle="tab" href="#situation">Situation generales </a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="recaputilation">
+					<div class="row">
+						<div class="col">
 							<div class="table responsive-xxl">
+								<h4 class="fw-bold">Récapitulation Générale de la situation des stocks des Valeurs Postales, Mois du {{ month }} - {{ year }}</h4>
 								<table class="table" id="recap">
 									<thead>
 										<tr>
@@ -91,19 +89,18 @@
 												Chef de  Centre d'Approvisionnement en Valeurs Postales
 											</span>
 										</p>
+										<p> <a href="{{ path('impression_produit_disponible',{mois: month,annee: year }) }}" target="_blank" class="btn btn-outline-danger">Imprimer</a></p>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="tab-pane" id="situation" style="text-align:justify">
+				<div class="tab-pane" id="situation">
 					<div class="row">
-						<div class="col-lg-12">
-							<h4 class="fw-bold">Situation Générale de la situation des stocks des Valeurs Postales, Mois du
-								{{ mois }}
-								{{ 'now' | date('Y') }}</h4>
+						<div class="col">
 							<div class="table responsive-xxl">
+								<h4 class="fw-bold">Situation Générale de la situation des stocks des Valeurs Postales, Mois du {{ month }} - {{ year }}</h4>
 								<table class="table" id="myTable">
 									<thead>
 										<tr>
@@ -128,55 +125,55 @@
 										</tr>
 									</thead>
 									<tbody>
-                                    {% set sumQuantInt = 0 %}
-                                    {% set sumValueInit = 0 %}
-                                    {% set sumQuantEntrer = 0 %}
+									{% set sumQuantInt = 0 %}
+									{% set sumValueInit = 0 %}
+									{% set sumQuantEntrer = 0 %}
 									{% set sumQuantCurrent = 0 %}
 									{% set sumValueCurrent = 0 %}
 									{% set sumQuantSortie = 0 %}
 									{% set sumValSortie = 0 %}
 									{% set sumValRRecus = 0 %}
-                                        {% for key,value in courant %}
-                                            <tr>
-                                                {% for key2, value2 in value %}             
-                                                    {% if key2 =='nomProduit' %}
-                                                        <td> {{ value2 }} </td> 
-                                                    {% elseif key2 =='quantite_init' %}
-                                                    	{% set valeur = initial[key][0] %}
+										{% for key,value in courant %}
+											<tr>
+												{% for key2, value2 in value %}             
+													{% if key2 =='nomProduit' %}
+														<td> {{ value2 }} </td> 
+													{% elseif key2 =='quantite_init' %}
+														{% set valeur = initial[key][0] %}
 														{% set sumQuantInt = sumQuantInt + valeur %} 
-                                                        <td> {{ valeur }} </td> 
+														<td> {{ valeur }} </td> 
 													{% elseif key2 =='valeur_init' %}
 														{% set valeur = init[key]['prix_net'] %}
 														{% set sumValueInit = sumValueInit + valeur %} 
 														<td> {{ valeur }} </td> 
 													{% elseif key2 =='qunad_recus' %}
-                                                    	{% set valeur = quantiteEntrer[key][0] %}
+														{% set valeur = quantiteEntrer[key][0] %}
 														{% set sumQuantEntrer = sumQuantEntrer + valeur %} 
-                                                        <td> {{ valeur }} </td> 
+														<td> {{ valeur }} </td> 
 													{% elseif key2 =='val_recus' %}
 														{% set valeur = valeurEntrer[key][0] %}
 														{% set sumValRRecus = sumValRRecus + valeur %}
-                                                        <td> {{ valeur }} </td> 
+														<td> {{ valeur }} </td> 
 													{% elseif key2 =='quantite_sortie' %}
-                                                    	{% set valeur = quantiteOut[key][0]|abs %}
+														{% set valeur = quantiteOut[key][0]|abs %}
 														{% set sumQuantSortie = sumQuantSortie + valeur %} 
-                                                        <td> {{ valeur }} </td> 
+														<td> {{ valeur }} </td> 
 													{% elseif key2 =='val_sortie' %}
-                                                        {% set valeur = valueOut[key][0]|abs %}
+														{% set valeur = valueOut[key][0]|abs %}
 														{% set sumValSortie = sumValSortie + valeur %} 
 														<td> {{ valeur }} </td> 
 													{% elseif key2 =='quantite_actuelle' %}
-                                                    	{% set valeur = courant[key]['quantite_actuelle'] %}
+														{% set valeur = courant[key]['quantite_actuelle'] %}
 														{% set sumQuantCurrent = sumQuantCurrent + valeur %} 
-                                                        <td> {{ valeur }} </td>
+														<td> {{ valeur }} </td>
 													{% elseif key2 =='value_actuelle' %}
-                                                        {% set valeur = courant[key]['prix_net'] %}
+														{% set valeur = courant[key]['prix_net'] %}
 														{% set sumValueCurrent = sumValueCurrent + valeur %} 
-                                                        <td> {{ valeur }} </td>
-                                                    {% endif %}
-                                                {% endfor %}
-                                            </tr>
-                                        {% endfor %}
+														<td> {{ valeur }} </td>
+													{% endif %}
+												{% endfor %}
+											</tr>
+										{% endfor %}
 										<tfoot>
 											<tr>
 												<th>
@@ -210,12 +207,12 @@
 										</tfoot>
 									</tbody>
 								</table>
-								<div>
-									<p id="arret">
-										<span class="text-uppercase">
-											Arreté a :</span>
-									</p>
-								</div>
+							</div>
+							<div>
+								<p id="arret">
+									<span class="text-uppercase">
+										Arreté a :</span>
+								</p>
 							</div>
 							<div class="d-flex flex-row-reverse bd-highlight">
 								<div class="p-2 bd-highlight">
@@ -227,6 +224,7 @@
 											Chef de  Centre d'Approvisionnement en Valeurs Postales
 										</span>
 									</p>
+									<p> <a href="{{ path('situation',{mois: month,annee: year }) }}" target="_blank" class="btn btn-outline-danger" >Imprimer</a></p>
 								</div>
 							</div>
 						</div>
@@ -244,3 +242,4 @@
 		{% endif %}
 	</main>
 {% endblock %}
+							

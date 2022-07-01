@@ -10,7 +10,7 @@
                         <div class="q-container p-4">
                             <div class="row">
                                 <div class="col">
-                                <h2 class="fw-bolder"> Situation du stocks: <span style="color:#498000;">{{ 'now' |format_date(locale='fr') }}</span></h2>
+                                <h2 class="fw-bolder"> Situation du stocks: <span style="color:#498000;">{{ month }}/{{ year }}</span></h2>
                                     <div class="q-display p-3">
                                             <span class="btn btn-danger btn-sm disabled">Selectionner les : </span>
                                             <button type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#myModal"> Produits</button>
@@ -38,59 +38,29 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {% if isDate == true %}
-                                                <span class="float-end">
-                                                    <span class="btn btn-danger btn-sm disabled">Preciser : </span>
-                                                    <button type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#myModal2">la date </button>
-                                                    <div class="modal" id="myModal2">
-                                                        <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title"> Date preciser </h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                                            </div>
-                                                            {{ form_start(formD) }}
-                                                            <div class="modal-body">
-                                                                <div class="form-group">
-                                                                    <label for="select">Date </label>
-                                                                    {{ form_widget(formD.dateP,{'label': 'Date '}) }}
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                    <div class="form-group">
-                                                                        {{ form_row(formD.preciser, { 'label': 'preciser' }) }}
-                                                                    </div>
-                                                            </div>
-                                                            {{ form_end(formD) }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </span>
-                                            {% endif %}   
+
+                                            <!-- **************************************************** -->
+                                            <form action="{{ path('etat_de_stock') }}">
+                                                <label for="year">annee  :</label>
+                                                    <select name="year" id="year">
+                                                     {% set value = 2000 %}
+                                                    {% for i in range(0, 99) %}
+                                                        {% set value = value + i %}
+                                                        <option value="{{ i }}">{{ value }}</option>
+                                                    {% endfor %}
+                                                    </select>
+                                                <input type="submit" value="Submit">
+                                            </form>
+                                            <!--*****************************************************************************************************-->
+                                            <form action="{{ path('etat_de_stock') }}" class="float-end">
+                                                <label for="ldate">Preciser le mois :</label>
+                                                <input type="month" id="ldate" name="ldate">
+                                                <input type="submit" value="Submit">
+                                            </form>
+                                                  
                                             {% if issubmitted == true %}
                                                 <h4 class="text-danger"><label for="cars">Nom du produits :<em>  {{ init.0.Produits }}</em></h4>
                                             {% endif %}
-                                            <!--*****************************************************************************************************-->
-                                            <span class="text-center">
-                                                <div class="dropdown">
-                                                    <a class="btn btn-secondary dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        Etat par 
-                                                    </a>
-
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                        <li>
-                                                            <a class="dropdown-item" href="{{ path('history', {'source':'tous les produits par categorie'}) }}">Actuel</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="{{ path('periode_mensuel', {'source':'etat mensuel'}) }}">Mensuel</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="{{ path('periode_annuel', {'source':'etat annuel'}) }}">Annuel</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </span>
-
                                             <!-- **********************************************************************************-->
                                         </div>
                                         <div class="d-flex flex-row-reverse bd-highlight">
@@ -100,7 +70,7 @@
                                         </div>
 
                                         <div class="table responsive-xxl">
-                                                <table class="table table-striped table-bordered table-hover" id="myTable" >
+                                                <table class="table table-striped table-bordered table-hover" id="myTableEtat" >
                                                     <thead>
                                                         <tr class="table-danger">
                                                             <th data-sortable="true" data-field="Ordre"> Ordre</th>
@@ -190,9 +160,9 @@
                                                 <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
                                                 
                                                     {% if issubmitted == false %}
-                                                        <p> <a href="{{ path('impression_product') }}" target="_blank" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer</button></a></p>
+                                                        <p> <a href="{{ path('impression_product',{mois: month,annee: year}) }}" target="_blank" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer</button></a></p>
                                                     {% else %}
-                                                        <p> <a href="{{ path('impression_select',{id: init.0.id}) }}" target="_blank" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer ce fichier</button></a></p>
+                                                        <p> <a href="{{ path('impression_select',{id: init.0.id,mois: month,annee: year}) }}" target="_blank" style="color: #fff; text-decoration:none;"><button class="btn btn-outline-danger" >Imprimer ce fichier</button></a></p>
                                                     {% endif %}
                                             </div>
                                         </div>

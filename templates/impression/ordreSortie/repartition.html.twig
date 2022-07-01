@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Impression de recapitulation d'ordre de sortie numero  | Paositra malagasy</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body onload="window.print()">
+        {% set types_order = ['PN','FP']  %}
+        <div class="container">
+            <h4 class="h4">Récapitulation N° {{ numero }}--{{ types_order[types - 1]}} </h4>
+            <div class="table responsive-xxl">
+                <table class="table table-bordered table-hover" >
+                        <tr>
+                            <th>Ordre</th>
+                            <th>Valeur Faciales </th>
+                                {% for pro in dispo %}
+                                    <th> {{ pro.nombre_cat|abs }}</th>
+                            {% endfor %}
+                            <th>total par bureau </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key,value in dispo %}
+                                <tr>
+                                {% for key1,value1 in value %}
+                                    {% if key1 == 'ordre' %}
+                                        <td> {{ value1 }}</td>
+                                    {% elseif key1 == 'vf' %}
+                                        <td>{{ value1 }}</td>
+                                    {% elseif key1 == 'nombre_cat' %}
+                                        {% for pro in dispo  %}
+                                            {% if pro.nombre_cat|abs == value1|abs %}
+                                                <td> {{ pro.nombre_agence }}</td>
+                                            {% else %}
+                                                <td> 0</td>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% elseif key1 == 'nombre_agence' %}
+                                        <td>{{ value1 }}</td>
+                                    {% endif %}
+                                {% endfor %}
+                                </tr>
+                        {% endfor %}
+                    <tbody>
+                </table>  
+            </div>
+            <div>
+                <p class="uppercase">ARRETE A LA SOMME DE:<p>
+            </div>
+            <div class="d-flex flex-row-reverse bd-highlight">
+                <div class="p-2 bd-highlight">
+                    <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }}</p>
+                    <p><span style="margin-top1: 25px;"> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

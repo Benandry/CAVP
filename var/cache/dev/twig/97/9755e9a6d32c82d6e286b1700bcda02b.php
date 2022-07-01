@@ -207,34 +207,35 @@ class __TwigTemplate_1dcee6589ee7e17e5feb17cc0d165960 extends \Twig\Template
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "product", [], "any", false, false, false, 82), "html", null, true);
                 echo "</span>
 \t\t\t\t\t\t\t\t\t\t<br/><br/>
+\t\t\t\t\t\t\t\t\t\t<i class=\"far fa-anchor\"></i>
 \t\t\t\t\t\t\t\t\t\tCategorie :
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
-                // line 85
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "categorie", [], "any", false, false, false, 85), "html", null, true);
+                // line 86
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "categorie", [], "any", false, false, false, 86), "html", null, true);
                 echo "</span>
 \t\t\t\t\t\t\t\t\t\t<br/><br/>
 \t\t\t\t\t\t\t\t\t\tAction :
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
-                // line 88
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "types", [], "any", false, false, false, 88), "html", null, true);
+                // line 89
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "types", [], "any", false, false, false, 89), "html", null, true);
                 echo "</span>
 \t\t\t\t\t\t\t\t\t\t<br/><br/>
 \t\t\t\t\t\t\t\t\t\t<u>Nombre :</u>
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
-                // line 91
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "nombre", [], "any", false, false, false, 91), "html", null, true);
+                // line 92
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "nombre", [], "any", false, false, false, 92), "html", null, true);
                 echo "</span>
 \t\t\t\t\t\t\t\t\t\t<br/><br/>
 \t\t\t\t\t\t\t\t\t\tReference :
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
-                // line 94
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "reference", [], "any", false, false, false, 94), "html", null, true);
+                // line 95
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "reference", [], "any", false, false, false, 95), "html", null, true);
                 echo "</span>
 \t\t\t\t\t\t\t\t\t\t<br/><br/>
 \t\t\t\t\t\t\t\t\t\tDestination :
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
-                // line 97
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "destination", [], "any", false, false, false, 97), "html", null, true);
+                // line 98
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "destination", [], "any", false, false, false, 98), "html", null, true);
                 echo "</span>
 \t\t\t\t\t\t\t\t\t\t<br/>
 \t\t\t\t\t\t\t\t\t</p>
@@ -246,26 +247,26 @@ class __TwigTemplate_1dcee6589ee7e17e5feb17cc0d165960 extends \Twig\Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['histo'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 104
+            // line 105
             echo "\t\t\t\t</div>
 \t\t\t</div>
 \t\t";
         } else {
-            // line 107
+            // line 108
             echo "\t\t\t<h1>Page not found 404
 \t\t\t</h1>
 \t\t\t<p>
 \t\t\t\tThe requested page couldn't be located. Checkout for any URL
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t                misspelling or
 \t\t\t\t<a href=\"";
-            // line 112
+            // line 113
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             echo "\">return to the authentification
 \t\t\t\t</a>.
 \t\t\t</p>
 \t\t";
         }
-        // line 116
+        // line 117
         echo "\t</main>
 ";
         
@@ -288,7 +289,7 @@ class __TwigTemplate_1dcee6589ee7e17e5feb17cc0d165960 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  269 => 116,  262 => 112,  255 => 107,  250 => 104,  237 => 97,  231 => 94,  225 => 91,  219 => 88,  213 => 85,  207 => 82,  197 => 75,  191 => 72,  184 => 67,  180 => 66,  172 => 61,  166 => 58,  157 => 52,  151 => 49,  139 => 40,  124 => 28,  118 => 25,  112 => 22,  106 => 19,  94 => 9,  92 => 8,  89 => 7,  79 => 6,  59 => 3,  36 => 1,);
+        return array (  270 => 117,  263 => 113,  256 => 108,  251 => 105,  238 => 98,  232 => 95,  226 => 92,  220 => 89,  214 => 86,  207 => 82,  197 => 75,  191 => 72,  184 => 67,  180 => 66,  172 => 61,  166 => 58,  157 => 52,  151 => 49,  139 => 40,  124 => 28,  118 => 25,  112 => 22,  106 => 19,  94 => 9,  92 => 8,  89 => 7,  79 => 6,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -376,6 +377,7 @@ class __TwigTemplate_1dcee6589ee7e17e5feb17cc0d165960 extends \Twig\Template
 \t\t\t\t\t\t\t\t\t\tproduits :
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.product }}</span>
 \t\t\t\t\t\t\t\t\t\t<br/><br/>
+\t\t\t\t\t\t\t\t\t\t<i class=\"far fa-anchor\"></i>
 \t\t\t\t\t\t\t\t\t\tCategorie :
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.categorie }}</span>
 \t\t\t\t\t\t\t\t\t\t<br/><br/>

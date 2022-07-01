@@ -21,65 +21,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 //#[IsGranted('ROLE_ADMIN')]
 class EtatController extends AbstractController
 {
-  #[Route('/etat-de-stocks/{mois}', name: 'etat_de_stock')]
+  #[Route('/etat-de-stocks', name: 'etat_de_stock')]
   public function index(ManagerRegistry $doctrine,Traitement $traitement,Request $request, $mois=''): Response
   {
     
-    $val = $mois;
-    if (date($mois) > date('m-Y')) {
-      dd('Date inaproprié');
+    $mois_annee = $request->query->get('ldate');
+    $year_only = $request->query->get('year');
+   // dd($year_only);
+    if ($mois_annee == null) {
+        $mois_annee = date('Y-m');
     }
+    $date_split = explode('-',$mois_annee);
+    $month = $date_split[1];
+    $year = $date_split[0];
+    //dd($year);
 
     $isssubmitted = false;
     $isDate = false;
-    if($mois != ''){
-        $date_split = explode('-',$mois);
-        $mois = $date_split[0];
-        $annee = $date_split[1]; 
-        $repository = $doctrine->getRepository(Categorie::class);
-        $init  = $repository->findByInit();
-        $initMonth  = $repository->findByInitMonth($mois,$annee);
-      //==========================Maka an ilay tableau vaovao =======================//
-      $tabo;
-       for($i = 0; $i < count($init); $i++) {
-          $tabo[$i] = 0;
-       }
-
-        $enter  = $repository->findByEnterMonth($mois,$annee);
-        //dd($enter);
-        //la requets avec les produits sorties  
-        $out  = $repository->findByOutMonth($mois,$annee);
-        //dd($out);
-        //la requets avec les produits actuels  
-        $current  = $repository->findByCurrentMonth($mois,$annee);
-        //dd(array_merge($init,$enter,$out,$current));
-        //dd($current);
-        $beginCurrent  = $repository->findByBeginCurrentMonth($mois,$annee);
-      //dd($beginCurrent);
-      $out = $traitement->setSize($out, $current, 'sortie');
-      $entrer = $traitement->setSize($enter, $current, 'entrer');
-      $beginCurrent = $traitement->setSize($beginCurrent, $current, 'debut');
-      $trtmt = $traitement->index($init, $enter,$out, $current, $beginCurrent);
-      $current = $trtmt['courant'];
-      $init = $trtmt['initial'];
-      $total = $current[0];
-      $sortie = $out;
-      //$beginCurrent = $trtmt['beginCurrent'];
-      //dd($beginCurrent);
-//dd($val)
-        return $this->render('periode/mensuel.html.twig', [
-            'total' => $total, 
-          'courant' =>$current,
-            'init' =>$init,
-            'entrer' =>$entrer,
-            'sort' =>$sortie,
-            'mois' =>$mois,
-            'val' =>$val,
-            'annee' =>$annee,
-            'initMonth' =>$initMonth,
-            'beginCurrent' => $beginCurrent
-        ]);
-    }
+    
     /*=================================Formulaire pour selectionner les produits============================ */
     $form = $this->createFormBuilder()
     ->add('select', EntityType::class,[
@@ -98,10 +57,10 @@ class EtatController extends AbstractController
       $data = $form->getData();
       $product = ($data['select'])->getId();
       $repository = $doctrine->getRepository(Categorie::class);
-      $init  = $repository->findByInitPro($product);
-      $enter  = $repository->findBytEnterPro($product);
-      $out  = $repository->findByOutPro($product); 
-      $current  = $repository->findByCurrentPro($product);
+      $init  = $repository->findByInitPro($product,$month,$year);
+      $enter  = $repository->findBytEnterPro($product,$month,$year);
+      $out  = $repository->findByOutPro($product,$month,$year); 
+      $current  = $repository->findByCurrentPro($product,$month,$year);
 
       if (!$product) {
           throw $this->createNotFoundException(
@@ -126,23 +85,27 @@ class EtatController extends AbstractController
         'init' =>$init,
         'issubmitted' => $isssubmitted,
         'form' => $form->createView(),
-        'isDate' => $isDate  
+        'isDate' => $isDate,
+        'month' => $month,
+        'year' => $year
       ]);
     }
+
+    //dd($year);
    $isDate = true;
     // ===================  Appel la fonction contient la requets avec les produits initiale en generale(Tous les categories par produits) ====================== //
     $repository = $doctrine->getRepository(Categorie::class);
     // =================== Quantite initiale en generale (Tous les categories par produits)========================== //
-    $init  = $repository->findByInit();
+    $init  = $repository->findByInit($month,$year);
     //dd($init);
     // ==================== la requets avec les produits entrées en generale (Tous les categories par produits)=================== //  
-    $enter  = $repository->findByEnter();
+    $enter  = $repository->findByEnter($month,$year);
       //dd($enter);
     // -====================== la requets avec les produits sorties en generale(Tous les categories par produits)  =========================== // 
-    $out  = $repository->findByOut();
+    $out  = $repository->findByOut($month,$year);
     //dd($out);
     // =========================== la requets avec les produits actuels en generale(Tous les categories par produits) =============================== //  
-    $current  = $repository->findByCurrent();
+    $current  = $repository->findByCurrent($month,$year);
 
     // Fomulaire de la date ================//
     $formD = $this->createFormBuilder()
@@ -162,10 +125,10 @@ class EtatController extends AbstractController
       $dateP = $data['dateP']->format('Y-m-d');
       
       $repository = $doctrine->getRepository(Categorie::class);
-      $init  = $repository->findByInit($dateP);
-      $enter  = $repository->findByEnter($dateP);
-      $out  = $repository->findByOut($dateP);
-      $current  = $repository->findByCurrent($dateP);
+      $init  = $repository->findByInit($dateP,$month,$year);
+      $enter  = $repository->findByEnter($dateP,$month,$year);
+      $out  = $repository->findByOut($dateP,$month,$year);
+      $current  = $repository->findByCurrent($dateP,$month,$year);
 
       $trtmt = $traitement->index($init, $enter,$out, $current);
       //dd($enter);
@@ -184,7 +147,9 @@ class EtatController extends AbstractController
         'out' =>$out,
         'issubmitted' => $isssubmitted,
         'form' => $form->createView(),
-        'isDate' => $isDate
+        'isDate' => $isDate,
+        'month' => $month,
+        'year' => $year
       ]);
     }
     //dd($out);
@@ -201,13 +166,14 @@ class EtatController extends AbstractController
         'courant' =>$current,
         'total' =>$total,
         'initial' =>$initial,
-        //'entrer' =>$enter,
         'entree' =>$entrer,
         'formD' =>$formD->createView(),
         'out' =>$out,
         'isDate' => $isDate,
         'issubmitted' => $isssubmitted,
-        'form' => $form->createView()
+        'form' => $form->createView(),
+        'month' => $month,
+        'year' => $year
     ]);
   }
    

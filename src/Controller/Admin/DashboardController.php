@@ -53,10 +53,14 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToRoute('New Operations ', 'fas fa-plus','mouvement_controller_crud_new')
         ]);
 
+        yield MenuItem::subMenu('Utilisateur', 'fas fa-user')->setSubItems([
+            MenuItem::linkToRoute('Creer Utilisateur', 'fas fa-plus','page_inscription'),
+            MenuItem::linkToCrud('Compte Utilisateur', 'fas fa-eye',User::class),
+        ]);    
+
         yield MenuItem::subMenu('Agence Paositra Malagasy ', 'fas fa-home')->setSubItems([
             MenuItem::linkToCrud("Liste Agences ", 'fas fa-eye',Agence::class),
             MenuItem::linkToCrud('Créer un agence', 'fas fa-plus',Agence::class)->setAction(Crud::PAGE_NEW)
         ]);
-        
     }
 }

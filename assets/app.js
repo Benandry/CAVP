@@ -15,8 +15,6 @@ import './bootstrap';
 
 import $ from 'jquery';
 import dt from 'datatables.net';
-import button from 'datatables.net-buttons-dt';
-import jsbutton from 'datatables.net-buttons/js/buttons.print.js';
 
 require('@fortawesome/fontawesome-free/js/all.js');
 
@@ -25,44 +23,36 @@ $(document).ready( function () {
     $('#myTable').DataTable({
         language: {
             search: "Rechercher&nbsp;",
-            print: "Imprimer ce fichier",
             paginate: {
                 first:      "Premier",
                 previous:   "Pr&eacute;c&eacute;dent",
                 next:       "Suivant",
                 last:       "Dernier"
-            },
-            "buttons": {
-                "print": "Imprimer"
-            },
-        },
-        dom: 'Bfrtip',
-        buttons: [
-            'colvis',
-            'excel',
-            'print',
-        ]
+            }
+        }
     });
     $('#recap').DataTable({
         language: {
             search: "Rechercher&nbsp;",
-            print: "Imprimer ce fichier",
             paginate: {
                 first:      "Premier",
                 previous:   "Pr&eacute;c&eacute;dent",
                 next:       "Suivant",
                 last:       "Dernier"
-            },
-            "buttons": {
-                "print": "Imprimer"
-            },
-        },
-        dom: 'Bfrtip',
-        buttons: [
-            'colvis',
-            'excel',
-            'print',
-        ]
+            }
+        }
+    });
+    
+    $('#myTableEtat').DataTable({
+        language: {
+            search: "Rechercher&nbsp;",
+            paginate: {
+                first:      "Premier",
+                previous:   "Pr&eacute;c&eacute;dent",
+                next:       "Suivant",
+                last:       "Dernier"
+            }
+        }
     });
     table.buttons().container()
         .appendTo( '#example_wrapper .col-md-6:eq(0)' );
@@ -74,6 +64,7 @@ var url = window.location.href;
 var origin = window.location.origin;
 /* ********************************************************************************************* */
 $(document).ready(function(){
+
     var path = pathname;
     var myArray = path.split("/");
 

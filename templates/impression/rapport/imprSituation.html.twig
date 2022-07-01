@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+        <style>
+            table,tr,th,td {
+                    border: 2px solid black;
+                }
+            #arret{
+                margin-top: 15px;
+                font-family: italic;
+            }
+        </style>
+        <title>Impression de situation generale | Paositra malagasy</title>
+    </head>
+    <body onload="window.print()">
+    <main>
+        {% if app.user %}
+        {% set mois = 'now' | date('F') %}
+        <h4 class="fw-bold">Situation Générale de la situation des stocks des Valeurs Postales, Mois du {{ month }}/{{ year }}</h4>
+        <div class="table responsive-xxl">
+            <table class="table table-bordered table-hover" >
+                <thead>
+                    <tr>
+                        <th>Produits
+                        </th>
+                        <th>Quantité de stock initial
+                        </th>
+                        <th>Valeur de stock initial
+                        </th>
+                        <th>Produits recus quantité
+                        </th>
+                        <th>Produits recus valeur
+                        </th>
+                        <th>Produits sortie quantité
+                        </th>
+                        <th>Produits sortie valeur
+                        </th>
+                        <th>Stock final quantité
+                        </th>
+                        <th>Stock final valeur
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% set sumQuantInt = 0 %}
+                {% set sumValueInit = 0 %}
+                {% set sumQuantEntrer = 0 %}
+                {% set sumQuantCurrent = 0 %}
+                {% set sumValueCurrent = 0 %}
+                {% set sumQuantSortie = 0 %}
+                {% set sumValSortie = 0 %}
+                {% set sumValRRecus = 0 %}
+                    {% for key,value in courant %}
+                        <tr>
+                            {% for key2, value2 in value %}             
+                                {% if key2 =='nomProduit' %}
+                                    <td> {{ value2 }} </td> 
+                                {% elseif key2 =='quantite_init' %}
+                                    {% set valeur = initial[key][0] %}
+                                    {% set sumQuantInt = sumQuantInt + valeur %} 
+                                    <td> {{ valeur }} </td> 
+                                {% elseif key2 =='valeur_init' %}
+                                    {% set valeur = init[key]['prix_net'] %}
+                                    {% set sumValueInit = sumValueInit + valeur %} 
+                                    <td> {{ valeur }} </td> 
+                                {% elseif key2 =='qunad_recus' %}
+                                    {% set valeur = quantiteEntrer[key][0] %}
+                                    {% set sumQuantEntrer = sumQuantEntrer + valeur %} 
+                                    <td> {{ valeur }} </td> 
+                                {% elseif key2 =='val_recus' %}
+                                    {% set valeur = valeurEntrer[key][0] %}
+                                    {% set sumValRRecus = sumValRRecus + valeur %}
+                                    <td> {{ valeur }} </td> 
+                                {% elseif key2 =='quantite_sortie' %}
+                                    {% set valeur = quantiteOut[key][0]|abs %}
+                                    {% set sumQuantSortie = sumQuantSortie + valeur %} 
+                                    <td> {{ valeur }} </td> 
+                                {% elseif key2 =='val_sortie' %}
+                                    {% set valeur = valueOut[key][0]|abs %}
+                                    {% set sumValSortie = sumValSortie + valeur %} 
+                                    <td> {{ valeur }} </td> 
+                                {% elseif key2 =='quantite_actuelle' %}
+                                    {% set valeur = courant[key]['quantite_actuelle'] %}
+                                    {% set sumQuantCurrent = sumQuantCurrent + valeur %} 
+                                    <td> {{ valeur }} </td>
+                                {% elseif key2 =='value_actuelle' %}
+                                    {% set valeur = courant[key]['prix_net'] %}
+                                    {% set sumValueCurrent = sumValueCurrent + valeur %} 
+                                    <td> {{ valeur }} </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    <tfoot>
+                        <tr>
+                            <th>
+                                Totales(Valeur)
+                            </th>
+                            <th>
+                                {{ sumQuantInt }}
+                            </th>
+                            <th>
+                                {{ sumValueInit }}
+                            </th>
+                            <th>
+                                {{ sumQuantEntrer }}
+                            </th>
+                            <th>
+                                {{ sumValRRecus }}
+                            </th>
+                            <th>
+                                {{ sumQuantSortie|abs }}
+                            </th>
+                            <th>
+                                {{ sumValSortie }}
+                            </th>
+                            <th>
+                                {{ sumQuantCurrent }}
+                            </th>
+                            <th>
+                                {{ sumValueCurrent }}
+                            </th>
+                        </tr>
+                    </tfoot>
+                </tbody>
+            </table>
+            <div>
+                <p id="arret">
+                    <span class="text-uppercase">
+                        Arreté a :</span>
+                </p>
+            </div>
+        </div>
+        <div class="d-flex flex-row-reverse bd-highlight">
+            <div class="p-2 bd-highlight">
+                <p>
+                    Antananarivo le ,{{ 'now' |format_date(locale='fr') }}
+                </p>
+                <p>
+                    <span>
+                        Chef de  Centre d'Approvisionnement en Valeurs Postales
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% else %}
+        <h1>Page not found 404
+        </h1>
+        <p>
+            The requested page couldn't be located. Checkout for any URL misspelling or
+            <a href="{{ path('app_login') }}">return to the authentification
+            </a>.
+        </p>
+    {% endif %}
+    
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}  
+</main>
+ </body>
+</html>

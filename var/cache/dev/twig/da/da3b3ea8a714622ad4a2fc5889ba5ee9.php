@@ -87,10 +87,7 @@ class __TwigTemplate_af06a773e060b9f06de95f3666f6b4c0 extends \Twig\Template
                                         <button class=\"btn btn-danger btn-sm btn-block\" type=\"submit\">Connexion</button>
                                     </div>
                                         <p class=\"mb-5 pb-lg-2\" style=\"color: #393f81;\">Vous n'avez pas de compte ? 
-                                        <a href=\"";
-        // line 44
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("page_inscription");
-        echo "\" id=\"register\"> Inscrivez-vous ici </a>
+                                        Contacter au(x) administrateur(s) de CAVP
                                         </p>
                                 </form>
                             </div>
@@ -123,7 +120,7 @@ class __TwigTemplate_af06a773e060b9f06de95f3666f6b4c0 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  92 => 44,  86 => 40,  82 => 29,  73 => 23,  55 => 8,  51 => 7,  43 => 1,);
+        return array (  86 => 40,  82 => 29,  73 => 23,  55 => 8,  51 => 7,  43 => 1,);
     }
 
     public function getSourceContext()
@@ -171,7 +168,7 @@ class __TwigTemplate_af06a773e060b9f06de95f3666f6b4c0 extends \Twig\Template
                                         <button class=\"btn btn-danger btn-sm btn-block\" type=\"submit\">Connexion</button>
                                     </div>
                                         <p class=\"mb-5 pb-lg-2\" style=\"color: #393f81;\">Vous n'avez pas de compte ? 
-                                        <a href=\"{{ path('page_inscription') }}\" id=\"register\"> Inscrivez-vous ici </a>
+                                        Contacter au(x) administrateur(s) de CAVP
                                         </p>
                                 </form>
                             </div>
