@@ -6,46 +6,53 @@
     <main>
         {% if app.user %}
         <div class="container-fluid pt-3">
-            <h3 class="h3" >Creation de nouveaux opération</h3>
-            <p id="user"> {{ app.user.id }}  </p>
-            <div id="flip">Afficher les formulaire</div>
-            <div id="panel">
-                    {{ form_start(form) }}
-                    <div class="row">
-                        <div class="col-4">
-                        {{ form_row(form.produit, {'attr': {'class': 'form-control'}}) }}
+            <div class="box-element card card-solid">
+                <div class="card card-body" id="new_operation">
+                    <h3 class="fw-normal text-center" style="color:#e3151a;margin: 2px auto;">Creation de nouveau opération</h3>
+                    <p id="user"> {{ app.user.id }}  </p>
+                    <div>
+                        <div class="alert alert-danger text-center" role="alert" id="stock_actuelle">
                         </div>
-                        <div class="col-4">
-                        {{ form_row(form.Categorie) }}
-                        </div>
-                        <div class="col-4">
-                        {{ form_row(form.Agence) }}
-                        </div>
-                        <div class="col-4" id="dateEntrer">
-                        {{ form_row(form.dateEntrer) }}
-                        </div>
-                        <div id="type" class="col-4">
-                        {{ form_row(form.types) }}
-                        </div>
-                        <div class="col-4" id="descriptions">
-                        {{ form_row(form.descriptions) }}
-                        </div>
-                        <div class="col-4" id="utilisateur">
-                        {{ form_row(form.User) }}
-                        </div>
-                        <div id="quantite" class="col-4">
-                        {{ form_row(form.quantite) }}
-                        </div>
-                        <div class="col-4">
-                        {{ form_row(form.reference) }}
-                        </div>
-                        <div id="numero" class="col-4">
-                        {{ form_row(form.numero_de_sortie) }}
-                        </div>
+                            {{ form_start(form) }}
+                            <div class="row">
+                                <div class="col-4">
+                                {{ form_row(form.produit, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="col-4">
+                                {{ form_row(form.Categorie) }}
+                                </div>
+                                <div class="col-4">
+                                {{ form_row(form.Agence) }}
+                                </div>
+                                <div class="col-4" id="dateEntrer">
+                                {{ form_row(form.dateEntrer) }}
+                                </div>
+                                <div id="type" class="col-4">
+                                {{ form_row(form.types) }}
+                                </div>
+                                <div class="col-4" id="descriptions">
+                                {{ form_row(form.descriptions) }}
+                                </div>
+                                <div class="col-4" id="utilisateur">
+                                {{ form_row(form.User) }}
+                                </div>
+                                <div id="quantite" class="col-4">
+                                {{ form_row(form.quantite) }}
+                                </div>
+                                <div class="col-4">
+                                {{ form_row(form.reference) }}
+                                </div>
+                                <div id="numero" class="col-4">
+                                {{ form_row(form.numero_de_sortie) }}
+                                </div>
+                            </div>
+                            {{ form_end(form) }}</p>
                     </div>
-                    {{ form_end(form) }}</p>
+                    <a href="{{ path('mouvement_controller_crud_index') }}">Afficher la liste</a>
+                    
+                </div>
             </div>
-            <a href="{{ path('mouvement_controller_crud_index') }}">Afficher la liste</a>
+            
         </div>
         {% else %}
         <h1>Page not found 404 </h1>

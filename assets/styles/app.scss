@@ -116,9 +116,17 @@ body {
     padding: 50px;
     display: none;
   }
-
+#mouvement_submit{
+  align-items: center;
+  text-align: center;
+  align-content: center;
+}
 .card-body{
   width: 400px;
+  background-color: #f1f0de;
+}
+#new_operation{
+  width: 100%;
   background-color: #f1f0de;
 }
 #card-solid{
@@ -199,8 +207,18 @@ body {
 .liens{
   color: #e41422; 
 }
+.liens:hover{
+  border-bottom: 4px solid #dc3444; 
+}
+.liens:active{
+  border-bottom: 4px solid #dc3444; 
+}
 .imageHomepage{
   border-radius: 50%;
+}
+
+.liens:hover{
+  border-bottom: 4px solid #dc3444; 
 }
 
 #inscriptions{
@@ -256,4 +274,7 @@ body {
 .label{
   margin-left: 1rem;
   border-radius: 3px;
+}
+#utilisateur{
+  display: none;
 }

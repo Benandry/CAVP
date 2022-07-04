@@ -34,9 +34,20 @@ class MouvementCrudController extends AbstractController
         $mouvement = new Mouvement();
         $form = $this->createForm(MouvementType::class, $mouvement);
         $form->handleRequest($request);
-
+                
         if ($form->isSubmitted() && $form->isValid()) {
-           // dd($form->getData());
+            $data = $form->getData();
+
+            $types = $data->getTypes()->getId();
+            if ($types == 2) {
+                $quantite = $data->getQuantite();
+                $quantite = -$quantite;
+                $val = $data->setQuantite($quantite);
+               // dd($val);
+                $entityManager->persist($mouvement);
+                $entityManager->flush();
+            }
+            
             $entityManager->persist($mouvement);
             $entityManager->flush();
 

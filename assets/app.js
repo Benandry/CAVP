@@ -23,6 +23,8 @@ $(document).ready( function () {
     $('#myTable').DataTable({
         language: {
             search: "Rechercher&nbsp;",
+            lengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
+            info: "Affichage de  _START_ a _END_ sur _TOTAL_ elements",
             paginate: {
                 first:      "Premier",
                 previous:   "Pr&eacute;c&eacute;dent",
@@ -150,17 +152,12 @@ $(document).ready(function(){
         if($(this).val() == 2){
             $("#numero").css("display",'block');
             $("#mouvement_descriptions").val(3); 
-            $("#mouvement_quantite").val("-");
         }else{
             $("#numero").css("display",'none');
             $("#mouvement_descriptions").val(1);
-            $("#mouvement_quantite").val(" ");
         }
     });
 
-    $("#flip").click(function(){
-      $("#panel").fadeToggle(1000);
-    });
 
     $("#typesNum").click(function(){
         $("#panel1").fadeToggle(1000);
@@ -181,11 +178,39 @@ $(document).ready(function(){
                 console.log($("#mouvement_produit").val());
                 for (let i = 0; i < result.length; i++) {
                     var element = result[i];
-                    $('#mouvement_Categorie').append('<option value="'+element.iDcategorie+'">'+element.categorie+'</option>');   
+                    $('#mouvement_Categorie').append('<option value="'+element.iDcategorie+'">'+element.categorie+'</option>');  
                 }
                 $('#mouvement_Categorie option:first').attr('selected','selected');
+            },
+            error: function (request, status, error) {
+                console.log(request.responseText);
+            }
 
+        });
+    });
+    
+    $('#stock_actuelle').hide();
+    $("#mouvement_Categorie").on('change',function(){
 
+        var url = "/route/json/"+$("#mouvement_produit").val();
+        $.ajax({
+            url: url,
+            method: "GET",
+            dataType : "json",
+            contentType: "application/json; charset=utf-8",
+            data : JSON.stringify($(this).val()),
+            success: function(result){
+                console.log(result);
+                $('#mouvement_Categorie option:selected').each(function() {
+                    for (let i = 0; i < result.length; i++) {
+                        var element = result[i];
+                        if( element.categorie == $(this).text()){
+                            $('#stock_actuelle').show();
+                            document.getElementById('stock_actuelle').innerHTML = "Les stock disponibles pour "+element.categorie+" sont : <span id=\"valeur_dispo\">"+element.valeur_dispo+"</span>";
+                         //  alert("Les stock disponibles pour "+element.categorie+" est : "+element.valeur_dispo);
+                        }
+                    }
+                })
             },
             error: function (request, status, error) {
                 console.log(request.responseText);
@@ -195,13 +220,30 @@ $(document).ready(function(){
 
     });
 
-   
+    $("#mouvement_quantite").on('change',function(){
+       
+        var valDispo = parseInt($('#valeur_dispo').text());
+       // alert(typeof valDispo);
+       var types = $('#mouvement_types').val();
+       var quantite =  $(this).val();
+       // alert(Math.abs(quantite));
+       if (valDispo < Math.abs(quantite) && types == 2 ) {
+            alert("Veuillez saisir nombres inferieur a la valeur disponible");
+            $('#mouvement_submit').prop('disabled', true); 
+       }else{
+            $('#mouvement_submit').prop('disabled', false); 
+       }
+    })
+
+    $('#mouvement_submit').prop('disabled','disabled');
+
     var user = $('#user').text();
     $('#mouvement_User option').each(function () {
         if (parseInt(user) == parseInt($(this).val())) {
             var values =$(this).attr('selected','selected');
-             $(this).val(values);
-          /*  $('#mouvement_User').prop("disabled", true);*/
+            console.log(user);
+             $(this).val(parseInt(user));
+            $('#mouvement_User').hide();
         }
         
     });

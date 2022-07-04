@@ -71,7 +71,7 @@ class __TwigTemplate_2d2b2c16e11219f4a90ff21b9d4fea49 extends \Twig\Template
         // line 6
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 6, $this->source); })()), "user", [], "any", false, false, false, 6), "nom", [], "any", false, false, false, 6), "html", null, true);
         echo "</b> .<span><br/>
-            Cette page  est uniquement pour les utilisateurs qui ont les roles Admin
+            Cette page  est accédée uniquement pour les utilisateurs qui ont les roles Admin
         </p>
 ";
         
@@ -105,7 +105,7 @@ class __TwigTemplate_2d2b2c16e11219f4a90ff21b9d4fea49 extends \Twig\Template
     <h2 class=\"fw-bold\" style=\"color: #e31419;\">Bienvenu dans l'espace d'administration de CAVP </h2>
         <p>
             <span>Vous etes connectée en tant que <b>{{ app.user.nom}}</b> .<span><br/>
-            Cette page  est uniquement pour les utilisateurs qui ont les roles Admin
+            Cette page  est accédée uniquement pour les utilisateurs qui ont les roles Admin
         </p>
 {% endblock %}", "admin/dashboard.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\templates\\admin\\dashboard.html.twig");
     }

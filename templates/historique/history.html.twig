@@ -89,7 +89,7 @@
 										<span style="color:#498000;">{{ histo.types }}</span>
 										<br/><br/>
 										<u>Nombre :</u>
-										<span style="color:#498000;">{{ histo.nombre }}</span>
+										<span style="color:#498000;">{{ histo.nombre|abs }}</span>
 										<br/><br/>
 										Reference :
 										<span style="color:#498000;">{{ histo.reference }}</span>
@@ -97,6 +97,9 @@
 										Destination :
 										<span style="color:#498000;">{{ histo.destination }}</span>
 										<br/>
+										{% if histo.types == "sortie"%}
+											<a href="#" class="button margin-right-md margin-bottom-md btn-danger btn-sm">Ordre de sortie →</a>
+										{% endif %}
 									</p>
 								</div>
 							</div>

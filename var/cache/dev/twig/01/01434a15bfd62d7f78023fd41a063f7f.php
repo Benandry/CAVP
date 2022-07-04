@@ -75,34 +75,34 @@ class __TwigTemplate_141434606bb537a10be252c6dd4abc5c extends \Twig\Template
             // line 20
             echo "                        <ul class=\"navbar-nav me-auto mb-2 mb-md-0\">
                             <li class=\"nav-item\">
-                            <a class=\"nav-link btn btn-outline-ligth btn-lg liens\" aria-current=\"page\" href=\"";
+                            <a class=\"nav-link liens\" aria-current=\"page\" href=\"";
             // line 22
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin", ["source" => "administrateur"]);
             echo "\"><i class='fas fa-user-cog' class=\"admin\"></i> Administrateur</a>
                             </li>
                             <li class=\"nav-item\">
-                            <a class=\"nav-link btn btn-outline-ligth btn-lg liens\" href=\"";
+                            <a class=\"nav-link liens\" href=\"";
             // line 25
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("Product_dispo", ["source" => "produitsdisponible"]);
             echo "\" ><i class='fas fa-coins' class=\"admin\"></i> Recapitulation </a>
                             </li>
                             <li class=\"nav-item\">
-                            <a class=\"nav-link btn btn-outline-ligth btn-lg liens\"  href=\"";
+                            <a class=\"nav-link btn-lg liens\"  href=\"";
             // line 28
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("etat_de_stock", ["source" => "etatdestock"]);
             echo "\"> <i class='fas fa-bacon' class=\"admin\"></i> Etat de Stock</a>
                             </li>
                             <li class=\"nav-item\">
-                            <a class=\"nav-link btn btn-outline-ligth btn-lg liens\"  href=\"";
+                            <a class=\"nav-link btn-lg liens\"  href=\"";
             // line 31
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("order_out", ["source" => "ordredesortie"]);
-            echo "\"> <i class='fas fa-external-link-alt'></i>  Ordre de sortie</a>
-                            </li>
-                            <li class=\"nav-item\">
-                            <a class=\"nav-link btn btn-outline-ligth btn-lg liens\"  href=\"";
-            // line 34
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("history", ["source" => "compterendu "]);
             echo "\"> <i class=\"fas fa-file-alt\"></i>  Compte Rendu</a>
+                            </li>
+                            <li class=\"nav-item\">
+                            <a class=\"nav-link btn-lg liens\"  href=\"";
+            // line 34
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("order_out", ["source" => "ordredesortie"]);
+            echo "\"> <i class='fas fa-external-link-alt'></i>  Ordre de sortie</a>
                             </li>
                         </ul>
                         <div class=\"d-flex\">
@@ -286,19 +286,19 @@ class __TwigTemplate_141434606bb537a10be252c6dd4abc5c extends \Twig\Template
                     {% if app.user %}
                         <ul class=\"navbar-nav me-auto mb-2 mb-md-0\">
                             <li class=\"nav-item\">
-                            <a class=\"nav-link btn btn-outline-ligth btn-lg liens\" aria-current=\"page\" href=\"{{ path('admin', {'source':'administrateur'}) }}\"><i class='fas fa-user-cog' class=\"admin\"></i> Administrateur</a>
+                            <a class=\"nav-link liens\" aria-current=\"page\" href=\"{{ path('admin', {'source':'administrateur'}) }}\"><i class='fas fa-user-cog' class=\"admin\"></i> Administrateur</a>
                             </li>
                             <li class=\"nav-item\">
-                            <a class=\"nav-link btn btn-outline-ligth btn-lg liens\" href=\"{{ path('Product_dispo', {'source':'produitsdisponible'}) }}\" ><i class='fas fa-coins' class=\"admin\"></i> Recapitulation </a>
+                            <a class=\"nav-link liens\" href=\"{{ path('Product_dispo', {'source':'produitsdisponible'}) }}\" ><i class='fas fa-coins' class=\"admin\"></i> Recapitulation </a>
                             </li>
                             <li class=\"nav-item\">
-                            <a class=\"nav-link btn btn-outline-ligth btn-lg liens\"  href=\"{{ path('etat_de_stock', {'source':'etatdestock'}) }}\"> <i class='fas fa-bacon' class=\"admin\"></i> Etat de Stock</a>
+                            <a class=\"nav-link btn-lg liens\"  href=\"{{ path('etat_de_stock', {'source':'etatdestock'}) }}\"> <i class='fas fa-bacon' class=\"admin\"></i> Etat de Stock</a>
                             </li>
                             <li class=\"nav-item\">
-                            <a class=\"nav-link btn btn-outline-ligth btn-lg liens\"  href=\"{{ path('order_out', {'source':'ordredesortie'}) }}\"> <i class='fas fa-external-link-alt'></i>  Ordre de sortie</a>
+                            <a class=\"nav-link btn-lg liens\"  href=\"{{ path('history', {'source':'compterendu '}) }}\"> <i class=\"fas fa-file-alt\"></i>  Compte Rendu</a>
                             </li>
                             <li class=\"nav-item\">
-                            <a class=\"nav-link btn btn-outline-ligth btn-lg liens\"  href=\"{{ path('history', {'source':'compterendu '}) }}\"> <i class=\"fas fa-file-alt\"></i>  Compte Rendu</a>
+                            <a class=\"nav-link btn-lg liens\"  href=\"{{ path('order_out', {'source':'ordredesortie'}) }}\"> <i class='fas fa-external-link-alt'></i>  Ordre de sortie</a>
                             </li>
                         </ul>
                         <div class=\"d-flex\">

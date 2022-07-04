@@ -28,10 +28,12 @@ class MouvementRepository extends ServiceEntityRepository
     public function findByCat($value)
     {
        // $value = 2;
-        $rawSql = "SELECT c.id iDcategorie, c.NomDeCategorie categorie
+        $rawSql = "SELECT c.id iDcategorie, c.NomDeCategorie categorie,SUM(mvt.quantite) valeur_dispo
             FROM  App\Entity\Produits p
             INNER JOIN App\Entity\Categorie c WITH c.produit = p.id 
-            WHERE p.id = $value ";
+            INNER JOIN App\Entity\Mouvement mvt WITH c.id = mvt.Categorie
+            WHERE p.id = $value 
+            GROUP BY mvt.Categorie";
         $stmt = $this->getEntityManager()->createQuery($rawSql);
 
         return $stmt->execute();

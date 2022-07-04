@@ -140,69 +140,68 @@ class __TwigTemplate_adb62bb5223c28ad210b9da613041315 extends \Twig\Template
 \t\t\t\t\t\t<!-- <div style=\"box-shadow: 7px 7px 10px 0px #afafaf,-10px -10px 20px 0px #F0F0F2; background-color: #BDBDBB;\"> !-->
 \t\t\t\t\t\t<div class=\"box-element card card-solid\" style=\"margin: 20px;\">
 \t\t\t\t\t\t\t<div class=\"card card-body\">
-\t\t\t\t\t\t\t\t<h4 style=\"display: flex;\"><img src=\"/images/calendrier.png\" width=\"30\" height=\"35\">
-\t\t\t\t\t\t\t\t\t:
+\t\t\t\t\t\t\t\t<h4 style=\"display: flex;\"><i class=\"fa-regular fa-calendar\"></i>:
 \t\t\t\t\t\t\t\t\t<span class=\"text-uppercase\" style=\"color:#498000;\">
 \t\t\t\t\t\t\t\t\t\t";
-                // line 44
-                echo twig_escape_filter($this->env, $this->extensions['Twig\Extra\Intl\IntlExtension']->formatDate($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "dat", [], "any", false, false, false, 44), "medium", "", null, "gregorian", "fr"), "html", null, true);
+                // line 43
+                echo twig_escape_filter($this->env, $this->extensions['Twig\Extra\Intl\IntlExtension']->formatDate($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "dat", [], "any", false, false, false, 43), "medium", "", null, "gregorian", "fr"), "html", null, true);
                 echo "
-
 \t\t\t\t\t\t\t\t\t</span>
 \t\t\t\t\t\t\t\t</h4>
 \t\t\t\t\t\t\t\t<p>
 \t\t\t\t\t\t\t\t\t<span>
-\t\t\t\t\t\t\t\t\t\t<img src=\"";
-                // line 50
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/shopping-voucher-mail.png"), "html", null, true);
-                echo "\" alt=\"img product\" width=\"25\" height=\"30\"></span>produits :
+\t\t\t\t\t\t\t\t\t\t<i class='fas fa-coins' class=\"admin\"></i> </span>produits :
 \t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
-                // line 51
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "product", [], "any", false, false, false, 51), "html", null, true);
+                // line 49
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "product", [], "any", false, false, false, 49), "html", null, true);
                 echo "</span>
 \t\t\t\t\t\t\t\t</p>
-\t\t\t\t\t\t\t\t<p></p>
 \t\t\t\t\t\t\t\t<p>
 \t\t\t\t\t\t\t\t\tCategorie :
 \t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
-                // line 56
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "categorie", [], "any", false, false, false, 56), "html", null, true);
+                // line 53
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "categorie", [], "any", false, false, false, 53), "html", null, true);
                 echo "</span>
 \t\t\t\t\t\t\t\t</p>
-\t\t\t\t\t\t\t\t<p></p>
 \t\t\t\t\t\t\t\t<p>
 \t\t\t\t\t\t\t\t\tAction :
 \t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
-                // line 61
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "types", [], "any", false, false, false, 61), "html", null, true);
+                // line 57
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "types", [], "any", false, false, false, 57), "html", null, true);
                 echo "</span>
 \t\t\t\t\t\t\t\t</p>
-\t\t\t\t\t\t\t\t<p></p>
 \t\t\t\t\t\t\t\t<p>
 \t\t\t\t\t\t\t\t\t<u>Nombre sortie:</u>
 \t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
-                // line 66
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "nombre", [], "any", false, false, false, 66), "html", null, true);
+                // line 61
+                echo twig_escape_filter($this->env, abs(twig_get_attribute($this->env, $this->source, $context["histo"], "nombre", [], "any", false, false, false, 61)), "html", null, true);
                 echo "</span>
 \t\t\t\t\t\t\t\t</p>
-\t\t\t\t\t\t\t\t<p></p>
 \t\t\t\t\t\t\t\t<p>
 \t\t\t\t\t\t\t\t\tReference :
 \t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
-                // line 71
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "reference", [], "any", false, false, false, 71), "html", null, true);
+                // line 65
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "reference", [], "any", false, false, false, 65), "html", null, true);
                 echo "</span>
 \t\t\t\t\t\t\t\t</p>
-\t\t\t\t\t\t\t\t<p></p>
 \t\t\t\t\t\t\t\t<p>
 \t\t\t\t\t\t\t\t\tDestination :
 \t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
-                // line 76
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "destination", [], "any", false, false, false, 76), "html", null, true);
+                // line 69
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "destination", [], "any", false, false, false, 69), "html", null, true);
                 echo "</span>
 \t\t\t\t\t\t\t\t</p>
-\t\t\t\t\t\t\t\t<p></p>
-\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t";
+                // line 71
+                if ((twig_get_attribute($this->env, $this->source, $context["histo"], "types", [], "any", false, false, false, 71) == "sortie")) {
+                    // line 72
+                    echo "\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary btn-sm\" data-bs-toggle=\"modal\" data-bs-target=\"#myModal\">
+\t\t\t\t\t\t\t\t\t\t\t\tOrdre de sortie →
+\t\t\t\t\t\t\t\t\t</button>
+\t\t\t\t\t\t\t\t";
+                }
+                // line 76
+                echo "\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t</div>
 \t\t\t\t";
@@ -210,25 +209,25 @@ class __TwigTemplate_adb62bb5223c28ad210b9da613041315 extends \Twig\Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['histo'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 83
+            // line 80
             echo "\t\t\t</div>
 \t\t";
         } else {
-            // line 85
+            // line 82
             echo "\t\t\t<h1>Page not found 404
 \t\t\t</h1>
 \t\t\t<p>
 \t\t\t\tThe requested page couldn't be located. Checkout for any URL
 \t\t\t\t\t\t\t\t\t\t\t\t                misspelling or
 \t\t\t\t<a href=\"";
-            // line 90
+            // line 87
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("homepage");
             echo "\">return to the authentification
 \t\t\t\t</a>.
 \t\t\t</p>
 \t\t";
         }
-        // line 94
+        // line 91
         echo "\t</main>
 ";
         
@@ -251,7 +250,7 @@ class __TwigTemplate_adb62bb5223c28ad210b9da613041315 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  232 => 94,  225 => 90,  218 => 85,  214 => 83,  201 => 76,  193 => 71,  185 => 66,  177 => 61,  169 => 56,  161 => 51,  157 => 50,  148 => 44,  138 => 36,  134 => 35,  123 => 27,  117 => 24,  111 => 21,  105 => 18,  94 => 9,  92 => 8,  89 => 7,  79 => 6,  59 => 3,  36 => 1,);
+        return array (  231 => 91,  224 => 87,  217 => 82,  213 => 80,  204 => 76,  198 => 72,  196 => 71,  191 => 69,  184 => 65,  177 => 61,  170 => 57,  163 => 53,  156 => 49,  147 => 43,  138 => 36,  134 => 35,  123 => 27,  117 => 24,  111 => 21,  105 => 18,  94 => 9,  92 => 8,  89 => 7,  79 => 6,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -296,44 +295,41 @@ class __TwigTemplate_adb62bb5223c28ad210b9da613041315 extends \Twig\Template
 \t\t\t\t\t\t<!-- <div style=\"box-shadow: 7px 7px 10px 0px #afafaf,-10px -10px 20px 0px #F0F0F2; background-color: #BDBDBB;\"> !-->
 \t\t\t\t\t\t<div class=\"box-element card card-solid\" style=\"margin: 20px;\">
 \t\t\t\t\t\t\t<div class=\"card card-body\">
-\t\t\t\t\t\t\t\t<h4 style=\"display: flex;\"><img src=\"/images/calendrier.png\" width=\"30\" height=\"35\">
-\t\t\t\t\t\t\t\t\t:
+\t\t\t\t\t\t\t\t<h4 style=\"display: flex;\"><i class=\"fa-regular fa-calendar\"></i>:
 \t\t\t\t\t\t\t\t\t<span class=\"text-uppercase\" style=\"color:#498000;\">
 \t\t\t\t\t\t\t\t\t\t{{ histo.dat|format_date(locale='fr') }}
-
 \t\t\t\t\t\t\t\t\t</span>
 \t\t\t\t\t\t\t\t</h4>
 \t\t\t\t\t\t\t\t<p>
 \t\t\t\t\t\t\t\t\t<span>
-\t\t\t\t\t\t\t\t\t\t<img src=\"{{ asset('images/shopping-voucher-mail.png') }}\" alt=\"img product\" width=\"25\" height=\"30\"></span>produits :
+\t\t\t\t\t\t\t\t\t\t<i class='fas fa-coins' class=\"admin\"></i> </span>produits :
 \t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.product }}</span>
 \t\t\t\t\t\t\t\t</p>
-\t\t\t\t\t\t\t\t<p></p>
 \t\t\t\t\t\t\t\t<p>
 \t\t\t\t\t\t\t\t\tCategorie :
 \t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.categorie }}</span>
 \t\t\t\t\t\t\t\t</p>
-\t\t\t\t\t\t\t\t<p></p>
 \t\t\t\t\t\t\t\t<p>
 \t\t\t\t\t\t\t\t\tAction :
 \t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.types }}</span>
 \t\t\t\t\t\t\t\t</p>
-\t\t\t\t\t\t\t\t<p></p>
 \t\t\t\t\t\t\t\t<p>
 \t\t\t\t\t\t\t\t\t<u>Nombre sortie:</u>
-\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.nombre }}</span>
+\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.nombre|abs }}</span>
 \t\t\t\t\t\t\t\t</p>
-\t\t\t\t\t\t\t\t<p></p>
 \t\t\t\t\t\t\t\t<p>
 \t\t\t\t\t\t\t\t\tReference :
 \t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.reference }}</span>
 \t\t\t\t\t\t\t\t</p>
-\t\t\t\t\t\t\t\t<p></p>
 \t\t\t\t\t\t\t\t<p>
 \t\t\t\t\t\t\t\t\tDestination :
 \t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.destination }}</span>
 \t\t\t\t\t\t\t\t</p>
-\t\t\t\t\t\t\t\t<p></p>
+\t\t\t\t\t\t\t\t{% if histo.types == \"sortie\"%}
+\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary btn-sm\" data-bs-toggle=\"modal\" data-bs-target=\"#myModal\">
+\t\t\t\t\t\t\t\t\t\t\t\tOrdre de sortie →
+\t\t\t\t\t\t\t\t\t</button>
+\t\t\t\t\t\t\t\t{% endif %}
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t</div>

@@ -223,7 +223,7 @@ class __TwigTemplate_1dcee6589ee7e17e5feb17cc0d165960 extends \Twig\Template
 \t\t\t\t\t\t\t\t\t\t<u>Nombre :</u>
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
                 // line 92
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "nombre", [], "any", false, false, false, 92), "html", null, true);
+                echo twig_escape_filter($this->env, abs(twig_get_attribute($this->env, $this->source, $context["histo"], "nombre", [], "any", false, false, false, 92)), "html", null, true);
                 echo "</span>
 \t\t\t\t\t\t\t\t\t\t<br/><br/>
 \t\t\t\t\t\t\t\t\t\tReference :
@@ -238,7 +238,15 @@ class __TwigTemplate_1dcee6589ee7e17e5feb17cc0d165960 extends \Twig\Template
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "destination", [], "any", false, false, false, 98), "html", null, true);
                 echo "</span>
 \t\t\t\t\t\t\t\t\t\t<br/>
-\t\t\t\t\t\t\t\t\t</p>
+\t\t\t\t\t\t\t\t\t\t";
+                // line 100
+                if ((twig_get_attribute($this->env, $this->source, $context["histo"], "types", [], "any", false, false, false, 100) == "sortie")) {
+                    // line 101
+                    echo "\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" class=\"button margin-right-md margin-bottom-md btn-danger btn-sm\">Ordre de sortie →</a>
+\t\t\t\t\t\t\t\t\t\t";
+                }
+                // line 103
+                echo "\t\t\t\t\t\t\t\t\t</p>
 \t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</div>
@@ -247,26 +255,26 @@ class __TwigTemplate_1dcee6589ee7e17e5feb17cc0d165960 extends \Twig\Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['histo'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 105
+            // line 108
             echo "\t\t\t\t</div>
 \t\t\t</div>
 \t\t";
         } else {
-            // line 108
+            // line 111
             echo "\t\t\t<h1>Page not found 404
 \t\t\t</h1>
 \t\t\t<p>
 \t\t\t\tThe requested page couldn't be located. Checkout for any URL
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t                misspelling or
 \t\t\t\t<a href=\"";
-            // line 113
+            // line 116
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             echo "\">return to the authentification
 \t\t\t\t</a>.
 \t\t\t</p>
 \t\t";
         }
-        // line 117
+        // line 120
         echo "\t</main>
 ";
         
@@ -289,7 +297,7 @@ class __TwigTemplate_1dcee6589ee7e17e5feb17cc0d165960 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  270 => 117,  263 => 113,  256 => 108,  251 => 105,  238 => 98,  232 => 95,  226 => 92,  220 => 89,  214 => 86,  207 => 82,  197 => 75,  191 => 72,  184 => 67,  180 => 66,  172 => 61,  166 => 58,  157 => 52,  151 => 49,  139 => 40,  124 => 28,  118 => 25,  112 => 22,  106 => 19,  94 => 9,  92 => 8,  89 => 7,  79 => 6,  59 => 3,  36 => 1,);
+        return array (  278 => 120,  271 => 116,  264 => 111,  259 => 108,  249 => 103,  245 => 101,  243 => 100,  238 => 98,  232 => 95,  226 => 92,  220 => 89,  214 => 86,  207 => 82,  197 => 75,  191 => 72,  184 => 67,  180 => 66,  172 => 61,  166 => 58,  157 => 52,  151 => 49,  139 => 40,  124 => 28,  118 => 25,  112 => 22,  106 => 19,  94 => 9,  92 => 8,  89 => 7,  79 => 6,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -385,7 +393,7 @@ class __TwigTemplate_1dcee6589ee7e17e5feb17cc0d165960 extends \Twig\Template
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.types }}</span>
 \t\t\t\t\t\t\t\t\t\t<br/><br/>
 \t\t\t\t\t\t\t\t\t\t<u>Nombre :</u>
-\t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.nombre }}</span>
+\t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.nombre|abs }}</span>
 \t\t\t\t\t\t\t\t\t\t<br/><br/>
 \t\t\t\t\t\t\t\t\t\tReference :
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.reference }}</span>
@@ -393,6 +401,9 @@ class __TwigTemplate_1dcee6589ee7e17e5feb17cc0d165960 extends \Twig\Template
 \t\t\t\t\t\t\t\t\t\tDestination :
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.destination }}</span>
 \t\t\t\t\t\t\t\t\t\t<br/>
+\t\t\t\t\t\t\t\t\t\t{% if histo.types == \"sortie\"%}
+\t\t\t\t\t\t\t\t\t\t\t<a href=\"#\" class=\"button margin-right-md margin-bottom-md btn-danger btn-sm\">Ordre de sortie →</a>
+\t\t\t\t\t\t\t\t\t\t{% endif %}
 \t\t\t\t\t\t\t\t\t</p>
 \t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t</div>

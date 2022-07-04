@@ -38,44 +38,41 @@
 						<!-- <div style="box-shadow: 7px 7px 10px 0px #afafaf,-10px -10px 20px 0px #F0F0F2; background-color: #BDBDBB;"> !-->
 						<div class="box-element card card-solid" style="margin: 20px;">
 							<div class="card card-body">
-								<h4 style="display: flex;"><img src="/images/calendrier.png" width="30" height="35">
-									:
+								<h4 style="display: flex;"><i class="fa-regular fa-calendar"></i>:
 									<span class="text-uppercase" style="color:#498000;">
 										{{ histo.dat|format_date(locale='fr') }}
-
 									</span>
 								</h4>
 								<p>
 									<span>
-										<img src="{{ asset('images/shopping-voucher-mail.png') }}" alt="img product" width="25" height="30"></span>produits :
+										<i class='fas fa-coins' class="admin"></i> </span>produits :
 									<span style="color:#498000;">{{ histo.product }}</span>
 								</p>
-								<p></p>
 								<p>
 									Categorie :
 									<span style="color:#498000;">{{ histo.categorie }}</span>
 								</p>
-								<p></p>
 								<p>
 									Action :
 									<span style="color:#498000;">{{ histo.types }}</span>
 								</p>
-								<p></p>
 								<p>
 									<u>Nombre sortie:</u>
-									<span style="color:#498000;">{{ histo.nombre }}</span>
+									<span style="color:#498000;">{{ histo.nombre|abs }}</span>
 								</p>
-								<p></p>
 								<p>
 									Reference :
 									<span style="color:#498000;">{{ histo.reference }}</span>
 								</p>
-								<p></p>
 								<p>
 									Destination :
 									<span style="color:#498000;">{{ histo.destination }}</span>
 								</p>
-								<p></p>
+								{% if histo.types == "sortie"%}
+									<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal">
+												Ordre de sortie →
+									</button>
+								{% endif %}
 							</div>
 						</div>
 					</div>

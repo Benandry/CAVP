@@ -27,7 +27,11 @@ class EtatController extends AbstractController
     
     $mois_annee = $request->query->get('ldate');
     $year_only = $request->query->get('year');
-   // dd($year_only);
+    if ($year_only == null) {
+        $year_only = date('Y');
+    }
+
+   //dd($year_only);
     if ($mois_annee == null) {
         $mois_annee = date('Y-m');
     }
