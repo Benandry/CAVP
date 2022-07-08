@@ -17,10 +17,6 @@ return [
         '/homepage' => [[['_route' => 'homepage', '_controller' => 'App\\Controller\\DefaultController::homepage'], null, null, null, false, false, null]],
         '/product_dispo' => [[['_route' => 'Product_dispo', '_controller' => 'App\\Controller\\DefaultController::test'], null, null, null, false, false, null]],
         '/etat-de-stocks' => [[['_route' => 'etat_de_stock', '_controller' => 'App\\Controller\\EtatController::index'], null, null, null, false, false, null]],
-        '/compte-rendu' => [[['_route' => 'history', '_controller' => 'App\\Controller\\HistoriqueController::history'], null, null, null, false, false, null]],
-        '/compte-rendu-sortie' => [[['_route' => 'history_out', '_controller' => 'App\\Controller\\HistoriqueController::out'], null, null, null, false, false, null]],
-        '/compte-rendu-produits-integrée' => [[['_route' => 'integreted', '_controller' => 'App\\Controller\\HistoriqueController::integreted'], null, null, null, false, false, null]],
-        '/compte-rendu-entrer' => [[['_route' => 'history_enter', '_controller' => 'App\\Controller\\HistoriqueController::enter'], null, null, null, false, false, null]],
         '/mouvement/controller/crud' => [[['_route' => 'mouvement_controller_crud_index', '_controller' => 'App\\Controller\\MouvementCrudController::index'], null, ['GET' => 0], null, true, false, null]],
         '/etat-de-stock-par-année' => [[['_route' => 'periode_annuel', '_controller' => 'App\\Controller\\PeriodeController::annuel'], null, null, null, false, false, null]],
         '/inscription-sur-cavp' => [[['_route' => 'page_inscription', '_controller' => 'App\\Controller\\RegisterController::index'], null, null, null, false, false, null]],
@@ -64,23 +60,24 @@ return [
                         .'|partition/([^/]++)/([^/]++)(*:506)'
                     .')'
                 .')'
+                .'|/compte\\-rendu(?:/([^/]++))?(*:544)'
                 .'|/mouvement/controller/crud/(?'
-                    .'|new(?:/([^/]++))?(*:563)'
+                    .'|new(?:/([^/]++))?(*:599)'
                     .'|([^/]++)(?'
-                        .'|(*:582)'
-                        .'|/edit(*:595)'
-                        .'|(*:603)'
+                        .'|(*:618)'
+                        .'|/edit(*:631)'
+                        .'|(*:639)'
                     .')'
                 .')'
-                .'|/ordre\\-de\\-sortie(?:/([^/]++)(?:/([^/]++))?)?(*:659)'
-                .'|/bordereaux\\-envoi/([^/]++)/([^/]++)/([^/]++)(*:712)'
-                .'|/json/api/([^/]++)(*:738)'
-                .'|/etat\\-de\\-stock_menseul(?:/([^/]++))?(*:784)'
+                .'|/ordre\\-de\\-sortie(?:/([^/]++)(?:/([^/]++))?)?(*:695)'
+                .'|/bordereaux\\-envoi/([^/]++)/([^/]++)/([^/]++)(*:748)'
+                .'|/json/api/([^/]++)(*:774)'
+                .'|/etat\\-de\\-stock_menseul(?:/([^/]++))?(*:820)'
                 .'|/api(?'
-                    .'|(?:/(index)(?:\\.([^/]++))?)?(*:827)'
+                    .'|(?:/(index)(?:\\.([^/]++))?)?(*:863)'
                     .'|/(?'
-                        .'|docs(?:\\.([^/]++))?(*:858)'
-                        .'|contexts/(.+)(?:\\.([^/]++))?(*:894)'
+                        .'|docs(?:\\.([^/]++))?(*:894)'
+                        .'|contexts/(.+)(?:\\.([^/]++))?(*:930)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -101,17 +98,18 @@ return [
         405 => [[['_route' => 'impression_mensuel', 'mois' => '', '_controller' => 'App\\Controller\\MouvementController::impressionProdMensuel'], ['mois'], null, null, false, true, null]],
         471 => [[['_route' => 'ordre_de_sortie_recaputilation', '_controller' => 'App\\Controller\\OrderController::orderOutRecap'], ['types', 'numero'], null, null, false, true, null]],
         506 => [[['_route' => 'ordre_de_sortie_repartition', '_controller' => 'App\\Controller\\OrderController::orderOutRepart'], ['types', 'numero'], null, null, false, true, null]],
-        563 => [[['_route' => 'mouvement_controller_crud_new', 'cat' => ' ', '_controller' => 'App\\Controller\\MouvementCrudController::new'], ['cat'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
-        582 => [[['_route' => 'mouvement_controller_crud_show', '_controller' => 'App\\Controller\\MouvementCrudController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        595 => [[['_route' => 'mouvement_controller_crud_edit', '_controller' => 'App\\Controller\\MouvementCrudController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        603 => [[['_route' => 'mouvement_controller_crud_delete', '_controller' => 'App\\Controller\\MouvementCrudController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        659 => [[['_route' => 'order_out', 'types' => '', 'numero' => '', '_controller' => 'App\\Controller\\OrderController::index'], ['types', 'numero'], null, null, false, true, null]],
-        712 => [[['_route' => 'bordereau', '_controller' => 'App\\Controller\\OrderController::getSlips'], ['type', 'numero', 'bureau'], null, null, false, true, null]],
-        738 => [[['_route' => 'json2', '_controller' => 'App\\Controller\\OrderController::test'], ['types'], null, null, false, true, null]],
-        784 => [[['_route' => 'periode_mensuel', 'mois' => '', '_controller' => 'App\\Controller\\PeriodeController::mensuel'], ['mois'], null, null, false, true, null]],
-        827 => [[['_route' => 'api_entrypoint', '_controller' => 'api_platform.action.entrypoint', '_format' => '', '_api_respond' => 'true', 'index' => 'index'], ['index', '_format'], null, null, false, true, null]],
-        858 => [[['_route' => 'api_doc', '_controller' => 'api_platform.action.documentation', '_format' => '', '_api_respond' => 'true'], ['_format'], null, null, false, true, null]],
-        894 => [
+        544 => [[['_route' => 'history', 'description' => '', '_controller' => 'App\\Controller\\HistoriqueController::history'], ['description'], null, null, false, true, null]],
+        599 => [[['_route' => 'mouvement_controller_crud_new', 'cat' => ' ', '_controller' => 'App\\Controller\\MouvementCrudController::new'], ['cat'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        618 => [[['_route' => 'mouvement_controller_crud_show', '_controller' => 'App\\Controller\\MouvementCrudController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        631 => [[['_route' => 'mouvement_controller_crud_edit', '_controller' => 'App\\Controller\\MouvementCrudController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        639 => [[['_route' => 'mouvement_controller_crud_delete', '_controller' => 'App\\Controller\\MouvementCrudController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        695 => [[['_route' => 'order_out', 'types' => '', 'numero' => '', '_controller' => 'App\\Controller\\OrderController::index'], ['types', 'numero'], null, null, false, true, null]],
+        748 => [[['_route' => 'bordereau', '_controller' => 'App\\Controller\\OrderController::getSlips'], ['type', 'numero', 'bureau'], null, null, false, true, null]],
+        774 => [[['_route' => 'json2', '_controller' => 'App\\Controller\\OrderController::test'], ['types'], null, null, false, true, null]],
+        820 => [[['_route' => 'periode_mensuel', 'mois' => '', '_controller' => 'App\\Controller\\PeriodeController::mensuel'], ['mois'], null, null, false, true, null]],
+        863 => [[['_route' => 'api_entrypoint', '_controller' => 'api_platform.action.entrypoint', '_format' => '', '_api_respond' => 'true', 'index' => 'index'], ['index', '_format'], null, null, false, true, null]],
+        894 => [[['_route' => 'api_doc', '_controller' => 'api_platform.action.documentation', '_format' => '', '_api_respond' => 'true'], ['_format'], null, null, false, true, null]],
+        930 => [
             [['_route' => 'api_jsonld_context', '_controller' => 'api_platform.jsonld.action.context', '_format' => 'jsonld', '_api_respond' => 'true'], ['shortName', '_format'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

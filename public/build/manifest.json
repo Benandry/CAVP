@@ -1,8 +1,8 @@
 {
   "build/app.css": "/build/app.e5b99709.css",
-  "build/app.js": "/build/app.7fcfaf77.js",
+  "build/app.js": "/build/app.df0b18dd.js",
   "build/runtime.js": "/build/runtime.15cd3502.js",
-  "build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-4654e6.4c5cb716.js": "/build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-4654e6.4c5cb716.js",
+  "build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-e616e1.c830baa3.js": "/build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-e616e1.c830baa3.js",
   "build/images/TIMBRE 1200dpi.jpg": "/build/images/TIMBRE 1200dpi.jpg",
   "build/images/cavp-accueil.png": "/build/images/cavp-accueil.png",
   "build/images/pape.png": "/build/images/pape.png",
@@ -29,7 +29,5 @@
   "build/images/logo-PPT.webp": "/build/images/logo-PPT.webp",
   "build/images/calendrier.png": "/build/images/calendrier.png",
   "build/images/shopping-voucher-mail.png": "/build/images/shopping-voucher-mail.png",
-  "build/images/fond_degraderouge.png": "/build/images/fond_degraderouge.png",
-  "build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-165da1.552697e8.js": "/build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-165da1.552697e8.js",
-  "build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-18ec62.c8c472ee.js": "/build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-18ec62.c8c472ee.js"
+  "build/images/fond_degraderouge.png": "/build/images/fond_degraderouge.png"
 }

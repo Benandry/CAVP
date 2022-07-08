@@ -238,15 +238,15 @@ class __TwigTemplate_8c815bafb82215ba1a439afc1e83ca83 extends \Twig\Template
                                 </table>  
                             </div>
                             <div>
-                                <p class=\"uppercase\">ARRETE A LA SOMME DE:<p>
+                                <p class=\"uppercase\">ARRETE A LA SOMME DE: <span id=\"arreter_recap\"> </span><p>
                             </div>
                             <div class=\"d-flex flex-row-reverse bd-highlight\">
                                 <div class=\"p-2 bd-highlight\">
                                     <div >
-                                        <p> Somme total :<span class=\"btn btn-danger btn-sm disabled ms-5\"> ";
+                                        <p> Somme total :<span class=\"btn btn-danger btn-sm disabled ms-5\" id=\"somme_recap_ord\"> ";
             // line 87
             echo twig_escape_filter($this->env, (isset($context["somme"]) || array_key_exists("somme", $context) ? $context["somme"] : (function () { throw new RuntimeError('Variable "somme" does not exist.', 87, $this->source); })()), "html", null, true);
-            echo " <span > Ar<p>
+            echo " </span> Ar<p>
                                     </div>
                                     <br/><br/>
                                     <p> Antananarivo le ,";
@@ -572,12 +572,12 @@ $context["key1"] == "nombre_cat")) {
                                 </table>  
                             </div>
                             <div>
-                                <p class=\"uppercase\">ARRETE A LA SOMME DE:<p>
+                                <p class=\"uppercase\">ARRETE A LA SOMME DE: <span id=\"arreter_recap\"> </span><p>
                             </div>
                             <div class=\"d-flex flex-row-reverse bd-highlight\">
                                 <div class=\"p-2 bd-highlight\">
                                     <div >
-                                        <p> Somme total :<span class=\"btn btn-danger btn-sm disabled ms-5\"> {{ somme }} <span > Ar<p>
+                                        <p> Somme total :<span class=\"btn btn-danger btn-sm disabled ms-5\" id=\"somme_recap_ord\"> {{ somme }} </span> Ar<p>
                                     </div>
                                     <br/><br/>
                                     <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }}</p>

@@ -3,8 +3,8 @@
     "app": {
       "js": [
         "/build/runtime.15cd3502.js",
-        "/build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-18ec62.c8c472ee.js",
-        "/build/app.7fcfaf77.js"
+        "/build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-e616e1.c830baa3.js",
+        "/build/app.df0b18dd.js"
       ],
       "css": [
         "/build/app.e5b99709.css"

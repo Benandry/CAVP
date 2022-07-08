@@ -20,8 +20,12 @@ class OrderController extends AbstractController
     #[Route('/ordre-de-sortie/{types}/{numero}', name: 'order_out')]
     public function index(ManagerRegistry $doctrine,Request $request,$types ="",$numero=""): Response
     {
-        $numero = 1;
-        $types = 1;
+       // dd($types);
+        if ($types == "" && $numero == "" ) {
+            $numero = 1;
+            $types = 1;
+        }
+
         $repository1 = $doctrine->getRepository(Produits::class);
         $order = $repository1->findByOrder($types,$numero);
         $nombre_agency =$doctrine->getRepository(Produits::class)->findAgency($numero,$types);

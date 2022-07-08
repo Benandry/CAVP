@@ -40,9 +40,16 @@ class MouvementRepository extends ServiceEntityRepository
     }
     
 
-    public function findByhistory()
+    public function findByhistory($mois,$year,$description = "")
     {
-        $rawSql = "SELECT mvt.id, p.nomProduit product,mvt.dateEntrer dat, c.NomDeCategorie categorie,mvt.quantite nombre, f.name reference , a.name destination, t.name types,d.information desccriptions,u.nom user
+        if ($description == "") {
+            $clause = "WHERE MONTH(mvt.dateEntrer) <= '$mois' and YEAR(mvt.dateEntrer) <= '$year' ";
+        }else{
+            $clause = "WHERE mvt.descriptions = $description AND MONTH(mvt.dateEntrer) <= '$mois' and YEAR(mvt.dateEntrer) <= '$year'";
+        }
+
+        $rawSql = "SELECT mvt.id, p.nomProduit product,mvt.dateEntrer dat, c.NomDeCategorie categorie,mvt.quantite nombre, f.name reference ,
+                 a.name destination, t.name types,d.information desccriptions,u.nom user, n.id numero,o.id types_prod,o.type_order_long types_order
             FROM App\Entity\Mouvement mvt INNER JOIN App\Entity\Produits p 
             WITH p.id = mvt.produit 
             INNER JOIN App\Entity\Categorie c WITH c.id = mvt.Categorie
@@ -51,58 +58,14 @@ class MouvementRepository extends ServiceEntityRepository
             INNER JOIN App\Entity\Types t WITH t.id = mvt.types
             INNER JOIN App\Entity\User u WITH u.id = mvt.User
             INNER JOIN App\Entity\Descriptions d WITH d.id = mvt.descriptions
+            INNER JOIN App\Entity\OrderSortie n WITH n.id = mvt.numero_de_sortie
+            INNER JOIN App\Entity\OrderTypes o WITH o.id = p.types
+            $clause
             ORDER BY mvt.dateEntrer DESC";
         $stmt = $this->getEntityManager()->createQuery($rawSql);
 
         return $stmt->execute();
     }
-
-    public function findByEnter()
-    {
-        $rawSql = "SELECT mvt.id, p.nomProduit product,mvt.dateEntrer dat, c.NomDeCategorie categorie,mvt.quantite nombre, f.name reference , a.name destination, t.name types
-            FROM App\Entity\Mouvement mvt INNER JOIN App\Entity\Produits p 
-            WITH p.id = mvt.produit INNER JOIN App\Entity\Categorie c WITH c.id = mvt.Categorie
-            INNER JOIN App\Entity\Fournisseur f WITH f.id = mvt.reference
-            INNER JOIN App\Entity\Agence a WITH a.id = mvt.Agence
-            INNER JOIN App\Entity\Types t WITH t.id = mvt.types 
-            WHERE mvt.descriptions=1
-            ORDER BY mvt.dateEntrer DESC";
-        $stmt = $this->getEntityManager()->createQuery($rawSql);
-
-        return $stmt->execute();
-    }
-
-    public function findByOut()
-    {
-        $rawSql = "SELECT p.nomProduit product,mvt.dateEntrer dat, c.NomDeCategorie categorie,mvt.quantite nombre, f.name reference , a.name destination, t.name types
-            FROM App\Entity\Mouvement mvt INNER JOIN App\Entity\Produits p 
-            WITH p.id = mvt.produit INNER JOIN App\Entity\Categorie c WITH c.id = mvt.Categorie
-            INNER JOIN App\Entity\Fournisseur f WITH f.id = mvt.reference
-            INNER JOIN App\Entity\Agence a WITH a.id = mvt.Agence
-            INNER JOIN App\Entity\Types t WITH t.id = mvt.types 
-            WHERE mvt.descriptions=3
-            ORDER BY mvt.dateEntrer DESC";
-        $stmt = $this->getEntityManager()->createQuery($rawSql);
-
-        return $stmt->execute();
-    }
-    public function findByIntegreted()
-    {
-        $rawSql = "SELECT p.nomProduit product,mvt.dateEntrer dat, c.NomDeCategorie categorie,mvt.quantite nombre, f.name reference , a.name destination, d.information descriptions
-            FROM App\Entity\Mouvement mvt INNER JOIN App\Entity\Produits p 
-            WITH p.id = mvt.produit INNER JOIN App\Entity\Categorie c WITH c.id = mvt.Categorie
-            INNER JOIN App\Entity\Fournisseur f WITH f.id = mvt.reference
-            INNER JOIN App\Entity\Agence a WITH a.id = mvt.Agence
-            INNER JOIN App\Entity\Types t WITH t.id = mvt.types 
-            INNER JOIN App\Entity\Descriptions d WITH d.id = mvt.descriptions 
-            WHERE mvt.descriptions=2
-            ORDER BY mvt.dateEntrer DESC";
-        $stmt = $this->getEntityManager()->createQuery($rawSql);
-
-        return $stmt->execute();
-
-    }
-
     ///////=======================Avec precision de la date ========================================////////////////////
     public function findByDate($date_precis)
     {
@@ -118,50 +81,4 @@ class MouvementRepository extends ServiceEntityRepository
 
         return $stmt->execute();
     }
-        ///////=======================Avec precision de la date mois et année ========================================////////////////////
-        public function findByMois($mois,$year)
-        {
-            $rawSql = "SELECT p.nomProduit product,mvt.dateEntrer dat, c.NomDeCategorie categorie,mvt.quantite nombre, f.name reference , a.name destination, t.name types
-                FROM App\Entity\Mouvement mvt INNER JOIN App\Entity\Produits p 
-                WITH p.id = mvt.produit INNER JOIN App\Entity\Categorie c WITH c.id = mvt.Categorie
-                INNER JOIN App\Entity\Fournisseur f WITH f.id = mvt.reference
-                INNER JOIN App\Entity\Agence a WITH a.id = mvt.Agence
-                INNER JOIN App\Entity\Types t WITH t.id = mvt.types
-                INNER JOIN App\Entity\Descriptions d WITH d.id = mvt.descriptions
-                WHERE MONTH(mvt.dateEntrer) = '$mois' and YEAR(mvt.dateEntrer) = '$year'";
-            $stmt = $this->getEntityManager()->createQuery($rawSql);
-    
-            return $stmt->execute();
-        }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
