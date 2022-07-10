@@ -90,18 +90,11 @@ class __TwigTemplate_90dacf16a8154924f9b95ea51ba279cc extends \Twig\Template
         // line 6
         if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 6, $this->source); })()), "user", [], "any", false, false, false, 6)) {
             // line 7
-            echo "    <div id=\"myCarousel\" class=\"carousel slide\" data-bs-ride=\"carousel\">
-      <div class=\"carousel-inner\">
-        <div class=\"overlay-image\" style=\"background-image:url('image/logofront.png');\"></div>
-        <div class=\"carousel-item active\">
-          <div class=\"container\">
-            <div class=\"carousel-caption text-start\">
-              <h1 class=\"h1\">Centre d'Approvisionnement en Valeurs Postales </h1>
-            </div>
+            echo "      <div class=\"carousel-inner\">
+          <div class=\"overlay-image\" style=\"background-image:url('image/logofront.png');\"></div>
+            <div class=\"carousel-item active\">
           </div>
         </div>
-      </div>
-    </div>
 
 
     <!-- Marketing messaging and featurettes
@@ -113,7 +106,7 @@ class __TwigTemplate_90dacf16a8154924f9b95ea51ba279cc extends \Twig\Template
 
         <div class=\"col-lg-4\">
           <img loading=\"lazy\" width=\"150\" height=\"150\" src=\"";
-            // line 29
+            // line 22
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/images/vonona.png"), "html", null, true);
             echo "\" class=\"imageHomepage\"/>
             <h2 class=\"fw-bolder\">Information </h2>
@@ -126,7 +119,7 @@ class __TwigTemplate_90dacf16a8154924f9b95ea51ba279cc extends \Twig\Template
 
         <div class=\"col-lg-4\">
           <img loading=\"lazy\" width=\"150\" height=\"150\"src=\"";
-            // line 39
+            // line 32
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/images/menabe-maitso.png"), "html", null, true);
             echo "\" class=\"imageHomepage\"/>
           <h2 class=\"fw-bolder\">CAVP</h2> 
@@ -138,7 +131,7 @@ class __TwigTemplate_90dacf16a8154924f9b95ea51ba279cc extends \Twig\Template
 
         <div class=\"col-lg-4\">
           <img loading=\"lazy\" width=\"150\" height=\"150\"src=\"";
-            // line 48
+            // line 41
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("build/images/TIMBRE 1200dpi.jpg "), "html", null, true);
             echo "\" class=\"imageHomepage\"/>
           <h2 class=\"fw-bolder\">Produits Postaux</h2>
@@ -151,18 +144,18 @@ class __TwigTemplate_90dacf16a8154924f9b95ea51ba279cc extends \Twig\Template
       <hr class=\"featurette-divider\">
   ";
         } else {
-            // line 58
+            // line 51
             echo "    <h1>Page not found 404 </h1>
     <p>
         The requested page couldn't be located. Checkout for any URL
         misspelling or <a href=\"";
-            // line 61
+            // line 54
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("homepage");
             echo "\">return to the authentification </a>.
     </p>
   ";
         }
-        // line 64
+        // line 57
         echo "</main>
 ";
         
@@ -185,7 +178,7 @@ class __TwigTemplate_90dacf16a8154924f9b95ea51ba279cc extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  166 => 64,  160 => 61,  155 => 58,  142 => 48,  130 => 39,  117 => 29,  93 => 7,  91 => 6,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
+        return array (  159 => 57,  153 => 54,  148 => 51,  135 => 41,  123 => 32,  110 => 22,  93 => 7,  91 => 6,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -196,18 +189,11 @@ class __TwigTemplate_90dacf16a8154924f9b95ea51ba279cc extends \Twig\Template
 {% block body %}
 <main>
   {% if app.user %}
-    <div id=\"myCarousel\" class=\"carousel slide\" data-bs-ride=\"carousel\">
       <div class=\"carousel-inner\">
-        <div class=\"overlay-image\" style=\"background-image:url('image/logofront.png');\"></div>
-        <div class=\"carousel-item active\">
-          <div class=\"container\">
-            <div class=\"carousel-caption text-start\">
-              <h1 class=\"h1\">Centre d'Approvisionnement en Valeurs Postales </h1>
-            </div>
+          <div class=\"overlay-image\" style=\"background-image:url('image/logofront.png');\"></div>
+            <div class=\"carousel-item active\">
           </div>
         </div>
-      </div>
-    </div>
 
 
     <!-- Marketing messaging and featurettes

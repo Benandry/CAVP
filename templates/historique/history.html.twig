@@ -74,25 +74,32 @@
 								Action :
 								<span style="color:#498000;">{{ histo.types }}</span>
 								<br/><br/>
-								{% if histo.types == "sortie" %}
-									<u>Nombre de sortie : </u>
+								{% if histo.desccriptions == "Sorties des Catégories" %}
+									<u>Nombre de categorie(s) sortie(s) : </u>
 										<span style="color:#498000;">{{ histo.nombre|abs }}</span>
 										<br/><br/>
-								{% elseif histo.types == "entrer" %}
-									<u>Nombre ajoutée : </u>
+								{% elseif histo.desccriptions == "Ajouter des nouveaux Catégories" %}
+									<u>Nombre de categorie(s) ajoutée(s) : </u>
 										<span style="color:#498000;">{{ histo.nombre|abs }}</span>
 										<br/><br/>
-								{% elseif histo.types == "integrer" %}
-									<u>Nombre integrer : </u>
+								{% elseif histo.desccriptions == "Réintegration" %}
+									<u>Nombre de categorie(s) integrer au CAVP : </u>
 										<span style="color:#498000;">{{ histo.nombre|abs }}</span>
 										<br/><br/>
 								{% endif %}
-								Reference :
-								<span style="color:#498000;">{{ histo.reference }}</span>
-								<br/><br/>
-								Destination :
-								<span style="color:#498000;">{{ histo.destination }}</span>
-								<br/>
+								{% if histo.desccriptions == "Ajouter des nouveaux Catégories" %}
+									vient du bureau :
+									<span style="color:#498000;">{{ histo.destination }}</span>
+									<br/><br/>
+								{% elseif histo.desccriptions == "Réintegration" %}
+									revient de  :
+									<span style="color:#498000;">{{ histo.destination }}</span>
+									<br/><br/>
+								{% elseif histo.desccriptions == "Sorties des Catégories" %}
+									Destination :
+									<span style="color:#498000;">{{ histo.destination }}</span>
+									<br/><br/>
+								{% endif %}
 								{% if histo.types == "sortie"%}
 									<a href="{{ path('order_out',{types: histo.types_prod,numero: histo.numero }) }}" class="button margin-right-md margin-bottom-md btn-danger btn-sm">Ordre de sortie →</a>
 								{% endif %}

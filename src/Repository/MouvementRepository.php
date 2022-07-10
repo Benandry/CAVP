@@ -25,15 +25,15 @@ class MouvementRepository extends ServiceEntityRepository
     //  * @return Mouvement[] Returns an array of Mouvement objects
     //  */
     
-    public function findByCat($value)
+    public function findByValeurDispo($value)
     {
        // $value = 2;
         $rawSql = "SELECT c.id iDcategorie, c.NomDeCategorie categorie,SUM(mvt.quantite) valeur_dispo
             FROM  App\Entity\Produits p
             INNER JOIN App\Entity\Categorie c WITH c.produit = p.id 
-            INNER JOIN App\Entity\Mouvement mvt WITH c.id = mvt.Categorie
+            LEFT JOIN App\Entity\Mouvement mvt WITH c.id = mvt.Categorie
             WHERE p.id = $value 
-            GROUP BY mvt.Categorie";
+            GROUP BY c.id";
         $stmt = $this->getEntityManager()->createQuery($rawSql);
 
         return $stmt->execute();
@@ -66,6 +66,29 @@ class MouvementRepository extends ServiceEntityRepository
 
         return $stmt->execute();
     }
+
+    /* ***************************************************** */
+
+    public function findByMouvement()
+    {
+        $rawSql = "SELECT mvt.id, p.nomProduit product,mvt.dateEntrer dat, c.NomDeCategorie categorie,mvt.quantite nombre, f.name reference ,u.nom user,
+            t.name types,d.information desccriptions,a.name destination
+            FROM App\Entity\Mouvement mvt INNER JOIN App\Entity\Produits p 
+            WITH p.id = mvt.produit 
+            INNER JOIN App\Entity\Categorie c  WITH c.id = mvt.Categorie 
+            INNER JOIN App\Entity\Agence a WITH a.id = mvt.Agence
+            INNER JOIN App\Entity\Fournisseur f WITH f.id = mvt.reference
+            INNER JOIN App\Entity\User u WITH u.id = mvt.User
+            INNER JOIN App\Entity\Types t WITH t.id = mvt.types
+            INNER JOIN App\Entity\Descriptions d WITH d.id = mvt.descriptions
+            ";
+        $stmt = $this->getEntityManager()->createQuery($rawSql);
+
+        return $stmt->execute();
+    }
+
+
+
     ///////=======================Avec precision de la date ========================================////////////////////
     public function findByDate($date_precis)
     {

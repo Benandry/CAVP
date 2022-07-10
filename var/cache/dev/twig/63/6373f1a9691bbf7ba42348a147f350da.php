@@ -127,7 +127,7 @@ class __TwigTemplate_16ebc69dfac66b1b55092fbf147d4ccd extends \Twig\Template
         // line 45
         echo twig_escape_filter($this->env, (isset($context["sumNumber"]) || array_key_exists("sumNumber", $context) ? $context["sumNumber"] : (function () { throw new RuntimeError('Variable "sumNumber" does not exist.', 45, $this->source); })()), "html", null, true);
         echo " </th>
-                            <th> ";
+                            <th id=\"somValue\"> ";
         // line 46
         echo twig_escape_filter($this->env, (isset($context["sumValue"]) || array_key_exists("sumValue", $context) ? $context["sumValue"] : (function () { throw new RuntimeError('Variable "sumValue" does not exist.', 46, $this->source); })()), "html", null, true);
         echo "</th>
@@ -135,7 +135,7 @@ class __TwigTemplate_16ebc69dfac66b1b55092fbf147d4ccd extends \Twig\Template
                     <tbody>
                 </table>
                 <div>
-                    <p id=\"arret\"><span class=\"text-uppercase\"> Arreté a :</span></p>
+                    <p>Arreté a la valeur de : <span class=\"text-uppercase\" id=\"nombrePd\"> </span> ARIARY<p>
                 </div>
             </div>
                 <div class=\"d-flex flex-row-reverse bd-highlight\">
@@ -272,12 +272,12 @@ class __TwigTemplate_16ebc69dfac66b1b55092fbf147d4ccd extends \Twig\Template
                             <tr>
                             <th colspan=\"2\" class=\"text-right pr-3\" > Totaux(Valeur) </th>
                             <th> {{ sumNumber }} </th>
-                            <th> {{ sumValue }}</th>
+                            <th id=\"somValue\"> {{ sumValue }}</th>
                             </tr>
                     <tbody>
                 </table>
                 <div>
-                    <p id=\"arret\"><span class=\"text-uppercase\"> Arreté a :</span></p>
+                    <p>Arreté a la valeur de : <span class=\"text-uppercase\" id=\"nombrePd\"> </span> ARIARY<p>
                 </div>
             </div>
                 <div class=\"d-flex flex-row-reverse bd-highlight\">

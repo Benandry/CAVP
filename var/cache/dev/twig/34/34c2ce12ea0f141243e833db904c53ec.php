@@ -74,7 +74,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
             echo "        ";
             $context["types_order"] = [0 => "Produits Nouveaux", 1 => "Fugirine Postale"];
             // line 27
-            echo "    <div class=\"container mt-2\">
+            echo "    <div class=\"main ms-5\">
         <div class=\"row\">
             <div class=\"col-lg-7 col-md-7 pr-5\" style=\"border-right: 1px dashed black; color: black;\">
                 <!-- en-tete -->
@@ -122,13 +122,18 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
             // line 65
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 65, $this->source); })()), 0, [], "any", false, false, false, 65), "numero", [], "any", false, false, false, 65), "html", null, true);
             echo "</div>
-                                                <div>1</div>
+                                                <div>";
+            // line 66
+            echo twig_escape_filter($this->env, (isset($context["bureau"]) || array_key_exists("bureau", $context) ? $context["bureau"] : (function () { throw new RuntimeError('Variable "bureau" does not exist.', 66, $this->source); })()), "html", null, true);
+            echo "</div>
                                             </div>
                                         </div>
                                         <div class=\"col-lg-7 col-md-7\">
                                             <span style=\"font-size: 11px;\">Envoi du <u style=\"font-weight: bold;\"> ";
             // line 70
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 70, $this->source); })()), 0, [], "any", false, false, false, 70), "numero", [], "any", false, false, false, 70), "html", null, true);
+            echo " - ";
+            echo twig_escape_filter($this->env, (isset($context["bureau"]) || array_key_exists("bureau", $context) ? $context["bureau"] : (function () { throw new RuntimeError('Variable "bureau" does not exist.', 70, $this->source); })()), "html", null, true);
             echo "</u>&nbsp;<u style=\"font-weight: bold;\">";
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, "now", "Y"), "html", null, true);
             echo "</u></span>
@@ -142,7 +147,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                                 </div>
                                 <div class=\"col-lg-12 col-md-12\">
                                     <div class=\"row\">
-                                        <h5 id=\"repartitions\" class=\"col-lg-12 col-md-12 text-center\" style=\"font-size: 11px;\">Tableau  N° 1</h4>
+                                        <h5 id=\"repartitions\" class=\"col-lg-12 col-md-12 text-center ms-5\" style=\"font-size: 11px;\">Tableau  N° 1</h4>
                                         <table class=\"table table-bordered border-dark table-sm col-lg-12 col-md-12\" data-toggle=\"table\">
                                             <thead>
                                                 <tr>
@@ -253,10 +258,9 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
             echo "                                                 <tr>
                                                     <th colspan=\"4\" class=\"text-right pr-3\" style=\"font-size: 11px;\"> Totaux(Valeur) </th>
                                                     <td style=\"font-size: 11px;\">
-                                                        
                                                         ";
-            // line 130
-            echo twig_escape_filter($this->env, (isset($context["somme"]) || array_key_exists("somme", $context) ? $context["somme"] : (function () { throw new RuntimeError('Variable "somme" does not exist.', 130, $this->source); })()), "html", null, true);
+            // line 129
+            echo twig_escape_filter($this->env, (isset($context["somme"]) || array_key_exists("somme", $context) ? $context["somme"] : (function () { throw new RuntimeError('Variable "somme" does not exist.', 129, $this->source); })()), "html", null, true);
             echo "
                                                     </td>
                                                 </tr>
@@ -275,29 +279,24 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                                                                 <th style=\"font-size: 11px;\">Numéros des envois</th>
                                                                 <th style=\"font-size: 11px;\">Prix total de chaque envoi</th>
                                                             </tr>
-                                                            ";
+                                                            <tr>
+                                                                <td style=\"font-size: 11px;\"> ";
             // line 148
-            $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 148, $this->source); })()));
-            foreach ($context['_seq'] as $context["_key"] => $context["pro"]) {
-                // line 149
-                echo "                                                                <tr>
-                                                                    <td style=\"font-size: 11px;\">.........</td>
-                                                                    <td style=\"font-size: 11px;\">.........</td>
-                                                                </tr>
-                                                             ";
-            }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pro'], $context['_parent'], $context['loop']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 154
-            echo "                                                             
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 148, $this->source); })()), 0, [], "any", false, false, false, 148), "numero", [], "any", false, false, false, 148), "html", null, true);
+            echo " - ";
+            echo twig_escape_filter($this->env, (isset($context["bureau"]) || array_key_exists("bureau", $context) ? $context["bureau"] : (function () { throw new RuntimeError('Variable "bureau" does not exist.', 148, $this->source); })()), "html", null, true);
+            echo "</td>
+                                                                <td style=\"font-size: 11px;\"> ";
+            // line 149
+            echo twig_escape_filter($this->env, (isset($context["somme"]) || array_key_exists("somme", $context) ? $context["somme"] : (function () { throw new RuntimeError('Variable "somme" does not exist.', 149, $this->source); })()), "html", null, true);
+            echo " </td>
+                                                            </tr>
                                                             ";
-            // line 155
+            // line 151
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 155, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 151, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["pro"]) {
-                // line 156
+                // line 152
                 echo "                                                                <tr>
                                                                     <td style=\"font-size: 11px;\">.........</td>
                                                                     <td style=\"font-size: 11px;\">.........</td>
@@ -307,7 +306,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pro'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 161
+            // line 157
             echo "                                                        </table>
                                                         <div class=\"col-lg-12 col-md-12\">
                                                             <span style=\"font-size: 11px;font-weight:bold\">(1) Ce chiffre doit etre conforme à celui de la prise en charge</span>
@@ -348,15 +347,15 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                                     </tr>
                                     
                                     ";
-            // line 200
+            // line 196
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 200, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 196, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["pro"]) {
-                // line 201
+                // line 197
                 echo "                                        <tr>
                                             <td style=\"font-size: 11px;\"> ";
-                // line 202
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "categorie", [], "any", false, false, false, 202), "html", null, true);
+                // line 198
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "categorie", [], "any", false, false, false, 198), "html", null, true);
                 echo " </td>
                                             <td style=\"font-size: 11px;\">.........</td>
                                         </tr>
@@ -365,14 +364,14 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pro'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 206
+            // line 202
             echo "                                    
                                         ";
-            // line 207
+            // line 203
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 207, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 203, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["pro"]) {
-                // line 208
+                // line 204
                 echo "                                            <tr>
                                                 <td style=\"font-size: 11px;\">.........</td>
                                                 <td style=\"font-size: 11px;\">.........</td>
@@ -382,7 +381,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pro'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 213
+            // line 209
             echo "                                            <tr>
                                                 <td colspan=\"2\">
                                                     <span style=\"font-size:11px\">
@@ -444,15 +443,18 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                             <div class=\"col-lg-2 col-md-2\">
                                 <div class=\"text-center\" style=\"width: 60px;height:60px;border:1px dashed black;border-radius:50px;display:flex;align-items:center;flex-direction:column;justify-content:center;transform:rotate(-25deg);\">
                                     <div style=\"border-bottom:1px solid black;\">N°  ";
-            // line 273
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 273, $this->source); })()), 0, [], "any", false, false, false, 273), "numero", [], "any", false, false, false, 273), "html", null, true);
+            // line 269
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 269, $this->source); })()), 0, [], "any", false, false, false, 269), "numero", [], "any", false, false, false, 269), "html", null, true);
             echo "</div>
-                                    <div>1</div>
+                                    <div>";
+            // line 270
+            echo twig_escape_filter($this->env, (isset($context["bureau"]) || array_key_exists("bureau", $context) ? $context["bureau"] : (function () { throw new RuntimeError('Variable "bureau" does not exist.', 270, $this->source); })()), "html", null, true);
+            echo "</div>
                                 </div>
                             </div>
                             <div class=\"col-lg-7 col-md-7\" style=\"font-size:11px;display:flex;align-items:center;justify-content:flex-start;\">Bureau d'&nbsp;<u style=\"font-weight:bold\">";
-            // line 277
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 277, $this->source); })()), 0, [], "any", false, false, false, 277), "bureau", [], "any", false, false, false, 277), "html", null, true);
+            // line 273
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 273, $this->source); })()), 0, [], "any", false, false, false, 273), "bureau", [], "any", false, false, false, 273), "html", null, true);
             echo "</u></div>
                             <div class=\"col-lg-12 mt-3 text-center\">
                             </div>
@@ -472,13 +474,16 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                                 </tr>
                                 
                                  ";
-            // line 295
+            // line 291
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 295, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 291, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["pro"]) {
-                // line 296
+                // line 292
                 echo "                                    <tr>
-                                        <td style=\"font-size: 11px;\">.........</td>
+                                        <td style=\"font-size: 11px;\"> ";
+                // line 293
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "categorie", [], "any", false, false, false, 293), "html", null, true);
+                echo "</td>
                                         <td style=\"font-size: 11px;\">.........</td>
                                         <td style=\"font-size: 11px;\">.........</td>
                                         <td style=\"font-size: 11px;\">.........</td>
@@ -489,7 +494,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pro'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 304
+            // line 300
             echo "                                <tr>
                                     <td >............</td>
                                     <td >............</td>
@@ -533,25 +538,25 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
         </div>    
     </div>
     ";
-            // line 346
+            // line 342
             $this->displayBlock('javascripts', $context, $blocks);
-            // line 349
+            // line 345
             echo "                       
     ";
         } else {
-            // line 351
+            // line 347
             echo "        <h1>Page not found 404 </h1>
 
         <p>
             The requested page couldn't be located. Checkout for any URL
             misspelling or <a href=\"";
-            // line 355
+            // line 351
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             echo "\">return to the authentification </a>.
         </p>
     ";
         }
-        // line 357
+        // line 353
         echo " 
 </body>
 </html>";
@@ -586,7 +591,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
 
     }
 
-    // line 346
+    // line 342
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -596,7 +601,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 347
+        // line 343
         echo "        ";
         echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("app");
         echo "
@@ -621,7 +626,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  600 => 347,  590 => 346,  577 => 7,  567 => 6,  555 => 357,  549 => 355,  543 => 351,  539 => 349,  537 => 346,  493 => 304,  480 => 296,  476 => 295,  455 => 277,  448 => 273,  386 => 213,  376 => 208,  372 => 207,  369 => 206,  359 => 202,  356 => 201,  352 => 200,  311 => 161,  301 => 156,  297 => 155,  294 => 154,  284 => 149,  280 => 148,  259 => 130,  253 => 126,  240 => 118,  236 => 117,  233 => 116,  220 => 108,  215 => 107,  208 => 105,  205 => 104,  199 => 102,  196 => 101,  190 => 99,  187 => 98,  185 => 97,  181 => 96,  177 => 95,  173 => 94,  169 => 93,  166 => 92,  161 => 91,  159 => 90,  138 => 72,  131 => 70,  123 => 65,  104 => 49,  97 => 45,  77 => 27,  74 => 26,  72 => 25,  54 => 9,  52 => 6,  45 => 1,);
+        return array (  605 => 343,  595 => 342,  582 => 7,  572 => 6,  560 => 353,  554 => 351,  548 => 347,  544 => 345,  542 => 342,  498 => 300,  485 => 293,  482 => 292,  478 => 291,  457 => 273,  451 => 270,  447 => 269,  385 => 209,  375 => 204,  371 => 203,  368 => 202,  358 => 198,  355 => 197,  351 => 196,  310 => 157,  300 => 152,  296 => 151,  291 => 149,  285 => 148,  263 => 129,  258 => 126,  245 => 118,  241 => 117,  238 => 116,  225 => 108,  220 => 107,  213 => 105,  210 => 104,  204 => 102,  201 => 101,  195 => 99,  192 => 98,  190 => 97,  186 => 96,  182 => 95,  178 => 94,  174 => 93,  171 => 92,  166 => 91,  164 => 90,  143 => 72,  134 => 70,  127 => 66,  123 => 65,  104 => 49,  97 => 45,  77 => 27,  74 => 26,  72 => 25,  54 => 9,  52 => 6,  45 => 1,);
     }
 
     public function getSourceContext()
@@ -652,7 +657,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
 <body class=\"bg-light\">
     {% if app.user %}
         {% set types_order = ['Produits Nouveaux','Fugirine Postale']  %}
-    <div class=\"container mt-2\">
+    <div class=\"main ms-5\">
         <div class=\"row\">
             <div class=\"col-lg-7 col-md-7 pr-5\" style=\"border-right: 1px dashed black; color: black;\">
                 <!-- en-tete -->
@@ -691,11 +696,11 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                                         <div class=\"col-lg-2 col-md-2\">
                                             <div class=\"text-center\" style=\"width: 60px;height:60px;border:1px dashed black;border-radius:50px;display:flex;align-items:center;flex-direction:column;justify-content:center;transform:rotate(-25deg);\">
                                                 <div style=\"border-bottom:1px solid black;\">N° {{ dispo.0.numero }}</div>
-                                                <div>1</div>
+                                                <div>{{ bureau }}</div>
                                             </div>
                                         </div>
                                         <div class=\"col-lg-7 col-md-7\">
-                                            <span style=\"font-size: 11px;\">Envoi du <u style=\"font-weight: bold;\"> {{ dispo.0.numero }}</u>&nbsp;<u style=\"font-weight: bold;\">{{ 'now' | date('Y') }}</u></span>
+                                            <span style=\"font-size: 11px;\">Envoi du <u style=\"font-weight: bold;\"> {{ dispo.0.numero }} - {{ bureau }}</u>&nbsp;<u style=\"font-weight: bold;\">{{ 'now' | date('Y') }}</u></span>
                                             <br>
                                             <span style=\"font-size: 11px;\">au bureau d' <u style=\"font-weight:bold\">{{  dispo.0.bureau }}</u></span>
                                         </div>
@@ -703,7 +708,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                                 </div>
                                 <div class=\"col-lg-12 col-md-12\">
                                     <div class=\"row\">
-                                        <h5 id=\"repartitions\" class=\"col-lg-12 col-md-12 text-center\" style=\"font-size: 11px;\">Tableau  N° 1</h4>
+                                        <h5 id=\"repartitions\" class=\"col-lg-12 col-md-12 text-center ms-5\" style=\"font-size: 11px;\">Tableau  N° 1</h4>
                                         <table class=\"table table-bordered border-dark table-sm col-lg-12 col-md-12\" data-toggle=\"table\">
                                             <thead>
                                                 <tr>
@@ -754,7 +759,6 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                                                  <tr>
                                                     <th colspan=\"4\" class=\"text-right pr-3\" style=\"font-size: 11px;\"> Totaux(Valeur) </th>
                                                     <td style=\"font-size: 11px;\">
-                                                        
                                                         {{ somme }}
                                                     </td>
                                                 </tr>
@@ -773,13 +777,10 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                                                                 <th style=\"font-size: 11px;\">Numéros des envois</th>
                                                                 <th style=\"font-size: 11px;\">Prix total de chaque envoi</th>
                                                             </tr>
-                                                            {% for pro in dispo %}
-                                                                <tr>
-                                                                    <td style=\"font-size: 11px;\">.........</td>
-                                                                    <td style=\"font-size: 11px;\">.........</td>
-                                                                </tr>
-                                                             {% endfor %}
-                                                             
+                                                            <tr>
+                                                                <td style=\"font-size: 11px;\"> {{ dispo.0.numero }} - {{ bureau }}</td>
+                                                                <td style=\"font-size: 11px;\"> {{ somme }} </td>
+                                                            </tr>
                                                             {% for pro in dispo %}
                                                                 <tr>
                                                                     <td style=\"font-size: 11px;\">.........</td>
@@ -899,7 +900,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                             <div class=\"col-lg-2 col-md-2\">
                                 <div class=\"text-center\" style=\"width: 60px;height:60px;border:1px dashed black;border-radius:50px;display:flex;align-items:center;flex-direction:column;justify-content:center;transform:rotate(-25deg);\">
                                     <div style=\"border-bottom:1px solid black;\">N°  {{ dispo.0.numero }}</div>
-                                    <div>1</div>
+                                    <div>{{ bureau }}</div>
                                 </div>
                             </div>
                             <div class=\"col-lg-7 col-md-7\" style=\"font-size:11px;display:flex;align-items:center;justify-content:flex-start;\">Bureau d'&nbsp;<u style=\"font-weight:bold\">{{  dispo.0.bureau }}</u></div>
@@ -922,7 +923,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                                 
                                  {% for pro in dispo %}
                                     <tr>
-                                        <td style=\"font-size: 11px;\">.........</td>
+                                        <td style=\"font-size: 11px;\"> {{ pro.categorie }}</td>
                                         <td style=\"font-size: 11px;\">.........</td>
                                         <td style=\"font-size: 11px;\">.........</td>
                                         <td style=\"font-size: 11px;\">.........</td>

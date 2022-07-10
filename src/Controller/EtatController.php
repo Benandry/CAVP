@@ -30,7 +30,7 @@ class EtatController extends AbstractController
     if ($year_only == null) {
         $year_only = date('Y');
     }
-
+    //dd($year_only);
    //dd($year_only);
     if ($mois_annee == null) {
         $mois_annee = date('Y-m');

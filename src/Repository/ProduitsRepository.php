@@ -45,7 +45,8 @@ class ProduitsRepository extends ServiceEntityRepository
     
         $rawSql = " SELECT COUNT(a.name) nombre_agence FROM App\Entity\Mouvement mvt 
                     INNER JOIN App\Entity\Agence a WITH a.id = mvt.Agence
-                    WHERE mvt.types = 2 AND mvt.numero_de_sortie = $numero AND mvt.numero_de_sortie = $types";
+                    WHERE mvt.types = 2 AND mvt.numero_de_sortie = $numero AND mvt.numero_de_sortie = $types
+                    GROUP BY mvt.Agence";
 
         $stmt = $this->getEntityManager()->createQuery($rawSql);
         return $stmt->execute();

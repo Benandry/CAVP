@@ -51,7 +51,7 @@
                 {% set sumValueInit = 0 %}
                 {% set sumQuantEntrer = 0 %}
                 {% set sumQuantCurrent = 0 %}
-                {% set sumValueCurrent = 0 %}
+                {% set sumActuel = 0 %}
                 {% set sumQuantSortie = 0 %}
                 {% set sumValSortie = 0 %}
                 {% set sumValRRecus = 0 %}
@@ -90,13 +90,13 @@
                                     <td> {{ valeur }} </td>
                                 {% elseif key2 =='value_actuelle' %}
                                     {% set valeur = courant[key]['prix_net'] %}
-                                    {% set sumValueCurrent = sumValueCurrent + valeur %} 
+                                    {% set sumActuel = sumActuel + valeur %} 
                                     <td> {{ valeur }} </td>
                                 {% endif %}
                             {% endfor %}
                         </tr>
                     {% endfor %}
-                    <tfoot>
+                   <tfoot>
                         <tr>
                             <th>
                                 Totales(Valeur)
@@ -104,36 +104,36 @@
                             <th>
                                 {{ sumQuantInt }}
                             </th>
-                            <th>
+                            <th id="sumI">
                                 {{ sumValueInit }}
                             </th>
                             <th>
                                 {{ sumQuantEntrer }}
                             </th>
-                            <th>
+                            <th id="sumE">
                                 {{ sumValRRecus }}
                             </th>
                             <th>
                                 {{ sumQuantSortie|abs }}
                             </th>
-                            <th>
+                            <th id="sumS">
                                 {{ sumValSortie }}
                             </th>
                             <th>
                                 {{ sumQuantCurrent }}
                             </th>
-                            <th>
-                                {{ sumValueCurrent }}
+                            <th id="sumA">
+                                {{ sumActuel }}
                             </th>
                         </tr>
                     </tfoot>
                 </tbody>
             </table>
             <div>
-                <p id="arret">
-                    <span class="text-uppercase">
-                        Arreté a :</span>
-                </p>
+                <p>Arreté a la valeur initial de : <span class="text-uppercase" id="init"> </span> ARIARY<p>
+                <p>Arreté a la valeur entrée de : <span class="text-uppercase" id="enter"> </span> ARIARY<p>
+                <p>Arreté a la valeur Sortie de : <span class="text-uppercase" id="out"> </span> ARIARY<p>
+                <p>Arreté a la valeur actuelle de : <span class="text-uppercase" id="current"> </span> ARIARY<p>
             </div>
         </div>
         <div class="d-flex flex-row-reverse bd-highlight">

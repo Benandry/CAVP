@@ -212,9 +212,9 @@ class __TwigTemplate_1dcee6589ee7e17e5feb17cc0d165960 extends \Twig\Template
 \t\t\t\t\t\t\t\t<br/><br/>
 \t\t\t\t\t\t\t\t";
                 // line 77
-                if ((twig_get_attribute($this->env, $this->source, $context["histo"], "types", [], "any", false, false, false, 77) == "sortie")) {
+                if ((twig_get_attribute($this->env, $this->source, $context["histo"], "desccriptions", [], "any", false, false, false, 77) == "Sorties des Catégories")) {
                     // line 78
-                    echo "\t\t\t\t\t\t\t\t\t<u>Nombre de sortie : </u>
+                    echo "\t\t\t\t\t\t\t\t\t<u>Nombre de categorie(s) sortie(s) : </u>
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
                     // line 79
                     echo twig_escape_filter($this->env, abs(twig_get_attribute($this->env, $this->source, $context["histo"], "nombre", [], "any", false, false, false, 79)), "html", null, true);
@@ -222,9 +222,9 @@ class __TwigTemplate_1dcee6589ee7e17e5feb17cc0d165960 extends \Twig\Template
 \t\t\t\t\t\t\t\t\t\t<br/><br/>
 \t\t\t\t\t\t\t\t";
                 } elseif ((twig_get_attribute($this->env, $this->source,                 // line 81
-$context["histo"], "types", [], "any", false, false, false, 81) == "entrer")) {
+$context["histo"], "desccriptions", [], "any", false, false, false, 81) == "Ajouter des nouveaux Catégories")) {
                     // line 82
-                    echo "\t\t\t\t\t\t\t\t\t<u>Nombre ajoutée : </u>
+                    echo "\t\t\t\t\t\t\t\t\t<u>Nombre de categorie(s) ajoutée(s) : </u>
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
                     // line 83
                     echo twig_escape_filter($this->env, abs(twig_get_attribute($this->env, $this->source, $context["histo"], "nombre", [], "any", false, false, false, 83)), "html", null, true);
@@ -232,9 +232,9 @@ $context["histo"], "types", [], "any", false, false, false, 81) == "entrer")) {
 \t\t\t\t\t\t\t\t\t\t<br/><br/>
 \t\t\t\t\t\t\t\t";
                 } elseif ((twig_get_attribute($this->env, $this->source,                 // line 85
-$context["histo"], "types", [], "any", false, false, false, 85) == "integrer")) {
+$context["histo"], "desccriptions", [], "any", false, false, false, 85) == "Réintegration")) {
                     // line 86
-                    echo "\t\t\t\t\t\t\t\t\t<u>Nombre integrer : </u>
+                    echo "\t\t\t\t\t\t\t\t\t<u>Nombre de categorie(s) integrer au CAVP : </u>
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
                     // line 87
                     echo twig_escape_filter($this->env, abs(twig_get_attribute($this->env, $this->source, $context["histo"], "nombre", [], "any", false, false, false, 87)), "html", null, true);
@@ -243,28 +243,47 @@ $context["histo"], "types", [], "any", false, false, false, 85) == "integrer")) 
 \t\t\t\t\t\t\t\t";
                 }
                 // line 90
-                echo "\t\t\t\t\t\t\t\tReference :
-\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
-                // line 91
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "reference", [], "any", false, false, false, 91), "html", null, true);
-                echo "</span>
-\t\t\t\t\t\t\t\t<br/><br/>
-\t\t\t\t\t\t\t\tDestination :
-\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
-                // line 94
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "destination", [], "any", false, false, false, 94), "html", null, true);
-                echo "</span>
-\t\t\t\t\t\t\t\t<br/>
+                echo "\t\t\t\t\t\t\t\t";
+                if ((twig_get_attribute($this->env, $this->source, $context["histo"], "desccriptions", [], "any", false, false, false, 90) == "Ajouter des nouveaux Catégories")) {
+                    // line 91
+                    echo "\t\t\t\t\t\t\t\t\tvient du bureau :
+\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
+                    // line 92
+                    echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "destination", [], "any", false, false, false, 92), "html", null, true);
+                    echo "</span>
+\t\t\t\t\t\t\t\t\t<br/><br/>
 \t\t\t\t\t\t\t\t";
-                // line 96
-                if ((twig_get_attribute($this->env, $this->source, $context["histo"], "types", [], "any", false, false, false, 96) == "sortie")) {
-                    // line 97
+                } elseif ((twig_get_attribute($this->env, $this->source,                 // line 94
+$context["histo"], "desccriptions", [], "any", false, false, false, 94) == "Réintegration")) {
+                    // line 95
+                    echo "\t\t\t\t\t\t\t\t\trevient de  :
+\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
+                    // line 96
+                    echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "destination", [], "any", false, false, false, 96), "html", null, true);
+                    echo "</span>
+\t\t\t\t\t\t\t\t\t<br/><br/>
+\t\t\t\t\t\t\t\t";
+                } elseif ((twig_get_attribute($this->env, $this->source,                 // line 98
+$context["histo"], "desccriptions", [], "any", false, false, false, 98) == "Sorties des Catégories")) {
+                    // line 99
+                    echo "\t\t\t\t\t\t\t\t\tDestination :
+\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">";
+                    // line 100
+                    echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["histo"], "destination", [], "any", false, false, false, 100), "html", null, true);
+                    echo "</span>
+\t\t\t\t\t\t\t\t\t<br/><br/>
+\t\t\t\t\t\t\t\t";
+                }
+                // line 103
+                echo "\t\t\t\t\t\t\t\t";
+                if ((twig_get_attribute($this->env, $this->source, $context["histo"], "types", [], "any", false, false, false, 103) == "sortie")) {
+                    // line 104
                     echo "\t\t\t\t\t\t\t\t\t<a href=\"";
-                    echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("order_out", ["types" => twig_get_attribute($this->env, $this->source, $context["histo"], "types_prod", [], "any", false, false, false, 97), "numero" => twig_get_attribute($this->env, $this->source, $context["histo"], "numero", [], "any", false, false, false, 97)]), "html", null, true);
+                    echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("order_out", ["types" => twig_get_attribute($this->env, $this->source, $context["histo"], "types_prod", [], "any", false, false, false, 104), "numero" => twig_get_attribute($this->env, $this->source, $context["histo"], "numero", [], "any", false, false, false, 104)]), "html", null, true);
                     echo "\" class=\"button margin-right-md margin-bottom-md btn-danger btn-sm\">Ordre de sortie →</a>
 \t\t\t\t\t\t\t\t";
                 }
-                // line 99
+                // line 106
                 echo "\t\t\t\t\t\t\t</p>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t</div>
@@ -274,24 +293,24 @@ $context["histo"], "types", [], "any", false, false, false, 85) == "integrer")) 
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['histo'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 104
+            // line 111
             echo "\t\t</div>
 \t\t";
         } else {
-            // line 106
+            // line 113
             echo "\t\t\t<h1>Page not found 404
 \t\t\t</h1>
 \t\t\t<p>
 \t\t\t\tThe requested page couldn't be located. Checkout for any URL misspelling or
 \t\t\t\t<a href=\"";
-            // line 110
+            // line 117
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             echo "\">return to the authentification
 \t\t\t\t</a>.
 \t\t\t</p>
 \t\t";
         }
-        // line 114
+        // line 121
         echo "\t</main>
 ";
         
@@ -314,7 +333,7 @@ $context["histo"], "types", [], "any", false, false, false, 85) == "integrer")) 
 
     public function getDebugInfo()
     {
-        return array (  295 => 114,  288 => 110,  282 => 106,  278 => 104,  268 => 99,  262 => 97,  260 => 96,  255 => 94,  249 => 91,  246 => 90,  240 => 87,  237 => 86,  235 => 85,  230 => 83,  227 => 82,  225 => 81,  220 => 79,  217 => 78,  215 => 77,  210 => 75,  204 => 72,  195 => 68,  185 => 61,  179 => 58,  174 => 55,  170 => 54,  158 => 45,  148 => 38,  142 => 35,  136 => 32,  130 => 29,  119 => 20,  115 => 18,  113 => 17,  110 => 16,  108 => 15,  105 => 14,  103 => 13,  100 => 12,  98 => 11,  94 => 9,  92 => 8,  89 => 7,  79 => 6,  59 => 3,  36 => 1,);
+        return array (  314 => 121,  307 => 117,  301 => 113,  297 => 111,  287 => 106,  281 => 104,  278 => 103,  272 => 100,  269 => 99,  267 => 98,  262 => 96,  259 => 95,  257 => 94,  252 => 92,  249 => 91,  246 => 90,  240 => 87,  237 => 86,  235 => 85,  230 => 83,  227 => 82,  225 => 81,  220 => 79,  217 => 78,  215 => 77,  210 => 75,  204 => 72,  195 => 68,  185 => 61,  179 => 58,  174 => 55,  170 => 54,  158 => 45,  148 => 38,  142 => 35,  136 => 32,  130 => 29,  119 => 20,  115 => 18,  113 => 17,  110 => 16,  108 => 15,  105 => 14,  103 => 13,  100 => 12,  98 => 11,  94 => 9,  92 => 8,  89 => 7,  79 => 6,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -395,25 +414,32 @@ $context["histo"], "types", [], "any", false, false, false, 85) == "integrer")) 
 \t\t\t\t\t\t\t\tAction :
 \t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.types }}</span>
 \t\t\t\t\t\t\t\t<br/><br/>
-\t\t\t\t\t\t\t\t{% if histo.types == \"sortie\" %}
-\t\t\t\t\t\t\t\t\t<u>Nombre de sortie : </u>
+\t\t\t\t\t\t\t\t{% if histo.desccriptions == \"Sorties des Catégories\" %}
+\t\t\t\t\t\t\t\t\t<u>Nombre de categorie(s) sortie(s) : </u>
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.nombre|abs }}</span>
 \t\t\t\t\t\t\t\t\t\t<br/><br/>
-\t\t\t\t\t\t\t\t{% elseif histo.types == \"entrer\" %}
-\t\t\t\t\t\t\t\t\t<u>Nombre ajoutée : </u>
+\t\t\t\t\t\t\t\t{% elseif histo.desccriptions == \"Ajouter des nouveaux Catégories\" %}
+\t\t\t\t\t\t\t\t\t<u>Nombre de categorie(s) ajoutée(s) : </u>
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.nombre|abs }}</span>
 \t\t\t\t\t\t\t\t\t\t<br/><br/>
-\t\t\t\t\t\t\t\t{% elseif histo.types == \"integrer\" %}
-\t\t\t\t\t\t\t\t\t<u>Nombre integrer : </u>
+\t\t\t\t\t\t\t\t{% elseif histo.desccriptions == \"Réintegration\" %}
+\t\t\t\t\t\t\t\t\t<u>Nombre de categorie(s) integrer au CAVP : </u>
 \t\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.nombre|abs }}</span>
 \t\t\t\t\t\t\t\t\t\t<br/><br/>
 \t\t\t\t\t\t\t\t{% endif %}
-\t\t\t\t\t\t\t\tReference :
-\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.reference }}</span>
-\t\t\t\t\t\t\t\t<br/><br/>
-\t\t\t\t\t\t\t\tDestination :
-\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.destination }}</span>
-\t\t\t\t\t\t\t\t<br/>
+\t\t\t\t\t\t\t\t{% if histo.desccriptions == \"Ajouter des nouveaux Catégories\" %}
+\t\t\t\t\t\t\t\t\tvient du bureau :
+\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.destination }}</span>
+\t\t\t\t\t\t\t\t\t<br/><br/>
+\t\t\t\t\t\t\t\t{% elseif histo.desccriptions == \"Réintegration\" %}
+\t\t\t\t\t\t\t\t\trevient de  :
+\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.destination }}</span>
+\t\t\t\t\t\t\t\t\t<br/><br/>
+\t\t\t\t\t\t\t\t{% elseif histo.desccriptions == \"Sorties des Catégories\" %}
+\t\t\t\t\t\t\t\t\tDestination :
+\t\t\t\t\t\t\t\t\t<span style=\"color:#498000;\">{{ histo.destination }}</span>
+\t\t\t\t\t\t\t\t\t<br/><br/>
+\t\t\t\t\t\t\t\t{% endif %}
 \t\t\t\t\t\t\t\t{% if histo.types == \"sortie\"%}
 \t\t\t\t\t\t\t\t\t<a href=\"{{ path('order_out',{types: histo.types_prod,numero: histo.numero }) }}\" class=\"button margin-right-md margin-bottom-md btn-danger btn-sm\">Ordre de sortie →</a>
 \t\t\t\t\t\t\t\t{% endif %}

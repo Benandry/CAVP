@@ -166,13 +166,10 @@ $context["key1"] == "nombre_cat")) {
         echo "                    <tbody>
                 </table>  
             </div>
-            <div>
-                <p class=\"uppercase\">ARRETE A LA SOMME DE:<p>
-            </div>
             <div class=\"d-flex flex-row-reverse bd-highlight\">
                 <div class=\"p-2 bd-highlight\">
                     <p> Antananarivo le ,";
-        // line 55
+        // line 52
         echo twig_escape_filter($this->env, $this->extensions['Twig\Extra\Intl\IntlExtension']->formatDate($this->env, "now", "medium", "", null, "gregorian", "fr"), "html", null, true);
         echo "</p>
                     <p><span style=\"margin-top1: 25px;\"> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
@@ -224,7 +221,7 @@ $context["key1"] == "nombre_cat")) {
 
     public function getDebugInfo()
     {
-        return array (  203 => 7,  193 => 6,  176 => 55,  166 => 47,  159 => 45,  153 => 44,  147 => 42,  144 => 41,  138 => 40,  134 => 38,  128 => 36,  125 => 35,  120 => 34,  118 => 33,  113 => 32,  111 => 31,  106 => 30,  103 => 29,  99 => 28,  96 => 27,  92 => 26,  86 => 22,  77 => 20,  73 => 19,  62 => 13,  59 => 12,  57 => 11,  53 => 9,  51 => 6,  44 => 1,);
+        return array (  200 => 7,  190 => 6,  173 => 52,  166 => 47,  159 => 45,  153 => 44,  147 => 42,  144 => 41,  138 => 40,  134 => 38,  128 => 36,  125 => 35,  120 => 34,  118 => 33,  113 => 32,  111 => 31,  106 => 30,  103 => 29,  99 => 28,  96 => 27,  92 => 26,  86 => 22,  77 => 20,  73 => 19,  62 => 13,  59 => 12,  57 => 11,  53 => 9,  51 => 6,  44 => 1,);
     }
 
     public function getSourceContext()
@@ -277,9 +274,6 @@ $context["key1"] == "nombre_cat")) {
                         {% endfor %}
                     <tbody>
                 </table>  
-            </div>
-            <div>
-                <p class=\"uppercase\">ARRETE A LA SOMME DE:<p>
             </div>
             <div class=\"d-flex flex-row-reverse bd-highlight\">
                 <div class=\"p-2 bd-highlight\">

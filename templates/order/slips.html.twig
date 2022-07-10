@@ -24,7 +24,7 @@
 <body class="bg-light">
     {% if app.user %}
         {% set types_order = ['Produits Nouveaux','Fugirine Postale']  %}
-    <div class="container mt-2">
+    <div class="main ms-5">
         <div class="row">
             <div class="col-lg-7 col-md-7 pr-5" style="border-right: 1px dashed black; color: black;">
                 <!-- en-tete -->
@@ -63,11 +63,11 @@
                                         <div class="col-lg-2 col-md-2">
                                             <div class="text-center" style="width: 60px;height:60px;border:1px dashed black;border-radius:50px;display:flex;align-items:center;flex-direction:column;justify-content:center;transform:rotate(-25deg);">
                                                 <div style="border-bottom:1px solid black;">N° {{ dispo.0.numero }}</div>
-                                                <div>1</div>
+                                                <div>{{ bureau }}</div>
                                             </div>
                                         </div>
                                         <div class="col-lg-7 col-md-7">
-                                            <span style="font-size: 11px;">Envoi du <u style="font-weight: bold;"> {{ dispo.0.numero }}</u>&nbsp;<u style="font-weight: bold;">{{ 'now' | date('Y') }}</u></span>
+                                            <span style="font-size: 11px;">Envoi du <u style="font-weight: bold;"> {{ dispo.0.numero }} - {{ bureau }}</u>&nbsp;<u style="font-weight: bold;">{{ 'now' | date('Y') }}</u></span>
                                             <br>
                                             <span style="font-size: 11px;">au bureau d' <u style="font-weight:bold">{{  dispo.0.bureau }}</u></span>
                                         </div>
@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12">
                                     <div class="row">
-                                        <h5 id="repartitions" class="col-lg-12 col-md-12 text-center" style="font-size: 11px;">Tableau  N° 1</h4>
+                                        <h5 id="repartitions" class="col-lg-12 col-md-12 text-center ms-5" style="font-size: 11px;">Tableau  N° 1</h4>
                                         <table class="table table-bordered border-dark table-sm col-lg-12 col-md-12" data-toggle="table">
                                             <thead>
                                                 <tr>
@@ -126,7 +126,6 @@
                                                  <tr>
                                                     <th colspan="4" class="text-right pr-3" style="font-size: 11px;"> Totaux(Valeur) </th>
                                                     <td style="font-size: 11px;">
-                                                        
                                                         {{ somme }}
                                                     </td>
                                                 </tr>
@@ -145,13 +144,10 @@
                                                                 <th style="font-size: 11px;">Numéros des envois</th>
                                                                 <th style="font-size: 11px;">Prix total de chaque envoi</th>
                                                             </tr>
-                                                            {% for pro in dispo %}
-                                                                <tr>
-                                                                    <td style="font-size: 11px;">.........</td>
-                                                                    <td style="font-size: 11px;">.........</td>
-                                                                </tr>
-                                                             {% endfor %}
-                                                             
+                                                            <tr>
+                                                                <td style="font-size: 11px;"> {{ dispo.0.numero }} - {{ bureau }}</td>
+                                                                <td style="font-size: 11px;"> {{ somme }} </td>
+                                                            </tr>
                                                             {% for pro in dispo %}
                                                                 <tr>
                                                                     <td style="font-size: 11px;">.........</td>
@@ -271,7 +267,7 @@
                             <div class="col-lg-2 col-md-2">
                                 <div class="text-center" style="width: 60px;height:60px;border:1px dashed black;border-radius:50px;display:flex;align-items:center;flex-direction:column;justify-content:center;transform:rotate(-25deg);">
                                     <div style="border-bottom:1px solid black;">N°  {{ dispo.0.numero }}</div>
-                                    <div>1</div>
+                                    <div>{{ bureau }}</div>
                                 </div>
                             </div>
                             <div class="col-lg-7 col-md-7" style="font-size:11px;display:flex;align-items:center;justify-content:flex-start;">Bureau d'&nbsp;<u style="font-weight:bold">{{  dispo.0.bureau }}</u></div>
@@ -294,7 +290,7 @@
                                 
                                  {% for pro in dispo %}
                                     <tr>
-                                        <td style="font-size: 11px;">.........</td>
+                                        <td style="font-size: 11px;"> {{ pro.categorie }}</td>
                                         <td style="font-size: 11px;">.........</td>
                                         <td style="font-size: 11px;">.........</td>
                                         <td style="font-size: 11px;">.........</td>

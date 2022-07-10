@@ -45,25 +45,23 @@
                             </tr>
                         {% endfor %}
                             <tr>
-                                <th>Observations </t>
-                                <td colspan="6"> {{ bureau }}  observations </td>
+                                <th colspan="5">Total :  </t>
+                                <td id="sommeRecapt"> {{ somme }} </td>
                             </tr>
                     <tbody>
                 </table>  
+                <p> {{ bureau }}  observations  </p>
             </div>
             <div>
-                <p class="uppercase">ARRETE A LA SOMME DE:<p>
+                <p>Arreté a la valeur initial de : <span class="text-uppercase" id="nombreRecap"> </span> ARIARY<p>
             </div>
             <div class="d-flex flex-row-reverse bd-highlight">
                 <div class="p-2 bd-highlight">
-                    <div >
-                        <p> Somme total :<span class="btn btn-danger btn-sm disabled ms-5"> {{ somme }} <span > Ar<p>
-                    </div>
-                    <br/><br/>
                     <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }}</p>
                     <p><span style="margin-top1: 25px;"> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
                 </div>
             </div>
         </div>
+        {{ encore_entry_script_tags('app') }}
     </body>
 </html>

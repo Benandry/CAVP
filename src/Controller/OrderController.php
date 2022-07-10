@@ -29,12 +29,10 @@ class OrderController extends AbstractController
         $repository1 = $doctrine->getRepository(Produits::class);
         $order = $repository1->findByOrder($types,$numero);
         $nombre_agency =$doctrine->getRepository(Produits::class)->findAgency($numero,$types);
-        $agency = $nombre_agency[0]['nombre_agence'];
-
+        $agency = $nombre_agency;
+        //dd($agency);
         if (!$order) {
-            throw $this->createNotFoundException(
-                'Pas de produits trouvées '
-            );
+            return $this->render('noProduct.html.twig');
         }
 
           // ******************************Formulaire de numdero de sortie **************************************//
@@ -64,8 +62,7 @@ class OrderController extends AbstractController
             //dd($nombre_agency);
 
             if (!$order) {
-                throw $this->createNotFoundException("Pas de resultat trouvé");
-                
+                return $this->render('noProduct.html.twig');
             }
             return $this->render('order/ordre.html.twig',[
                 'dispo' => $order,
@@ -98,12 +95,11 @@ class OrderController extends AbstractController
        // dd($order);
         $categorie = $order[0]['categorie'];
         if (!$order) {
-            throw $this->createNotFoundException(
-                'No product found '
-            );
+            return $this->render('noProduct.html.twig');
         }
         
         return $this->render('order/slips.html.twig',[
+            'bureau' => $bureau,
             'dispo' => $order,
             'types' => $type,
             'categorie' => $categorie

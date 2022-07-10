@@ -87,7 +87,7 @@ class DefaultController extends AbstractController
     public function public(ManagerRegistry $doctrine,$product='')
     {
         $repository = $doctrine->getRepository( Mouvement::class);
-        $categorie = $repository->findByCat($product);
+        $categorie = $repository->findByValeurDispo($product);
         // dd($categorie);
         return new JsonResponse($categorie);
     }

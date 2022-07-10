@@ -1,4 +1,156 @@
 
+import $ from 'jquery';
+	/* *************************************Global variable****************************** */
+	var pathname = window.location.pathname;
+	var url = window.location.href;
+	var origin = window.location.origin;
+
+	/* ********************************************************************************************* */
+	var path = pathname;
+	var myArray = path.split("/");
+
+	/** Situation generale de stock ** * */
+	if(myArray[2] == 'situation'){
+		/**Initiale */
+		var nbrI = $('#sumI').text();
+		var nombreI = parseInt(nbrI);
+
+		function affichageI (nombre){
+			var nombreLettre =  NumberToLetter(nombre) ;
+			document.getElementById("init").innerHTML = nombreLettre ;
+		}
+		affichageI(nombreI);
+
+		/**Entrer */
+		var nbrE = $('#sumE').text();
+		var nombreE = parseInt(nbrE);
+
+		function affichageE (nombre){
+			var nombreLettre =  NumberToLetter(nombre) ;
+			document.getElementById("enter").innerHTML = nombreLettre ;
+		}
+		affichageE(nombreE);
+
+		/**Sortie */
+		var nbrS = $('#sumS').text();
+		var nombreS = parseInt(nbrS);
+
+		function affichageS (nombre){
+			var nombreLettre =  NumberToLetter(nombre) ;
+			document.getElementById("out").innerHTML = nombreLettre ;
+		}
+		affichageS(nombreS);
+
+		/**Actuel */
+		var nbrA = $('#sumA').text();
+		var nombreA = parseInt(nbrA);
+
+		function affichageA (nombre){
+			var nombreLettre =  NumberToLetter(nombre) ;
+			document.getElementById("current").innerHTML = nombreLettre ;
+		}
+		affichageA(nombreA);
+	}
+	/** REcap General imprssion**** */
+	if (myArray[2] == 'produit_disponible' ) {
+		var nbrPd = $('#somValue').text();
+		var nombrePd = parseInt(nbrPd);
+
+		function affichagePd (nombre){
+			var nombreLettre =  NumberToLetter(nombre) ;
+			document.getElementById("nombrePd").innerHTML = nombreLettre ;
+		}
+		affichagePd(nombrePd);
+	}
+
+	/**Recaputilation impression **** */
+	if (myArray[3] == 'recaputilation'){
+		var nbrRecap = $('#sommeRecapt').text();
+		var nombreRecap = parseInt(nbrRecap);
+
+		function affichageRecap (nombre){
+			var nombreLettre =  NumberToLetter(nombre) ;
+			document.getElementById("nombreRecap").innerHTML = nombreLettre ;
+		}
+		affichageRecap(nombreRecap)
+	}
+
+	$(document).ready(function(){
+
+		var path = pathname;
+		var myArray = path.split("/");
+		
+		/*	************Prix de ordre de sortie *******************	*/	
+		if ( myArray[1] == 'ordre-de-sortie'){
+			var nbr = $('#somme').text();
+			var nombre = parseInt(nbr);
+
+			function affichage (nombre){
+				var nombreLettre =  NumberToLetter(nombre) ;
+				document.getElementById("nombre").innerHTML = nombreLettre ;
+			}
+			affichage(nombre);
+		}
+
+		/*	************Prix de produits disponible *******************	*/	
+		if ( myArray[1] == 'product_dispo' || myArray[1] == 'impression'){
+			var nbr = $('#somme_recap_dispo').text()
+			var nombre = parseInt(nbr);
+			/** situation general de stock */
+			function affichage (nombre){
+				var nombreLettre =  NumberToLetter(nombre) ;
+				document.getElementById("nombreRecap").innerHTML = nombreLettre ;
+				
+			}
+			affichage (nombre)
+			
+			/* initiale */
+			var nbrInit = $('#sumValueInit').text()
+			var nombreInitial = parseInt(nbrInit);
+
+			function affichageInitial (nombre){
+				var nombreLettre =  NumberToLetter(nombre) ;
+				document.getElementById("sitInitial").innerHTML = nombreLettre ;
+				
+			}
+			affichageInitial(nombreInitial);
+
+			/* entrer */
+			var nbrEntrer = $('#sumValRecus').text()
+			var nombreEntrer = parseInt(nbrEntrer);
+
+			function affichageEntrer (nombre){
+				var nombreLettre =  NumberToLetter(nombre) ;
+				document.getElementById("sitEntrer").innerHTML = nombreLettre ;
+				
+			}
+			affichageEntrer(nombreEntrer);
+
+			/* Sortie */
+			var nbrsortie = $('#sumValSortie').text()
+			var nombreSortie = parseInt(nbrsortie);
+
+			function affichageSortie (nombre){
+				var nombreLettre =  NumberToLetter(nombre) ;
+				document.getElementById("sitSortie").innerHTML = nombreLettre ;
+				
+			}
+			affichageSortie(nombreSortie);
+
+			/* Actuelle */
+			var nbrActuel = $('#sumValueCurrent').text()
+			var nombreActuel = parseInt(nbrActuel);
+			function affichageActuel (nombre){
+				var nombreLettre =  NumberToLetter(nombre) ;
+				document.getElementById("sitActuel").innerHTML = nombreLettre ;
+				
+			}
+			affichageActuel(nombreActuel);
+
+		}
+
+	});
+
 function Unite( nombre ){
 	var unite;
 	switch( nombre ){
@@ -14,9 +166,10 @@ function Unite( nombre ){
 		case 9: unite = "neuf"; 	break;
 	}//fin switch
 	return unite;
-}//-----------------------------------------------------------------------
+}
 
 function Dizaine( nombre ){
+	var dizaine = '';
 	switch( nombre ){
 		case 10: dizaine = "dix"; break;
 		case 11: dizaine = "onze"; break;
@@ -161,4 +314,4 @@ function NumberToLetter( nombre ){
 	 if(  numberToLetter.substr(numberToLetter.length-"quatre-vingt".length,"quatre-vingt".length) == "quatre-vingt"  ) numberToLetter = numberToLetter + "s";
 	 
 	 return numberToLetter;
-}//-----------------------------------------------------------------------
+}

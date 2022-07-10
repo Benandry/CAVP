@@ -99,7 +99,7 @@ class __TwigTemplate_141434606bb537a10be252c6dd4abc5c extends \Twig\Template
             echo "\"> <i class=\"fas fa-file-alt\"></i>  Compte Rendu</a>
                             </li>
                             <li class=\"nav-item\">
-                            <a class=\"nav-link btn-lg liens\"  href=\"";
+                            <a class=\"nav-link btn-lg liens\"  id=\"ordre_de_sortie\" href=\"";
             // line 34
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("order_out", ["source" => "ordredesortie"]);
             echo "\"> <i class='fas fa-external-link-alt'></i>  Ordre de sortie</a>
@@ -298,7 +298,7 @@ class __TwigTemplate_141434606bb537a10be252c6dd4abc5c extends \Twig\Template
                             <a class=\"nav-link btn-lg liens\"  href=\"{{ path('history', {'source':'compterendu '}) }}\"> <i class=\"fas fa-file-alt\"></i>  Compte Rendu</a>
                             </li>
                             <li class=\"nav-item\">
-                            <a class=\"nav-link btn-lg liens\"  href=\"{{ path('order_out', {'source':'ordredesortie'}) }}\"> <i class='fas fa-external-link-alt'></i>  Ordre de sortie</a>
+                            <a class=\"nav-link btn-lg liens\"  id=\"ordre_de_sortie\" href=\"{{ path('order_out', {'source':'ordredesortie'}) }}\"> <i class='fas fa-external-link-alt'></i>  Ordre de sortie</a>
                             </li>
                         </ul>
                         <div class=\"d-flex\">

@@ -115,7 +115,7 @@ class __TwigTemplate_d75abfded601ac13ea4f6a8225425e26 extends \Twig\Template
             $context["sumQuantCurrent"] = 0;
             // line 54
             echo "                ";
-            $context["sumValueCurrent"] = 0;
+            $context["sumActuel"] = 0;
             // line 55
             echo "                ";
             $context["sumQuantSortie"] = 0;
@@ -250,7 +250,7 @@ $context["key2"] == "value_actuelle")) {
                         $context["valeur"] = twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["courant"]) || array_key_exists("courant", $context) ? $context["courant"] : (function () { throw new RuntimeError('Variable "courant" does not exist.', 92, $this->source); })()), $context["key"], [], "array", false, false, false, 92), "prix_net", [], "array", false, false, false, 92);
                         // line 93
                         echo "                                    ";
-                        $context["sumValueCurrent"] = ((isset($context["sumValueCurrent"]) || array_key_exists("sumValueCurrent", $context) ? $context["sumValueCurrent"] : (function () { throw new RuntimeError('Variable "sumValueCurrent" does not exist.', 93, $this->source); })()) + (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 93, $this->source); })()));
+                        $context["sumActuel"] = ((isset($context["sumActuel"]) || array_key_exists("sumActuel", $context) ? $context["sumActuel"] : (function () { throw new RuntimeError('Variable "sumActuel" does not exist.', 93, $this->source); })()) + (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 93, $this->source); })()));
                         echo " 
                                     <td> ";
                         // line 94
@@ -272,7 +272,7 @@ $context["key2"] == "value_actuelle")) {
             unset($context['_seq'], $context['_iterated'], $context['key'], $context['value'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
             // line 99
-            echo "                    <tfoot>
+            echo "                   <tfoot>
                         <tr>
                             <th>
                                 Totales(Valeur)
@@ -283,7 +283,7 @@ $context["key2"] == "value_actuelle")) {
             echo twig_escape_filter($this->env, (isset($context["sumQuantInt"]) || array_key_exists("sumQuantInt", $context) ? $context["sumQuantInt"] : (function () { throw new RuntimeError('Variable "sumQuantInt" does not exist.', 105, $this->source); })()), "html", null, true);
             echo "
                             </th>
-                            <th>
+                            <th id=\"sumI\">
                                 ";
             // line 108
             echo twig_escape_filter($this->env, (isset($context["sumValueInit"]) || array_key_exists("sumValueInit", $context) ? $context["sumValueInit"] : (function () { throw new RuntimeError('Variable "sumValueInit" does not exist.', 108, $this->source); })()), "html", null, true);
@@ -295,7 +295,7 @@ $context["key2"] == "value_actuelle")) {
             echo twig_escape_filter($this->env, (isset($context["sumQuantEntrer"]) || array_key_exists("sumQuantEntrer", $context) ? $context["sumQuantEntrer"] : (function () { throw new RuntimeError('Variable "sumQuantEntrer" does not exist.', 111, $this->source); })()), "html", null, true);
             echo "
                             </th>
-                            <th>
+                            <th id=\"sumE\">
                                 ";
             // line 114
             echo twig_escape_filter($this->env, (isset($context["sumValRRecus"]) || array_key_exists("sumValRRecus", $context) ? $context["sumValRRecus"] : (function () { throw new RuntimeError('Variable "sumValRRecus" does not exist.', 114, $this->source); })()), "html", null, true);
@@ -307,7 +307,7 @@ $context["key2"] == "value_actuelle")) {
             echo twig_escape_filter($this->env, abs((isset($context["sumQuantSortie"]) || array_key_exists("sumQuantSortie", $context) ? $context["sumQuantSortie"] : (function () { throw new RuntimeError('Variable "sumQuantSortie" does not exist.', 117, $this->source); })())), "html", null, true);
             echo "
                             </th>
-                            <th>
+                            <th id=\"sumS\">
                                 ";
             // line 120
             echo twig_escape_filter($this->env, (isset($context["sumValSortie"]) || array_key_exists("sumValSortie", $context) ? $context["sumValSortie"] : (function () { throw new RuntimeError('Variable "sumValSortie" does not exist.', 120, $this->source); })()), "html", null, true);
@@ -319,10 +319,10 @@ $context["key2"] == "value_actuelle")) {
             echo twig_escape_filter($this->env, (isset($context["sumQuantCurrent"]) || array_key_exists("sumQuantCurrent", $context) ? $context["sumQuantCurrent"] : (function () { throw new RuntimeError('Variable "sumQuantCurrent" does not exist.', 123, $this->source); })()), "html", null, true);
             echo "
                             </th>
-                            <th>
+                            <th id=\"sumA\">
                                 ";
             // line 126
-            echo twig_escape_filter($this->env, (isset($context["sumValueCurrent"]) || array_key_exists("sumValueCurrent", $context) ? $context["sumValueCurrent"] : (function () { throw new RuntimeError('Variable "sumValueCurrent" does not exist.', 126, $this->source); })()), "html", null, true);
+            echo twig_escape_filter($this->env, (isset($context["sumActuel"]) || array_key_exists("sumActuel", $context) ? $context["sumActuel"] : (function () { throw new RuntimeError('Variable "sumActuel" does not exist.', 126, $this->source); })()), "html", null, true);
             echo "
                             </th>
                         </tr>
@@ -330,10 +330,10 @@ $context["key2"] == "value_actuelle")) {
                 </tbody>
             </table>
             <div>
-                <p id=\"arret\">
-                    <span class=\"text-uppercase\">
-                        Arreté a :</span>
-                </p>
+                <p>Arreté a la valeur initial de : <span class=\"text-uppercase\" id=\"init\"> </span> ARIARY<p>
+                <p>Arreté a la valeur entrée de : <span class=\"text-uppercase\" id=\"enter\"> </span> ARIARY<p>
+                <p>Arreté a la valeur Sortie de : <span class=\"text-uppercase\" id=\"out\"> </span> ARIARY<p>
+                <p>Arreté a la valeur actuelle de : <span class=\"text-uppercase\" id=\"current\"> </span> ARIARY<p>
             </div>
         </div>
         <div class=\"d-flex flex-row-reverse bd-highlight\">
@@ -501,7 +501,7 @@ $context["key2"] == "value_actuelle")) {
                 {% set sumValueInit = 0 %}
                 {% set sumQuantEntrer = 0 %}
                 {% set sumQuantCurrent = 0 %}
-                {% set sumValueCurrent = 0 %}
+                {% set sumActuel = 0 %}
                 {% set sumQuantSortie = 0 %}
                 {% set sumValSortie = 0 %}
                 {% set sumValRRecus = 0 %}
@@ -540,13 +540,13 @@ $context["key2"] == "value_actuelle")) {
                                     <td> {{ valeur }} </td>
                                 {% elseif key2 =='value_actuelle' %}
                                     {% set valeur = courant[key]['prix_net'] %}
-                                    {% set sumValueCurrent = sumValueCurrent + valeur %} 
+                                    {% set sumActuel = sumActuel + valeur %} 
                                     <td> {{ valeur }} </td>
                                 {% endif %}
                             {% endfor %}
                         </tr>
                     {% endfor %}
-                    <tfoot>
+                   <tfoot>
                         <tr>
                             <th>
                                 Totales(Valeur)
@@ -554,36 +554,36 @@ $context["key2"] == "value_actuelle")) {
                             <th>
                                 {{ sumQuantInt }}
                             </th>
-                            <th>
+                            <th id=\"sumI\">
                                 {{ sumValueInit }}
                             </th>
                             <th>
                                 {{ sumQuantEntrer }}
                             </th>
-                            <th>
+                            <th id=\"sumE\">
                                 {{ sumValRRecus }}
                             </th>
                             <th>
                                 {{ sumQuantSortie|abs }}
                             </th>
-                            <th>
+                            <th id=\"sumS\">
                                 {{ sumValSortie }}
                             </th>
                             <th>
                                 {{ sumQuantCurrent }}
                             </th>
-                            <th>
-                                {{ sumValueCurrent }}
+                            <th id=\"sumA\">
+                                {{ sumActuel }}
                             </th>
                         </tr>
                     </tfoot>
                 </tbody>
             </table>
             <div>
-                <p id=\"arret\">
-                    <span class=\"text-uppercase\">
-                        Arreté a :</span>
-                </p>
+                <p>Arreté a la valeur initial de : <span class=\"text-uppercase\" id=\"init\"> </span> ARIARY<p>
+                <p>Arreté a la valeur entrée de : <span class=\"text-uppercase\" id=\"enter\"> </span> ARIARY<p>
+                <p>Arreté a la valeur Sortie de : <span class=\"text-uppercase\" id=\"out\"> </span> ARIARY<p>
+                <p>Arreté a la valeur actuelle de : <span class=\"text-uppercase\" id=\"current\"> </span> ARIARY<p>
             </div>
         </div>
         <div class=\"d-flex flex-row-reverse bd-highlight\">

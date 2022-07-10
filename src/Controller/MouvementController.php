@@ -64,7 +64,9 @@ class MouvementController extends AbstractController
         $traet = $traitement->index($init, $enter,$out, $current);
         $current = $traet['courant'];
         $initial = $traet['initial'];
+        $total = $current[0];
         return $this->render('impression/etat/etat_de_stock.html.twig',[
+            'total' =>$total,
             'courant' =>$current,
             'initial' =>$initial,
             'init' => $init,

@@ -145,35 +145,36 @@ class __TwigTemplate_769f34a0903d0e7081ee0e9e671d5360 extends \Twig\Template
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 47
         echo "                            <tr>
-                                <th>Observations </t>
-                                <td colspan=\"6\"> ";
+                                <th colspan=\"5\">Total :  </t>
+                                <td id=\"sommeRecapt\"> ";
         // line 49
-        echo twig_escape_filter($this->env, (isset($context["bureau"]) || array_key_exists("bureau", $context) ? $context["bureau"] : (function () { throw new RuntimeError('Variable "bureau" does not exist.', 49, $this->source); })()), "html", null, true);
-        echo "  observations </td>
+        echo twig_escape_filter($this->env, (isset($context["somme"]) || array_key_exists("somme", $context) ? $context["somme"] : (function () { throw new RuntimeError('Variable "somme" does not exist.', 49, $this->source); })()), "html", null, true);
+        echo " </td>
                             </tr>
                     <tbody>
                 </table>  
+                <p> ";
+        // line 53
+        echo twig_escape_filter($this->env, (isset($context["bureau"]) || array_key_exists("bureau", $context) ? $context["bureau"] : (function () { throw new RuntimeError('Variable "bureau" does not exist.', 53, $this->source); })()), "html", null, true);
+        echo "  observations  </p>
             </div>
             <div>
-                <p class=\"uppercase\">ARRETE A LA SOMME DE:<p>
+                <p>Arreté a la valeur initial de : <span class=\"text-uppercase\" id=\"nombreRecap\"> </span> ARIARY<p>
             </div>
             <div class=\"d-flex flex-row-reverse bd-highlight\">
                 <div class=\"p-2 bd-highlight\">
-                    <div >
-                        <p> Somme total :<span class=\"btn btn-danger btn-sm disabled ms-5\"> ";
-        // line 60
-        echo twig_escape_filter($this->env, (isset($context["somme"]) || array_key_exists("somme", $context) ? $context["somme"] : (function () { throw new RuntimeError('Variable "somme" does not exist.', 60, $this->source); })()), "html", null, true);
-        echo " <span > Ar<p>
-                    </div>
-                    <br/><br/>
                     <p> Antananarivo le ,";
-        // line 63
+        // line 60
         echo twig_escape_filter($this->env, $this->extensions['Twig\Extra\Intl\IntlExtension']->formatDate($this->env, "now", "medium", "", null, "gregorian", "fr"), "html", null, true);
         echo "</p>
                     <p><span style=\"margin-top1: 25px;\"> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
                 </div>
             </div>
         </div>
+        ";
+        // line 65
+        echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("app");
+        echo "
     </body>
 </html>";
         
@@ -219,7 +220,7 @@ class __TwigTemplate_769f34a0903d0e7081ee0e9e671d5360 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  198 => 7,  188 => 6,  171 => 63,  165 => 60,  151 => 49,  147 => 47,  140 => 45,  137 => 44,  134 => 43,  128 => 41,  125 => 40,  119 => 38,  116 => 37,  114 => 36,  110 => 35,  106 => 34,  102 => 33,  98 => 32,  94 => 31,  91 => 30,  86 => 29,  83 => 28,  81 => 27,  62 => 13,  59 => 12,  57 => 11,  53 => 9,  51 => 6,  44 => 1,);
+        return array (  199 => 7,  189 => 6,  176 => 65,  168 => 60,  158 => 53,  151 => 49,  147 => 47,  140 => 45,  137 => 44,  134 => 43,  128 => 41,  125 => 40,  119 => 38,  116 => 37,  114 => 36,  110 => 35,  106 => 34,  102 => 33,  98 => 32,  94 => 31,  91 => 30,  86 => 29,  83 => 28,  81 => 27,  62 => 13,  59 => 12,  57 => 11,  53 => 9,  51 => 6,  44 => 1,);
     }
 
     public function getSourceContext()
@@ -271,26 +272,24 @@ class __TwigTemplate_769f34a0903d0e7081ee0e9e671d5360 extends \Twig\Template
                             </tr>
                         {% endfor %}
                             <tr>
-                                <th>Observations </t>
-                                <td colspan=\"6\"> {{ bureau }}  observations </td>
+                                <th colspan=\"5\">Total :  </t>
+                                <td id=\"sommeRecapt\"> {{ somme }} </td>
                             </tr>
                     <tbody>
                 </table>  
+                <p> {{ bureau }}  observations  </p>
             </div>
             <div>
-                <p class=\"uppercase\">ARRETE A LA SOMME DE:<p>
+                <p>Arreté a la valeur initial de : <span class=\"text-uppercase\" id=\"nombreRecap\"> </span> ARIARY<p>
             </div>
             <div class=\"d-flex flex-row-reverse bd-highlight\">
                 <div class=\"p-2 bd-highlight\">
-                    <div >
-                        <p> Somme total :<span class=\"btn btn-danger btn-sm disabled ms-5\"> {{ somme }} <span > Ar<p>
-                    </div>
-                    <br/><br/>
                     <p> Antananarivo le ,{{ 'now' |format_date(locale='fr') }}</p>
                     <p><span style=\"margin-top1: 25px;\"> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
                 </div>
             </div>
         </div>
+        {{ encore_entry_script_tags('app') }}
     </body>
 </html>", "Impression/ordreSortie/recaputilation.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\templates\\impression\\ordreSortie\\recaputilation.html.twig");
     }

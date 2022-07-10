@@ -22,9 +22,9 @@ class MouvementCrudController extends AbstractController
     #[Route('/', name: 'mouvement_controller_crud_index', methods: ['GET'])]
     public function index(MouvementRepository $mouvementRepository): Response
     {
-       // dd($mouvementRepository->findByhistory());
+        //dd($mouvementRepository->findByMouvement());
         return $this->render('mouvement_controller_crud/index.html.twig',[
-            'mouvements' => $mouvementRepository->findByhistory()
+            'mouvements' => $mouvementRepository->findByMouvement()
         ]);
     }
 
