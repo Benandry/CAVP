@@ -67,10 +67,10 @@ class Categorie extends \App\Entity\Categorie implements \Doctrine\ORM\Proxy\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'NomDeCategorie', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'ordre', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'produit', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'situations', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'mouvements', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'valeurFaciale', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'prixDeVente', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'AnneeEmission', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'coteEmission'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'NomDeCategorie', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'ordre', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'produit', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'situations', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'mouvements', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'valeurFaciale', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'prixDeVente', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'AnneeEmission', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'coteEmission', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'tpParPl'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'NomDeCategorie', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'ordre', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'produit', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'situations', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'mouvements', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'valeurFaciale', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'prixDeVente', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'AnneeEmission', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'coteEmission'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'NomDeCategorie', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'ordre', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'produit', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'situations', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'mouvements', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'valeurFaciale', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'prixDeVente', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'AnneeEmission', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'coteEmission', '' . "\0" . 'App\\Entity\\Categorie' . "\0" . 'tpParPl'];
     }
 
     /**
@@ -421,6 +421,28 @@ class Categorie extends \App\Entity\Categorie implements \Doctrine\ORM\Proxy\Pro
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCoteEmission', [$coteEmission]);
 
         return parent::setCoteEmission($coteEmission);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTpParPl(): ?int
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTpParPl', []);
+
+        return parent::getTpParPl();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTpParPl(int $tpParPl): \App\Entity\Categorie
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTpParPl', [$tpParPl]);
+
+        return parent::setTpParPl($tpParPl);
     }
 
 }

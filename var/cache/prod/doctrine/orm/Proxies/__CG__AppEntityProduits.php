@@ -67,10 +67,10 @@ class Produits extends \App\Entity\Produits implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'nomProduit', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'Abbreviation', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'dateEntrer', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'mouvements', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'categories', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'situations'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'nomProduit', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'Abbreviation', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'dateEntrer', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'mouvements', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'categories', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'situations', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'types'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'nomProduit', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'Abbreviation', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'dateEntrer', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'mouvements', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'categories', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'situations'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'nomProduit', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'Abbreviation', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'dateEntrer', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'mouvements', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'categories', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'situations', '' . "\0" . 'App\\Entity\\Produits' . "\0" . 'types'];
     }
 
     /**
@@ -366,6 +366,28 @@ class Produits extends \App\Entity\Produits implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeSituation', [$situation]);
 
         return parent::removeSituation($situation);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTypes(): ?\App\Entity\OrderTypes
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTypes', []);
+
+        return parent::getTypes();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTypes(?\App\Entity\OrderTypes $types): \App\Entity\Produits
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTypes', [$types]);
+
+        return parent::setTypes($types);
     }
 
 }

@@ -10,9 +10,11 @@ return [[
 'App__Entity__Descriptions__CLASSMETADATA__' => 3,
 'App__Entity__Fournisseur__CLASSMETADATA__' => 4,
 'App__Entity__Mouvement__CLASSMETADATA__' => 5,
-'App__Entity__Produits__CLASSMETADATA__' => 6,
-'App__Entity__Situation__CLASSMETADATA__' => 7,
-'App__Entity__Types__CLASSMETADATA__' => 8,
+'App__Entity__OrderSortie__CLASSMETADATA__' => 6,
+'App__Entity__OrderTypes__CLASSMETADATA__' => 7,
+'App__Entity__Produits__CLASSMETADATA__' => 8,
+'App__Entity__Situation__CLASSMETADATA__' => 9,
+'App__Entity__Types__CLASSMETADATA__' => 10,
 
 ], [
 
@@ -416,6 +418,16 @@ return [[
                             'precision' => null,
                             'columnName' => 'cote_emission',
                         ],
+                        'tpParPl' => [
+                            'fieldName' => 'tpParPl',
+                            'type' => 'integer',
+                            'scale' => null,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => true,
+                            'precision' => null,
+                            'columnName' => 'tp_par_pl',
+                        ],
                     ],
                 ],
                 'fieldNames' => [
@@ -427,6 +439,7 @@ return [[
                         'prix_de_vente' => 'prixDeVente',
                         'annee_emission' => 'AnneeEmission',
                         'cote_emission' => 'coteEmission',
+                        'tp_par_pl' => 'tpParPl',
                     ],
                 ],
                 'columnNames' => [
@@ -438,6 +451,7 @@ return [[
                         'prixDeVente' => 'prix_de_vente',
                         'AnneeEmission' => 'annee_emission',
                         'coteEmission' => 'cote_emission',
+                        'tpParPl' => 'tp_par_pl',
                     ],
                 ],
                 'table' => [
@@ -1067,6 +1081,42 @@ return [[
                             ],
                             'orphanRemoval' => false,
                         ],
+                        'numero_de_sortie' => [
+                            'fieldName' => 'numero_de_sortie',
+                            'joinColumns' => [
+                                [
+                                    'name' => 'numero_de_sortie_id',
+                                    'unique' => false,
+                                    'nullable' => true,
+                                    'onDelete' => null,
+                                    'columnDefinition' => null,
+                                    'referencedColumnName' => 'id',
+                                ],
+                            ],
+                            'cascade' => [],
+                            'inversedBy' => 'mouvements',
+                            'targetEntity' => 'App\\Entity\\OrderSortie',
+                            'fetch' => 2,
+                            'type' => 2,
+                            'mappedBy' => null,
+                            'isOwningSide' => true,
+                            'sourceEntity' => 'App\\Entity\\Mouvement',
+                            'isCascadeRemove' => false,
+                            'isCascadePersist' => false,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                            'sourceToTargetKeyColumns' => [
+                                'numero_de_sortie_id' => 'id',
+                            ],
+                            'joinColumnFieldNames' => [
+                                'numero_de_sortie_id' => 'numero_de_sortie_id',
+                            ],
+                            'targetToSourceKeyColumns' => [
+                                'id' => 'numero_de_sortie_id',
+                            ],
+                            'orphanRemoval' => false,
+                        ],
                     ],
                 ],
                 'idGenerator' => [
@@ -1079,6 +1129,223 @@ return [[
     );
 },
 6 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'name' => [
+                    'App\\Entity\\OrderSortie',
+                ],
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\OrderSortie',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\OrderSortieRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    4,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => [
+                            'fieldName' => 'id',
+                            'type' => 'integer',
+                            'scale' => null,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => null,
+                            'id' => true,
+                            'columnName' => 'id',
+                        ],
+                        'numero_de_sortie' => [
+                            'fieldName' => 'numero_de_sortie',
+                            'type' => 'string',
+                            'scale' => null,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => null,
+                            'columnName' => 'numero_de_sortie',
+                        ],
+                        'dateOrdre' => [
+                            'fieldName' => 'dateOrdre',
+                            'type' => 'date',
+                            'scale' => null,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => null,
+                            'columnName' => 'date_ordre',
+                        ],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                        'numero_de_sortie' => 'numero_de_sortie',
+                        'date_ordre' => 'dateOrdre',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                        'numero_de_sortie' => 'numero_de_sortie',
+                        'dateOrdre' => 'date_ordre',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'order_sortie',
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[1],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+},
+7 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'name' => [
+                    'App\\Entity\\OrderTypes',
+                ],
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\OrderTypes',
+                ],
+                'customRepositoryClassName' => [
+                    'App\\Repository\\OrderTypesRepository',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    4,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => [
+                            'fieldName' => 'id',
+                            'type' => 'integer',
+                            'scale' => null,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => null,
+                            'id' => true,
+                            'columnName' => 'id',
+                        ],
+                        'type_order_short' => [
+                            'fieldName' => 'type_order_short',
+                            'type' => 'string',
+                            'scale' => null,
+                            'length' => 20,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => null,
+                            'columnName' => 'type_order_short',
+                        ],
+                        'type_order_long' => [
+                            'fieldName' => 'type_order_long',
+                            'type' => 'string',
+                            'scale' => null,
+                            'length' => 50,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => null,
+                            'columnName' => 'type_order_long',
+                        ],
+                        'other_type' => [
+                            'fieldName' => 'other_type',
+                            'type' => 'string',
+                            'scale' => null,
+                            'length' => 50,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => null,
+                            'columnName' => 'other_type',
+                        ],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                        'type_order_short' => 'type_order_short',
+                        'type_order_long' => 'type_order_long',
+                        'other_type' => 'other_type',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                        'type_order_short' => 'type_order_short',
+                        'type_order_long' => 'type_order_long',
+                        'other_type' => 'other_type',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'order_types',
+                    ],
+                ],
+                'associationMappings' => [
+                    [
+                        'produits' => [
+                            'fieldName' => 'produits',
+                            'mappedBy' => 'types',
+                            'targetEntity' => 'App\\Entity\\Produits',
+                            'cascade' => [],
+                            'orphanRemoval' => false,
+                            'fetch' => 2,
+                            'type' => 4,
+                            'inversedBy' => null,
+                            'isOwningSide' => false,
+                            'sourceEntity' => 'App\\Entity\\OrderTypes',
+                            'isCascadeRemove' => false,
+                            'isCascadePersist' => false,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                        ],
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[1],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+},
+8 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
@@ -1226,6 +1493,42 @@ return [[
                             'isCascadeMerge' => false,
                             'isCascadeDetach' => false,
                         ],
+                        'types' => [
+                            'fieldName' => 'types',
+                            'joinColumns' => [
+                                [
+                                    'name' => 'types_id',
+                                    'unique' => false,
+                                    'nullable' => false,
+                                    'onDelete' => null,
+                                    'columnDefinition' => null,
+                                    'referencedColumnName' => 'id',
+                                ],
+                            ],
+                            'cascade' => [],
+                            'inversedBy' => 'produits',
+                            'targetEntity' => 'App\\Entity\\OrderTypes',
+                            'fetch' => 2,
+                            'type' => 2,
+                            'mappedBy' => null,
+                            'isOwningSide' => true,
+                            'sourceEntity' => 'App\\Entity\\Produits',
+                            'isCascadeRemove' => false,
+                            'isCascadePersist' => false,
+                            'isCascadeRefresh' => false,
+                            'isCascadeMerge' => false,
+                            'isCascadeDetach' => false,
+                            'sourceToTargetKeyColumns' => [
+                                'types_id' => 'id',
+                            ],
+                            'joinColumnFieldNames' => [
+                                'types_id' => 'types_id',
+                            ],
+                            'targetToSourceKeyColumns' => [
+                                'id' => 'types_id',
+                            ],
+                            'orphanRemoval' => false,
+                        ],
                     ],
                 ],
                 'idGenerator' => [
@@ -1237,7 +1540,7 @@ return [[
         []
     );
 },
-7 => static function () {
+9 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
@@ -1489,7 +1792,7 @@ return [[
         []
     );
 },
-8 => static function () {
+10 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
             clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),

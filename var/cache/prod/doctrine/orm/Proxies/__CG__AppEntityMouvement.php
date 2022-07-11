@@ -67,10 +67,10 @@ class Mouvement extends \App\Entity\Mouvement implements \Doctrine\ORM\Proxy\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'produit', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'quantite', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'reference', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'Agence', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'User', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'dateEntrer', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'Categorie', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'types', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'descriptions'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'produit', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'quantite', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'reference', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'Agence', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'User', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'dateEntrer', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'Categorie', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'types', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'descriptions', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'numero_de_sortie'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'produit', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'quantite', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'reference', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'Agence', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'User', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'dateEntrer', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'Categorie', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'types', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'descriptions'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'produit', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'quantite', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'reference', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'Agence', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'User', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'dateEntrer', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'Categorie', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'types', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'descriptions', '' . "\0" . 'App\\Entity\\Mouvement' . "\0" . 'numero_de_sortie'];
     }
 
     /**
@@ -388,6 +388,28 @@ class Mouvement extends \App\Entity\Mouvement implements \Doctrine\ORM\Proxy\Pro
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDescriptions', [$descriptions]);
 
         return parent::setDescriptions($descriptions);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNumeroDeSortie(): ?\App\Entity\OrderSortie
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNumeroDeSortie', []);
+
+        return parent::getNumeroDeSortie();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setNumeroDeSortie(?\App\Entity\OrderSortie $numero_de_sortie): \App\Entity\Mouvement
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNumeroDeSortie', [$numero_de_sortie]);
+
+        return parent::setNumeroDeSortie($numero_de_sortie);
     }
 
 }
