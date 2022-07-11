@@ -157,7 +157,7 @@ $context["key2"] == "quantite_init")) {
                         echo " 
                                     <td> ";
                         // line 66
-                        echo twig_escape_filter($this->env, (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 66, $this->source); })()), "html", null, true);
+                        echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 66, $this->source); })()), 0, ",", " "), "html", null, true);
                         echo " </td> 
                                 ";
                     } elseif ((                    // line 67
@@ -171,7 +171,7 @@ $context["key2"] == "valeur_init")) {
                         echo " 
                                     <td> ";
                         // line 70
-                        echo twig_escape_filter($this->env, (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 70, $this->source); })()), "html", null, true);
+                        echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 70, $this->source); })()), 0, ",", " "), "html", null, true);
                         echo " </td> 
                                 ";
                     } elseif ((                    // line 71
@@ -185,7 +185,7 @@ $context["key2"] == "qunad_recus")) {
                         echo " 
                                     <td> ";
                         // line 74
-                        echo twig_escape_filter($this->env, (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 74, $this->source); })()), "html", null, true);
+                        echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 74, $this->source); })()), 0, ",", " "), "html", null, true);
                         echo " </td> 
                                 ";
                     } elseif ((                    // line 75
@@ -198,7 +198,7 @@ $context["key2"] == "val_recus")) {
                         $context["sumValRRecus"] = ((isset($context["sumValRRecus"]) || array_key_exists("sumValRRecus", $context) ? $context["sumValRRecus"] : (function () { throw new RuntimeError('Variable "sumValRRecus" does not exist.', 77, $this->source); })()) + (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 77, $this->source); })()));
                         // line 78
                         echo "                                    <td> ";
-                        echo twig_escape_filter($this->env, (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 78, $this->source); })()), "html", null, true);
+                        echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 78, $this->source); })()), 0, ",", " "), "html", null, true);
                         echo " </td> 
                                 ";
                     } elseif ((                    // line 79
@@ -212,7 +212,7 @@ $context["key2"] == "quantite_sortie")) {
                         echo " 
                                     <td> ";
                         // line 82
-                        echo twig_escape_filter($this->env, (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 82, $this->source); })()), "html", null, true);
+                        echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 82, $this->source); })()), 0, ",", " "), "html", null, true);
                         echo " </td> 
                                 ";
                     } elseif ((                    // line 83
@@ -226,7 +226,7 @@ $context["key2"] == "val_sortie")) {
                         echo " 
                                     <td> ";
                         // line 86
-                        echo twig_escape_filter($this->env, (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 86, $this->source); })()), "html", null, true);
+                        echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 86, $this->source); })()), 0, ",", " "), "html", null, true);
                         echo " </td> 
                                 ";
                     } elseif ((                    // line 87
@@ -240,7 +240,7 @@ $context["key2"] == "quantite_actuelle")) {
                         echo " 
                                     <td> ";
                         // line 90
-                        echo twig_escape_filter($this->env, (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 90, $this->source); })()), "html", null, true);
+                        echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 90, $this->source); })()), 0, ",", " "), "html", null, true);
                         echo " </td>
                                 ";
                     } elseif ((                    // line 91
@@ -254,7 +254,7 @@ $context["key2"] == "value_actuelle")) {
                         echo " 
                                     <td> ";
                         // line 94
-                        echo twig_escape_filter($this->env, (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 94, $this->source); })()), "html", null, true);
+                        echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["valeur"]) || array_key_exists("valeur", $context) ? $context["valeur"] : (function () { throw new RuntimeError('Variable "valeur" does not exist.', 94, $this->source); })()), 0, ",", " "), "html", null, true);
                         echo " </td>
                                 ";
                     }
@@ -280,49 +280,65 @@ $context["key2"] == "value_actuelle")) {
                             <th>
                                 ";
             // line 105
-            echo twig_escape_filter($this->env, (isset($context["sumQuantInt"]) || array_key_exists("sumQuantInt", $context) ? $context["sumQuantInt"] : (function () { throw new RuntimeError('Variable "sumQuantInt" does not exist.', 105, $this->source); })()), "html", null, true);
+            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["sumQuantInt"]) || array_key_exists("sumQuantInt", $context) ? $context["sumQuantInt"] : (function () { throw new RuntimeError('Variable "sumQuantInt" does not exist.', 105, $this->source); })()), 0, ",", " "), "html", null, true);
             echo "
                             </th>
-                            <th id=\"sumI\">
-                                ";
+                            <th>
+                                <span style=\"display:none\" id=\"sumI\" > ";
             // line 108
             echo twig_escape_filter($this->env, (isset($context["sumValueInit"]) || array_key_exists("sumValueInit", $context) ? $context["sumValueInit"] : (function () { throw new RuntimeError('Variable "sumValueInit" does not exist.', 108, $this->source); })()), "html", null, true);
+            echo "</span>
+                                ";
+            // line 109
+            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["sumValueInit"]) || array_key_exists("sumValueInit", $context) ? $context["sumValueInit"] : (function () { throw new RuntimeError('Variable "sumValueInit" does not exist.', 109, $this->source); })()), 0, ",", " "), "html", null, true);
             echo "
                             </th>
                             <th>
                                 ";
-            // line 111
-            echo twig_escape_filter($this->env, (isset($context["sumQuantEntrer"]) || array_key_exists("sumQuantEntrer", $context) ? $context["sumQuantEntrer"] : (function () { throw new RuntimeError('Variable "sumQuantEntrer" does not exist.', 111, $this->source); })()), "html", null, true);
+            // line 112
+            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["sumQuantEntrer"]) || array_key_exists("sumQuantEntrer", $context) ? $context["sumQuantEntrer"] : (function () { throw new RuntimeError('Variable "sumQuantEntrer" does not exist.', 112, $this->source); })()), 0, ",", " "), "html", null, true);
             echo "
                             </th>
-                            <th id=\"sumE\">
+                            <th>
+                                <span style=\"display:none\" id=\"sumE\" > ";
+            // line 115
+            echo twig_escape_filter($this->env, (isset($context["sumValRRecus"]) || array_key_exists("sumValRRecus", $context) ? $context["sumValRRecus"] : (function () { throw new RuntimeError('Variable "sumValRRecus" does not exist.', 115, $this->source); })()), "html", null, true);
+            echo "</span>
                                 ";
-            // line 114
-            echo twig_escape_filter($this->env, (isset($context["sumValRRecus"]) || array_key_exists("sumValRRecus", $context) ? $context["sumValRRecus"] : (function () { throw new RuntimeError('Variable "sumValRRecus" does not exist.', 114, $this->source); })()), "html", null, true);
+            // line 116
+            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["sumValRRecus"]) || array_key_exists("sumValRRecus", $context) ? $context["sumValRRecus"] : (function () { throw new RuntimeError('Variable "sumValRRecus" does not exist.', 116, $this->source); })()), 0, ",", " "), "html", null, true);
             echo "
                             </th>
                             <th>
                                 ";
-            // line 117
-            echo twig_escape_filter($this->env, abs((isset($context["sumQuantSortie"]) || array_key_exists("sumQuantSortie", $context) ? $context["sumQuantSortie"] : (function () { throw new RuntimeError('Variable "sumQuantSortie" does not exist.', 117, $this->source); })())), "html", null, true);
-            echo "
-                            </th>
-                            <th id=\"sumS\">
-                                ";
-            // line 120
-            echo twig_escape_filter($this->env, (isset($context["sumValSortie"]) || array_key_exists("sumValSortie", $context) ? $context["sumValSortie"] : (function () { throw new RuntimeError('Variable "sumValSortie" does not exist.', 120, $this->source); })()), "html", null, true);
+            // line 119
+            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, abs((isset($context["sumQuantSortie"]) || array_key_exists("sumQuantSortie", $context) ? $context["sumQuantSortie"] : (function () { throw new RuntimeError('Variable "sumQuantSortie" does not exist.', 119, $this->source); })())), 0, ",", " "), "html", null, true);
             echo "
                             </th>
                             <th>
+                                <span style=\"display:none\" id=\"sumS\" > ";
+            // line 122
+            echo twig_escape_filter($this->env, (isset($context["sumValSortie"]) || array_key_exists("sumValSortie", $context) ? $context["sumValSortie"] : (function () { throw new RuntimeError('Variable "sumValSortie" does not exist.', 122, $this->source); })()), "html", null, true);
+            echo "</span>
                                 ";
             // line 123
-            echo twig_escape_filter($this->env, (isset($context["sumQuantCurrent"]) || array_key_exists("sumQuantCurrent", $context) ? $context["sumQuantCurrent"] : (function () { throw new RuntimeError('Variable "sumQuantCurrent" does not exist.', 123, $this->source); })()), "html", null, true);
+            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["sumValSortie"]) || array_key_exists("sumValSortie", $context) ? $context["sumValSortie"] : (function () { throw new RuntimeError('Variable "sumValSortie" does not exist.', 123, $this->source); })()), 0, ",", " "), "html", null, true);
             echo "
                             </th>
-                            <th id=\"sumA\">
+                            <th>
                                 ";
             // line 126
-            echo twig_escape_filter($this->env, (isset($context["sumActuel"]) || array_key_exists("sumActuel", $context) ? $context["sumActuel"] : (function () { throw new RuntimeError('Variable "sumActuel" does not exist.', 126, $this->source); })()), "html", null, true);
+            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["sumQuantCurrent"]) || array_key_exists("sumQuantCurrent", $context) ? $context["sumQuantCurrent"] : (function () { throw new RuntimeError('Variable "sumQuantCurrent" does not exist.', 126, $this->source); })()), 0, ",", " "), "html", null, true);
+            echo "
+                            </th>
+                            <th>
+                                <span style=\"display:none\" id=\"sumA\" > ";
+            // line 129
+            echo twig_escape_filter($this->env, (isset($context["sumActuel"]) || array_key_exists("sumActuel", $context) ? $context["sumActuel"] : (function () { throw new RuntimeError('Variable "sumActuel" does not exist.', 129, $this->source); })()), "html", null, true);
+            echo "</span>
+                                ";
+            // line 130
+            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["sumActuel"]) || array_key_exists("sumActuel", $context) ? $context["sumActuel"] : (function () { throw new RuntimeError('Variable "sumActuel" does not exist.', 130, $this->source); })()), 0, ",", " "), "html", null, true);
             echo "
                             </th>
                         </tr>
@@ -340,7 +356,7 @@ $context["key2"] == "value_actuelle")) {
             <div class=\"p-2 bd-highlight\">
                 <p>
                     Antananarivo le ,";
-            // line 142
+            // line 146
             echo twig_escape_filter($this->env, $this->extensions['Twig\Extra\Intl\IntlExtension']->formatDate($this->env, "now", "medium", "", null, "gregorian", "fr"), "html", null, true);
             echo "
                 </p>
@@ -354,25 +370,25 @@ $context["key2"] == "value_actuelle")) {
     </div>
     ";
         } else {
-            // line 153
+            // line 157
             echo "        <h1>Page not found 404
         </h1>
         <p>
             The requested page couldn't be located. Checkout for any URL misspelling or
             <a href=\"";
-            // line 157
+            // line 161
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             echo "\">return to the authentification
             </a>.
         </p>
     ";
         }
-        // line 161
+        // line 165
         echo "    
     ";
-        // line 162
+        // line 166
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 164
+        // line 168
         echo "  
 </main>
  </body>
@@ -408,7 +424,7 @@ $context["key2"] == "value_actuelle")) {
 
     }
 
-    // line 162
+    // line 166
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -418,7 +434,7 @@ $context["key2"] == "value_actuelle")) {
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 163
+        // line 167
         echo "        ";
         echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("app");
         echo "
@@ -443,7 +459,7 @@ $context["key2"] == "value_actuelle")) {
 
     public function getDebugInfo()
     {
-        return array (  422 => 163,  412 => 162,  399 => 7,  389 => 6,  376 => 164,  374 => 162,  371 => 161,  364 => 157,  358 => 153,  344 => 142,  325 => 126,  319 => 123,  313 => 120,  307 => 117,  301 => 114,  295 => 111,  289 => 108,  283 => 105,  275 => 99,  268 => 97,  262 => 96,  257 => 94,  252 => 93,  249 => 92,  247 => 91,  243 => 90,  238 => 89,  235 => 88,  233 => 87,  229 => 86,  224 => 85,  221 => 84,  219 => 83,  215 => 82,  210 => 81,  207 => 80,  205 => 79,  200 => 78,  197 => 77,  194 => 76,  192 => 75,  188 => 74,  183 => 73,  180 => 72,  178 => 71,  174 => 70,  169 => 69,  166 => 68,  164 => 67,  160 => 66,  155 => 65,  152 => 64,  150 => 63,  145 => 62,  143 => 61,  137 => 60,  134 => 59,  129 => 58,  126 => 57,  123 => 56,  120 => 55,  117 => 54,  114 => 53,  111 => 52,  108 => 51,  106 => 50,  74 => 24,  71 => 23,  69 => 22,  54 => 9,  52 => 6,  45 => 1,);
+        return array (  438 => 167,  428 => 166,  415 => 7,  405 => 6,  392 => 168,  390 => 166,  387 => 165,  380 => 161,  374 => 157,  360 => 146,  341 => 130,  337 => 129,  331 => 126,  325 => 123,  321 => 122,  315 => 119,  309 => 116,  305 => 115,  299 => 112,  293 => 109,  289 => 108,  283 => 105,  275 => 99,  268 => 97,  262 => 96,  257 => 94,  252 => 93,  249 => 92,  247 => 91,  243 => 90,  238 => 89,  235 => 88,  233 => 87,  229 => 86,  224 => 85,  221 => 84,  219 => 83,  215 => 82,  210 => 81,  207 => 80,  205 => 79,  200 => 78,  197 => 77,  194 => 76,  192 => 75,  188 => 74,  183 => 73,  180 => 72,  178 => 71,  174 => 70,  169 => 69,  166 => 68,  164 => 67,  160 => 66,  155 => 65,  152 => 64,  150 => 63,  145 => 62,  143 => 61,  137 => 60,  134 => 59,  129 => 58,  126 => 57,  123 => 56,  120 => 55,  117 => 54,  114 => 53,  111 => 52,  108 => 51,  106 => 50,  74 => 24,  71 => 23,  69 => 22,  54 => 9,  52 => 6,  45 => 1,);
     }
 
     public function getSourceContext()
@@ -513,35 +529,35 @@ $context["key2"] == "value_actuelle")) {
                                 {% elseif key2 =='quantite_init' %}
                                     {% set valeur = initial[key][0] %}
                                     {% set sumQuantInt = sumQuantInt + valeur %} 
-                                    <td> {{ valeur }} </td> 
+                                    <td> {{ valeur|number_format(0,',', ' ') }} </td> 
                                 {% elseif key2 =='valeur_init' %}
                                     {% set valeur = init[key]['prix_net'] %}
                                     {% set sumValueInit = sumValueInit + valeur %} 
-                                    <td> {{ valeur }} </td> 
+                                    <td> {{ valeur|number_format(0,',', ' ') }} </td> 
                                 {% elseif key2 =='qunad_recus' %}
                                     {% set valeur = quantiteEntrer[key][0] %}
                                     {% set sumQuantEntrer = sumQuantEntrer + valeur %} 
-                                    <td> {{ valeur }} </td> 
+                                    <td> {{ valeur|number_format(0,',', ' ') }} </td> 
                                 {% elseif key2 =='val_recus' %}
                                     {% set valeur = valeurEntrer[key][0] %}
                                     {% set sumValRRecus = sumValRRecus + valeur %}
-                                    <td> {{ valeur }} </td> 
+                                    <td> {{ valeur|number_format(0,',', ' ') }} </td> 
                                 {% elseif key2 =='quantite_sortie' %}
                                     {% set valeur = quantiteOut[key][0]|abs %}
                                     {% set sumQuantSortie = sumQuantSortie + valeur %} 
-                                    <td> {{ valeur }} </td> 
+                                    <td> {{ valeur|number_format(0,',', ' ') }} </td> 
                                 {% elseif key2 =='val_sortie' %}
                                     {% set valeur = valueOut[key][0]|abs %}
                                     {% set sumValSortie = sumValSortie + valeur %} 
-                                    <td> {{ valeur }} </td> 
+                                    <td> {{ valeur|number_format(0,',', ' ') }} </td> 
                                 {% elseif key2 =='quantite_actuelle' %}
                                     {% set valeur = courant[key]['quantite_actuelle'] %}
                                     {% set sumQuantCurrent = sumQuantCurrent + valeur %} 
-                                    <td> {{ valeur }} </td>
+                                    <td> {{ valeur|number_format(0,',', ' ') }} </td>
                                 {% elseif key2 =='value_actuelle' %}
                                     {% set valeur = courant[key]['prix_net'] %}
                                     {% set sumActuel = sumActuel + valeur %} 
-                                    <td> {{ valeur }} </td>
+                                    <td> {{ valeur|number_format(0,',', ' ') }} </td>
                                 {% endif %}
                             {% endfor %}
                         </tr>
@@ -552,28 +568,32 @@ $context["key2"] == "value_actuelle")) {
                                 Totales(Valeur)
                             </th>
                             <th>
-                                {{ sumQuantInt }}
-                            </th>
-                            <th id=\"sumI\">
-                                {{ sumValueInit }}
+                                {{ sumQuantInt|number_format(0,',', ' ') }}
                             </th>
                             <th>
-                                {{ sumQuantEntrer }}
-                            </th>
-                            <th id=\"sumE\">
-                                {{ sumValRRecus }}
+                                <span style=\"display:none\" id=\"sumI\" > {{  sumValueInit }}</span>
+                                {{ sumValueInit|number_format(0,',', ' ') }}
                             </th>
                             <th>
-                                {{ sumQuantSortie|abs }}
-                            </th>
-                            <th id=\"sumS\">
-                                {{ sumValSortie }}
+                                {{ sumQuantEntrer|number_format(0,',', ' ') }}
                             </th>
                             <th>
-                                {{ sumQuantCurrent }}
+                                <span style=\"display:none\" id=\"sumE\" > {{  sumValRRecus }}</span>
+                                {{ sumValRRecus|number_format(0,',', ' ') }}
                             </th>
-                            <th id=\"sumA\">
-                                {{ sumActuel }}
+                            <th>
+                                {{ sumQuantSortie|abs|number_format(0,',', ' ') }}
+                            </th>
+                            <th>
+                                <span style=\"display:none\" id=\"sumS\" > {{  sumValSortie }}</span>
+                                {{ sumValSortie|number_format(0,',', ' ') }}
+                            </th>
+                            <th>
+                                {{ sumQuantCurrent|number_format(0,',', ' ') }}
+                            </th>
+                            <th>
+                                <span style=\"display:none\" id=\"sumA\" > {{  sumActuel }}</span>
+                                {{ sumActuel|number_format(0,',', ' ') }}
                             </th>
                         </tr>
                     </tfoot>

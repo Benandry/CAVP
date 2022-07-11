@@ -6,8 +6,6 @@
 {% block body %}
     {# ##################################    Dictionaire de l'annee ##################################################}
    {% set mois = {'01' : 'Janvier','02' : 'Fevrier','03' : 'Mars','04' : 'Avril','05' : 'Mai','06' : 'Juin','07' : 'Juillet','08' : 'Aout', '09' : 'Septembre','10' : 'Octobre','11' : 'Novembre','12' : 'Décembre' } %}
-
-
     {##################################################################################################################}
 	<main>
 		{% if app.user %}
@@ -56,10 +54,10 @@
 													{{ index.abbr }}
 												</td>
 												<td>
-													{{ index.nombre }}
+													{{ index.nombre|number_format(0,',', ' ') }}
 												</td>
 												<td>
-													{{ index.valeur }}
+													{{ index.valeur|number_format(0,',', ' ') }}
 												</td>
 												{% set sumNumber = sumNumber + index.nombre %}
 												{% set sumValue = sumValue + index.valeur %}
@@ -72,10 +70,12 @@
 												Totaux(Valeur)
 											</th>
 											<th>
-												{{ sumNumber }}
+												{{ sumNumber|number_format }}
 											</th>
-											<th id="somme_recap_dispo">
-												{{ sumValue }}
+											<th>
+												<span style="display:none"  id="somme_recap_dispo" > {{ sumValue }}</span>
+												{#{ sumValue|format_currency('MGA', locale='de') }#}
+												{{ sumValue|number_format(0,',', ' ') }}
 											</th>
 										</tr>
 									</tfoot>
@@ -86,7 +86,7 @@
 								<div class="d-flex flex-row-reverse bd-highlight">
 									<div class="p-2 bd-highlight">
 										<p>
-											Antananarivo le ,{{ 'now' |format_date(locale='fr') }}
+											Antananarivo le ,{{ 'now' |format_date(locale='fr') }} 
 										</p>
 										<p>
 											<span>
@@ -145,35 +145,35 @@
 													{% elseif key2 =='quantite_init' %}
 														{% set valeur = initial[key][0] %}
 														{% set sumQuantInt = sumQuantInt + valeur %} 
-														<td> {{ valeur }} </td> 
+														<td> {{ valeur|number_format(0,',', ' ') }} </td> 
 													{% elseif key2 =='valeur_init' %}
 														{% set valeur = init[key]['prix_net'] %}
 														{% set sumValueInit = sumValueInit + valeur %} 
-														<td> {{ valeur }} </td> 
+														<td> {{ valeur|number_format(0,',', ' ') }} </td> 
 													{% elseif key2 =='qunad_recus' %}
 														{% set valeur = quantiteEntrer[key][0] %}
 														{% set sumQuantEntrer = sumQuantEntrer + valeur %} 
-														<td> {{ valeur }} </td> 
+														<td> {{ valeur|number_format(0,',', ' ') }} </td> 
 													{% elseif key2 =='val_recus' %}
 														{% set valeur = valeurEntrer[key][0] %}
 														{% set sumValRRecus = sumValRRecus + valeur %}
-														<td> {{ valeur }} </td> 
+														<td> {{ valeur|number_format(0,',', ' ') }} </td> 
 													{% elseif key2 =='quantite_sortie' %}
 														{% set valeur = quantiteOut[key][0]|abs %}
 														{% set sumQuantSortie = sumQuantSortie + valeur %} 
-														<td> {{ valeur }} </td> 
+														<td> {{ valeur|number_format(0,',', ' ') }} </td> 
 													{% elseif key2 =='val_sortie' %}
 														{% set valeur = valueOut[key][0]|abs %}
 														{% set sumValSortie = sumValSortie + valeur %} 
-														<td> {{ valeur }} </td> 
+														<td> {{ valeur|number_format(0,',', ' ') }} </td> 
 													{% elseif key2 =='quantite_actuelle' %}
 														{% set valeur = courant[key]['quantite_actuelle'] %}
 														{% set sumQuantCurrent = sumQuantCurrent + valeur %} 
-														<td> {{ valeur }} </td>
+														<td> {{ valeur|number_format(0,',', ' ') }} </td>
 													{% elseif key2 =='value_actuelle' %}
 														{% set valeur = courant[key]['prix_net'] %}
 														{% set sumActuel = sumActuel + valeur %} 
-														<td> {{ valeur }} </td>
+														<td> {{ valeur|number_format(0,',', ' ') }} </td>
 													{% endif %}
 												{% endfor %}
 											</tr>
@@ -184,28 +184,32 @@
 													Totales(Valeur)
 												</th>
 												<th>
-													{{ sumQuantInt }}
-												</th>
-												<th id="sumValueInit">
-													{{ sumValueInit }}
+													{{ sumQuantInt|number_format(0,',', ' ') }}
 												</th>
 												<th>
-													{{ sumQuantEntrer }}
-												</th>
-												<th id="sumValRecus">
-													{{ sumValRRecus }}
+													<span style="display:none" id="sumValueInit" > {{  sumValueInit }}</span>
+													{{ sumValueInit|number_format(0,',', ' ') }}
 												</th>
 												<th>
-													{{ sumQuantSortie|abs }}
-												</th>
-												<th id="sumValSortie">
-													{{ sumValSortie }}
+													{{ sumQuantEntrer|number_format(0,',', ' ') }}
 												</th>
 												<th>
-													{{ sumQuantCurrent }}
+													<span style="display:none" id="sumValRecus" > {{  sumValRRecus }}</span>
+													{{ sumValRRecus|number_format(0,',', ' ') }}
+												</th>
+												<th>
+													{{ sumQuantSortie|abs|number_format(0,',', ' ') }}
+												</th>
+												<th>
+													<span style="display:none" id="sumValSortie" > {{  sumValSortie }}</span>
+													{{ sumValSortie|number_format(0,',', ' ') }}
+												</th>
+												<th>
+													{{ sumQuantCurrent|number_format(0,',', ' ') }}
 												</th>
 												<th id="sumValueCurrent">
-													{{ sumActuel }}
+													<span style="display:none"  id="sumValueCurrent" > {{  sumActuel }}</span>
+													{{ sumActuel|number_format(0,',', ' ') }}
 												</th>
 											</tr>
 										</tfoot>

@@ -58,14 +58,20 @@
                                                 <td> {{ pro.categorie }}</td> 
                                                 <td>{{ pro.vf }}</td>
                                                 <td>{{ pro.tpParPl }}</td>
-                                                <td>{{ pro.quantite|abs}}</td>
-                                                <td>{{ pro.tpParPl * pro.quantite|abs }}</td>
+                                                <td>{{ pro.quantite|abs|number_format(0,',', ' ')}}</td>
+                                                <td>
+                                                    {% set tt = pro.tpParPl * pro.quantite|abs %}
+                                                    {{ tt|number_format(0,',', ' ') }}
+                                                </td>
                                                 {% if pro.vf == 0 or pro.vf is null  %}
                                                     {% set  prix = pro.tpParPl * pro.quantite|abs * 1 %}
-                                                    <td>{{ prix }}</td>
+                                                    <td>{{ prix|number_format(0,',', ' ') }}</td>
                                                 {% else %}
                                                     {% set  prix = pro.tpParPl * pro.quantite|abs * pro.vf %}
-                                                    <td>{{ pro.tpParPl * pro.quantite|abs * pro.vf }}</td>
+                                                    <td>
+                                                        {% set mt = pro.tpParPl * pro.quantite|abs * pro.vf  %}
+                                                        {{ mt|number_format(0,',', ' ')}}
+                                                    </td>
                                                 {% endif %}
                                                 {% set somme = somme + prix %}
                                                 {% set bureau = bureau + 1 %}
@@ -73,7 +79,10 @@
                                         {% endfor %}
                                         <tr>
                                             <th colspan="5">Total : </th>
-                                            <td id="somme">  {{ somme }} </td>
+                                            <td>
+                                                <span style="display:none" id="somme" > {{ somme }}</span>
+                                              {{ somme|number_format(0,',', ' ') }} 
+                                            </td>
                                         </tr>
                                     <tbody>
                                 </table>

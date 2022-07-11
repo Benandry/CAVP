@@ -15,8 +15,11 @@
         <title>Impression de etat de stock | Paositra malagasy</title>
     </head>
     <body onload="window.print()">
+         {# ##################################    Dictionaire de l'annee ##################################################}
+        {% set mois = {'01' : 'Janvier','02' : 'Fevrier','03' : 'Mars','04' : 'Avril','05' : 'Mai','06' : 'Juin','07' : 'Juillet','08' : 'Aout', '09' : 'Septembre','10' : 'Octobre','11' : 'Novembre','12' : 'Décembre' } %}
+        {##################################################################################################################}
         <div class="container">
-            <h4 class="fw-bold" style="color: #dc3444;">Recaputilation generale de situation de stock de valeurs Postaux,  Mois du {{ month }}/{{ year }}</h4>
+            <h4 class="fw-bold" style="color: #dc3444;">Recaputilation generale de situation de stock de valeurs Postaux,  Mois du {{ mois[month] }} {{ year }}</h4>
             <div class="table responsive-xxl">
                 <table class="table table-bordered table-hover" >
                     <thead>
@@ -34,8 +37,8 @@
                             <tr>
                                 <td> {{ index.objet }} </td>
                                 <td> {{ index.abbr }} </td>
-                                <td> {{ index.nombre }} </td>
-                                <td> {{ index.valeur }} </td>
+                                <td> {{ index.nombre|number_format(0,',', ' ') }} </td>
+                                <td> {{ index.valeur|number_format(0,',', ' ') }} </td>
                                 {% set sumNumber = sumNumber + index.nombre %}
                                 {% set sumValue = sumValue + index.valeur %}
                             </tr>
@@ -43,7 +46,10 @@
                             <tr>
                             <th colspan="2" class="text-right pr-3" > Totaux(Valeur) </th>
                             <th> {{ sumNumber }} </th>
-                            <th id="somValue"> {{ sumValue }}</th>
+                            <th>
+                                <span style="display:none" id="somValue" > {{  sumValue }}</span>
+                                {{ sumValue|number_format(0,',', ' ') }}
+                             </th>
                             </tr>
                     <tbody>
                 </table>

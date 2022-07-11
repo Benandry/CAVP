@@ -173,55 +173,67 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                 // line 93
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "categorie", [], "any", false, false, false, 93), "html", null, true);
                 echo "</td> 
-                                                        <td style=\"font-size: 11px;\">";
-                // line 94
-                echo twig_escape_filter($this->env, abs(twig_get_attribute($this->env, $this->source, $context["pro"], "quantite", [], "any", false, false, false, 94)), "html", null, true);
-                echo "</td>
-                                                        <td style=\"font-size: 11px;\">";
+                                                        <td style=\"font-size: 11px;\">
+                                                            ";
                 // line 95
-                echo twig_escape_filter($this->env, (twig_get_attribute($this->env, $this->source, $context["pro"], "tpParPl", [], "any", false, false, false, 95) * abs(twig_get_attribute($this->env, $this->source, $context["pro"], "quantite", [], "any", false, false, false, 95))), "html", null, true);
-                echo "</td>
-                                                        <td style=\"font-size: 11px;\">";
-                // line 96
-                echo twig_escape_filter($this->env, (twig_get_attribute($this->env, $this->source, $context["pro"], "tpParPl", [], "any", false, false, false, 96) * abs(twig_get_attribute($this->env, $this->source, $context["pro"], "quantite", [], "any", false, false, false, 96))), "html", null, true);
-                echo "</td>
+                echo twig_escape_filter($this->env, twig_number_format_filter($this->env, abs(twig_get_attribute($this->env, $this->source, $context["pro"], "quantite", [], "any", false, false, false, 95)), 0, ",", " "), "html", null, true);
+                echo "
+                                                        </td>
+                                                        <td style=\"font-size: 11px;\">
+                                                            ";
+                // line 98
+                $context["mu"] = (twig_get_attribute($this->env, $this->source, $context["pro"], "tpParPl", [], "any", false, false, false, 98) * abs(twig_get_attribute($this->env, $this->source, $context["pro"], "quantite", [], "any", false, false, false, 98)));
+                // line 99
+                echo "                                                            ";
+                echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["mu"]) || array_key_exists("mu", $context) ? $context["mu"] : (function () { throw new RuntimeError('Variable "mu" does not exist.', 99, $this->source); })()), 0, ",", " "), "html", null, true);
+                echo "
+                                                        </td>
+                                                        <td style=\"font-size: 11px;\">
+                                                            ";
+                // line 102
+                $context["var"] = (twig_get_attribute($this->env, $this->source, $context["pro"], "tpParPl", [], "any", false, false, false, 102) * abs(twig_get_attribute($this->env, $this->source, $context["pro"], "quantite", [], "any", false, false, false, 102)));
+                // line 103
+                echo "                                                            ";
+                echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["var"]) || array_key_exists("var", $context) ? $context["var"] : (function () { throw new RuntimeError('Variable "var" does not exist.', 103, $this->source); })()), 0, ",", " "), "html", null, true);
+                echo "
+                                                        </td>
                                                         ";
-                // line 97
-                if (((twig_get_attribute($this->env, $this->source, $context["pro"], "vf", [], "any", false, false, false, 97) == 0) || (null === twig_get_attribute($this->env, $this->source, $context["pro"], "vf", [], "any", false, false, false, 97)))) {
-                    // line 98
+                // line 105
+                if (((twig_get_attribute($this->env, $this->source, $context["pro"], "vf", [], "any", false, false, false, 105) == 0) || (null === twig_get_attribute($this->env, $this->source, $context["pro"], "vf", [], "any", false, false, false, 105)))) {
+                    // line 106
                     echo "                                                            ";
-                    $context["prix"] = ((twig_get_attribute($this->env, $this->source, $context["pro"], "tpParPl", [], "any", false, false, false, 98) * abs(twig_get_attribute($this->env, $this->source, $context["pro"], "quantite", [], "any", false, false, false, 98))) * 1);
-                    // line 99
+                    $context["prix"] = ((twig_get_attribute($this->env, $this->source, $context["pro"], "tpParPl", [], "any", false, false, false, 106) * abs(twig_get_attribute($this->env, $this->source, $context["pro"], "quantite", [], "any", false, false, false, 106))) * 1);
+                    // line 107
                     echo "                                                            <td style=\"font-size: 11px;\">";
-                    echo twig_escape_filter($this->env, (isset($context["prix"]) || array_key_exists("prix", $context) ? $context["prix"] : (function () { throw new RuntimeError('Variable "prix" does not exist.', 99, $this->source); })()), "html", null, true);
+                    echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["prix"]) || array_key_exists("prix", $context) ? $context["prix"] : (function () { throw new RuntimeError('Variable "prix" does not exist.', 107, $this->source); })()), 0, ",", " "), "html", null, true);
                     echo "</td>
                                                         ";
                 } else {
-                    // line 101
+                    // line 109
                     echo "                                                            ";
-                    $context["prix"] = ((twig_get_attribute($this->env, $this->source, $context["pro"], "tpParPl", [], "any", false, false, false, 101) * abs(twig_get_attribute($this->env, $this->source, $context["pro"], "quantite", [], "any", false, false, false, 101))) * twig_get_attribute($this->env, $this->source, $context["pro"], "vf", [], "any", false, false, false, 101));
-                    // line 102
+                    $context["prix"] = ((twig_get_attribute($this->env, $this->source, $context["pro"], "tpParPl", [], "any", false, false, false, 109) * abs(twig_get_attribute($this->env, $this->source, $context["pro"], "quantite", [], "any", false, false, false, 109))) * twig_get_attribute($this->env, $this->source, $context["pro"], "vf", [], "any", false, false, false, 109));
+                    // line 110
                     echo "                                                            <td style=\"font-size: 11px;\">";
-                    echo twig_escape_filter($this->env, (isset($context["prix"]) || array_key_exists("prix", $context) ? $context["prix"] : (function () { throw new RuntimeError('Variable "prix" does not exist.', 102, $this->source); })()), "html", null, true);
+                    echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["prix"]) || array_key_exists("prix", $context) ? $context["prix"] : (function () { throw new RuntimeError('Variable "prix" does not exist.', 110, $this->source); })()), 0, ",", " "), "html", null, true);
                     echo "</td>
                                                         ";
                 }
-                // line 104
+                // line 112
                 echo "                                                        ";
-                $context["somme"] = ((isset($context["somme"]) || array_key_exists("somme", $context) ? $context["somme"] : (function () { throw new RuntimeError('Variable "somme" does not exist.', 104, $this->source); })()) + (isset($context["prix"]) || array_key_exists("prix", $context) ? $context["prix"] : (function () { throw new RuntimeError('Variable "prix" does not exist.', 104, $this->source); })()));
-                // line 105
+                $context["somme"] = ((isset($context["somme"]) || array_key_exists("somme", $context) ? $context["somme"] : (function () { throw new RuntimeError('Variable "somme" does not exist.', 112, $this->source); })()) + (isset($context["prix"]) || array_key_exists("prix", $context) ? $context["prix"] : (function () { throw new RuntimeError('Variable "prix" does not exist.', 112, $this->source); })()));
+                // line 113
                 echo "                                                    </tr>
                                                 ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pro'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 107
+            // line 115
             echo "                                                ";
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 107, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 115, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["pro"]) {
-                // line 108
+                // line 116
                 echo "                                                    <tr>
                                                         <td style=\"font-size: 11px;\">.........</td>
                                                         <td style=\"font-size: 11px;\">.........</td>
@@ -234,14 +246,14 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pro'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 116
+            // line 124
             echo "                                                
                                                 ";
-            // line 117
+            // line 125
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 117, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 125, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["pro"]) {
-                // line 118
+                // line 126
                 echo "                                                    <tr>
                                                         <td style=\"font-size: 11px;\">.........</td>
                                                         <td style=\"font-size: 11px;\">.........</td>
@@ -254,13 +266,13 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pro'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 126
+            // line 134
             echo "                                                 <tr>
                                                     <th colspan=\"4\" class=\"text-right pr-3\" style=\"font-size: 11px;\"> Totaux(Valeur) </th>
                                                     <td style=\"font-size: 11px;\">
                                                         ";
-            // line 129
-            echo twig_escape_filter($this->env, (isset($context["somme"]) || array_key_exists("somme", $context) ? $context["somme"] : (function () { throw new RuntimeError('Variable "somme" does not exist.', 129, $this->source); })()), "html", null, true);
+            // line 137
+            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["somme"]) || array_key_exists("somme", $context) ? $context["somme"] : (function () { throw new RuntimeError('Variable "somme" does not exist.', 137, $this->source); })()), 0, ",", " "), "html", null, true);
             echo "
                                                     </td>
                                                 </tr>
@@ -281,22 +293,22 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                                                             </tr>
                                                             <tr>
                                                                 <td style=\"font-size: 11px;\"> ";
-            // line 148
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 148, $this->source); })()), 0, [], "any", false, false, false, 148), "numero", [], "any", false, false, false, 148), "html", null, true);
+            // line 156
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 156, $this->source); })()), 0, [], "any", false, false, false, 156), "numero", [], "any", false, false, false, 156), "html", null, true);
             echo " - ";
-            echo twig_escape_filter($this->env, (isset($context["bureau"]) || array_key_exists("bureau", $context) ? $context["bureau"] : (function () { throw new RuntimeError('Variable "bureau" does not exist.', 148, $this->source); })()), "html", null, true);
+            echo twig_escape_filter($this->env, (isset($context["bureau"]) || array_key_exists("bureau", $context) ? $context["bureau"] : (function () { throw new RuntimeError('Variable "bureau" does not exist.', 156, $this->source); })()), "html", null, true);
             echo "</td>
                                                                 <td style=\"font-size: 11px;\"> ";
-            // line 149
-            echo twig_escape_filter($this->env, (isset($context["somme"]) || array_key_exists("somme", $context) ? $context["somme"] : (function () { throw new RuntimeError('Variable "somme" does not exist.', 149, $this->source); })()), "html", null, true);
+            // line 157
+            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, (isset($context["somme"]) || array_key_exists("somme", $context) ? $context["somme"] : (function () { throw new RuntimeError('Variable "somme" does not exist.', 157, $this->source); })()), 0, ",", " "), "html", null, true);
             echo " </td>
                                                             </tr>
                                                             ";
-            // line 151
+            // line 159
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 151, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 159, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["pro"]) {
-                // line 152
+                // line 160
                 echo "                                                                <tr>
                                                                     <td style=\"font-size: 11px;\">.........</td>
                                                                     <td style=\"font-size: 11px;\">.........</td>
@@ -306,7 +318,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pro'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 157
+            // line 165
             echo "                                                        </table>
                                                         <div class=\"col-lg-12 col-md-12\">
                                                             <span style=\"font-size: 11px;font-weight:bold\">(1) Ce chiffre doit etre conforme à celui de la prise en charge</span>
@@ -347,15 +359,15 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                                     </tr>
                                     
                                     ";
-            // line 196
+            // line 204
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 196, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 204, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["pro"]) {
-                // line 197
+                // line 205
                 echo "                                        <tr>
                                             <td style=\"font-size: 11px;\"> ";
-                // line 198
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "categorie", [], "any", false, false, false, 198), "html", null, true);
+                // line 206
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "categorie", [], "any", false, false, false, 206), "html", null, true);
                 echo " </td>
                                             <td style=\"font-size: 11px;\">.........</td>
                                         </tr>
@@ -364,14 +376,14 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pro'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 202
+            // line 210
             echo "                                    
                                         ";
-            // line 203
+            // line 211
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 203, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 211, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["pro"]) {
-                // line 204
+                // line 212
                 echo "                                            <tr>
                                                 <td style=\"font-size: 11px;\">.........</td>
                                                 <td style=\"font-size: 11px;\">.........</td>
@@ -381,7 +393,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pro'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 209
+            // line 217
             echo "                                            <tr>
                                                 <td colspan=\"2\">
                                                     <span style=\"font-size:11px\">
@@ -443,18 +455,18 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                             <div class=\"col-lg-2 col-md-2\">
                                 <div class=\"text-center\" style=\"width: 60px;height:60px;border:1px dashed black;border-radius:50px;display:flex;align-items:center;flex-direction:column;justify-content:center;transform:rotate(-25deg);\">
                                     <div style=\"border-bottom:1px solid black;\">N°  ";
-            // line 269
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 269, $this->source); })()), 0, [], "any", false, false, false, 269), "numero", [], "any", false, false, false, 269), "html", null, true);
+            // line 277
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 277, $this->source); })()), 0, [], "any", false, false, false, 277), "numero", [], "any", false, false, false, 277), "html", null, true);
             echo "</div>
                                     <div>";
-            // line 270
-            echo twig_escape_filter($this->env, (isset($context["bureau"]) || array_key_exists("bureau", $context) ? $context["bureau"] : (function () { throw new RuntimeError('Variable "bureau" does not exist.', 270, $this->source); })()), "html", null, true);
+            // line 278
+            echo twig_escape_filter($this->env, (isset($context["bureau"]) || array_key_exists("bureau", $context) ? $context["bureau"] : (function () { throw new RuntimeError('Variable "bureau" does not exist.', 278, $this->source); })()), "html", null, true);
             echo "</div>
                                 </div>
                             </div>
                             <div class=\"col-lg-7 col-md-7\" style=\"font-size:11px;display:flex;align-items:center;justify-content:flex-start;\">Bureau d'&nbsp;<u style=\"font-weight:bold\">";
-            // line 273
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 273, $this->source); })()), 0, [], "any", false, false, false, 273), "bureau", [], "any", false, false, false, 273), "html", null, true);
+            // line 281
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 281, $this->source); })()), 0, [], "any", false, false, false, 281), "bureau", [], "any", false, false, false, 281), "html", null, true);
             echo "</u></div>
                             <div class=\"col-lg-12 mt-3 text-center\">
                             </div>
@@ -474,15 +486,15 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                                 </tr>
                                 
                                  ";
-            // line 291
+            // line 299
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 291, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["dispo"]) || array_key_exists("dispo", $context) ? $context["dispo"] : (function () { throw new RuntimeError('Variable "dispo" does not exist.', 299, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["pro"]) {
-                // line 292
+                // line 300
                 echo "                                    <tr>
                                         <td style=\"font-size: 11px;\"> ";
-                // line 293
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "categorie", [], "any", false, false, false, 293), "html", null, true);
+                // line 301
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["pro"], "categorie", [], "any", false, false, false, 301), "html", null, true);
                 echo "</td>
                                         <td style=\"font-size: 11px;\">.........</td>
                                         <td style=\"font-size: 11px;\">.........</td>
@@ -494,7 +506,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pro'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 300
+            // line 308
             echo "                                <tr>
                                     <td >............</td>
                                     <td >............</td>
@@ -538,25 +550,25 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
         </div>    
     </div>
     ";
-            // line 342
+            // line 350
             $this->displayBlock('javascripts', $context, $blocks);
-            // line 345
+            // line 353
             echo "                       
     ";
         } else {
-            // line 347
+            // line 355
             echo "        <h1>Page not found 404 </h1>
 
         <p>
             The requested page couldn't be located. Checkout for any URL
             misspelling or <a href=\"";
-            // line 351
+            // line 359
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             echo "\">return to the authentification </a>.
         </p>
     ";
         }
-        // line 353
+        // line 361
         echo " 
 </body>
 </html>";
@@ -591,7 +603,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
 
     }
 
-    // line 342
+    // line 350
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -601,7 +613,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 343
+        // line 351
         echo "        ";
         echo $this->extensions['Symfony\WebpackEncoreBundle\Twig\EntryFilesTwigExtension']->renderWebpackScriptTags("app");
         echo "
@@ -626,7 +638,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  605 => 343,  595 => 342,  582 => 7,  572 => 6,  560 => 353,  554 => 351,  548 => 347,  544 => 345,  542 => 342,  498 => 300,  485 => 293,  482 => 292,  478 => 291,  457 => 273,  451 => 270,  447 => 269,  385 => 209,  375 => 204,  371 => 203,  368 => 202,  358 => 198,  355 => 197,  351 => 196,  310 => 157,  300 => 152,  296 => 151,  291 => 149,  285 => 148,  263 => 129,  258 => 126,  245 => 118,  241 => 117,  238 => 116,  225 => 108,  220 => 107,  213 => 105,  210 => 104,  204 => 102,  201 => 101,  195 => 99,  192 => 98,  190 => 97,  186 => 96,  182 => 95,  178 => 94,  174 => 93,  171 => 92,  166 => 91,  164 => 90,  143 => 72,  134 => 70,  127 => 66,  123 => 65,  104 => 49,  97 => 45,  77 => 27,  74 => 26,  72 => 25,  54 => 9,  52 => 6,  45 => 1,);
+        return array (  617 => 351,  607 => 350,  594 => 7,  584 => 6,  572 => 361,  566 => 359,  560 => 355,  556 => 353,  554 => 350,  510 => 308,  497 => 301,  494 => 300,  490 => 299,  469 => 281,  463 => 278,  459 => 277,  397 => 217,  387 => 212,  383 => 211,  380 => 210,  370 => 206,  367 => 205,  363 => 204,  322 => 165,  312 => 160,  308 => 159,  303 => 157,  297 => 156,  275 => 137,  270 => 134,  257 => 126,  253 => 125,  250 => 124,  237 => 116,  232 => 115,  225 => 113,  222 => 112,  216 => 110,  213 => 109,  207 => 107,  204 => 106,  202 => 105,  196 => 103,  194 => 102,  187 => 99,  185 => 98,  179 => 95,  174 => 93,  171 => 92,  166 => 91,  164 => 90,  143 => 72,  134 => 70,  127 => 66,  123 => 65,  104 => 49,  97 => 45,  77 => 27,  74 => 26,  72 => 25,  54 => 9,  52 => 6,  45 => 1,);
     }
 
     public function getSourceContext()
@@ -724,15 +736,23 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                                                 {% for pro in dispo %}
                                                     <tr>
                                                         <td style=\"font-size: 11px;\">{{ pro.categorie }}</td> 
-                                                        <td style=\"font-size: 11px;\">{{ pro.quantite|abs}}</td>
-                                                        <td style=\"font-size: 11px;\">{{ pro.tpParPl * pro.quantite|abs }}</td>
-                                                        <td style=\"font-size: 11px;\">{{ pro.tpParPl * pro.quantite|abs }}</td>
+                                                        <td style=\"font-size: 11px;\">
+                                                            {{ pro.quantite|abs|number_format(0,',', ' ') }}
+                                                        </td>
+                                                        <td style=\"font-size: 11px;\">
+                                                            {% set mu = pro.tpParPl * pro.quantite|abs %}
+                                                            {{ mu|number_format(0,',', ' ') }}
+                                                        </td>
+                                                        <td style=\"font-size: 11px;\">
+                                                            {% set var = pro.tpParPl * pro.quantite|abs %}
+                                                            {{ var|number_format(0,',', ' ') }}
+                                                        </td>
                                                         {% if pro.vf == 0 or pro.vf is null  %}
                                                             {% set prix = pro.tpParPl * pro.quantite|abs * 1 %}
-                                                            <td style=\"font-size: 11px;\">{{ prix }}</td>
+                                                            <td style=\"font-size: 11px;\">{{ prix|number_format(0,',', ' ') }}</td>
                                                         {% else %}
                                                             {% set prix = pro.tpParPl * pro.quantite|abs * pro.vf  %}
-                                                            <td style=\"font-size: 11px;\">{{ prix }}</td>
+                                                            <td style=\"font-size: 11px;\">{{ prix|number_format(0,',', ' ') }}</td>
                                                         {% endif %}
                                                         {% set somme = somme + prix %}
                                                     </tr>
@@ -759,7 +779,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                                                  <tr>
                                                     <th colspan=\"4\" class=\"text-right pr-3\" style=\"font-size: 11px;\"> Totaux(Valeur) </th>
                                                     <td style=\"font-size: 11px;\">
-                                                        {{ somme }}
+                                                        {{ somme|number_format(0,',', ' ') }}
                                                     </td>
                                                 </tr>
                                             <tbody>
@@ -779,7 +799,7 @@ class __TwigTemplate_d6082e77391000bc6a4dc725a0f16235 extends \Twig\Template
                                                             </tr>
                                                             <tr>
                                                                 <td style=\"font-size: 11px;\"> {{ dispo.0.numero }} - {{ bureau }}</td>
-                                                                <td style=\"font-size: 11px;\"> {{ somme }} </td>
+                                                                <td style=\"font-size: 11px;\"> {{ somme|number_format(0,',', ' ') }} </td>
                                                             </tr>
                                                             {% for pro in dispo %}
                                                                 <tr>

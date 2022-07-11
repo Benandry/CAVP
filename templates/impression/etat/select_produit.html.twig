@@ -8,9 +8,12 @@
         {% endblock %}
     </head>
     <body onload="window.print()">
+    {# ##################################    Dictionaire de l'annee ##################################################}
+     {% set mois = {'01' : 'Janvier','02' : 'Fevrier','03' : 'Mars','04' : 'Avril','05' : 'Mai','06' : 'Juin','07' : 'Juillet','08' : 'Aout', '09' : 'Septembre','10' : 'Octobre','11' : 'Novembre','12' : 'Décembre' } %}
+    {##################################################################################################################}
         {% if app.user %}
             <div class="container">
-                <h3 class="text-danger">Etat de stock produit : {{ init.0.Produits }} au mois de {{ month }}/{{ year }}  </h3>
+                <h3 class="text-danger">Etat de stock produit : {{ init.0.Produits }} au mois de {{ mois[month] }} {{ year }}  </h3>
                 <div class="table responsive-xxl">
                     <table class="table table-bordered table-hover" >
                         <thead>
@@ -44,26 +47,26 @@
                                             <td> {{ value2 }} </td>
                                         {% elseif key2 =='initiale' %}
                                             {% set valeur = initial[key][0] %}
-                                            <td> {{ valeur }} </td>
+                                            <td> {{ valeur|number_format(0,',', ' ') }} </td>
                                             {% set sumValueInit = sumValueInit + valeur %} 
                                         {% elseif key2 =='entrer' %}
                                             {% set valeur = entrer[key][0] - initial[key][0] %}
-                                            <td> {{ valeur }} </td> 
+                                            <td> {{ valeur|number_format(0,',', ' ') }} </td> 
                                             {% set sumValueEnter = sumValueEnter + valeur %}
                                         {% elseif key2 =='sortie' %}
                                             {% if out is empty %}
                                                 {% set valeur = 0 %}
-                                                <td> {{ valeur }} </td> 
+                                                <td> {{ valeur|number_format(0,',', ' ') }} </td> 
                                                 {% set sumValueOut = sumValueOut + valeur %}
                                             {% else %}
                                                 {% set valeur = out[key][0]|abs %}
                                                 {% set sumValueOut = sumValueOut + valeur %}
-                                                <td> {{ valeur }} </td>
+                                                <td> {{ valeur|number_format(0,',', ' ') }} </td>
                                             {% endif %} 
                                         {% elseif key2 =='actuelle' %}
                                             {% set valeur = value2 %}
                                             {% set sumValueCurrent = sumValueCurrent + valeur %}
-                                            <td> {{ valeur }} </td>                                                                                                                   
+                                            <td> {{ valeur|number_format(0,',', ' ') }} </td>                                                                                                                   
                                         {% endif %}
                                     {% endfor %}
                                 </tr>
@@ -78,13 +81,13 @@
                                     {% for key, value in total %}
                                         {% if key == "initiale"  %}
                                             {% set valeur = sumValueInit %}
-                                            <th>  {{ valeur }} </th>
+                                            <th>  {{ valeur|number_format(0,',', ' ') }} </th>
                                         {% elseif key == "entrer" %}
-                                            <th> {{ sumValueEnter }} </th>
+                                            <th> {{ sumValueEnter|number_format(0,',', ' ') }} </th>
                                         {% elseif key == "sortie"%} 
-                                            <th>{{ sumValueOut }} </th>
+                                            <th>{{ sumValueOut|number_format(0,',', ' ') }} </th>
                                         {% elseif key == "actuelle" %}                                                                            
-                                            <th> {{ sumValueCurrent }} </th>
+                                            <th> {{ sumValueCurrent|number_format(0,',', ' ') }} </th>
                                         {% endif %}
                                     {% endfor %}
                                 </tr>

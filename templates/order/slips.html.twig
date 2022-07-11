@@ -91,15 +91,23 @@
                                                 {% for pro in dispo %}
                                                     <tr>
                                                         <td style="font-size: 11px;">{{ pro.categorie }}</td> 
-                                                        <td style="font-size: 11px;">{{ pro.quantite|abs}}</td>
-                                                        <td style="font-size: 11px;">{{ pro.tpParPl * pro.quantite|abs }}</td>
-                                                        <td style="font-size: 11px;">{{ pro.tpParPl * pro.quantite|abs }}</td>
+                                                        <td style="font-size: 11px;">
+                                                            {{ pro.quantite|abs|number_format(0,',', ' ') }}
+                                                        </td>
+                                                        <td style="font-size: 11px;">
+                                                            {% set mu = pro.tpParPl * pro.quantite|abs %}
+                                                            {{ mu|number_format(0,',', ' ') }}
+                                                        </td>
+                                                        <td style="font-size: 11px;">
+                                                            {% set var = pro.tpParPl * pro.quantite|abs %}
+                                                            {{ var|number_format(0,',', ' ') }}
+                                                        </td>
                                                         {% if pro.vf == 0 or pro.vf is null  %}
                                                             {% set prix = pro.tpParPl * pro.quantite|abs * 1 %}
-                                                            <td style="font-size: 11px;">{{ prix }}</td>
+                                                            <td style="font-size: 11px;">{{ prix|number_format(0,',', ' ') }}</td>
                                                         {% else %}
                                                             {% set prix = pro.tpParPl * pro.quantite|abs * pro.vf  %}
-                                                            <td style="font-size: 11px;">{{ prix }}</td>
+                                                            <td style="font-size: 11px;">{{ prix|number_format(0,',', ' ') }}</td>
                                                         {% endif %}
                                                         {% set somme = somme + prix %}
                                                     </tr>
@@ -126,7 +134,7 @@
                                                  <tr>
                                                     <th colspan="4" class="text-right pr-3" style="font-size: 11px;"> Totaux(Valeur) </th>
                                                     <td style="font-size: 11px;">
-                                                        {{ somme }}
+                                                        {{ somme|number_format(0,',', ' ') }}
                                                     </td>
                                                 </tr>
                                             <tbody>
@@ -146,7 +154,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td style="font-size: 11px;"> {{ dispo.0.numero }} - {{ bureau }}</td>
-                                                                <td style="font-size: 11px;"> {{ somme }} </td>
+                                                                <td style="font-size: 11px;"> {{ somme|number_format(0,',', ' ') }} </td>
                                                             </tr>
                                                             {% for pro in dispo %}
                                                                 <tr>
