@@ -24,21 +24,21 @@ class EtatController extends AbstractController
   #[Route('/etat-de-stocks', name: 'etat_de_stock')]
   public function index(ManagerRegistry $doctrine,Traitement $traitement,Request $request, $mois=''): Response
   {
-    
-    $mois_annee = $request->query->get('ldate');
+    $month = $request->query->get('mois');
     $year_only = $request->query->get('year');
+    if ($month > date('m') ) {
+      dd("Date non invalide !!!");
+    }
     if ($year_only == null) {
-        $year_only = date('Y');
+      $year_only = date('Y');
+    } 
+
+    if ($month == null) {
+        $month = date('m');
     }
-    //dd($year_only);
-   //dd($year_only);
-    if ($mois_annee == null) {
-        $mois_annee = date('Y-m');
-    }
-    $date_split = explode('-',$mois_annee);
-    $month = $date_split[1];
-    $year = $date_split[0];
-    //dd($year);
+    $year = $year_only;
+
+    //dd($month);
 
     $isssubmitted = false;
     $isDate = false;
@@ -58,6 +58,8 @@ class EtatController extends AbstractController
       $isssubmitted = true;
       $isDate = false;
       //============= Recuperer les données obtenus dans les formulaires ===============================//
+
+      //dd($month);
       $data = $form->getData();
       $product = ($data['select'])->getId();
       $repository = $doctrine->getRepository(Categorie::class);
@@ -66,11 +68,9 @@ class EtatController extends AbstractController
       $out  = $repository->findByOutPro($product,$month,$year); 
       $current  = $repository->findByCurrentPro($product,$month,$year);
 
-      if (!$product) {
-          throw $this->createNotFoundException(
-              'No product found '
-          );
-      }
+      if (!$current) {
+        return $this->render('noProduct.html.twig');
+     }
       
       $out = $traitement->setSize($out, $current, 'sortie');
       $entrer = $traitement->setSize($enter, $current, 'entrer');
@@ -110,6 +110,9 @@ class EtatController extends AbstractController
     //dd($out);
     // =========================== la requets avec les produits actuels en generale(Tous les categories par produits) =============================== //  
     $current  = $repository->findByCurrent($month,$year);
+    if (!$current) {
+      return $this->render('noProduct.html.twig');
+   }
 
     // Fomulaire de la date ================//
     $formD = $this->createFormBuilder()
@@ -133,7 +136,9 @@ class EtatController extends AbstractController
       $enter  = $repository->findByEnter($dateP,$month,$year);
       $out  = $repository->findByOut($dateP,$month,$year);
       $current  = $repository->findByCurrent($dateP,$month,$year);
-
+      if (!$current) {
+        return $this->render('noProduct.html.twig');
+     }
       $trtmt = $traitement->index($init, $enter,$out, $current);
       //dd($enter);
       $current = $trtmt['courant'];

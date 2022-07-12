@@ -109,7 +109,7 @@ class __TwigTemplate_141434606bb537a10be252c6dd4abc5c extends \Twig\Template
                             <a href=\"";
             // line 38
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout", ["source" => "deconnecter"]);
-            echo "\" class=\"btn btn-outline-danger btn-sm\"> <i class=\"fa-solid fa-user-slash\"></i>Deconnexion</a>
+            echo "\" class=\"btn btn-outline-danger btn-sm\"> <i class=\"fa-solid fa-user\"></i>Deconnexion</a>
                         </div>
                     ";
         } else {
@@ -302,7 +302,7 @@ class __TwigTemplate_141434606bb537a10be252c6dd4abc5c extends \Twig\Template
                             </li>
                         </ul>
                         <div class=\"d-flex\">
-                            <a href=\"{{ path('app_logout', {'source':'deconnecter'}) }}\" class=\"btn btn-outline-danger btn-sm\"> <i class=\"fa-solid fa-user-slash\"></i>Deconnexion</a>
+                            <a href=\"{{ path('app_logout', {'source':'deconnecter'}) }}\" class=\"btn btn-outline-danger btn-sm\"> <i class=\"fa-solid fa-user\"></i>Deconnexion</a>
                         </div>
                     {% else %}
                         <span class=\"float-end\">

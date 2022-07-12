@@ -12,7 +12,7 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* produit_disponible.html.twig */
+/* /produit_disponible.html.twig */
 class __TwigTemplate_d604c50255d8bd4c1e4958a30fb1ae66 extends \Twig\Template
 {
     private $source;
@@ -40,12 +40,12 @@ class __TwigTemplate_d604c50255d8bd4c1e4958a30fb1ae66 extends \Twig\Template
     {
         $macros = $this->macros;
         $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "produit_disponible.html.twig"));
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "/produit_disponible.html.twig"));
 
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "produit_disponible.html.twig"));
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "/produit_disponible.html.twig"));
 
-        $this->parent = $this->loadTemplate("base.html.twig", "produit_disponible.html.twig", 1);
+        $this->parent = $this->loadTemplate("base.html.twig", "/produit_disponible.html.twig", 1);
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -168,7 +168,7 @@ class __TwigTemplate_d604c50255d8bd4c1e4958a30fb1ae66 extends \Twig\Template
 \t\t\t\t\t\t\t\t\t\t\t\t<td>
 \t\t\t\t\t\t\t\t\t\t\t\t\t";
                 // line 57
-                echo twig_escape_filter($this->env, twig_number_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["index"], "nombre", [], "any", false, false, false, 57), 0, ",", " "), "html", null, true);
+                echo twig_escape_filter($this->env, twig_number_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["index"], "nombre", [], "any", false, false, false, 57), 2, ",", " "), "html", null, true);
                 echo "
 \t\t\t\t\t\t\t\t\t\t\t\t</td>
 \t\t\t\t\t\t\t\t\t\t\t\t<td>
@@ -579,7 +579,7 @@ $context["key2"] == "value_actuelle")) {
 
     public function getTemplateName()
     {
-        return "produit_disponible.html.twig";
+        return "/produit_disponible.html.twig";
     }
 
     public function isTraitable()
@@ -650,7 +650,7 @@ $context["key2"] == "value_actuelle")) {
 \t\t\t\t\t\t\t\t\t\t\t\t\t{{ index.abbr }}
 \t\t\t\t\t\t\t\t\t\t\t\t</td>
 \t\t\t\t\t\t\t\t\t\t\t\t<td>
-\t\t\t\t\t\t\t\t\t\t\t\t\t{{ index.nombre|number_format(0,',', ' ') }}
+\t\t\t\t\t\t\t\t\t\t\t\t\t{{ index.nombre|number_format(2,',', ' ') }}
 \t\t\t\t\t\t\t\t\t\t\t\t</td>
 \t\t\t\t\t\t\t\t\t\t\t\t<td>
 \t\t\t\t\t\t\t\t\t\t\t\t\t{{ index.valeur|number_format(0,',', ' ') }}
@@ -846,6 +846,6 @@ $context["key2"] == "value_actuelle")) {
 \t\t{% endif %}
 \t</main>
 {% endblock %}
-\t\t\t\t\t\t\t", "produit_disponible.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\templates\\produit_disponible.html.twig");
+\t\t\t\t\t\t\t", "/produit_disponible.html.twig", "C:\\Users\\Nandry\\Desktop\\CAVP\\templates\\produit_disponible.html.twig");
     }
 }

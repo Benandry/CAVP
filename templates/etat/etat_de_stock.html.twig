@@ -44,9 +44,22 @@
                                         </div>
                                         <!--*****************************************************************************************************-->
                                         <form action="{{ path('etat_de_stock') }}" class="float-end">
-                                            <label for="ldate">Preciser le mois :</label>
-                                            <input type="month" id="ldate" name="ldate">
-                                            <input type="submit" value="Trier" class="btn btn-danger btn-sm"/>
+                                            <label for="mois">Année  :</label>
+                                                <select name="mois" id="mois">
+                                                    <option value="01"> Janvier </option>
+                                                    <option value="02"> Frévrier </option>
+                                                    <option value="03"> Mars </option>
+                                                    <option value="04"> Avril </option>
+                                                    <option value="05"> Mai </option>
+                                                    <option value="06"> Juin </option>
+                                                    <option value="07"> Juillet </option>
+                                                    <option value="08"> Aout </option>
+                                                    <option value="09"> Septembre </option>
+                                                    <option value="10"> Octobre </option>
+                                                    <option value="11"> Novembre </option>
+                                                    <option value="12"> Décembre </option>
+                                                </select>
+                                            <input type="submit" value="Trier" class="btn btn-danger btn-sm">
                                         </form>
                                                 
                                         {% if issubmitted == true %}
@@ -104,7 +117,7 @@
                                                             {% elseif key2 =='produit' %}
                                                                 <td> {{ value2 }} </td>
                                                             {% elseif key2 =='valeurFaciale' %}
-                                                                <td> {{ value2 }} </td>
+                                                                <td> {{ value2|number_format(0,',', ' ') }} </td>
                                                             {% elseif key2 =='initiale' %}
                                                                 {% set valeur = initial[key][0] %}
                                                                 <td> {{ valeur|number_format(0,',', ' ') }} </td>

@@ -25,6 +25,7 @@ class __TwigTemplate_2d2b2c16e11219f4a90ff21b9d4fea49 extends \Twig\Template
         $this->source = $this->getSourceContext();
 
         $this->blocks = [
+            'title' => [$this, 'block_title'],
             'main' => [$this, 'block_main'],
         ];
     }
@@ -55,6 +56,25 @@ class __TwigTemplate_2d2b2c16e11219f4a90ff21b9d4fea49 extends \Twig\Template
     }
 
     // line 3
+    public function block_title($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+
+        echo "<title> Page d'administration de CAVP </title>";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+    }
+
+    // line 5
     public function block_main($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -64,12 +84,12 @@ class __TwigTemplate_2d2b2c16e11219f4a90ff21b9d4fea49 extends \Twig\Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "main"));
 
-        // line 4
+        // line 6
         echo "    <h2 class=\"fw-bold\" style=\"color: #e31419;\">Bienvenu dans l'espace d'administration de CAVP </h2>
         <p>
             <span>Vous etes connectée en tant que <b>";
-        // line 6
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 6, $this->source); })()), "user", [], "any", false, false, false, 6), "nom", [], "any", false, false, false, 6), "html", null, true);
+        // line 8
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 8, $this->source); })()), "user", [], "any", false, false, false, 8), "nom", [], "any", false, false, false, 8), "html", null, true);
         echo "</b> .<span><br/>
             Cette page  est accédée uniquement pour les utilisateurs qui ont les roles Admin
         </p>
@@ -94,12 +114,14 @@ class __TwigTemplate_2d2b2c16e11219f4a90ff21b9d4fea49 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  72 => 6,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  92 => 8,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block title %}<title> Page d'administration de CAVP </title>{% endblock %}
 
 {% block main %}
     <h2 class=\"fw-bold\" style=\"color: #e31419;\">Bienvenu dans l'espace d'administration de CAVP </h2>
