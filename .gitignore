@@ -6,7 +6,7 @@
 /public/bundles/
 node_modules
 /var/
-vendor
+/vendor
 .data/*
 /logs/*
 ###< symfony/framework-bundle ###
