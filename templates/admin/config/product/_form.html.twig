@@ -1,0 +1,18 @@
+{{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(form.nomProduit) }}
+            {{ form_row(form.Abbreviation) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.types) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center mt-4">
+                {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary btn-sm'} }) }}
+            </div>
+        </div>
+    </div>
+{{ form_end(form) }}

@@ -1,0 +1,83 @@
+<section class="sidebar-custom">
+    <div class="sidebar-custom-title">
+        <div class="sidebar-custom-image">
+            <img src="{{ asset('build/images/LOGOpaositra.png') }}" alt="Logo Paositr Malagasy" />
+        </div>
+        <div class="sidebar-custom-text">
+            Centre d'Approvisionnement des Valeurs Postales
+        </div>
+    </div>
+    <div class="sidebar-custom-menu">
+        <div class="sidebar-item">
+            <div class="sidebar-item-title">
+                <h4><i class="fa fa-home" aria-hidden="true"></i> Acceuil </h4>
+            </div>
+            <div class="sidebar-item-list">
+                <div class="menu">
+                    <a href="{{ path('app_homepage') }}">  <i class="fs-4 bi-home"></i>  Acceuil </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-item">
+            <div class="sidebar-item-title">
+                <h4> <i class="fa fa-bacon" aria-hidden="true"></i> Operations sur stock</h4>
+            </div>
+            <div class="sidebar-item-list">
+                <div class="menu">
+                    <a href="{{ path('app_operation_new') }}"> <i class="fas fa-plus" aria-hidden="true"></i> Nouveau operation</a>
+                </div>
+                <div class="menu">
+                    <a href="{{ path('app_operation_list') }}">  <i class="fas fa-eye" aria-hidden="true"></i> Listes operation</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-item">
+            <div class="sidebar-item-title">
+                <h4><i class="fas fa-circle-plus" aria-hidden="true"></i>  Configurations </h4>
+            </div>
+            <div class="sidebar-item-list">
+                <div class="menu">
+                    <a href="{{ path('app_config_type') }}"> <i class="fas fa-calendar-check" aria-hidden="true"></i>  Type d'ordre </a>
+                </div>
+                <div class="menu">
+                    <a href="{{ path('app_admin_product') }}"> <i class="fas fa-coins" aria-hidden="true"></i> Produits</a>
+                </div>
+                <div class="menu">
+                    <a href="{{ path('app_admin_index_category') }}"><i class="fas fa-tag" aria-hidden="true"></i>  Cattegories</a>
+                </div>
+                <div class="menu">
+                    <a href="{{ path('app_agence_index') }}"> <i class="fas fa-home" aria-hidden="true"></i> Agences</a>
+                </div>
+                <div class="menu">
+                    <a href="{{ path('app_type_operation') }}"> <i class="fas fa-exchange" aria-hidden="true"></i> Type operation</a>
+                </div>
+                <div class="menu">
+                    <a href="{{ path('app_users_lists') }}"> <i class="fas fa-circle-user" aria-hidden="true"></i> Utilisateurs</a>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-item">
+            <div class="sidebar-item-title">
+                <h4 >Rapports</h4>
+            </div>
+            <div class="sidebar-item-list">
+                <div class="menu">
+                    <a href="{{ path('admin_recap') }}">  <i class="fas fa-plus" aria-hidden="true"></i> Recaputilation </a>
+                </div>
+                <div class="menu">
+                    <a href="{{ path('admin_etat_de_stock') }}">  <i class="fas fa-plus" aria-hidden="true"></i> Etat de stock </a>
+                </div>
+                <div class="menu">
+                    <a href="{{ path('admin_compte_rendu') }}">  <i class="fas fa-plus" aria-hidden="true"></i> Compte rendu </a>
+                </div>
+                <div class="menu">
+                    <a href="{{ path('admin_order_out') }}">  <i class="fas fa-plus" aria-hidden="true"></i> Ordre de sortie </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-custom-footer">
+    </div>
+</section>

@@ -1,0 +1,16 @@
+{{ form_start(form) }}
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="flex-center">
+                {{ form_row(form.name) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center mt-4">
+                {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary btn-sm'} }) }}
+            </div>
+        </div>
+    </div>
+{{ form_end(form) }}

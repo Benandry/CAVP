@@ -1,0 +1,23 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-6">
+        {{ form_row(form.NomDeCategorie) }}
+        {{ form_row(form.produit) }}
+        {{ form_row(form.ordre) }}
+        {{ form_row(form.valeurFaciale) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(form.prixDeVente) }}
+        {{ form_row(form.AnneeEmission) }}
+        {{ form_row(form.coteEmission) }}
+        {{ form_row(form.tpParPl) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-center mt-4">
+            {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary btn-sm'} }) }}
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}

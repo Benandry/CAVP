@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block title %} Operation sur stock{% endblock %}
+{% block head_page %} Operation sur stock{% endblock %}
+
+{% block main %}
+<div class="q-container">
+    <div class="row m-2">
+        <div class="col-md-12 mb-2">
+            <div class="flex-end">
+                <a href="{{ path('app_operation_new') }}"><button class="btn btn-primary btn-sm">Créer mouvement </button></a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+     <div class="table responsive-xxl">
+        <table class="table_crud display table table-bordered table-hover">
+            <thead>
+                <tr class="table-titre">
+                    <th>Produits </th>
+                    <th>Catégories</th>
+                    <th>Types</th>
+                    <th>Descriptions</th>
+                    <th>Destination/Reference</th>
+                    <th>Chef responsables</th>
+                    <th>Date</th>
+                    <th>Quantité</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mouvement in mouvements %}
+                    <tr>
+                        <td>{{ mouvement.nomProduit }}</td>
+                        <td>{{ mouvement.NomDeCategorie }}</td>
+                        <td>{{ mouvement.operation }}</td>
+                        <td>{{ mouvement.information }}</td>
+                         <td>{{ mouvement.agence }}</td>
+                         <td>{{ mouvement.user }}</td>
+                        <td>{{ mouvement.dateEntrer|date('Y-m-d') }}</td>
+                        <td>{{ mouvement.quantite|abs }}</td>  
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+    </div>
+    </div>
+</div>
+{% endblock %}

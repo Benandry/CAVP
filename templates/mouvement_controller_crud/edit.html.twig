@@ -5,50 +5,82 @@
 {% block body %}
     <main>
     {% if app.user %}
-        <h2 class="fw-bolder text-center">Editer l'operation sur le categorie " "</h2>
-                <div id="flip">Afficher les formulaire</div>
-            <div id="panel">
-                {{ form_start(form) }}
+        <div class="row" >
+            <div class="col-12 pt-5">
+                <div style="box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.1);">
+                    <div class="q-container p-4">
                         <div class="row">
-                            <div class="col-4">
-                                {{ form_row(form.produit) }}
-                            </div>
-                            <div class="col-4">
-                                {{ form_row(form.Categorie) }}
-                            </div>
-                            <div class="col-4">
-                                {{ form_row(form.Agence) }}
-                            </div>
-                            <div class="col-4">
-                                {{ form_row(form.types) }}
-                            </div>
-                            <div class="col-4" id="dateEntrer">
-                                {{ form_row(form.dateEntrer) }}
-                            </div>
-                            <div class="col-4">
-                                {{ form_row(form.descriptions) }}
-                            </div>
-                            <div class="col-4">
-                                {{ form_row(form.User) }}
-                            </div>
-                            <div id="quantite" class="col-4">
-                                {{ form_row(form.quantite) }}
-                            </div>
-                            <div class="col-4">
-                                {{ form_row(form.reference) }}
-                            </div>
-                            <div id="numero" class="col-4">
-                                {{ form_row(form.numero_de_sortie) }}
-                            </div>
-                        </div>
-                {{ form_end(form) }}</p>
-            </div>
-            <a href="{{ path('mouvement_controller_crud_index') }}">Afficher la liste</a>
+                            <div class="col">
+                                <span class="head"> {% block titre %} Modifier l'operation sur le categorie  {% endblock %}</span>
+                                <p id="user"> {{ app.user.id }}  </p>
+                                <p class="alert alert-danger text-center" role="alert" id="stock_actuelle"></p>
 
-            <form method="post" action="{{ path('mouvement_controller_crud_delete', {'id': mouvement.id}) }}" onsubmit="return confirm('Vous etes sur pour supprimer');">
-                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ mouvement.id) }}">
-                <button class="btn btn-danger btn-sm float-end">Supprimer</button>
-            </form>
+                                {{ form_start(form) }}
+                                <div class="row">
+                                    <div id="type" class="col-4">
+                                    {{ form_row(form.types) }}
+                                    </div>
+
+                                    <div class="col-4">
+                                    {{ form_row(form.Agence) }}
+                                    </div>
+
+                                    <div class="col-4" id="descriptions">
+                                    {{ form_row(form.descriptions) }}
+                                    </div>
+
+                                    <div class="col-4">
+                                    {{ form_row(form.produit, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+
+                                    <div class="col-4">
+                                    {{ form_row(form.Categorie) }}
+                                    </div>
+
+                                    <div class="col-4" id="dateEntrer">
+                                    {{ form_row(form.dateEntrer) }}
+                                    </div>
+
+                                    <div class="col-4" id="utilisateur">
+                                    {{ form_row(form.User) }}
+                                    </div>
+
+                                    <div id="quantite" class="col-4">
+                                    {{ form_row(form.quantite) }}
+                                    </div>
+
+                                    <div id="numbre_planche" class="col-4">
+                                        {{ form_row(form.number_planche) }}
+                                    </div>
+
+                                    <div class="col-4" id="references">
+                                    {{ form_row(form.reference) }}
+                                    </div>
+
+                                    <div id="numero" class="col-4">
+                                        {{ form_row(form.number_sortie) }}
+                                    </div>
+
+                                    <div id="number_out" class="col-4">
+                                        {{ form_row(form.number_out) }}
+                                    </div>
+                                    
+                                    <div class="text-center mt-4">
+                                            {{ form_row(form.submit, { 'label': 'Valider','attr': {'class': 'btn btn-primary'} }) }}
+                                    </div>
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                            <a href="{{ path('mouvement_controller_crud_index') }}">Afficher la liste</a>
+                            <form method="post" action="{{ path('mouvement_controller_crud_delete', {'id': mouvement.id}) }}" onsubmit="return confirm('Vous etes sur pour supprimer');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ mouvement.id) }}">
+                                <button class="btn btn-danger btn-sm float-end">Supprimer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% else %}
             <h1>Page not found 404 </h1>
 

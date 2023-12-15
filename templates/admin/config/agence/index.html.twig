@@ -1,0 +1,59 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Listes Agences{% endblock %}
+{% block head_page %} Listes Agences{% endblock %}
+{% block main %}
+   <div class="q-container">
+       <div class="row">
+            <div class="col-md-12">
+                <div class="row m-2">
+                    <div class="col-md-12 mb-2">
+                        <div style="display: flex; justify-content:flex-end;">
+                           <a href="{{ path('app_agence_create') }}"><button class="btn btn-primary btn-sm">Créer un agence </button></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row m-2">
+                    <div class="col-md-12">
+                        <table id="config-table" class="display table table-bordered table-hover">
+                            <thead>
+                                <tr class="table-titre">
+                                    <th class="title fw-bold">Nom </th>
+                                    <th class="title fw-bold">Code </th>
+                                    <th class="title fw-bold">Classe </th>
+                                    <th class="title fw-bold">Annuaires </th>
+                                    <th class="title fw-bold">Actions </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for agence in agences %}
+                                <tr>
+                                    <td> {{ agence.name }}</td> 
+                                    <td>{{ agence.code }}</td>
+                                    <td>{{ agence.classe }}</td>
+                                    <td>{{ agence.annuaire }}</td>
+                                    <td>
+                                        <div class="row data-actions">
+                                            <div class="col-md-6">
+                                                    <a href="{{ path('app_agence_edit',{ id : agence.id}) }}">
+                                                        <button class="btn btn-primary btn-sm"> Editer </button>
+                                                    </a>
+                                            </div>
+                                            {# <div class="col-md-6">
+                                                <a href="{{ path('app_users_lists') }}">
+                                                    <button class="btn btn-danger btn-sm"> Supprimer</button>
+                                                </a>
+                                            </div> #}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>  
+                </div>  
+            </div>  
+        </div>  
+   </div>
+{% endblock %}

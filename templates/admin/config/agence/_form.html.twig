@@ -1,0 +1,19 @@
+{{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(form.name) }}
+            {{ form_row(form.code) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.classe) }}
+            {{ form_row(form.annuaire) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center mt-4">
+                {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary btn-sm'} }) }}
+            </div>
+        </div>
+    </div>
+{{ form_end(form) }}

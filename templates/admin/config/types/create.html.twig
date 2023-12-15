@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block head_page %} Creer nouveau types d'ordre{% endblock %}
+{% block title %} Types d'ordre{% endblock %}
+{% block main %}
+   <div class="q-container">
+      <div class="row">
+          <div class="col-md-12">
+            {% include "admin/config/types/_form.html.twig" %}
+          </div>
+      </div>
+  </div>
+{% endblock %}

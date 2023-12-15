@@ -5,47 +5,59 @@
 {% block body %}
     <main>
          {% if app.user %}
-            <h2 class="fw-bolder text-center">Detail de l'operation sur le categorie <i> "{{ mouvement.Categorie }} "</i> </h2>
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <th>Produits</th>
-                        <td>{{ mouvement.produit }}</td>
-                    </tr>
-                    <tr>
-                        <th>Catégorie</th>
-                        <td>{{ mouvement.Categorie }}</td>
-                    </tr>
-                    <tr>
-                        <th>Quantite</th>
-                        <td>{{ mouvement.quantite|abs }}</td>
-                    </tr>
-                    <tr>
-                        <th>References</th>
-                        <td>{{ mouvement.reference }}</td>
-                    </tr>
-                    <tr>
-                        <th>Agence</th>
-                        <td>{{ mouvement.Agence }}</td>
-                    </tr>
-                    <tr>
-                        <th>Date d'operation</th>
-                        <td>{{ mouvement.dateEntrer|date('Y-m-d') }}</td>
-                    </tr>
-                    <tr>
-                        <th>Types d'operation</th>
-                        <td>{{ mouvement.types }}</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <p><a href="{{ path('mouvement_controller_crud_index') }}">Retour a la liste d'operation</a></p>
-            <form method="post" action="{{ path('mouvement_controller_crud_delete', {'id': mouvement.id}) }}" onsubmit="return confirm('Vous etes sur pour supprimer');" class="float-end">
-                <a href="{{ path('mouvement_controller_crud_edit', {'id': mouvement.id}) }}" class="btn btn-primary btn-sm">Editer</a>
-                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ mouvement.id) }}">
-                <button class="btn btn-danger btn-sm">Supprimer</button>
-            </form>
-        
+            <div class="row" >
+                <div class="col-12">
+                    <div style="box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);">
+                        <div class="q-container p-4">
+                            <div class="row">
+                                <div class="col">
+                                    <span class="head"> {% block titre %}Detail de l'operation sur le categorie "{{ mouvement.Categorie }} " {% endblock %}</span>
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th>Produits</th>
+                                                <td>{{ mouvement.produit }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Catégorie</th>
+                                                <td>{{ mouvement.Categorie }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Quantite</th>
+                                                <td>{{ mouvement.quantite|abs }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>References</th>
+                                                <td>{{ mouvement.reference }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Agence</th>
+                                                <td>{{ mouvement.Agence }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Date d'operation</th>
+                                                <td>{{ mouvement.dateEntrer|date('Y-m-d') }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Types d'operation</th>
+                                                <td>{{ mouvement.types }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    {% set isSubmit = "true"%}
+                                    <p><a href="{{ path('mouvement_controller_crud_index') }}">Voir toutes les listes d'operation</a></p>
+                                    <p><a href="{{ path('mouvement_controller_crud_new') }}">Continuer l'operation</a></p>
+                                    <form method="post" action="{{ path('mouvement_controller_crud_delete', {'id': mouvement.id}) }}" onsubmit="return confirm('Vous etes sur pour supprimer le categorie : {{ mouvement.categorie }} ');" class="float-end">
+                                        <a href="{{ path('mouvement_controller_crud_edit',{'id': mouvement.id,'categorie': mouvement.categorie}) }}" class="btn btn-primary btn-sm">Editer</a>
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ mouvement.id) }}">
+                                        <button class="btn btn-danger btn-sm">Supprimer</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% else %}
             <h1>Page not found 404 </h1>
             <p>

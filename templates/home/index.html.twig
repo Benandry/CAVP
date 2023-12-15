@@ -1,0 +1,74 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Page d'acceuil -- CAVP {% endblock %}
+
+{% block main %}
+<div class="content">
+    <div class="row">
+        <div class="col-12">
+            <h3 class="fw-bold text-center">Informations</h3> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-12 py-2">
+            <img loading="lazy" width="300" src="{{ asset('build/images/cavp-accueil.png') }}" class="img-fluid"/>
+        </div>
+        <div class="col-md-8 col-sm-12 py-5">
+            <p>
+                Centre d'Approvisionement des Valeurs Postales est la fusion du Centre d’approvisionnement en Timbres-Poste et le Service Philatélique auparavant. 
+                Il est rattaché directement à la Direction des Opérations Postales. Le CAVP est composé de : section commande, section expédition et secrétariat
+                Le CAVP assure l’approvisionnement des bureaux en valeurs postales tel que Timbre-poste et Produits Nouveaux Postaux (autres produits et produits philatéliques qu’il confectionne par ses soins).
+                <br/> 
+                Il effectue la vente par correspondance à l’Etranger, et gère les comptes de réserve des philatélistes. Le CAVP élabore le catalogue des produits philatéliques dont il dispose au caveau.</br>
+                <br/>
+                CAVP est la fusion du Centre d’approvisionnement en Timbres-Poste et le Service Philatélique auparavant.
+                Il est rattaché directement à la Direction des Opérations Postales.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h3 class="fw-bold text-center"> Produits et categories</h3> 
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-4 ">
+            <div class="custom-admin">
+                <div class="custom-admin-result">
+                    <div class="custom-result-title">
+                        <h4>Agences <h4>
+                    </div>
+                    <div class="custom-result-info">
+                        <div class="custom-result-number"> {{ agence }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="custom-admin">
+                <div class="custom-admin-result">
+                    <div class="custom-result-title">
+                        <h4>Produits <h4>
+                    </div>
+                    <div class="custom-result-info">
+                        <div class="custom-result-number"> {{ product }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="custom-admin">
+                <div class="custom-admin-result">
+                    <div class="custom-result-title">
+                        <h4>categories <h4>
+                    </div>
+                    <div class="custom-result-info">
+                        <div class="custom-result-number"> {{ categorie }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

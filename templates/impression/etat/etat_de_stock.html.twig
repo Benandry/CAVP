@@ -6,18 +6,21 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
-        <title>Impression de etat de stock | Paositra malagasy</title>
+         {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+        <title>Etat de stock de CAVP-{{ month}}-{{ year}}</title>
     </head>
     <body onload="window.print()">
         {# ##################################    Dictionaire de l'annee ##################################################}
         {% set mois = {'01' : 'Janvier','02' : 'Fevrier','03' : 'Mars','04' : 'Avril','05' : 'Mai','06' : 'Juin','07' : 'Juillet','08' : 'Aout', '09' : 'Septembre','10' : 'Octobre','11' : 'Novembre','12' : 'Décembre' } %}
         {##################################################################################################################}
-        <div class="container">
-            <h3 class="text-danger text-center">Etat de stock general du mois {{ mois[month] }} {{ year }} </h3>
+        <div class="container-fluid p-2">
+            <h3 class="fw-bold text-center">Etat de stock general du mois {{ mois[month] }} {{ year }} </h3>
             <div class="table responsive-xxl">
-                <table class="table table-bordered table-hover" >
+                <table class="table table-striped" id="myTablet">
                     <thead>
-                        <tr class="table-danger">
+                        <tr class="table-titre" style="background-color: #ffd500;">
                             <th data-sortable="true" data-field="Ordre"> Ordre</th>
                             <th data-field="Categorie"> Produit </th>
                             <th data-field="produit"> Categorie </th>
@@ -25,7 +28,7 @@
                             <th data-field="Stock initial">Stock initial</th>
                             <th data-field="Entrée">Entrée</th>
                             <th data-field="Sortie">Sortie</th>
-                            <th data-field="Sock Actuel">Stock Acteul </th>
+                            <th data-field="Sock Actuel">Stock Final </th>
                         </tr>
                     </thead>
                     {% set sumValueInit = 0 %}
@@ -95,9 +98,6 @@
                     <p><span> Chef de  Centre d'Approvisionnement en Valeurs Postales </span></p>
                 </div>
             </div>
-        </div>
-         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}    
+        </div>    
     </body>
 </html>

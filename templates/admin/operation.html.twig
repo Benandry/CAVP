@@ -1,0 +1,42 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block title %}<title> Operation de stock </title>{% endblock %}
+
+{% block main %}
+<div class="container row">
+    <div class="mb-4">
+        <div class="row p-2">
+            <div class="col-12">
+                <h4 class="fw-bold text-center"> Operation de stock </h4>
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-6">
+                <form method="post">
+                    <div class="col-6">
+                        <div class="form-item">
+                            <div class="input_label"> <label for="type_">Type Operation: </label> </div>
+                                <input type="text" value="" name="type_" id="type_" autocomplete="type_" placeholder="Type operation" required />
+                            </div>
+                            <div class="input_label"> <label for="decription_">Description : </label> </div>
+                                <input type="text" value="decription_" name="decription_" id="decription_" autocomplete="decription_" placeholder="Decription" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-item">
+                            <div class="input_label"> <label for="type_">Type Operation: </label> </div>
+                                <input type="text" value="" name="type_" id="type_" class="form-controls" placeholder="Type operation" required />
+                            </div>
+                            <div class="input_label"> <label for="decription_">Description : </label> </div>
+                                <input type="text" value="decription_" name="decription_" id="decription_" autocomplete="decription_" placeholder="Decription" required />
+                            </div>
+                        </div>
+                    </div>
+                    <button class="button"type="submit">Connexion</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

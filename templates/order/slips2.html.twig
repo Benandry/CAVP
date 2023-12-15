@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bordereaux d'envoi FP (CAVP) | Paositra malagasy</title>
+    <link rel="stylesheet" type="text/css" href="./style/bootstrap-4.3.1/dist/css/bootstrap.min.css">
+    {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        table,
+        tr,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        .rond {
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            border: 2px solid black;
+        }
+
+        .floating-text {
+            position: absolute;
+            top: 50%;
+            left: -1%;
+            transform: rotate(-90deg);
+        }
+
+        @media print {
+            * {
+                font-size: 9px;
+            }
+
+            @page {
+                size: landscape;
+                margin: 2mm 2mm 2mm 2mm;
+            }
+
+            #to-hide-while-printing {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-light mb-2">
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-lg-1 col-md-1" style="display: flex;justify-content:flex-end;align-items:center;">
+                <img src="./image/asset/beText.png" alt="" class="img">
+            </div>
+            <div class="col-lg-7 col-md-7 pr-5">
+                <!-- en-tete -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                        <div>
+                            N°H3 BIS - 1<sup>ère</sup>Partie
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9 text-center">
+                        <div>PAOSITRA MALAGASY</div>
+                        <div style="font-size:9px">----------------------------------------------------</div>
+                        <div>
+                            <span style="font-size:9px">
+                                LETTRE D'ENVOI DE VALEURS POSTALES
+                            </span>
+                            <br>
+                        <div style="font-size:9px">----------------------------------------------------</div>
+                        </div>
+                    </div>
+                    <!-- description -->
+                    <div class="row">
+                        <div class="col-lg-7 col-md-7">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3">
+                                            <div class="text-center" style="width: 60px;height:60px;border:1px dashed black;border-radius:50px;display:flex;align-items:center;flex-direction:column;justify-content:center;transform:rotate(-25deg);">
+                                                <div style="border-bottom:1px solid black;">N° {{ dispo.0.numero }}</div>
+                                                <div>{{ bureau }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <span style="font-size:9px">Envoi du <u style="font-weight: bold;">{{ dispo.0.numero }}/{{ bureau }}</u>&nbsp;<u style="font-weight: bold;">2022</u></span>
+                                            <br>
+                                            <span style="font-size:9px">au bureau d'<u style="font-weight:bold">{{ dispo.0.bureau }}</u></span>
+                                        </div>
+                                        <h5 class="col-lg-12 text-center" style="font-weight: bold;font-size:10px">TABLEAU N° 1</h5>
+                                        <div class="col-lg-12 mt-1 mb-1">
+                                            <span style="font-weight: bold;font-size:10px">(1) Ce chiffre doit etre conforme à celui de la prise en charge</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5">
+                            <div class="row">
+                                <h5 class="col-lg-12 col-md-12 text-center" style="font-weight: bold;font-size:10px">TABLEAU N° 2</h5>
+                                <h6 class="col-lg-12 col-md-12 text-center" style="font-weight: bold;font-size:10px">Procès-verbal et accusé de récéption</h6>
+                                <span style="font-size: 10px;font-weight: bold;font-size:9px">
+                                    Nous, soussignés, déclarons avoir compté les figurines accompagnant la lettre d'envoi ci-contre, et reconnaissons que leur nombre, dans chaque Objet est conforme à celui énoncé, sauf les differences décrites ci-dessous
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-7 col-md-7">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="row">
+
+                                    <table class="table table-sm col-lg-12 col-md-12">
+                                        <tr>
+                                            <td style="font-size:9px">Désignation des Objets</td>
+                                            <td style="font-size:9px">Désignation des Objets Prix Unitaire</td>
+                                            <td style="font-size:9px">Nombre Objets</td>
+                                            <td style="font-size:9px">Valeurs des objets à porter en Recettes par le Comptable</td>
+                                        </tr>
+
+                                        <tr>
+                                            
+                                            {% set somme = 0 %}
+                                            {% for pro in dispo %}
+                                                <tr>
+                                                    < <td style="font-size: 10px;">{{ pro.categorie }}</td>
+                                                    <td style="font-size:9px">{{ pro.vf }} </td>
+                                                    <td style="font-size:9px">
+                                                        {% set timbre_entiere = pro.quantite|abs %}
+                                                        {{ timbre_entiere|number_format(0,',', ' ') }}
+                                                    </td>
+                                                    <td style="font-size:9px">
+                                                        {% set valeur = pro.vf * timbre_entiere %}
+                                                        {{ valeur|number_format(0,',', ' ') }}
+                                                    </td> 
+                                                    
+                                                    {% set somme = somme + valeur %}
+                                                </tr>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size:9px">..........</td>
+                                            <td style="font-size:9px">..........</td>
+                                            <td style="font-size:9px">..........</td>
+                                            <td style="font-size:9px">..........</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size:9px">..........</td>
+                                            <td style="font-size:9px">..........</td>
+                                            <td style="font-size:9px">..........</td>
+                                            <td style="font-size:9px">..........</td>
+                                        </tr>
+                                                                                    <tr>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                            </tr>
+                                                                                    <tr>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                            </tr>
+                                                                                    <tr>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                            </tr>
+                                                                                    <tr>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                            </tr>
+                                                                                    <tr>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                            </tr>
+                                                                                    <tr>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                            </tr>
+                                                                                    <tr>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                            </tr>
+                                                                                    <tr>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                            </tr>
+                                                                                    <tr>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                                <td style="font-size:9px">..........</td>
+                                            </tr>
+                                            <tr>
+                                            <td colspan="3" class="text-right pr-3" style="font-size:9px">
+                                                Totaux de la valeur(1)
+                                            </td>
+                                            <td style="font-size:9px"> {{ somme|number_format(0,',', ' ') }} </td>
+                                        </tr>
+                                    </table>
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-md-8">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <span style="font-size: 9px;" style="font-weight: bold;">Cadre à remplir sur la lettre du dernier envoi toutes les fois qu'il a eu plusieurs envois dans le mois</span>
+                                                    </div>
+                                                    <h5 class="col-lg-12 col-md-12" style="font-weight: bold;font-size:10px">RECAPITULATION DES ENVOIS DU MOIS</h5>
+                                                    <table class="col-lg-12 col-md-12 table table-sm">
+                                                        <tr>
+                                                            <th style="font-size:9px; color: black;">Numéros des envois</th>
+                                                            <th style="font-size:9px; color: black;">Prix total de chaque envoi</th>
+                                                        </tr>
+                                                                                                                    <tr>
+                                                                <td style="font-size:9px">..................</td>
+                                                                <td style="font-size:9px">..................</td>
+                                                            </tr>
+                                                                                                                    <tr>
+                                                                <td style="font-size:9px">..................</td>
+                                                                <td style="font-size:9px">..................</td>
+                                                            </tr>
+                                                                                                            </table>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="row">
+                                                    <span class="col-lg-12 col-md-12" style="font-size:9px">Le ..................... ......................... .........................</span>
+                                                    <span class="col-lg-12 col-md-12 mb-5" style="font-size: 9px;">(Expediteur de l'envoi)</span>
+                                                    <div class="col-lg-12 col-md-12 text-right" style="font-size:9px">
+                                                        <span>Les agents de controle</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5">
+                            <div class="row">
+                                <table class="table table-sm col-lg-12 col-md-12 m-3">
+                                    <tr>
+                                        <td style="font-size:9px">Désignation des objets</td>
+                                        <td style="font-size:9px">Prix Unitaires</td>
+                                        <td style="font-size:9px">Nbre d'objet rellement reçus</td>
+                                        <td style="font-size:9px">Difference constatée</td>
+                                    </tr>
+                                                                            <tr>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                            <td style="font-size:9px">.........</td>
+                                        </tr>
+                                                                        <tr>
+                                        <td colspan="4">
+                                            <span style="font-weight: bold;font-size:9px">
+                                                NOTA-Toutes les fois qu'il n'as pas été constaté de différence, inscrire dans le cadre ci-dessus "Néant"
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <div class="col-lg-12 col-md-12 mt-4">
+                                    <div class="row">
+                                        <div class="col-lg-8 col-md-8">
+                                            <div class="row">
+                                                <span class="col-lg-12 col-md-12 text-center mb-4" style="font-size:9px">Timbre du bureau destinataire</span>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="rond">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4">
+                                            <span class="text-right" style="font-size:9px">Le receveur,</span>
+                                            <br><br>
+                                            <br><br>
+                                            <span class="text-right" style="font-size:9px">L'Agent,</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5">
+                        <div>
+                            N°H3 BIS - 2<sup>ème</sup>Partie
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 text-center">
+                        <span style="font-size: 9px;">
+                            A rènvoyer à Antananarivo pour etre mis en fin de mois à l'appui de son compte.
+                        </span>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <h5 class="col-lg-12 col-md-12 text-center" style="font-weight: bold;">PROCES-VERBAL ET ACCUSE DE RECEPTION</h5>
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3">
+                                <div class="text-center" style="width: 60px;height:60px;border:1px dashed black;border-radius:50px;display:flex;align-items:center;flex-direction:column;justify-content:center;transform:rotate(-25deg);">
+                                    <div style="border-bottom:1px solid black;">N° {{ dispo.0.numero }}</div>
+                                    <div>{{ bureau }}</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-8" style="font-size:9px;display:flex;align-items:center;justify-content:flex-start;">Bureau d'<u style="font-weight:bold">{{ dispo.0.bureau }}</u></div>
+                            <div class="col-lg-12 mt-3 text-center">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12">
+                            <span style="font-size:9px;">Nous, soussignés, déclarons avoir compté les timbres-poste et autres figurines accompagnent la lettre ci-contre, et reconnaissons que leur nombre, dans chaque catégorie, est conforme à celui énoncé dans le tableau ci-dessous (2)</span>
+                        </div>
+                        <div class="col-lg-12 col-md-12 pl-3 mt-4">
+                            <table class="table table-sm">
+                                <tr>
+                                    <td style="font-size:9px">Désignation des objets</td>
+                                    <td style="font-size:9px">Désignation des objets Prix Unitaire</td>
+                                    <td style="font-size:9px">Nombre dd'objets</td>
+                                    <td style="font-size:9px">Valeur des objets</td>
+                                </tr>
+                                                                    <tr>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                    </tr>
+                                                                    <tr>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                        <td>.........</td>
+                                    </tr>
+                                                                <tr>
+                                    <td colspan="3" class="text-right pr-3" style="font-size:9px">
+                                        Totaul de la Valeur (1)
+                                    </td>
+                                    <td style="font-size:9px">...........</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 mt-3">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="row">
+                                        <span class="col-lg-12 col-md-12 text-center mb-4" style="font-size:9px">Timbre à date du bureau</span>
+                                        <div class="col-lg-12 col-md-12 pl-5">
+                                            <div class="rond">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="row">
+                                        <span class="col-lg-12 col-md-12" style="font-size:9px">Reçus le ...............................</span>
+                                        <span class="col-lg-12 col-md-12" style="font-size:9px">Le Receveur &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; L'Agent</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 mt-4">
+                            <span style="font-size:9px">(2)Toute différences, soit en plus, soit en moins, doit etre constatée conformément comme il en est pour les timbres Postes</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-12 col-md-12 mt-5 mb-5">
+                <button style="font-family:poppins;" id="to-hide-while-printing" class="btn btn-outline-danger btn-lg float-right col-lg-3 col-md-3">Imprimer</button>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById('to-hide-while-printing').addEventListener('click', () => {
+                window.print();
+            }, false);
+        </script>
+
+</body>
+
+</html>

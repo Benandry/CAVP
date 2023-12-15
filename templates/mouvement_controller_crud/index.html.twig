@@ -5,66 +5,58 @@
 {% block body %}
     <main>
         {% if app.user %}
-            
-            <h2 class="fw-normal text-center" style="color:#e3151a;margin: 2px auto;">Operation entrer/Sortie de CAVP </h2>
-            <div class="d-flex flex-row-reverse bd-highlight">
-                <a href="{{ path('mouvement_controller_crud_new') }}"  class="btn btn-primary btn-sm" >Creer une operation</a>
-            </div>
-           Nombres totales d'operations : {{ mouvements|length }} lignes
-
-            <div class="table responsive">
-                <table class="table table-striped" id="myTable" >
-                    <thead>
-                        <tr>
-                            <th>Produits </th>
-                            <th>Catégories</th>
-                            <th>Types</th>
-                            <th>Descriptions</th>
-                            <th>Agences</th>
-                            <th>References</th>
-                            <th>Chef responsables</th>
-                            <th>Date</th>
-                            <th>Quantité</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for mouvement in mouvements %}
-                            <tr>
-                                <td>{{ mouvement.product }}</td>
-                                <td>{{ mouvement.categorie }}</td>
-                                <td>{{ mouvement.types }}</td>
-                                <td>{{ mouvement.desccriptions }}</td>
-                                <td>{{ mouvement.destination }}</td>
-                                <td>{{ mouvement.reference }}</td>
-                                <td>{{ mouvement.user }}</td>
-                                <td>{{ mouvement.dat|date('Y-m-d') }}</td>
-                                <td>{{ mouvement.nombre|abs }}</td>
-                                <td class="actions actions-as-dropdown">
-                                    <div class="dropdown dropdown-actions">
-                                        <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="21" width="21" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
-                                            </svg>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ path('mouvement_controller_crud_show', {'id': mouvement.id}) }}" class="dropdown-item action-edit">Detail</a>
-                                            <a href="{{ path('mouvement_controller_crud_edit', {'id': mouvement.id}) }}" class="dropdown-item action-edit">Modifier</a>   
-                                            <form method="post" action="{{ path('mouvement_controller_crud_delete', {'id': mouvement.id}) }}" onsubmit="return confirm('Vous etes sur pour supprimer');">
-                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ mouvement.id) }}">
-                                                <button class="btn btn-ligth btn-sm">Delete</button>
-                                            </form>
-                                        </div>
+            <div class="row" >
+                <div class="col-12">
+                    <div style="box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.2); background-color: #e5eecf;">
+                        <div class="q-container p-4">
+                            <div class="row">
+                                <div class="col">
+                                    <span class="head"> {% block titre %}Operation entrer/Sortie de CAVP{% endblock %}</span>
+                                    <div class="float-end">
+                                        {% set isSubmit = "false"%}
+                                        <a href="{{ path('mouvement_controller_crud_new') }}"  class="btn btn-primary btn-sm m-3" >Creer une operation</a>
                                     </div>
-                                </td>
-                            </tr>
-                        {% else %}
-                            <tr>
-                                <td colspan="4">no records found</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                                    <span class=" p-1 select"> Nombres totales d'operations : {{ mouvements|length }} lignes </span>
+                                    <div class="table responsive-xxl">
+                                        <table class="table_crud display table table-bordered table-hover">
+                                            <thead>
+                                                <tr class="table-titre">
+                                                    <th>Produits </th>
+                                                    <th>Catégories</th>
+                                                    <th>Types</th>
+                                                    <th>Descriptions</th>
+                                                    <th>Destination/Reference</th>
+                                                    <th>Chef responsables</th>
+                                                    <th>Date</th>
+                                                    <th>Quantité</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for mouvement in mouvements %}
+                                                    <tr>
+                                                        <td>{{ mouvement.product }}</td>
+                                                        <td>{{ mouvement.categorie }}</td>
+                                                        <td>{{ mouvement.types }}</td>
+                                                        <td>{{ mouvement.desccriptions }}</td>
+                                                        <td>{{ mouvement.destination }}</td>
+                                                        <td>{{ mouvement.user }}</td>
+                                                        <td>{{ mouvement.dat|date('Y-m-d') }}</td>
+                                                        <td>{{ mouvement.nombre|abs }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         {% else %}
             <h1>Page not found 404 </h1>

@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+{% block title %} Listes Types d'ordre{% endblock %}
+{% block head_page %} Listes Types d'ordre{% endblock %}
+{% block main %}
+   <div class="q-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row m-2">
+                <div class="col-md-12">
+                    <div style="flex-center">
+                        <a href="{{ path('app_config_create') }}"><button class="btn btn-primary btn-sm">Créer un type </button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-md-12">
+                    <table id="config-table" class="display table table-bordered table-hover">
+                        <thead>
+                            <tr class="table-titre">
+                                <th class="title fw-bold">Types(Abbreviation) </th>
+                                <th class="title fw-bold">Types Long </th>
+                                <th class="title fw-bold">Autres </th>
+                                <th class="title fw-bold">Actions </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for type in types %}
+                                <tr>
+                                    <td> {{ type.type_order_short }}</td> 
+                                    <td>{{ type.type_order_long }}</td>
+                                    <td>{{ type.other_type }}</td>
+                                    <td>
+                                        <div class="row data-actions">
+                                            <div class="col-md-6">
+                                                    <a href="{{ path('app_type_order_edit',{ id : type.id}) }}">
+                                                        <button class="btn btn-primary btn-sm"> Modifier </button>
+                                                    </a>
+                                            </div>
+                                            {# <div class="col-md-6">
+                                                {{ include('admin/config/types/_delete_form.html.twig') }}
+                                            </div> #}
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>  
+            </div>  
+        </div>  
+    </div>  
+   </div>
+{% endblock %}

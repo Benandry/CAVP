@@ -1,66 +1,162 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouveaux operation {% endblock %}
+{% block title %}Création de nouvelle opération{% endblock %}
+{% block head %}Création de nouvelle opération{% endblock %}
 
 {% block body %}
-    <main>
-        {% if app.user %}
-        <div class="container-fluid pt-3">
-            <div class="box-element card card-solid">
-                <div class="card card-body" id="new_operation">
-                    <h3 class="fw-normal text-center" style="color:#e3151a;margin: 2px auto;">Creation de nouveau opération</h3>
-                    <p id="user"> {{ app.user.id }}  </p>
-                    <div>
-                        <div class="alert alert-danger text-center" role="alert" id="stock_actuelle">
-                        </div>
-                            {{ form_start(form) }}
-                            <div class="row">
-                                <div class="col-4">
-                                {{ form_row(form.produit, {'attr': {'class': 'form-control'}}) }}
+        <div class="row" >
+            <div class="col-12 pt-5">
+                <div style="box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.2); background-color: #e5eecf;">
+                    <div class="q-container p-4">
+                        <div class="row">
+                            <div class="col">
+                                <span class="head"> {% block titre %} Création de nouvelle opération {% endblock %}</span>
+                                <p id="user"> {{ app.user.id }}  </p>
+                                <div>
+                                    <div>
+                                        <p class="alert alert-danger text-center" role="alert" id="stock_actuelle"> </p>
+                                    </div>
+                                    <span style="display: none;" id="numero_sortie_max">
+                                        {{ numero_max }}
+                                    </span>
+                                    {{ form_start(form) }}
+                                        <div class="row">
+                                            <div id="type" class="col-4">
+                                            {{ form_row(form.types) }}
+                                            </div>
+
+                                            <div class="col-4" id="descriptions">
+                                            {{ form_row(form.descriptions) }}
+                                            </div>
+
+                                            <div class="col-4">
+                                            {{ form_row(form.Agence) }}
+                                            </div>
+
+                                            <div class="col-4">
+                                            {{ form_row(form.produit, {'attr': {'class': 'form-control'}}) }}
+                                            </div>
+
+                                            <div class="col-4">
+                                            {{ form_row(form.Categorie) }}
+                                            </div>
+
+                                            <div class="col-4" id="dateEntrer">
+                                            {{ form_row(form.dateEntrer) }}
+                                            </div>
+
+                                            <div class="col-4" id="utilisateur">
+                                            {{ form_row(form.User) }}
+                                            </div>
+
+                                            <div id="quantite" class="col-4">
+                                            {{ form_row(form.quantite) }}
+                                            </div>
+
+                                            <div id="numbre_planche" class="col-4">
+                                                {{ form_row(form.number_planche) }}
+                                            </div>
+
+                                            <div class="col-4" id="references">
+                                            {{ form_row(form.reference) }}
+                                            </div>
+
+                                            <div id="numero" class="col-4 disabled">
+                                                {{ form_row(form.number_sortie) }}
+                                            </div>
+
+                                            <div id="number_out" class="col-4">
+                                                {{ form_row(form.number_out) }}
+                                            </div>
+                                            <div id="bouton" class="col-4 mt-4">
+                                                <button type="button" id="button_generate" class="btn btn-primary btn-sm">modifier le numero de sortie</button> 
+                                            </div>
+                                            
+                                            <div class="text-center mt-4">
+                                                    {{ form_row(form.submit, { 'label': 'Valider','attr': {'class': 'btn btn-primary'} }) }}
+                                            </div>
+                                        </div>
+                                    {{ form_end(form) }}</p>
                                 </div>
-                                <div class="col-4">
-                                {{ form_row(form.Categorie) }}
-                                </div>
-                                <div class="col-4">
-                                {{ form_row(form.Agence) }}
-                                </div>
-                                <div class="col-4" id="dateEntrer">
-                                {{ form_row(form.dateEntrer) }}
-                                </div>
-                                <div id="type" class="col-4">
-                                {{ form_row(form.types) }}
-                                </div>
-                                <div class="col-4" id="descriptions">
-                                {{ form_row(form.descriptions) }}
-                                </div>
-                                <div class="col-4" id="utilisateur">
-                                {{ form_row(form.User) }}
-                                </div>
-                                <div id="quantite" class="col-4">
-                                {{ form_row(form.quantite) }}
-                                </div>
-                                <div class="col-4">
-                                {{ form_row(form.reference) }}
-                                </div>
-                                <div id="numero" class="col-4">
-                                {{ form_row(form.numero_de_sortie) }}
-                                </div>
+                                {% if isSubmit  %}
+                                   <form action="{{path('mouvement_controller_crud_index')}}">
+                                        <table class="table">
+                                            <tr>
+                                                <th>Produits</th>
+                                                <th>Categorie</th>
+                                                <th>Destination/References</th>
+                                                <th>Quantite</th>
+                                                <th>Numero de sortie</th>
+                                                <th>Date d'operation</th>
+                                                <th>Types</th>
+                                            </tr>
+                                            {% for value in moov %}
+                                                <tr>
+                                                    <td> 
+                                                        {{ value.product }} 
+                                                    </td>
+                                                    <td> 
+                                                        {{ value.categorie }} 
+                                                    </td>
+                                                    <td> 
+                                                        {{ value.destination }} 
+                                                    </td>
+                                                    <td> 
+                                                        {{ value.nombre|abs }} 
+                                                    </td>
+                                                    <td> 
+                                                        {{ value.numero }} 
+                                                    </td>
+
+                                                    <td> 
+                                                        {{ value.date_op|format_date(locale='fr') }} 
+                                                    </td>
+                                                    <td> 
+                                                        {{ value.types }} 
+                                                    </td>
+
+                                                    <td class="actions actions-as-dropdown">
+
+                                                        <div class="dropdown user-menu-wrapper">
+                                                            <a  class="user-details" type="button" data-bs-toggle="dropdown" data-bs-offset="0,5" aria-expanded="false">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" height="21" width="21" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+                                                                </svg>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                                                                <li class="dropdown-user-details"> 
+                                                                    <a href="{{ path('mouvement_controller_crud_show', {'id': value.id}) }}" class="dropdown-item action-edit">Detail</a>
+                                                                </li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a href="{{ path('mouvement_controller_crud_edit', {'id': value.id}) }}" class="dropdown-item action-edit">Modifier</a> 
+                                                                </li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                    <li>
+                                                                    <form method="post" action="{{ path('mouvement_controller_crud_delete', {'id': value.id}) }}" onsubmit="return confirm('Vous etes sur pour supprimer le categorie : {{ value.categorie }}');">
+                                                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ value.id) }}">
+                                                                        <button class="btn btn-ligth btn-sm">Supprimer </button>
+                                                                    </form>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </table>
+                                        <div class="text-center mt-4">
+                                            <input type="submit" value="Créer operation" class="btn btn-primary btn-sm"/>
+                                        </div>
+                                    </form>
+                                {% else %}
+                                </br>
+                                {% endif %}
+                                <a href="{{ path('mouvement_controller_crud_index') }}" class="btn btn-primaary btn-sm"><i class="fa fa-list"></i> Afficher la liste</a>
                             </div>
-                            {{ form_end(form) }}</p>
+                        </div>
                     </div>
-                    <a href="{{ path('mouvement_controller_crud_index') }}">Afficher la liste</a>
-                    
                 </div>
             </div>
-            
-        </div>
-        {% else %}
-        <h1>Page not found 404 </h1>
-
-        <p>
-            The requested page couldn't be located. Checkout for any URL
-            misspelling or <a href="{{ path('homepage') }}">return to the authentification </a>.
-        </p>
-        {% endif %}   
-    </main>
+        </div>  
 {% endblock %}
+

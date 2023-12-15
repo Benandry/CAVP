@@ -1,0 +1,18 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-6">
+        {{ form_row(form.type_order_short) }}
+        {{ form_row(form.type_order_long) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(form.other_type) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-center mt-4">
+            {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary'} }) }}
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}

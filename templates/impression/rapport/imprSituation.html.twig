@@ -15,7 +15,7 @@
                 font-family: italic;
             }
         </style>
-        <title>Impression de situation generale | Paositra malagasy</title>
+        <title>Situation générale CAVP-{{ month}}-{{ year}}</title>
     </head>
     <body onload="window.print()">
         {# ##################################    Dictionaire de l'annee ##################################################}
@@ -23,30 +23,21 @@
         {##################################################################################################################}
     <main>
         {% if app.user %}
-        {% set mois = 'now' | date('F') %}
-        <h4 class="fw-bold">Situation Générale de la situation des stocks des Valeurs Postales, Mois du {{ mois[month] }} {{ year }}</h4>
+    <div class="container-fluid p-2">
+        <h4 class="fw-bold text-center">Situation Générale de la situation des stocks des Valeurs Postales, Mois du {{ mois[month] }} {{ year }}</h4>
         <div class="table responsive-xxl">
-            <table class="table table-bordered table-hover" >
+            <table class="table table-striped" id="myTablet">
                 <thead>
-                    <tr>
-                        <th>Produits
-                        </th>
-                        <th>Quantité de stock initial
-                        </th>
-                        <th>Valeur de stock initial
-                        </th>
-                        <th>Produits recus quantité
-                        </th>
-                        <th>Produits recus valeur
-                        </th>
-                        <th>Produits sortie quantité
-                        </th>
-                        <th>Produits sortie valeur
-                        </th>
-                        <th>Stock final quantité
-                        </th>
-                        <th>Stock final valeur
-                        </th>
+                    <tr class="table-titre">
+                        <th>Produits</th>
+                        <th>Stock initial quantité</th>
+                        <th>Stock initial valeur</th>
+                        <th>Produits recus quantité</th>
+                        <th>Produits recus valeur</th>
+                        <th>Produits sortis quantité</th>
+                        <th>Produits sortis valeur</th>
+                        <th>Stock final quantité</th>
+                        <th>Stock final valeur</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,47 +49,60 @@
                 {% set sumQuantSortie = 0 %}
                 {% set sumValSortie = 0 %}
                 {% set sumValRRecus = 0 %}
-                    {% for key,value in courant %}
-                        <tr>
-                            {% for key2, value2 in value %}             
-                                {% if key2 =='nomProduit' %}
-                                    <td> {{ value2 }} </td> 
-                                {% elseif key2 =='quantite_init' %}
-                                    {% set valeur = initial[key][0] %}
-                                    {% set sumQuantInt = sumQuantInt + valeur %} 
-                                    <td> {{ valeur|number_format(0,',', ' ') }} </td> 
-                                {% elseif key2 =='valeur_init' %}
-                                    {% set valeur = init[key]['prix_net'] %}
-                                    {% set sumValueInit = sumValueInit + valeur %} 
-                                    <td> {{ valeur|number_format(0,',', ' ') }} </td> 
-                                {% elseif key2 =='qunad_recus' %}
-                                    {% set valeur = quantiteEntrer[key][0] %}
-                                    {% set sumQuantEntrer = sumQuantEntrer + valeur %} 
-                                    <td> {{ valeur|number_format(0,',', ' ') }} </td> 
-                                {% elseif key2 =='val_recus' %}
-                                    {% set valeur = valeurEntrer[key][0] %}
-                                    {% set sumValRRecus = sumValRRecus + valeur %}
-                                    <td> {{ valeur|number_format(0,',', ' ') }} </td> 
-                                {% elseif key2 =='quantite_sortie' %}
+                {% for key,value in courant %}
+                    <tr>
+                        {% for key2, value2 in value %}             
+                            {% if key2 =='nomProduit' %}
+                                <td> {{ value2 }} </td> 
+                            {% elseif key2 =='quantite_init' %}
+                                {% set valeur = initial[key][0] %}
+                                {% set sumQuantInt = sumQuantInt + valeur %} 
+                                <td> {{ valeur|number_format(0,',', ' ') }} </td> 
+                            {% elseif key2 =='valeur_init' %}
+                                {% set valeur = init[key]['prix_net'] %}
+                                {% set sumValueInit = sumValueInit + valeur %} 
+                                <td> {{ valeur|number_format(0,',', ' ') }} </td> 
+                            {% elseif key2 =='qunad_recus' %}
+                                {% set valeur = quantiteEntrer[key][0] - initial[key][0] %}
+                                {% set sumQuantEntrer = sumQuantEntrer + valeur %} 
+                                <td> {{ valeur|number_format(0,',', ' ') }} </td> 
+                            {% elseif key2 =='val_recus' %}
+                                {% set valeur = valeurEntrer[key][0] - init[key]['prix_net'] %}
+                                {% set sumValRRecus = sumValRRecus + valeur %}
+                                <td> {{ valeur|number_format(0,',', ' ') }} </td> 
+                            {% elseif key2 =='quantite_sortie' %}
+                                {% if quantiteOut is empty %}
+                                    {% set valeur = 0 %}
+                                    {% set sumQuantSortie = sumQuantSortie + valeur %} 
+                                    <td> {{ valeur|number_format(0,',', ' ') }} </td>
+                                {% else %}
                                     {% set valeur = quantiteOut[key][0]|abs %}
                                     {% set sumQuantSortie = sumQuantSortie + valeur %} 
                                     <td> {{ valeur|number_format(0,',', ' ') }} </td> 
-                                {% elseif key2 =='val_sortie' %}
+                                {% endif %}
+                            {% elseif key2 =='val_sortie' %}
+
+                                    {% if valueOut is empty %}
+                                        {% set valeur = 0 %}
+                                        {% set sumValSortie = sumValSortie + valeur %} 
+                                        <td> {{ valeur|number_format(0,',', ' ') }} </td> 
+                                {% else %}
                                     {% set valeur = valueOut[key][0]|abs %}
                                     {% set sumValSortie = sumValSortie + valeur %} 
                                     <td> {{ valeur|number_format(0,',', ' ') }} </td> 
-                                {% elseif key2 =='quantite_actuelle' %}
-                                    {% set valeur = courant[key]['quantite_actuelle'] %}
-                                    {% set sumQuantCurrent = sumQuantCurrent + valeur %} 
-                                    <td> {{ valeur|number_format(0,',', ' ') }} </td>
-                                {% elseif key2 =='value_actuelle' %}
-                                    {% set valeur = courant[key]['prix_net'] %}
-                                    {% set sumActuel = sumActuel + valeur %} 
-                                    <td> {{ valeur|number_format(0,',', ' ') }} </td>
                                 {% endif %}
-                            {% endfor %}
-                        </tr>
-                    {% endfor %}
+                            {% elseif key2 =='quantite_actuelle' %}
+                                {% set valeur = courant[key]['quantite_actuelle'] %}
+                                {% set sumQuantCurrent = sumQuantCurrent + valeur %} 
+                                <td> {{ valeur|number_format(0,',', ' ') }} </td>
+                            {% elseif key2 =='value_actuelle' %}
+                                {% set valeur = courant[key]['prix_net'] %}
+                                {% set sumActuel = sumActuel + valeur %} 
+                                <td> {{ valeur|number_format(0,',', ' ') }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
                    <tfoot>
                         <tr>
                             <th>
@@ -137,10 +141,10 @@
                 </tbody>
             </table>
             <div>
-                <p>Arreté a la valeur initial de : <span class="text-uppercase" id="init"> </span> ARIARY<p>
-                <p>Arreté a la valeur entrée de : <span class="text-uppercase" id="enter"> </span> ARIARY<p>
-                <p>Arreté a la valeur Sortie de : <span class="text-uppercase" id="out"> </span> ARIARY<p>
-                <p>Arreté a la valeur actuelle de : <span class="text-uppercase" id="current"> </span> ARIARY<p>
+                <p>Arreté à la valeur initiale de : <span class="text-uppercase" id="init"> </span> ARIARY<p>
+                <p>Arreté à la valeur entrée de : <span class="text-uppercase" id="enter"> </span> ARIARY<p>
+                <p>Arreté à la valeur Sortie de : <span class="text-uppercase" id="out"> </span> ARIARY<p>
+                <p>Arreté à la valeur actuelle de : <span class="text-uppercase" id="current"> </span> ARIARY<p>
             </div>
         </div>
         <div class="d-flex flex-row-reverse bd-highlight">

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -7,63 +6,31 @@
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
     </head>
+
     <body>
-    <header>
-        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand titre fw-bold" href="{{ path('homepage', {'source':'page d\'acceuil de CAVP'}) }}"> CAVP Paositra Malagasy</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    {% if app.user %}
-                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                            <li class="nav-item">
-                            <a class="nav-link liens" aria-current="page" href="{{ path('admin', {'source':'administrateur'}) }}"><i class='fas fa-user-cog' class="admin"></i> Administrateur</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link liens" href="{{ path('Product_dispo', {'source':'produitsdisponible'}) }}" ><i class='fas fa-coins' class="admin"></i> Recapitulation </a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link btn-lg liens"  href="{{ path('etat_de_stock', {'source':'etatdestock'}) }}"> <i class='fas fa-bacon' class="admin"></i> Etat de Stock</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link btn-lg liens"  href="{{ path('history', {'source':'compterendu '}) }}"> <i class="fas fa-file-alt"></i>  Compte Rendu</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link btn-lg liens"  id="ordre_de_sortie" href="{{ path('order_out', {'source':'ordredesortie'}) }}"> <i class='fas fa-external-link-alt'></i>  Ordre de sortie</a>
-                            </li>
-                        </ul>
-                        <div class="d-flex">
-                            <a href="{{ path('app_logout', {'source':'deconnecter'}) }}" class="btn btn-outline-danger btn-sm"> <i class="fa-solid fa-user"></i>Deconnexion</a>
-                        </div>
-                    {% else %}
-                        <span class="float-end">
-                            <a href="{{ path('app_login', {'source':' connecter '}) }}" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-user"></i>Connexion</a>
-                        </span>
-                    {% endif %}
-                </div>
+        <div class="container-custom">
+            <div class="content-custom">
+                {# SIdebar   #}
+                    {% include "_parseall/sidebar.html.twig" %}
+                {# main #}
+                <section class="main-custom">
+                    {# Navbar #}
+                    <header>
+                        {% include "_parseall/_navbar.html.twig" %}
+                    </header>
+                    <section class="section-title-menu">
+                        <h2 class="custom-title"> {% block head_page %} <i class="fa fa-home" aria-hidden="true"></i>  Admin de CAVP{% endblock %}</h2>
+                    </section>
+                    
+                    <section class="section-main">
+                        {% block main %}
+                                    
+                        {% endblock %}
+                    </section>
+            </section>
             </div>
-        </nav>
-    </header>
-    {% block body %}
-    <main>
-    </main>
-    {% endblock %}
-
-  <!-- FOOTER -->
-
-
-  
-<footer class="footer mt-auto py-3 bg-light">
-  <div class="container">
-        <p>
-            &copy; Copyright <span style="color:#498000;">{{ 'now' | date('Y') }}</span> Paositra Malagasy <i style="color:#e3151a;" class="fa-thin fa-barcode"></i>
-            <a href="paositramada.mg/cavp"> Paositramalagasy CAVP </a>
-        </p>
-  </div>
-</footer>
-        {% block javascripts %}
+        </div>  
+        {% block javascript %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </body>

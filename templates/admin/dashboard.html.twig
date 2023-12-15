@@ -3,9 +3,49 @@
 {% block title %}<title> Page d'administration de CAVP </title>{% endblock %}
 
 {% block main %}
-    <h2 class="fw-bold" style="color: #e31419;">Bienvenu dans l'espace d'administration de CAVP </h2>
-        <p>
-            <span>Vous etes connectée en tant que <b>{{ app.user.nom}}</b> .<span><br/>
-            Cette page  est accédée uniquement pour les utilisateurs qui ont les roles Admin
-        </p>
+        <div class="text-center mb-4">
+            <h3 class="fw-bold">Administration de CAVP </h3>
+            <hr class="featurette-divider">
+            <div class="information">
+                <div class="row">
+                    <div class="col-m-12">
+                        <h5 class="fw-bold">Informations</h5> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 py-2">
+                        <img loading="lazy" width="300" src="{{ asset('build/images/cavp-accueil.png') }}" class="img-fluid"/>
+                    </div>
+                    <div class="col-md-8 col-sm-12 py-5">
+                        <p>
+                            Centre d'Approvisionement des Valeurs Postales est la fusion du Centre d’approvisionnement en Timbres-Poste et le Service Philatélique auparavant. 
+                            Il est rattaché directement à la Direction des Opérations Postales. Le CAVP est composé de : section commande, section expédition et secrétariat
+                            Le CAVP assure l’approvisionnement des bureaux en valeurs postales tel que Timbre-poste et Produits Nouveaux Postaux (autres produits et produits philatéliques qu’il confectionne par ses soins).
+                            <br/> 
+                            Il effectue la vente par correspondance à l’Etranger, et gère les comptes de réserve des philatélistes. Le CAVP élabore le catalogue des produits philatéliques dont il dispose au caveau.</br>
+                            <br/>
+                            CAVP est la fusion du Centre d’approvisionnement en Timbres-Poste et le Service Philatélique auparavant.
+                            Il est rattaché directement à la Direction des Opérations Postales.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="bilan">
+                <div class="row">
+                    <div class="col-m-12">
+                        <h5 class="fw-bold">Bilan graphique generale</h5> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 py-2">
+                        {# <img loading="lazy" width="300" src="{{ asset('build/images/cavp-accueil.png') }}" class="img-fluid"/> #}
+                    </div>
+                    <div class="col-md-6 col-sm-12 py-5">
+                        
+                    </div>
+                </div>
+            </div>
+            {# <img loading="lazy" width="350" height="350" src="{{ asset('build/images/LOGOpaositra.png') }}" style="border-radius: 10px;"/><br/> #}
+           
+        </div>
 {% endblock %}

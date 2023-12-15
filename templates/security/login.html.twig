@@ -1,56 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Authentification de cavp | Paositra Malagasy </title>
    {{ encore_entry_link_tags('app') }}
    {{ encore_entry_script_tags('app') }}
+    <title>Authentification de cavp | Paositra Malagasy </title>
 </head>
-<body>
-    <section class="vh-100" style="background-color: #ffffff;" >
-        <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col col-xl-10">
-                    <div class="col-lg-6 col-sm-6" >
-                        <div class="box-element card card-solid" id="card-solid">
-                            <div class="card card-body">
-                                <form method="post">
-                                    <div class="d-flex align-items-center mb-3 pb-1">
-                                        <h3 class="h3 fw-normal" style="color:#e3151a;margin: 2px auto;"> Authentification de CAVP </h3>
-                                    </div>
-                                    <div class="form-outline mb-4">
-                                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" required class="form-control validate" autocomplete="email" placeholder=" Adresse email" required />                                         
-                                    </div>
-                                    <hr style="color: red;"></hr>
-                                    <div class="form-outline mb-4">
-                                        <input type="password" name="password" id="inputPassword" class="form-control validate" autocomplete="current-password" placeholder="Password" required />
-                                    </div>
-                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
-                                    {#
-                                        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                                        See https://symfony.com/doc/current/security/remember_me.html
-
-                                        <div class="checkbox mb-3">
-                                            <label>
-                                                <input type="checkbox" name="_remember_me"> Remember me
-                                            </label>
-                                        </div>
-                                    #}
-                                    <div class="pt-1 mb-4">
-                                        <button class="btn btn-danger btn-sm btn-block" type="submit">Connexion</button>
-                                    </div>
-                                        <p class="mb-5 pb-lg-2" style="color: #393f81;">Vous n'avez pas de compte ? 
-                                        Contacter au(x) administrateur(s) de CAVP
-                                        </p>
-                                </form>
-                            </div>
+<body> 
+    <div class='content-login-custom'>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    {% if error %}
+                        <div class="alert alert-danger text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    <div class="containerLog mb-5">
+                        <div class="headerLog">
+                            <img loading="lazy" width="125" src="{{ asset('build/images/LOGOpaositra.png') }}" class="img-fluid mt-1"/>
                         </div>
-                    </div>    
+                        <div class="mainLog">
+                            <form method="post">
+                                <span class="textbox">
+                                    <i class="fa fa-circle-user" aria-hidden="true"></i>
+                                    <input type="text" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" placeholder="Username" required />
+                                </span><br>
+                                <span class="textbox">
+                                    <i class="fa fa-lock"></i>
+                                    <input type="password" name="password" id="inputPassword" autocomplete="current-password" placeholder="Password" required />
+                                </span><br>
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                                <button class="button"type="submit">Connexion</button>
+                            </form>
+                            <p class="mb-4 pb-lg-2 contact"> 
+                                <a href="{{ path('guide', {'source':'guide_utilisation'}) }}" > Mode d'utilisation</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
 </body>
 </html>
- 

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Centre d'Approvisionnement en Valeurs Postales (CAVP) | Paositra malagasy!{% endblock %}</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+
+        
+    {# ##################################    Dictionaire de l'annee ##################################################}
+     {% set mois = {'01' : 'Janvier','02' : 'Fevrier','03' : 'Mars','04' : 'Avril','05' : 'Mai','06' : 'Juin','07' : 'Juillet','08' : 'Août', '09' : 'Septembre','10' : 'Octobre','11' : 'Novembre','12' : 'Décembre' } %}
+    {##################################################################################################################}
+    {% if app.user %}
+        <body>
+            <div class="container-fluid">
+                <div class="row rowbase">
+                    <div class="col">
+                        <nav class="navbar p-2">
+                            <h4 class=" justify-content-center text-white p-2"> CAVP</h4>
+                            <h5 class="text-white"> {% block titre %} {% endblock %}</h5>
+                            <div class="dropdown user-menu-wrapper">
+                                <a  class="user-details" type="button" data-bs-toggle="dropdown" data-bs-offset="0,5" aria-expanded="false">
+                                    <span class="user-avatar">
+                                        <span class="fa-stack">
+                                            <i class="user-avatar-icon-background fas fa-square fa-stack-2x" style="color: #E3161B;"></i>
+                                            <i class="user-avatar-icon-foreground fa fa-user fa-stack-1x fa-inverse"></i>
+                                        </span>
+
+                                    </span>
+                                    <span style="color: #fff;"> {{ app.user.nom }} </span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                                    <li class="dropdown-user-details text-center"> 
+                                        <div>                            
+                                            <span class="user-avatar">
+                                                <span class="fa-stack">
+                                                    <i class="user-avatar-icon-background fas fa-square fa-stack-2x" style="color: #E3161B;"></i>
+                                                    <i class="user-avatar-icon-foreground fa fa-user fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span class="user-label" style="font-size: 13px;">Connecté en tant que</span>
+                                            <span class="user-name user" style="font-size: 13px">{{ app.user.nom }}</span>
+                                        </div>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a href="{{ path('app_load', {'source':'deconnecter'}) }}" class="dropdown-item user-action" target="_self" rel="" referrerpolicy="origin-when-cross-origin">
+                                            <i class="fa fa-fw fa-sign-out"></i>
+                                            <span class="deconnecter"> Déconnexion </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div class="row flex-nowrap rowbase">
+                    <div class="col-2 sidebar">
+                        <div class="row">
+                            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100 ">
+                                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                                    <li class="nav-item">
+                                        {# <a href="{{ path('homepage',{'source':'page acceuil de CAVP'}) }}" class="nav-link align-middle px-0">
+                                            <img class="img-fluid" src="{{ asset('build/images/LOGOpaositra.png') }}" width="150" alt="LOGO">
+                                        </a> #}
+                                    </li>
+                                    <div class="card p-3" style="background-color: #004387;" width="30rem;">
+                                        <li>
+                                            <a href="{{ path('admin', {'source':'administrateur'}) }}" class="nav-link px-0 align-middle">
+                                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline text-white" style="font-size: 14px;"> <i class='fas fa-lock'></i> Administrateur</span>
+                                            </a>
+                                        </li>
+                                        {# <li>
+                                            <a href="{{ path('Product_dispo', {'source':'produitsdisponible'}) }}" class="nav-link px-0 align-middle">
+                                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline text-white" style="font-size: 14px;"><i class='fas fa-coins'> </i> Récapitulation</span>
+                                            </a>
+                                        </li> #}
+                                        
+                                        {# <li>
+                                            <a href="{{ path('etat_de_stock', {'source':'etatdestock'}) }}" class="nav-link px-0 align-middle">
+                                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline text-white" style="font-size: 14px;"><i class='fas fa-bacon'></i> Etat de stock</span>
+                                            </a>
+                                        </li> #}
+                                        {# <li>
+                                            <a href="{{ path('history', {'source':'compterendu '}) }}" class="nav-link px-0 align-middle">
+                                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline text-white" style="font-size: 14px;"> <i class="fas fa-file-alt"> </i> Compte rendu</span> 
+                                            </a>
+                                        </li> #}
+                                        {# <li>
+                                            <a href="{{ path('order_out', {'source':'ordredesortie'}) }}" class="nav-link px-0 align-middle">
+                                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline text-white" style="font-size: 14px;"> <i class="fa-sharp fa-solid fa-rocket"></i> Ordre de sortie</span> 
+                                            </a>
+                                        </li> #}
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-10 bg-light mh-100">
+                        {% block body %}
+                    
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+            
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+        </body>
+     {% else %}
+        <h1>Page non trouvée 404 </h1>
+        <p>
+            The requested page couldn't be located. Checkout for any URL
+            misspelling or <a href="{{ path('app_login') }}">return to the authentification </a>.
+        </p>
+    
+    {% endif %}
+</html>

@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Listes produits{% endblock %}
+{% block head_page %} Listes produits{% endblock %}
+{% block main %}
+   <div class="q-container">
+       <div class="row">
+            <div class="col-md-12">
+                <div class="row m-2">
+                    <div class="col-md-12 mb-2">
+                        <div style="display: flex; justify-content:flex-end;">
+                            <a href="{{ path('app_admin_new_product') }}"><button class="btn btn-primary btn-sm">Créer un produit </button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-2">
+                    <div class="col-md-12">
+                        <table id="config-table" class="display table table-bordered table-hover">
+                            <thead>
+                                <tr class="table-titre">
+                                    <th class="title fw-bold">Nom du produits </th>
+                                    <th class="title fw-bold">Abbreviation </th>
+                                    <th class="title fw-bold">Types d'ordres </th>
+                                    <th class="title fw-bold">Actions </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in products %}
+                                <tr>
+                                    <td> {{ product.product_name }}</td> 
+                                    <td>{{ product.abbvr }}</td>
+                                    <td>{{ product.type_order_long }} ({{ product.type_order_short }}) </td>
+                                    <td>
+                                        <div class="row data-actions">
+                                            <div class="col-md-6">
+                                                    <a href="{{ path('app_admin_edit_product',{ id : product.id}) }}">
+                                                        <button class="btn btn-primary btn-sm"> Modifier </button>
+                                                    </a>
+                                            </div>
+                                            {# <div class="col-md-6">
+                                                {% include "admin/config/product/_delete.html.twig" %}
+                                            </div> #}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>  
+                </div>  
+            </div>  
+        </div>
+    </div>
+{% endblock %}

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Impression de produits {{ init.0.Produits }}  | Paositra malagasy</title>
+        <title>{{ init.0.Produits }}-CAVP{{ month}}-{{ year}}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -12,19 +12,19 @@
      {% set mois = {'01' : 'Janvier','02' : 'Fevrier','03' : 'Mars','04' : 'Avril','05' : 'Mai','06' : 'Juin','07' : 'Juillet','08' : 'Aout', '09' : 'Septembre','10' : 'Octobre','11' : 'Novembre','12' : 'Décembre' } %}
     {##################################################################################################################}
         {% if app.user %}
-            <div class="container">
-                <h3 class="text-danger">Etat de stock produit : {{ init.0.Produits }} au mois de {{ mois[month] }} {{ year }}  </h3>
+            <div class="container-fluid p-2">
+                <h4 class="fw-bold"> Etat de stock produit {{ init.0.Produits }} au mois de {{ mois[month] }} {{ year }}  </h4>
                 <div class="table responsive-xxl">
-                    <table class="table table-bordered table-hover" >
+                    <table class="table table-bordered table-striped" id="myTablet">
                         <thead>
-                            <tr>
+                            <tr class="table-titre">
                                 <th> Ordre</th>
                                 <th> Categorie </th>
                                 <th>Valeur Faciales</th>
                                 <th>Stock initial</th>
                                 <th>Entrée</th>
                                 <th>Sortie</th>
-                                <th>Stock Acteul </th>
+                                <th>Stock Final </th>
                             </tr>
                         </thead>
                         <tbody id="table">

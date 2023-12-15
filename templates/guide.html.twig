@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+     <title>Manuel d'utilisation de l'application CAVP</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    </head>
+    <body>
+        <div class="container-fluid p-3">
+            <div class="row">
+                <div class="col-12">
+                    <h4>Manuel d'utilisation de l'application de centre d'approvisionnement en valeurs postales</h4>
+                    <h5> 1 - Definition  </h5>
+                    <p class="mt-2">
+                        Centre d’approvisionnement  en valeurs postales est la fusion du centre d’approvisionnement en Timbres-Poste et le Service Philatélique auparavant .
+                        Il est rattaché directement à la Direction des Opérations Postales.
+                    </p>
+
+                    <h5> 2 - Authentification/Deconnexion  </h5>
+                    <p class="mt-2">
+                        - Avant tous . il faut connecter au login pour acceder dans l'application. Voici le lien vers l'authentification <a href="{{ path('app_login')}}"> Connecter </a><br/>
+                        - Contacter au(x) administrateur(s) de Centre d'Approvisionement des Valeurs Postales si vous n'avez pas de compte utilisateur <br/>
+
+                        Si vous avez abandonnée cliquer sur l'icon de petit homme sur l'ecran droite <br><br/>
+                    </p>
+
+                    <h5> 2 - Application CAVP en général </h5>
+                    <p class="mt-2">
+                        Quand vous êtes connecter , vous voyez la page d’accueil et les menu sur cette application comme l’administration, récapitulation ,état de stock , compte rendu et ordre de sortie.
+                    </p>
+                    <h6> a - Page d'administration </h6>
+                    <p>
+                        Cette page est important parce que tous les déroulements de l’application a partir de cette page.<br/>
+                        <strong><u> i - Acceuil : </u> </strong><br/>
+                         Retourner a la page d’accueil de CAVP.<br/><br/>
+
+                        <strong><u> ii - Produits : </u></strong> <br/>
+                            Cliquer sur l'option pour voir les action qu’on peut faire. Tel que la création de nouvelle produit et voir les listes des produits existants.<br/><br/> 
+
+                        <strong><u> iii - Catégorie : </u></strong> <br/>
+                            Cliquer sur l'option pour voir les action qu’on peut faire. Tel que la création de nouvelle catégorie  et voir les listes des catégorie existants.</br><br/>
+
+                        <strong><u> iv - Opération sur stock : </u></strong> <br/>
+                            Cliquer sur cett option pour voir les action qu’on peut faire. Dans cette menu déroulant on peut faire de nouvelle opération(entrée/sortie)  et voir les listes des opérations déjà faites.</br><br/>
+                        <strong><u> v - Utilisateur : </u></strong> <br/>
+                            On peut creer de nouvelle utilisateur grâce a cette option. Ce qu'on déjà dit sur le login, l'administrateur de cavp peut seulement créer d'utilisateur.
+                            Si l’utilisateur a de compte on peut se passer au l’authentification de CAVP <a href="{{ path('app_login')}}"> Connecter </a><br/><br/>
+                        <strong><u> vi - Utilisateur : </u></strong><br/>
+                            Enfin ,cette option est pour les agences de PAOSITRA MALAGASY dans cette menu déroulant on voit tous les listes des Agences et on peut aussi le créer. 
+                    </p>
+                    <h6> b - Récapitulation :</h6>
+                    <p>
+                        Il y a deux onglets dans cette menu : Ce sont Récapitulation générale et Situation générale représenter par de tableau.On peut filtrer les resultats par mois et année <br/>
+                        <strong><u> i - Récapitulation générale : </u></strong> <br/>
+                        Cette onglets represente tous les produits disponible avec leurs nombres et valeurs respectives.<br/><br/>
+
+                        <strong><u> ii - Situation générale : </u></strong> <br/>
+                        Cette onglets represente tous les opérations(etat initiale ,entrée,sortie et finale) en details sur produits avec leurs nombres et valeurs respectives.<br/><br/>
+                    </p>
+
+                    <h6> c - Etat de stock :</h6>
+                    <p>
+                        Dans cette lien nous voyons l'état de stock par catégorie c’est a dire le stock initial , nombre de catégorie entrée , nombre de catégorie sortie et le stock finale.
+                        Si vous voullez de voir sur les catégories d'un produit vous pouvez Cliquer sur bouton selectionner "produits".On peut aussi filtrer les resultats par mois et année <br/>
+                    </p>
+
+                    <h6> d - Compte rendu :</h6>
+                    <p>
+                        Cliquer sur cette menu pour voir les historique sur les opérations comme les date les nom de produit respectifs et aussi les destinations et les references. Il ya aussi des menu déroulements sur la partie haute gauche pour filtrer les catégories entrées, sorties et integrées(requisitionner)
+                    </p>
+
+                    <h6> e - Ordre de sortie :</h6>
+                    <p>
+                        On trouve dans cette menu les recapitulation ,repartitions et les bordereau d'envoi par agences sur les catégories sorties avec les types de produits et numero de sortie respectifs.
+                    </p>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </body>
+</html>
+

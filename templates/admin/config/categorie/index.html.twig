@@ -1,0 +1,65 @@
+{% extends "base.html.twig" %}
+{% block title %} Listes Types d'ordre{% endblock %}
+{% block head_page %} Listes Types d'ordre{% endblock %}
+{% block main %}
+   <div class="q-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row m-2">
+                <div class="col-md-12">
+                    <div style="display: flex; justify-content:flex-end;">
+                        <a href="{{ path('app_create_category') }}"><button class="btn btn-primary btn-sm">Créer un Categorie </button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-md-12">
+                    <table id="config-table" class="display table table-bordered table-hover">
+                        <thead>
+                            <tr class="table-titre">
+                                <th class="title fw-bold">Categorie </th>
+                                <th class="title fw-bold">Ordre  </th>
+                                <th class="title fw-bold">Produit </th>
+                                <th class="title fw-bold">Valeur Faciale </th>
+                                <th class="title fw-bold">Prix de vente</th>
+                                <th class="title fw-bold">Annee emission</th>
+                                <th class="title fw-bold">Cote emission</th>
+                                <th class="title fw-bold"> TP / PL</th>
+                                <th class="title fw-bold"> Actions </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for categorie in categories %}
+                                <tr>
+                                    <td> {{ categorie.NomDeCategorie }}</td> 
+                                    <td>{{ categorie.ordre }}</td>
+                                    <td>{{ categorie.nomProduit }}</td>
+                                    <td>{{ categorie.valeurFaciale }}</td>
+                                    <td>{{ categorie.prixDeVente }}</td>
+                                    <td>{{ categorie.coteEmission }}</td>
+                                    <td>{{ categorie.AnneeEmission }}</td>
+                                    <td>{{ categorie.tpParPl }}</td>
+                                    <td>
+                                        <div class="row data-actions">
+                                            <div class="col-md-6">
+                                                    <a href="{{ path('app_edit_category',{ id : categorie.id}) }}">
+                                                        <button class="btn btn-primary btn-sm"> Editer </button>
+                                                    </a>
+                                            </div>
+                                            {# <div class="col-md-6">
+                                                <a href="{{ path('app_users_lists') }}">
+                                                    <button class="btn btn-danger btn-sm"> Supprimer</button>
+                                                </a>
+                                            </div> #}
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>  
+            </div>  
+        </div>  
+    </div>  
+   </div>
+{% endblock %}

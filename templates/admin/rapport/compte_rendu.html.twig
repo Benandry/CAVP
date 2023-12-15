@@ -1,0 +1,164 @@
+
+{% extends 'base.html.twig' %}
+{% block title %}Compte Rendu{% endblock %}
+{% block head_page %}Compte Rendu{% endblock %}
+
+{% block main %}
+    {% set mois = {'01' : 'Janvier','02' : 'Fevrier','03' : 'Mars','04' : 'Avril','05' : 'Mai','06' : 'Juin','07' : 'Juillet','08' : 'Août', '09' : 'Septembre','10' : 'Octobre','11' : 'Novembre','12' : 'Décembre' } %}
+    <div class="q-container">
+        <div class="row">
+            {% if description == "" %}
+                <span class="head">{% block titre %}Compte rendu des opérations{% endblock %}</span>
+            {% elseif description == 1 %}
+            <h4 class="fw-bold text-center"> Compte rendu opérations entrées </h4>
+            {% elseif description == 2 %}
+            <h4 class="fw-bold text-center">Compte rendu produits Reintegrées </h4>
+            {% elseif description == 3 %}
+            <h4 class="fw-bold text-center">Compte rendu opérations Sorties </h4>
+            {% endif %}
+            <div class="col-md-12">
+                <span class="float-start">
+                    <div class="dropdown user-menu-wrapper">
+                        <a class="user-details text-decoration-none" style="font-size: 13px;" type="button" data-bs-toggle="dropdown" data-bs-offset="0,5" aria-expanded="false">
+                            Types d'opération
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="dropdownMenuLink">
+                            <li class="dropdown-user-details"> 
+                                <a href="{{ path('admin_compte_rendu', {'source':'tous les produits par categorie'}) }}" class="dropdown-item action-edit">Toutes opérations</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a href="{{ path('admin_compte_rendu',{description: 1}) }}" class="dropdown-item action-edit">Opérations Entrée</a> 
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a href="{{ path('admin_compte_rendu', {description: 2}) }}" class="dropdown-item action-edit">Réintégration</a> 
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a href="{{ path('admin_compte_rendu', {description: 4}) }}" class="dropdown-item action-edit">opérations Sortie</a> 
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                        </ul>
+                    </div>
+                </span>
+            </div>						
+            <div class="col-md-12">
+                <form action="{{ path('admin_compte_rendu') }}" class="float-end">
+                    <label for="mois"> Mois : </label>
+                        <select name="mois" id="mois">
+                            {% for keyMois, valueMois in mois %}
+                            {% set date = 'now' | date("m") %}
+                                {% if keyMois == date %}
+                                    <option value="{{ keyMois }}" selected>{{ valueMois }}</option>
+                                {% endif %}
+                                <option value="{{ keyMois }}"> {{ valueMois }} </option>
+                            {% endfor %}
+                        </select>
+                    <label for="year">Année : </label>
+                        <select name="year" id="year">
+                            {% set value = 2000 %}
+                            {% for i in 21..99 %}
+                                {% set date = 'now' | date('Y') %}
+                                {% set actuel = value + i %}
+                                {% if actuel == date %}
+                                    <option value="{{ actuel }}" selected>{{ actuel }}</option>
+                                {% endif %}
+                                <option value="{{ actuel }}">{{ actuel }}</option>
+                            {% endfor %}
+                        </select>
+                    <input type="submit" value="Trier" class="btn btn-primary btn-sm"/>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            {% for histo in history%}
+                <div class="col-sm-12">
+                    <div class="card card-solid p-3" width="20rem;">
+                        <h6 class="fw-normal"><img src="{{ asset('build/images/calendrier.png') }}" width="30" height="35">
+                            :
+                            <span class="text-uppercase prod">
+                                {{ histo.dat|format_date(locale='fr') }}( {{ histo.types_order }} )
+                            </span>
+                        </h6>
+                        <div>
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Ordre</th>
+                                        <th>Produits</th>
+                                        <th>Types de produit</th>
+                                        <th>Categorie</th>
+                                        {% if histo.types_order == 'Figurine Postale' %}
+                                            <th>Nombre planche </th>
+                                        {% endif %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <td>{{ histo.ordre }}</td>
+                                    <td>{{ histo.product }}</td>
+                                    <td> {{ histo.types_order }} </td>
+                                    <td>{{ histo.categorie }}</td>
+                                    {% if histo.types_order == 'Figurine Postale' %}
+                                        <td>{{ histo.number_planche }}</td>
+                                    
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <p>
+                                    <b>Action : </b>
+                                    <span class="prod">{{ histo.types }}</span>
+                                </p>
+                            {% if histo.descri == 4 %}
+                                <p>
+                                    <u><b> Nombre voulu : </b></u>
+                                    <span class="prod">{{ histo.nombre|abs }}</span>
+                                </p>
+                                </div>
+                                <div class="col-6">
+                                    <p>
+                                        <b>Déstination : </b>
+                                        <span class="prod">{{ histo.destination }}</span>
+                                        <br/><br/>
+                                        <b>Numéro de sortie :</b>
+                                        <span class="prod"> {{ histo.number_sortie }}</span>
+                                    </p>
+                                </div>
+                            {% elseif histo.descri == 1 %}
+                                <p>
+                                    <u><b>Nombre ajouté : </b></u>
+                                    <span class="prod">{{ histo.nombre|abs }}</span>
+                                </p>
+                                </div>
+                                <div class="col-6">
+                                    <p>
+                                        <b>Réference : </b>
+                                        <span class="prod">{{ histo.destination }}</span>
+                                    </p>
+                                </div>
+                            {% elseif histo.descriptions == 2 %}
+                                <p>
+                                    <u><b>Nombre de categorie(s) integrer au CAVP : </b> </u>
+                                    <span class="prod">{{ histo.nombre|abs }}</span>
+                                </p>
+                                </div>
+                                <div class="col-6">
+                                    <p>
+                                        <b>Réference : </b>
+                                        <span class="prod">{{ histo.destination }}</span>
+                                    </p>
+                                </div>
+                            {% endif %}
+                            {% if histo.types == "sortie"%}
+                                    <a href=" {{ path('admin_order_out',{types: histo.types_prod,numero: histo.number_sortie}) }} ">Ordre de sortie </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        <div>
+    </div>
+{% endblock %}
