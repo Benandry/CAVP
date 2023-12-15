@@ -1,12 +1,13 @@
 {
-  "build/app.css": "/build/app.79a424d9.css",
-  "build/app.js": "/build/app.ebf9e175.js",
+  "build/app.css": "/build/app.4f740596.css",
+  "build/app.js": "/build/app.fcefeb2c.js",
   "build/runtime.js": "/build/runtime.15cd3502.js",
-  "build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-e616e1.c830baa3.js": "/build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-e616e1.c830baa3.js",
+  "build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-e8c7f2.54b2e384.js": "/build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-e8c7f2.54b2e384.js",
   "build/images/TIMBRE 1200dpi.jpg": "/build/images/TIMBRE 1200dpi.jpg",
   "build/images/cavp-accueil.png": "/build/images/cavp-accueil.png",
   "build/images/pape.png": "/build/images/pape.png",
   "build/images/region-melaky.png": "/build/images/region-melaky.png",
+  "build/images/LOGOpaositra.png": "/build/images/LOGOpaositra.png",
   "build/images/faritra-sava.png": "/build/images/faritra-sava.png",
   "build/images/dikaobelahy.png": "/build/images/dikaobelahy.png",
   "build/images/faritra-alaotra-mangoro.png": "/build/images/faritra-alaotra-mangoro.png",
@@ -27,8 +28,9 @@
   "build/images/faritra-vatovavy-fitovinany.PNG": "/build/images/faritra-vatovavy-fitovinany.PNG",
   "build/images/region-boeny.png": "/build/images/region-boeny.png",
   "build/images/logo-PPT.webp": "/build/images/logo-PPT.webp",
+  "build/images/logo.png": "/build/images/logo.png",
+  "build/images/logo2.png": "/build/images/logo2.png",
   "build/images/calendrier.png": "/build/images/calendrier.png",
   "build/images/shopping-voucher-mail.png": "/build/images/shopping-voucher-mail.png",
-  "build/images/fond_degraderouge.png": "/build/images/fond_degraderouge.png",
-  "build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-18ec62.c8c472ee.js": "/build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-18ec62.c8c472ee.js"
+  "build/images/fond_degraderouge.png": "/build/images/fond_degraderouge.png"
 }

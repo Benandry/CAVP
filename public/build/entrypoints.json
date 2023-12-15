@@ -3,11 +3,11 @@
     "app": {
       "js": [
         "/build/runtime.15cd3502.js",
-        "/build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-e616e1.c830baa3.js",
-        "/build/app.ebf9e175.js"
+        "/build/vendors-node_modules_fortawesome_fontawesome-free_js_all_js-node_modules_symfony_stimulus-bri-e8c7f2.54b2e384.js",
+        "/build/app.fcefeb2c.js"
       ],
       "css": [
-        "/build/app.79a424d9.css"
+        "/build/app.4f740596.css"
       ]
     }
   }
