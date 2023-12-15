@@ -54,6 +54,11 @@ nav {
   padding: 2px 1.2rem;
   color: var(--color-text);
 }
+
+.custom-info span.user-log {
+  font-size: 15px;
+  font-weight: 600;
+}
 .hr-separate {
   margin: 0px 0.7rem;
   padding: 0;
