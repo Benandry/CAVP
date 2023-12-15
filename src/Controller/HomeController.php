@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace App\Controller;
 
 use App\Repository\AgenceRepository;
@@ -10,13 +11,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_homepage')]
-    public function index(AgenceRepository $agenceRepo,ProduitsRepository $productRepo,CategorieRepository $categorieRepo):Response
-    {
-      return $this->render('home/index.html.twig',[
-        'agence' => count($agenceRepo->findAll()),
-        'product' => 12,
-        'categorie' => count($categorieRepo->findAll()),
-      ]);
-    }
+  #[Route('/', name: 'app_homepage')]
+  public function index(AgenceRepository $agenceRepo, ProduitsRepository $productRepo, CategorieRepository $categorieRepo): Response
+  {
+    return $this->render('home/index.html.twig', [
+      'agence' => count($agenceRepo->findAll()),
+      'product' => 12,
+      'categorie' => 12,
+    ]);
+  }
 }
