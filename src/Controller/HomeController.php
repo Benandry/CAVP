@@ -16,8 +16,8 @@ class HomeController extends AbstractController
   {
     return $this->render('home/index.html.twig', [
       'agence' => count($agenceRepo->findAll()),
-      'product' => 12,
-      'categorie' => 12,
+      'product' => count($productRepo->findAll()),
+      'categorie' => count($categorieRepo->findAll()),
     ]);
   }
 }
