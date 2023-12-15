@@ -25,7 +25,7 @@ class Mouvement
     private $reference;
 
     #[ORM\ManyToOne(targetEntity: Agence::class, inversedBy: 'mouvements')]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\JoinColumn(nullable: false)]
     private $Agence;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'mouvements')]
@@ -47,9 +47,14 @@ class Mouvement
     #[ORM\JoinColumn(nullable: false)]
     private $descriptions;
 
-    #[ORM\ManyToOne(targetEntity: OrderSortie::class, inversedBy: 'mouvements')]
-    #[ORM\JoinColumn(nullable: true)]
-    private $numero_de_sortie;
+    #[ORM\Column(type: 'string', nullable: true)]
+    private $number_out;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $number_planche;
+
+    #[ORM\Column(type: 'string', nullable: true)]
+    private $number_sortie;
 
     public function __construct()
     {
@@ -169,14 +174,38 @@ class Mouvement
         return $this;
     }
 
-    public function getNumeroDeSortie(): ?OrderSortie
+    public function getNumberOut(): ?int
     {
-        return $this->numero_de_sortie;
+        return $this->number_out;
     }
 
-    public function setNumeroDeSortie(?OrderSortie $numero_de_sortie): self
+    public function setNumberOut(?int $number_out): self
     {
-        $this->numero_de_sortie = $numero_de_sortie;
+        $this->number_out = $number_out;
+
+        return $this;
+    }
+
+    public function getNumberPlanche(): ?int
+    {
+        return $this->number_planche;
+    }
+
+    public function setNumberPlanche(?int $number_planche): self
+    {
+        $this->number_planche = $number_planche;
+
+        return $this;
+    }
+
+    public function getNumberSortie(): ?string
+    {
+        return $this->number_sortie;
+    }
+
+    public function setNumberSortie(?string $number_sortie): self
+    {
+        $this->number_sortie = $number_sortie;
 
         return $this;
     }

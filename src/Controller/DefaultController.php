@@ -3,61 +3,54 @@
 namespace App\Controller;
 
 use App\Entity\Types;
+use App\Entity\Commune;
 use App\Entity\Mouvement;
 use App\Form\MouvementType;
 use App\Traitement\Traitement;
+use App\Entity\Commande;
+use App\Repository\CommandeRepository;
+use App\Repository\MouvementRepository;
+use App\Repository\SituationRepository;
+use App\Repository\TypesRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-//#[IsGranted('ROLE_ADMIN')]
 class DefaultController extends AbstractController
 {
-    /**
-    * @Route("/homepage", name="homepage")
-    */
-    public function homepage()
-    {
-        return $this->render('/home/homepage.html.twig');
-    }
-    /**
-    * @Route("/product_dispo", name="Product_dispo")
-    */
-    public function test(ManagerRegistry $doctrine,Traitement $traitement,Request $request)
+
+    #[Route('/admin/rapport/recaputilation', name: 'admin_recap')]
+    public function recaputilation(TypesRepository $repository,Traitement $traitement,Request $request)
     {
         /* ************************  Request *************** */
+        $month = $request->query->get('mois');
+        $year = $request->query->get('year');
 
-        $mois_annee = $request->query->get('ldate');
-        //dd($mois_annee);
-        if ($mois_annee == null) {
-            $mois_annee = date('Y-m');
+
+        if ($month == null && $year == null) {
+            $year = date('Y');
+            $month = date('m');
         }
-        $date_split = explode('-',$mois_annee);
-        $month = $date_split[1];
-        $year = $date_split[0];
-        //dd($year);
         
-        $product = $doctrine->getRepository(Types::class)->findByOne($month,$year);
-        $init = $doctrine->getRepository(Types::class)->findByInit($month,$year);
-        //dd($init);
-        $enter = $doctrine->getRepository(Types::class)->findByEnter($month,$year);
-       // dd($enter);
-        $out = $doctrine->getRepository(Types::class)->findByOut($month,$year);
-        //dd($out);
-        $current = $doctrine->getRepository(Types::class)->findByCurrent($month,$year);
+        $product = $repository->findByOne($month,$year);
+        $init = $repository->findByInit($month,$year);
+        $enter = $repository->findByEnter($month,$year);
+        $out = $repository->findByOut($month,$year);
+        $current = $repository->findByCurrent($month,$year);
         /* **************************************************************** */
+        
+        $out = $traitement->setSizeAll($out, $current, 'sortie');
+        $quantiterOut = $out['quantite'];
         
         $entrer = $traitement->setSizeAll($enter, $current, 'entrer');
         /* *******************************Quantité et value**************************************** */
         $quantiterEntrer = $entrer['quantite'];
         $valueEnter = $entrer['valeur'];
-        //dd($value[0][0]);
-        $out = $traitement->setSizeAll($out, $current, 'sortie');
-        $quantiterOut = $out['quantite'];
+        
+        //dd($quantiterOut);
         $valueOut = $out['valeur'];
 
         $traet1 = $traitement->index($init, $enter,$out, $current);
@@ -65,8 +58,8 @@ class DefaultController extends AbstractController
         $current = $traet1['courant'];
         $initial = $traet2['initial'];
 
-        
-        return $this->render('/produit_disponible.html.twig',[
+        //dd($initial);
+        return $this->render('admin/rapport/recap.html.twig',[
             'year' => $year,
             'month' =>$month,
             'product' => $product,
@@ -84,11 +77,9 @@ class DefaultController extends AbstractController
      * @Route("/route/json/{product}", name="json")
      */
     
-    public function public(ManagerRegistry $doctrine,$product='')
+    public function public(MouvementRepository $repository,$product='')
     {
-        $repository = $doctrine->getRepository( Mouvement::class);
         $categorie = $repository->findByValeurDispo($product);
-        // dd($categorie);
         return new JsonResponse($categorie);
     }
     
@@ -96,10 +87,10 @@ class DefaultController extends AbstractController
      * @Route("/impression/produit_disponible/{mois}/{annee}", name="impression_produit_disponible")
      */
     
-    public function disponible(ManagerRegistry $doctrine,$mois,$annee)
+    public function disponible(TypesRepository $repository,$mois,$annee)
     {
         return $this->render('impression/rapport/recaputilation_general.html.twig',[
-            'product' =>$doctrine->getRepository(Types::class)->findByOne($mois,$annee),
+            'product' =>$repository->findByOne($mois,$annee),
             'month' => $mois,
             'year' => $annee
         ]);
@@ -108,13 +99,13 @@ class DefaultController extends AbstractController
     /**
     * @Route("/impression/situation/{mois}/{annee}", name="situation")
     */
-    public function new(ManagerRegistry $doctrine,Traitement $traitement,$mois,$annee)
+    public function new(TypesRepository $repository,Traitement $traitement,$mois,$annee)
     {
-        $product = $doctrine->getRepository(Types::class)->findByOne($mois,$annee);
-        $init = $doctrine->getRepository(Types::class)->findByInit($mois,$annee);
-        $enter = $doctrine->getRepository(Types::class)->findByEnter($mois,$annee);
-        $out = $doctrine->getRepository(Types::class)->findByOut($mois,$annee);
-        $current = $doctrine->getRepository(Types::class)->findByCurrent($mois,$annee);
+        $product = $repository->findByOne($mois,$annee);
+        $init = $repository->findByInit($mois,$annee);
+        $enter = $repository->findByEnter($mois,$annee);
+        $out = $repository->findByOut($mois,$annee);
+        $current = $repository->findByCurrent($mois,$annee);
         /* **************************************************************** */
         
         $entrer = $traitement->setSizeAll($enter, $current, 'entrer');
@@ -144,5 +135,31 @@ class DefaultController extends AbstractController
             'initial' =>$initial,
         ]);
     }
+
+     /**
+    * @Route("/api_description/{types}", name="description")
+    */
+    public function description(CommandeRepository $repository, $types)
+    {
+        $categorie = $repository->findByDescription($types);
+        return new JsonResponse($categorie);
+    }
+
+    #[Route('/api_references', name: 'reference')]
+    public function references(SituationRepository $repository)
+    {
+        $references = $repository->findByFournisseur();
+        // dd($categorie);
+        return new JsonResponse($references);
+    }
+
+    /**
+    * @Route("/api_agence", name="agence")
+    */
+    public function agency(SituationRepository $repository)
+    {
+        $agence = $repository->findByAgencyApi();
+        // dd($categorie);
+        return new JsonResponse($agence);
+    }
 }
-?>

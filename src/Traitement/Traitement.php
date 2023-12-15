@@ -173,6 +173,7 @@ class Traitement {
             }
           }
         }
+        //dd($sortie);
         return [
           'quantite' => $sortie,
          'valeur' => $valueInput];

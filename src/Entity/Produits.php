@@ -21,9 +21,6 @@ class Produits
     #[ORM\Column(type: 'string', length: 255)]
     private $Abbreviation;
 
-    #[ORM\Column(type: 'date')]
-    private $dateEntrer;
-
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Mouvement::class)]
     private $mouvements;
 
@@ -78,19 +75,7 @@ class Produits
 
         return $this;
     }
-
-    public function getDateEntrer(): ?\DateTimeInterface
-    {
-        return $this->dateEntrer;
-    }
-
-    public function setDateEntrer(\DateTimeInterface $dateEntrer): self
-    {
-        $this->dateEntrer = $dateEntrer;
-
-        return $this;
-    }
-
+    
     /**
      * @return Collection|Mouvement[]
      */

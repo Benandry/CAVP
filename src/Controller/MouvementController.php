@@ -17,7 +17,7 @@ class MouvementController extends AbstractController
 {
     //Route pour les telechargement de produits entrer
     #[Route('/impression_select/{id}/{mois}/{annee}', name: 'impression_select')]
-    public function impressionPdf(ManagerRegistry $doctrine,$id='' ,Traitement $traitement,$mois,$annee)
+    public function impressionPdf(ManagerRegistry $doctrine,$id,Traitement $traitement,$mois,$annee)
     {
         $isSubmitted = true;
         $test = false ;
@@ -81,10 +81,6 @@ class MouvementController extends AbstractController
       public function impressionProdMensuel(ManagerRegistry $doctrine,Traitement $traitement, $mois = '')
       {
           $imp = true;
-        if (date($mois) > date('m-Y')) {
-            dd('Date inaproprié');
-        }
-    
         $isssubmitted = false;
         $isDate = false;
         if($mois != ''){

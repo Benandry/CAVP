@@ -19,22 +19,17 @@ class AgenceRepository extends ServiceEntityRepository
         parent::__construct($registry, Agence::class);
     }
 
-    // /**
-    //  * @return Agence[] Returns an array of Agence objects
-    //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findByAgences()
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            ->select(["a.id","a.name","a.code","a.classe","a.annuaire"])
+            ->orderBy('a.id','DESC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Agence

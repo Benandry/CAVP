@@ -21,6 +21,10 @@ class Descriptions
     #[ORM\OneToMany(mappedBy: 'descriptions', targetEntity: Mouvement::class)]
     private $mouvements;
 
+    #[ORM\ManyToOne(targetEntity: Types::class, inversedBy: 'descriptions')]
+    private $types;
+
+
     public function __construct()
     {
         $this->mouvements = new ArrayCollection();
@@ -76,4 +80,29 @@ class Descriptions
 
         return $this;
     }
+
+    public function getTypes(): ?Types
+    {
+        return $this->types;
+    }
+
+    public function setTypes(?Types $types): self
+    {
+        $this->types = $types;
+
+        return $this;
+    }
 }
+
+
+
+	
+	
+#desccriptions	"Ajouter des nouveaux Catégories"
+	
+#desccriptions	"Réintegration"
+
+#desccriptions	"Sorties des Catégories"
+
+#entrée  |               0 |
+#|  2 | sortie

@@ -17,26 +17,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 //#[IsGranted('ROLE_ADMIN')]
 class HistoriqueController extends AbstractController
 {
-    #[Route('/compte-rendu/{description}', name: 'history')]
+    #[Route('/admin/compte-rendu/{description}', name: 'admin_compte_rendu')]
     public function history(ManagerRegistry $doctrine,Request $request,$description = ""): Response
     {
 
-        $mois_annee = $request->query->get('ldate');
-        if ($mois_annee == null) {
-            $mois_annee = date('Y-m');
-        }
-        $date_split = explode('-',$mois_annee);
-        $month = $date_split[1];
-        $year = $date_split[0];
-        //dd($month);
-        $repository1 = $doctrine->getRepository(Mouvement::class);
-        $histo  = $repository1->findByhistory($month,$year,$description);
-        //dd($histo);
-        if (!$histo) {
-           return $this->render('noProduct.html.twig');
+        $month = $request->query->get('mois');
+        $year = $request->query->get('year');
+       // dd($year);
+        if ($month && $year) {
+            $month = date('m');
+            $year = date('Y');
         }
 
-        return $this->render('historique/history.html.twig', [
+        $repository1 = $doctrine->getRepository(Mouvement::class);
+        $histo  = $repository1->findByhistory($month,$year,$description);
+
+        // if (!$histo) {
+        //    return $this->render('noProduct.html.twig');
+        // }
+
+        // dd($histo);
+        return $this->render('admin/rapport/compte_rendu.html.twig', [
             'history' => $histo,
             'mois' => $month,
             'annee' => $year,

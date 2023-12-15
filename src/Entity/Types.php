@@ -21,9 +21,14 @@ class Types
     #[ORM\OneToMany(mappedBy: 'types', targetEntity: Mouvement::class)]
     private $mouvements;
 
+    #[ORM\OneToMany(mappedBy: 'types', targetEntity: Descriptions::class)]
+    private $descriptions;
+
+
     public function __construct()
     {
         $this->mouvements = new ArrayCollection();
+        $this->descriptions = new ArrayCollection();
     }
     public function __toString()
     {   
@@ -71,6 +76,36 @@ class Types
             // set the owning side to null (unless already changed)
             if ($mouvement->getTypes() === $this) {
                 $mouvement->setTypes(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Descriptions[]
+     */
+    public function getDescriptions(): Collection
+    {
+        return $this->descriptions;
+    }
+
+    public function addDescription(Descriptions $description): self
+    {
+        if (!$this->descriptions->contains($description)) {
+            $this->descriptions[] = $description;
+            $description->setTypes($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDescription(Descriptions $description): self
+    {
+        if ($this->descriptions->removeElement($description)) {
+            // set the owning side to null (unless already changed)
+            if ($description->getTypes() === $this) {
+                $description->setTypes(null);
             }
         }
 

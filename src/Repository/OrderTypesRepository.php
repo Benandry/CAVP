@@ -22,19 +22,16 @@ class OrderTypesRepository extends ServiceEntityRepository
     // /**
     //  * @return OrderTypes[] Returns an array of OrderTypes objects
     //  */
-    /*
-    public function findByExampleField($value)
+   
+    public function findTypeOrders() : array
     {
         return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
+            ->select(['o.id','o.type_order_short','o.type_order_long','o.other_type'])
+            ->orderBy('o.id','DESC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?OrderTypes

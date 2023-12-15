@@ -33,37 +33,46 @@ class MouvementType extends AbstractType
                 'label' => "Nom de categorie :" 
             ])
             ->add('Agence',EntityType::class,[
-                'class' => Agence::class,
-                'label' => " Agences :" 
-            ])
-            ->add('dateEntrer',DateType::class,[
-                'label' => 'Date d\'operation :'
+            'label' => "Destination/References",
+            'class' => Agence::class
             ])
             ->add('descriptions',EntityType::class,[
                 'class' => Descriptions::class,
                 'label' => 'Description :'
             ])
+            ->add('dateEntrer',DateType::class,[
+                'label' => 'Date d\'operation :'
+            ])
             ->add('User',EntityType::class,[
                 'class' => User::class,
                 'label' => "Chef de CAVP responsable :" 
+            ])
+
+            ->add('number_planche',TextType::class,[
+                'label' => 'Nombre planche: '
             ])
             ->add('quantite',TextType::class,[
                 'label' => 'Quantité: '
             ])
             ->add('reference',EntityType::class,[
                 'class' => Fournisseur::class,
-                'label' => "References :" 
+                'label' => "References :" ,
+                'required' => true
             ])
             ->add('types',EntityType::class,[
                 'class' => Types::class,
                 'label' => "Type d'operation :" 
             ])
-            ->add('numero_de_sortie',EntityType::class,[
-                'class' => OrderSortie::class,
-                'label' => 'Numero de sortie: '
+
+            ->add('number_sortie',TextType::class,[
+                'label' => 'Number de sortie:',
+                'required' => false
+            ])
+            ->add('number_out',TextType::class,[
+                'label' => 'TP-PL: '
             ])
             ->add('submit',SubmitType::class,[
-                'label' => "Effectuer l'operation ",
+                'label' => "Valider",
                 'validate' => true,
             ])
             ;

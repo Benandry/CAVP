@@ -21,7 +21,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 //#[IsGranted('ROLE_ADMIN')]
 class EtatController extends AbstractController
 {
-  #[Route('/etat-de-stocks', name: 'etat_de_stock')]
+  #[Route('/admin/etat-de-stocks', name: 'admin_etat_de_stock')]
   public function index(ManagerRegistry $doctrine,Traitement $traitement,Request $request, $mois=''): Response
   {
     $month = $request->query->get('mois');
@@ -67,10 +67,8 @@ class EtatController extends AbstractController
       $enter  = $repository->findBytEnterPro($product,$month,$year);
       $out  = $repository->findByOutPro($product,$month,$year); 
       $current  = $repository->findByCurrentPro($product,$month,$year);
+      $total = ["initiale" => 2,"entrer" => 2 ,"sortie" => 2,"actuelle" => 100];
 
-      if (!$current) {
-        return $this->render('noProduct.html.twig');
-     }
       
       $out = $traitement->setSize($out, $current, 'sortie');
       $entrer = $traitement->setSize($enter, $current, 'entrer');
@@ -79,8 +77,9 @@ class EtatController extends AbstractController
       $current = $trtmt['courant'];
       $initial = $trtmt['initial'];
       $total = $current[0];
+
       
-      return $this->render('etat/etat_de_stock.html.twig', [
+      return $this->render('admin/rapport/state_stock.html.twig', [
         'total' => $total,
         'courant' =>$current,
         'initial' =>$initial,
@@ -110,9 +109,7 @@ class EtatController extends AbstractController
     //dd($out);
     // =========================== la requets avec les produits actuels en generale(Tous les categories par produits) =============================== //  
     $current  = $repository->findByCurrent($month,$year);
-    if (!$current) {
-      return $this->render('noProduct.html.twig');
-   }
+    
 
     // Fomulaire de la date ================//
     $formD = $this->createFormBuilder()
@@ -136,9 +133,8 @@ class EtatController extends AbstractController
       $enter  = $repository->findByEnter($dateP,$month,$year);
       $out  = $repository->findByOut($dateP,$month,$year);
       $current  = $repository->findByCurrent($dateP,$month,$year);
-      if (!$current) {
-        return $this->render('noProduct.html.twig');
-     }
+      $total = ["initiale" => 2,"entrer" => 2 ,"sortie" => 2,"actuelle" => 100];
+      
       $trtmt = $traitement->index($init, $enter,$out, $current);
       //dd($enter);
       $current = $trtmt['courant'];
@@ -167,11 +163,9 @@ class EtatController extends AbstractController
     $traet = $traitement->index($init, $enter,$out, $current);
     $current = $traet['courant'];
     $initial = $traet['initial'];
-    $total = $current[0];
-   // dd($out);
+    $total = ["initiale" => 2,"entrer" => 2 ,"sortie" => 2,"actuelle" => 100];
 
-    //dd($total);
-    return $this->render('etat/etat_de_stock.html.twig',[
+    return $this->render('admin/rapport/state_stock.html.twig',[
         'courant' =>$current,
         'total' =>$total,
         'initial' =>$initial,

@@ -49,4 +49,9 @@ class PeriodeController extends AbstractController
             'controller_name' => 'PeriodeController',
         ]);
     }
+    #[Route('/guide-d\'utilisation-de-cavp', name: 'guide')]
+    public function guide(): Response
+    {
+        return $this->render('guide.html.twig');
+    }
 }

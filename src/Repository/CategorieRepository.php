@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Categorie;
+use App\Entity\Produits;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,7 +21,7 @@ use Doctrine\Persistence\ManagerRegistry;
         parent::__construct($registry, Categorie::class);
     }
     //--=========================== Tous les categories avec les produits respectif ============================================================================
-    public function findByInit($month,$year,$dateEnd = NULL)
+    public function findByInit($month,$year)
     {
         
         $init = "SELECT c.ordre, mvt.quantite initiale,p.nomProduit Produits,p.id ,CONCAT(c.ordre,'_', p.id ) ordreProd
@@ -37,17 +38,14 @@ use Doctrine\Persistence\ManagerRegistry;
         return $stmt->execute();
     }
 
-    public function findByEnter($month,$year,$dateEnd = NULL)
+    public function findByEnter($month,$year)
     {
-        if ($dateEnd == NULL ) {
-            $dateEnd = date('Y-m-d');
-        }
         $enter = "SELECT c.ordre,  SUM(mvt.quantite) entrer, CONCAT(c.ordre,'_', p.id ) ordreProd
         FROM  App\Entity\Categorie c INNER JOIN App\Entity\Mouvement mvt 
         WITH c.id = mvt.Categorie 
         INNER JOIN App\Entity\Produits p WITH p.id = c.produit
-        WHERE mvt.types=1 and mvt.dateEntrer<= '$dateEnd'
-        AND MONTH(mvt.dateEntrer) <= '$month' AND YEAR(mvt.dateEntrer) <= '$year'
+        WHERE mvt.types=1 AND MONTH(mvt.dateEntrer) <= '$month' 
+        AND YEAR(mvt.dateEntrer) <= '$year'
         GROUP BY mvt.Categorie";
         $stmt = $this->getEntityManager()->createQuery($enter);
 
@@ -71,15 +69,11 @@ use Doctrine\Persistence\ManagerRegistry;
         return $stmt->execute();
     }
 
-    public function findByCurrent($month,$year,$dateEnd = NULL,)
+    public function findByCurrent($month,$year)
     {
-        if ($dateEnd == NULL ) {
-            $dateEnd = date('Y-m-d');
-        }
-        $current = "SELECT c.ordre,p.nomProduit produit, c.NomDeCategorie,p.id produit_id, CONCAT(c.ordre,'_', p.id ) ordreProd,c.valeurFaciale,c.ordre initiale,c.ordre debut,c.ordre entrer, c.ordre sortie, SUM(mvt.quantite) actuelle 
+        $current = "SELECT mvt.id, c.ordre,p.nomProduit produit, c.NomDeCategorie,p.id produit_id, CONCAT(c.ordre,'_', p.id ) ordreProd,c.valeurFaciale,c.ordre initiale,c.ordre debut,c.ordre entrer, c.ordre sortie, SUM(mvt.quantite) actuelle 
         FROM App\Entity\Categorie c INNER JOIN App\Entity\Mouvement mvt WITH c.id = mvt.Categorie INNER JOIN App\Entity\Produits p WITH p.id = c.produit
-        WHERE mvt.dateEntrer<= '$dateEnd'
-        AND MONTH(mvt.dateEntrer) <= '$month' AND YEAR(mvt.dateEntrer) <= '$year'
+        WHERE MONTH(mvt.dateEntrer) <= '$month' AND YEAR(mvt.dateEntrer) <= '$year'
         GROUP BY mvt.Categorie";
         $stmt = $this->getEntityManager()->createQuery($current);
 
@@ -232,6 +226,29 @@ use Doctrine\Persistence\ManagerRegistry;
         return $stmt->execute();
     }
 
+
+    public function findCategory(): array 
+    {
+        $columns = [
+            'c.id',
+            'c.NomDeCategorie',
+            'c.ordre',
+            'c.valeurFaciale',
+            'c.prixDeVente',
+            'c.AnneeEmission',
+            'c.coteEmission',
+            'c.tpParPl',
+            'p.nomProduit'
+        ];
+        return $this->createQueryBuilder('c')
+            ->select($columns)
+            ->join(Produits::class,'p')
+            ->where('p.id = c.produit')
+            ->orderBy('c.id','DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 
 }
