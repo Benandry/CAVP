@@ -6,6 +6,6 @@
 * webpack
 
 # Command line
-'''
+```
   composer install
-'''
+```
