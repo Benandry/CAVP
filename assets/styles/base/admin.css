@@ -1,0 +1,24 @@
+.custom-admin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-admin-result{
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 1rem 3rem;
+    background: var(--primary-color);
+}
+
+.custom-result-title h4{
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+
+.custom-result-number{
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}

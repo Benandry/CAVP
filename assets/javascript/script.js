@@ -154,7 +154,7 @@ import $ from 'jquery';
 function Unite( nombre ){
 	var unite;
 	switch( nombre ){
-		case 0: unite = "z�ro";		break;
+		case 0: unite = "zéro";		break;
 		case 1: unite = "un";		break;
 		case 2: unite = "deux";		break;
 		case 3: unite = "trois"; 	break;

@@ -1,0 +1,85 @@
+:root{
+    --color-border: rgb(168, 161, 161);
+}
+.container-custom{
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+.content-custom{
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+}
+.sidebar-custom{
+    flex-basis: 19%;
+    padding-left: 1rem;
+    border-right: 1px solid var(--color-border);
+    box-shadow: 1px 1px 1px 1px rgb(172, 166, 166);
+    min-height: 100vh;
+    padding-bottom: 3rem;
+}
+
+.main-custom{
+    flex-basis: 81%;
+    width: 100%;
+}
+
+.sidebar-custom-title{
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.sidebar-custom-image{
+    overflow: hidden;
+}
+
+.sidebar-custom-image img{
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+.sidebar-custom-text{
+    font-size: 13px;
+    padding-right: 1rem;
+    text-transform: uppercase;
+    color: gray;
+    font-weight: 600;
+}
+.sidebar-custom-menu{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+.sidebar-item-title h4{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.67rem;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgb(94, 93, 93);
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.sidebar-item-list{
+    padding-left: 1rem;
+}
+.sidebar-item-list .menu{
+    padding: 4px 0px ;
+}
+
+.sidebar-item-list .menu a{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.67rem;
+    font-size: 12px;
+    color: rgb(94, 93, 93);
+    text-transform: uppercase;
+    text-decoration: none;
+}

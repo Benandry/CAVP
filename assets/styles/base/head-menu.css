@@ -1,0 +1,22 @@
+.section-title-menu{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 3rem;
+}
+.section-title-menu h2{
+    margin: 1px 3rem;
+    padding: 0.34rem 1px;
+    font-size: 23px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--color-text);
+    border-bottom: 1px solid rgb(168, 161, 161);
+}
+h3{
+    font-size: 19px !important; 
+    color: var(--color-text) !important; 
+}
+.section-main{
+    padding: 1rem 2rem;
+}
