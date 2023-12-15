@@ -6,4 +6,6 @@
 * webpack
 
 # Command line
-{% filename %} composer install {% endfilename %}
+'''
+  composer install
+'''
