@@ -9,18 +9,18 @@
 # Command line
 
 ```
-  composer install
+composer install
 ```
 
 ```
-  npm install
+npm install
 ```
 ```
-  npm run build
+npm run build
 ```
 
 If you have a problem with database in application run this command
 
 ```
-  symfony console  doctrine:schema:update --force
+symfony console  doctrine:schema:update --force
 ```
